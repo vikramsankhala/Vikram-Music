@@ -147,6 +147,18 @@ body::before {
   background-clip: text;
 }
 
+.tagline {
+  font-size: 1.15rem;
+  font-style: italic;
+  color: var(--accent);
+  margin: -0.25rem 0 0.75rem;
+  letter-spacing: 0.02em;
+}
+
+.section-join .tagline {
+  margin-bottom: 0.5rem;
+}
+
 .hero-subtitle {
   font-size: 1.25rem;
   color: var(--accent);
