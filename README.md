@@ -1,6 +1,6 @@
-# Home Band & Jam Room
+# Jam Room
 
-Complete equipment & wiring guide for building a professional home jam room — PA speakers, mixer, electronic drums, guitar rig, Ableton Live integration, fusion music, and Pune sourcing.
+Home band looking for members. Complete equipment & wiring guide — PA speakers, mixer, electronic drums, guitar rig, Ableton Live integration, fusion music, and Pune sourcing.
 
 ## Contents
 

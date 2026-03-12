@@ -1,6 +1,6 @@
-# Home Band & Jam Room — Website
+# Jam Room — Website
 
-Comprehensive website for the Home Band & Jam Room setup guide. Includes equipment specs, wiring diagrams, audio theory, gig suggestions, similar setups, YouTube videos, and Pune sourcing information.
+Website for Jam Room, a home band looking for members. Includes equipment specs, wiring diagrams, audio theory, gig suggestions, fusion music, YouTube videos, and Pune sourcing information.
 
 ## Deploy to Netlify
 
