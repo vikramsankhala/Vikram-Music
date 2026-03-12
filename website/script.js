@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, observerOptions);
 
-  document.querySelectorAll('.equipment-card, .theory-card, .gig-card, .video-card, .composition-card, .fusion-card, .lyrics-card').forEach(el => {
+  document.querySelectorAll('.equipment-card, .theory-card, .gig-card, .video-card, .composition-card, .fusion-card, .lyrics-card, .join-card').forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(20px)';
     el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';

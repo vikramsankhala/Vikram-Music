@@ -166,6 +166,85 @@ body::before {
   padding: 4rem 2rem;
 }
 
+/* Join Us Section */
+.section-join {
+  background: linear-gradient(135deg, rgba(232, 185, 35, 0.08), rgba(22, 26, 34, 0.9));
+  border: 1px solid var(--border);
+}
+
+.join-card {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: flex-start;
+  max-width: 700px;
+  margin: 0 auto;
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 2rem;
+  border: 1px solid var(--border);
+}
+
+.join-photo {
+  flex-shrink: 0;
+}
+
+.join-photo img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: var(--radius);
+  border: 3px solid var(--accent);
+}
+
+.join-info {
+  flex: 1;
+  min-width: 240px;
+}
+
+.join-info h3 {
+  color: var(--accent);
+  margin-bottom: 0.25rem;
+}
+
+.join-role {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+.join-call {
+  color: var(--text);
+  margin-bottom: 1.25rem;
+  line-height: 1.6;
+}
+
+.join-location h4 {
+  color: var(--accent);
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+}
+
+.join-location address {
+  font-style: normal;
+  color: var(--muted);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 600px) {
+  .join-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .join-photo img {
+    width: 160px;
+    height: 160px;
+  }
+}
+
 .section-title {
   font-size: clamp(1.75rem, 3vw, 2.25rem);
   margin-bottom: 2rem;
