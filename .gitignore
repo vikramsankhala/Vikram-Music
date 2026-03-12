@@ -1,0 +1,8 @@
+# Temp extraction files
+docx_extract/
+extracted_text.txt
+*.zip
+
+# OS
+.DS_Store
+Thumbs.db
