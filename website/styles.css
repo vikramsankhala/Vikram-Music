@@ -844,6 +844,140 @@ body::before {
   line-height: 1.8;
 }
 
+/* Home Studio PC Build */
+.homestudio-intro {
+  text-align: center;
+  color: var(--muted);
+  max-width: 720px;
+  margin: 0 auto 1rem;
+  line-height: 1.7;
+}
+
+.homestudio-download {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.homestudio-download a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.homestudio-download a:hover {
+  text-decoration: underline;
+}
+
+.homestudio-overview {
+  margin-bottom: 2.5rem;
+}
+
+.homestudio-overview h3,
+.homestudio-category h3 {
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.homestudio-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.homestudio-table th,
+.homestudio-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+.homestudio-table th {
+  background: var(--bg-card);
+  color: var(--accent);
+}
+
+.homestudio-table .total-row td {
+  background: rgba(232, 185, 35, 0.1);
+  font-weight: 600;
+}
+
+.homestudio-category {
+  margin-bottom: 2.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.homestudio-category:last-of-type {
+  border-bottom: none;
+}
+
+.category-desc {
+  color: var(--muted);
+  margin-bottom: 1.25rem;
+  line-height: 1.7;
+}
+
+.component-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.component-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+}
+
+.component-card h4 {
+  color: var(--accent);
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.component-card p {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+}
+
+.youtube-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.youtube-links a {
+  font-size: 0.85rem;
+  color: var(--accent);
+  text-decoration: none;
+  padding: 0.25rem 0.5rem;
+  background: rgba(232, 185, 35, 0.1);
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.youtube-links a:hover {
+  background: rgba(232, 185, 35, 0.2);
+}
+
+.homestudio-note {
+  margin-top: 2rem;
+  padding: 1rem;
+  background: rgba(232, 185, 35, 0.06);
+  border-radius: var(--radius);
+  border-left: 4px solid var(--accent);
+}
+
+.homestudio-note p {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
 /* Similar Setups */
 .similar-grid {
   display: grid;
