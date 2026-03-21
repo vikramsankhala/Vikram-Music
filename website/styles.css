@@ -1094,6 +1094,26 @@ body::before {
   margin-top: 0.5rem;
 }
 
+.psr-specs {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+
+.psr-specs h4 {
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.psr-specs ul {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  margin-left: 1.25rem;
+}
+
 /* Similar Setups */
 .similar-grid {
   display: grid;
