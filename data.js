@@ -64,12 +64,12 @@ var CONCERT_DATA = {
     { videoId: '4G-YQA_bsOU', title: 'Bridge Over Troubled Water — Official', duration: '4:52', date: '1970', views: '120M', category: 'Simon & Garfunkel', description: 'Official VEVO' },
     { videoId: 'NAEppFUWLfc', title: 'The Sound of Silence — Central Park 1981', duration: '3:20', date: '1981', views: '185M', category: 'Simon & Garfunkel', description: 'Concert in Central Park — Official' },
     { videoId: '1t8kAbUg4t4', title: 'My Way — Official', duration: '4:35', date: '1969', views: '11M', category: 'Frank Sinatra', description: 'Classic crooner' },
-    { videoId: 'S_R2gSvjE0s', title: 'Unforgettable — Official', duration: '3:12', date: '1951', views: '25M', category: 'Nat King Cole', description: 'Remastered HD' },
+    { videoId: 'iF7kOq0peAU', title: 'Unforgettable — Official', duration: '3:12', date: '1951', views: '25M', category: 'Nat King Cole', description: 'Nat King Cole — Topic' },
     { videoId: 'LK4pmJQ6zgM', title: 'Moon River — 1961', duration: '2:45', date: '1961', views: '3.1M', category: 'Andy Williams', description: 'Signature song' },
-    { videoId: 'EvB_9Sj056M', title: "That's Amore — Official", duration: '3:08', date: '1953', views: '35M', category: 'Dean Martin', description: 'Classic crooner' },
+    { videoId: 'vo6D_tp3DeE', title: "Unforgettable — Nat & Natalie Cole (Duet)", duration: '3:31', date: '1991', views: '50M+', category: 'Nat King Cole', description: 'Grammy-winning classic — same era' },
     { videoId: 'Vg0Bn5Z3P7I', title: 'Strangers in the Night — Live', duration: '2:45', date: '1966', views: '15M', category: 'Frank Sinatra', description: 'Grammy Record of the Year' },
-    { videoId: 'FaCbSLZ5nYo', title: 'White Christmas — Official', duration: '3:02', date: '1942', views: '55M', category: 'Bing Crosby', description: 'All-time classic' },
-    { videoId: 'VpE2pnIzGmM', title: 'I Left My Heart in San Francisco — Live', duration: '2:55', date: '1962', views: '8M', category: 'Tony Bennett', description: 'Signature song, Grammy winner' },
+    { videoId: 'v5ryZdpEHqM', title: 'White Christmas — Official', duration: '3:23', date: '1942', views: '9.5M', category: 'Bing Crosby', description: 'BingCrosbyVEVO — Irving Berlin' },
+    { videoId: 'NAEppFUWLfc', title: 'The Sound of Silence — Central Park 1981', duration: '3:20', date: '1981', views: '185M', category: 'Simon & Garfunkel', description: 'Live — classic era' },
   ],
 
   football: [
@@ -306,8 +306,8 @@ var CONCERT_DATA = {
     { videoId: 'xXomfXQeA0Y', title: "I Will Always Love You — The Bodyguard", duration: '4:31', date: '1992', views: '25M', category: 'Oscar Songs', description: 'Whitney Houston — Grammy Record of the Year' },
     { videoId: '3AtDnEC4zak', title: 'Unchained Melody — Ghost', duration: '3:58', date: '1990', views: '82M', category: 'Oscar Songs', description: 'Righteous Brothers — iconic romance' },
     { videoId: 'mHONNcZbwDY', title: 'Hello — Romantic Ballad', duration: '5:26', date: '1984', views: '128M', category: 'Oscar Songs', description: 'Lionel Richie — Grammy winner' },
-    { videoId: 'FaCbSLZ5nYo', title: 'White Christmas — Holiday Classic', duration: '3:02', date: '1942', views: '55M', category: 'Oscar Songs', description: 'Bing Crosby — Irving Berlin' },
-    { videoId: 'EvB_9Sj056M', title: "That's Amore — Dean Martin", duration: '3:08', date: '1953', views: '35M', category: 'Oscar Songs', description: 'Classic film era crooner' },
+    { videoId: 'v5ryZdpEHqM', title: 'White Christmas — Holiday Classic', duration: '3:23', date: '1942', views: '9.5M', category: 'Oscar Songs', description: 'Bing Crosby — Irving Berlin' },
+    { videoId: 'iF7kOq0peAU', title: 'Unforgettable — Nat King Cole', duration: '3:12', date: '1951', views: '25M', category: 'Oscar Songs', description: 'Classic standard' },
     { videoId: 'LK4pmJQ6zgM', title: 'Moon River — Breakfast at Tiffany\'s', duration: '2:45', date: '1961', views: '3.1M', category: 'Oscar Songs', description: 'Andy Williams — Best Original Song 1962' },
   ],
 
