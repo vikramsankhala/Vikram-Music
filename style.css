@@ -304,6 +304,7 @@ body {
 .badge-flamenco { background: rgba(220,100,80,0.25); color: #dc6450; }
 .badge-playlist { background: rgba(150,120,200,0.25); color: #c896ff; }
 .badge-dance { background: rgba(255,100,150,0.25); color: #ff6496; }
+.badge-classics { background: rgba(180,140,100,0.25); color: #d4a878; }
 
 .data-table-section {
   margin-top: 2rem;
