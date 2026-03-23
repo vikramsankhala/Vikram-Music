@@ -619,6 +619,7 @@ var CONCERT_DATA = {
   ],
 
   bike_gear: [
+    { videoId: 'x0f7uOHBEb0', title: 'Riding Accessories 50% OFF — Jacket, Pant, Intercom, Gloves', duration: '12:00', date: '2025', views: '100K+', category: 'Gear', description: 'Top Bikes — Diwali offers on riding gear' },
     { videoId: 'urGqDQOyf_I', title: 'Best BIKE Gadgets Every Rider Needs 2025 — Top 10', duration: '15:00', date: '2025', views: '100K+', category: 'Gear', description: 'Everyday Gadgets — essential bike accessories' },
     { videoId: 'hIhR2o8OtEg', title: 'Lowest & Safest Riding Gear 2025 — Budget', duration: '18:00', date: '2025', views: '300K+', category: 'Gear', description: 'Tiger Koul — helmet, jacket, gloves India' },
     { videoId: 'z-JyIDWT5qs', title: 'ECE Certified Helmet — What to Look For', duration: '12:00', date: '2024', views: '150K', category: 'Gear', description: 'RevZilla — safety standards explained' },
