@@ -690,6 +690,21 @@ var CONCERT_DATA = {
     { videoId: '2IGDsD-dLF8', title: 'Tujhe Kitna Chahne Lage — Kabir Singh', duration: '4:44', date: '2019', views: '233M', category: 'Soulful', description: 'Arijit Singh — Mithoon, heartfelt' },
   ],
 
+  aesthetic_colourful: [
+    { videoId: '37DLSuht6pw', title: 'RANGEENI — Amit Trivedi, Jubin, Hansika Pareek', duration: '3:45', date: '2024', views: '23M', category: 'Hindi', description: 'Colourful celebration — music, joy, beautiful aesthetic' },
+    { videoId: 'CHJFGRsfbhI', title: 'Kesariya — Brahmastra | Alia Bhatt, Ranbir', duration: '4:28', date: '2022', views: '500M+', category: 'Hindi', description: 'Flowers & Benaras — Pritam, Arijit, romantic aesthetic' },
+    { videoId: 'rMfugUZD2dA', title: 'Dekhha Tenu — Mr. & Mrs. Mahi | Janhvi Kapoor', duration: '3:50', date: '2024', views: '167M', category: 'Hindi', description: 'Sony Music — Mohd. Faiz, beautifully dressed, bright' },
+    { videoId: 'gvyUuxdRdR4', title: 'Raataan Lambiyan — Shershaah | Kiara Advani', duration: '2:31', date: '2021', views: '948M', category: 'Hindi', description: 'Nineties love — Sidharth, Kiara, Jubin, Asees' },
+    { videoId: 'xmCFHqLcZvc', title: 'Kala Chashma — Baar Baar Dekho | Katrina Kaif', duration: '4:08', date: '2016', views: '500M+', category: 'Hindi', description: 'Neha Kakkar, Badshah — colourful wedding aesthetic' },
+    { videoId: 'm47QjNippmo', title: 'KESARIYO — Amit Trivedi | Rajasthani Folk', duration: '4:00', date: '2024', views: '15M+', category: 'Hindi', description: 'Vibrant tradition — Chotu Khan, Rupam, colourful' },
+    { videoId: '4P1vdQcaHaw', title: 'Proper Patola — Diljit, Aastha Gill, Badshah', duration: '3:42', date: '2018', views: '300M+', category: 'Punjabi', description: 'Speed Records — Aastha beautifully dressed' },
+    { videoId: 'gEJ9nfu-Yuk', title: 'Apsaras — Masthishka Maranam | Rajisha Vijayan', duration: '3:30', date: '2024', views: '5M+', category: 'Malayalam', description: 'Celestial queen — Saregama, Varkey, Krishand' },
+    { videoId: 'kzpS-A3QJqE', title: 'Kaattuchembakam — Pallichattambi | Kayadu Lohar', duration: '3:50', date: '2026', views: '10M+', category: 'Malayalam', description: 'Tovino, Kayadu — Sony Malayalam, bright aesthetic' },
+    { videoId: 'ET4v0V9FgxQ', title: 'Ennulliletho — Prithviraj, Renuka Menon', duration: '4:00', date: '2014', views: '5M+', category: 'Malayalam', description: 'Meerayude Dukhavum — traditional aesthetic' },
+    { videoId: 'j0NLbrkD724', title: 'Enthamme Chundathu — Kulam | Bhanupriya', duration: '4:15', date: '1997', views: '10M+', category: 'Malayalam', description: 'KS Chithra — Bhanupriya, classic colourful' },
+    { videoId: 'SMlsIXi3AXE', title: 'Azhake Azhake — Neerali | Mohanlal', duration: '3:45', date: '2018', views: '15M+', category: 'Malayalam', description: 'Stephen Devasy — Shreya Ghoshal, poetic aesthetic' },
+  ],
+
   punjabi_dance_ladies: [
     { videoId: 'xmCFHqLcZvc', title: 'Kala Chashma — Baar Baar Dekho | Neha Kakkar, Katrina', duration: '4:08', date: '2016', views: '500M+', category: 'Punjabi Dance', description: 'Ladies favorite — Sidharth, Badshah, viral dance' },
     { videoId: '4P1vdQcaHaw', title: 'Proper Patola — Diljit, Aastha Gill, Badshah', duration: '3:42', date: '2018', views: '300M+', category: 'Punjabi Dance', description: 'Speed Records — Aastha Gill ladies dance' },
