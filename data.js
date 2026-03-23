@@ -678,9 +678,9 @@ var CONCERT_DATA = {
   ],
 
   punjabi_songs: [
-    { videoId: 'YKppYND6V9c', title: 'Brown Munde — AP Dhillon, Gurinder Gill', duration: '3:28', date: '2020', views: '400M+', category: 'Punjabi', description: 'Run-Up Records — viral hit' },
-    { videoId: 'opG3Fdy_esU', title: 'Lamberghini — The Doorbeen, Sartaaj', duration: '3:05', date: '2017', views: '200M+', category: 'Punjabi', description: 'Speed Records — party anthem' },
-    { videoId: '4P1vdQcaHaw', title: 'Proper Patola — Diljit Dosanjh', duration: '3:42', date: '2018', views: '300M+', category: 'Punjabi', description: 'Speed Records — Badshah, Aastha' },
+    { videoId: 'VNs_cCtdbPc', title: 'Brown Munde — AP Dhillon, Gurinder Gill', duration: '3:28', date: '2020', views: '400M+', category: 'Punjabi', description: 'Run-Up Records — viral hit' },
+    { videoId: '5X7WWVTrBvM', title: 'Lamberghini — The Doorbeen, Sartaaj', duration: '3:05', date: '2017', views: '200M+', category: 'Punjabi', description: 'Speed Records — party anthem' },
+    { videoId: 'GVhmynWOPoM', title: 'Proper Patola — Diljit Dosanjh', duration: '3:42', date: '2018', views: '300M+', category: 'Punjabi', description: 'Speed Records — Badshah, Aastha' },
   ],
 
   dosti: [
@@ -704,7 +704,7 @@ var CONCERT_DATA = {
     { videoId: 'gvyUuxdRdR4', title: 'Raataan Lambiyan — Shershaah | Kiara Advani', duration: '2:31', date: '2021', views: '948M', category: 'Hindi', description: 'Nineties love — Sidharth, Kiara, Jubin, Asees' },
     { videoId: 'xmCFHqLcZvc', title: 'Kala Chashma — Baar Baar Dekho | Katrina Kaif', duration: '4:08', date: '2016', views: '500M+', category: 'Hindi', description: 'Neha Kakkar, Badshah — colourful wedding aesthetic' },
     { videoId: 'm47QjNippmo', title: 'KESARIYO — Amit Trivedi | Rajasthani Folk', duration: '4:00', date: '2024', views: '15M+', category: 'Hindi', description: 'Vibrant tradition — Chotu Khan, Rupam, colourful' },
-    { videoId: '4P1vdQcaHaw', title: 'Proper Patola — Diljit, Aastha Gill, Badshah', duration: '3:42', date: '2018', views: '300M+', category: 'Punjabi', description: 'Speed Records — Aastha beautifully dressed' },
+    { videoId: 'GVhmynWOPoM', title: 'Proper Patola — Diljit, Aastha Gill, Badshah', duration: '3:42', date: '2018', views: '300M+', category: 'Punjabi', description: 'Speed Records — Aastha beautifully dressed' },
     { videoId: 'gEJ9nfu-Yuk', title: 'Apsaras — Masthishka Maranam | Rajisha Vijayan', duration: '3:30', date: '2024', views: '5M+', category: 'Malayalam', description: 'Celestial queen — Saregama, Varkey, Krishand' },
     { videoId: 'kzpS-A3QJqE', title: 'Kaattuchembakam — Pallichattambi | Kayadu Lohar', duration: '3:50', date: '2026', views: '10M+', category: 'Malayalam', description: 'Tovino, Kayadu — Sony Malayalam, bright aesthetic' },
     { videoId: 'ET4v0V9FgxQ', title: 'Ennulliletho — Prithviraj, Renuka Menon', duration: '4:00', date: '2014', views: '5M+', category: 'Malayalam', description: 'Meerayude Dukhavum — traditional aesthetic' },
@@ -714,18 +714,18 @@ var CONCERT_DATA = {
 
   punjabi_dance_ladies: [
     { videoId: 'xmCFHqLcZvc', title: 'Kala Chashma — Baar Baar Dekho | Neha Kakkar, Katrina', duration: '4:08', date: '2016', views: '500M+', category: 'Punjabi Dance', description: 'Ladies favorite — Sidharth, Badshah, viral dance' },
-    { videoId: '4P1vdQcaHaw', title: 'Proper Patola — Diljit, Aastha Gill, Badshah', duration: '3:42', date: '2018', views: '300M+', category: 'Punjabi Dance', description: 'Speed Records — Aastha Gill ladies dance' },
-    { videoId: 'YKppYND6V9c', title: 'Brown Munde — AP Dhillon | Ladies Dance Hit', duration: '3:28', date: '2020', views: '400M+', category: 'Punjabi Dance', description: 'Run-Up — Gurinder Gill, viral club dance' },
-    { videoId: 'opG3Fdy_esU', title: 'Lamberghini — The Doorbeen | Party Dance', duration: '3:05', date: '2017', views: '200M+', category: 'Punjabi Dance', description: 'Speed Records — Sartaaj, wedding favorite' },
-    { videoId: 'PeYxEd_TG_s', title: 'Dilbar — Satyameva Jayate | Nora Fatehi, Neha Kakkar', duration: '3:04', date: '2018', views: '1B+', category: 'Punjabi Dance', description: 'T-Series — Dhvani Bhanushali, Ikka, ladies classic' },
+    { videoId: 'GVhmynWOPoM', title: 'Proper Patola — Diljit, Aastha Gill, Badshah', duration: '3:42', date: '2018', views: '300M+', category: 'Punjabi Dance', description: 'Speed Records — Aastha Gill ladies dance' },
+    { videoId: 'VNs_cCtdbPc', title: 'Brown Munde — AP Dhillon | Ladies Dance Hit', duration: '3:28', date: '2020', views: '400M+', category: 'Punjabi Dance', description: 'Run-Up — Gurinder Gill, viral club dance' },
+    { videoId: '5X7WWVTrBvM', title: 'Lamberghini — The Doorbeen | Party Dance', duration: '3:05', date: '2017', views: '200M+', category: 'Punjabi Dance', description: 'Speed Records — Sartaaj, wedding favorite' },
+    { videoId: 'JFcgOboQZ08', title: 'Dilbar — Satyameva Jayate | Nora Fatehi, Neha Kakkar', duration: '3:04', date: '2018', views: '1B+', category: 'Punjabi Dance', description: 'T-Series — Dhvani Bhanushali, Ikka, ladies classic' },
     { videoId: 'PhZ2_HCwO4Y', title: 'High Heels — Yo Yo Honey Singh | Ladies Anthem', duration: '3:35', date: '2014', views: '150M+', category: 'Punjabi Dance', description: 'Desi Music — dance floor favorite' },
   ],
 
   punjabi_dance: [
-    { videoId: 'opG3Fdy_esU', title: 'Lamberghini — High Beat Punjabi Dance', duration: '3:05', date: '2017', views: '200M+', category: 'Punjabi Dance', description: 'The Doorbeen — party banger' },
-    { videoId: 'YKppYND6V9c', title: 'Brown Munde — AP Dhillon | Dance Beats', duration: '3:28', date: '2020', views: '400M+', category: 'Punjabi Dance', description: 'Run-Up — viral club hit' },
+    { videoId: '5X7WWVTrBvM', title: 'Lamberghini — High Beat Punjabi Dance', duration: '3:05', date: '2017', views: '200M+', category: 'Punjabi Dance', description: 'The Doorbeen — party banger' },
+    { videoId: 'VNs_cCtdbPc', title: 'Brown Munde — AP Dhillon | Dance Beats', duration: '3:28', date: '2020', views: '400M+', category: 'Punjabi Dance', description: 'Run-Up — viral club hit' },
     { videoId: 'PhZ2_HCwO4Y', title: 'High Heels — Yo Yo Honey Singh | Punjabi Dance', duration: '3:35', date: '2014', views: '150M+', category: 'Punjabi Dance', description: 'Desi Music — dance anthem' },
-    { videoId: '4P1vdQcaHaw', title: 'Proper Patola — Diljit Dosanjh | Dance', duration: '3:42', date: '2018', views: '300M+', category: 'Punjabi Dance', description: 'Speed Records — Badshah' },
+    { videoId: 'GVhmynWOPoM', title: 'Proper Patola — Diljit Dosanjh | Dance', duration: '3:42', date: '2018', views: '300M+', category: 'Punjabi Dance', description: 'Speed Records — Badshah' },
   ],
 
   sher_shayari_party: [
@@ -757,15 +757,38 @@ var CONCERT_DATA = {
     { videoId: 'kw4tT7SCmaY', title: 'Afreen Afreen — Coke Studio | Rahat & Momina Mustehsan', duration: '6:25', date: '2016', views: '350M+', category: 'Mere Rashke Qamar', description: 'Coke Studio Pakistan — viral romantic Sufi crossover, same soulful feel' },
   ],
 
+  acoustic_guitar: [
+    { videoId: '8anCnb6sPOA', title: 'Mahi Aaja Unplugged — Singh Is Bliing | Arijit Singh', duration: '3:45', date: '2015', views: '50M+', category: 'Acoustic Guitar', description: 'Zee Music — acoustic guitar & strings, soulful' },
+    { videoId: 'PYzFp5o4lhE', title: 'Channa Mereya Unplugged — ADHM | Arijit Singh', duration: '4:30', date: '2016', views: '12M+', category: 'Acoustic Guitar', description: 'Sony Music — Pritam, guitar, dholak, sarangi' },
+    { videoId: 'fsiPzT50ZiM', title: 'Tum Hi Ho — MTV Unplugged | Arijit Singh', duration: '4:25', date: '2013', views: '50M+', category: 'Acoustic Guitar', description: 'Aashiqui 2 — iconic acoustic rendition' },
+    { videoId: 'iqR3FySTNmI', title: 'Phir Le Aaya Dil Unplugged — Barfi | Arijit Singh', duration: '4:15', date: '2012', views: '10M+', category: 'Acoustic Guitar', description: 'Acoustic karaoke — guitar-driven, soulful' },
+    { videoId: 'lb5UfpnRsXc', title: 'Tujh Mein Rab Dikhta Hai — Unplugged Cover | Pehchan Music', duration: '4:20', date: '2019', views: '5M+', category: 'Acoustic Guitar', description: 'Rab Ne Bana Di Jodi — Shreya Karmakar, acoustic' },
+    { videoId: 'C2VCl9CiuUA', title: 'Kabira — MTV Unplugged | Arijit Singh', duration: '5:30', date: '2013', views: '30M+', category: 'Acoustic Guitar', description: 'Yeh Jawaani Hai Deewani — guitar arrangement' },
+    { videoId: 'LRnbNpTUpTo', title: 'Madari — Coke Studio | Clinton Cerejo, Vishal, Sonu', duration: '4:15', date: '2015', views: '10M+', category: 'Acoustic Guitar', description: 'Coke Studio India — mandolin, acoustic guitar' },
+    { videoId: 'bfk6AzvyX4k', title: 'Ghar — Coke Studio | Hitesh Sonik, Piyush Mishra', duration: '8:32', date: '2013', views: '5M+', category: 'Acoustic Guitar', description: 'Coke Studio India — intimate guitar & vocals' },
+    { videoId: 'kw4tT7SCmaY', title: 'Afreen Afreen — Coke Studio | Rahat & Momina', duration: '6:25', date: '2016', views: '350M+', category: 'Acoustic Guitar', description: 'Coke Studio Pakistan — Sufi with guitar' },
+    { videoId: 'z-diRlyLGzo', title: 'Channa Mereya — Ae Dil Hai Mushkil | Arijit Singh', duration: '4:05', date: '2016', views: '600M+', category: 'Acoustic Guitar', description: 'Sony Music — Pritam, acoustic-pop ballad' },
+    { videoId: 'T94PHkuydcw', title: 'Kun Faya Kun — Rockstar | AR Rahman, Javed Ali', duration: '6:21', date: '2011', views: '505M', category: 'Acoustic Guitar', description: 'T-Series — Sufi-rock, guitar & mandolin' },
+    { videoId: 'gvyUuxdRdR4', title: 'Raataan Lambiyan — Shershaah | Jubin, Asees', duration: '2:31', date: '2021', views: '948M', category: 'Acoustic Guitar', description: 'Sony Music — Tanishk B, guitar-friendly melody' },
+    { videoId: 'Jx310JG_lK4', title: 'Raabta — Jubin Nautiyal | Chirantan Bhatt', duration: '3:45', date: '2024', views: '50M+', category: 'Acoustic Guitar', description: 'T-Series — acoustic-pop, ideal for guitar' },
+    { videoId: '3eD91SzY7Vo', title: 'Humnava Mere — Jubin Nautiyal', duration: '3:55', date: '2018', views: '1B+', category: 'Acoustic Guitar', description: 'Pyaar Records — Manoj Muntashir, acoustic feel' },
+    { videoId: '2IGDsD-dLF8', title: 'Tujhe Kitna Chahne Lage — Kabir Singh | Arijit', duration: '4:44', date: '2019', views: '233M', category: 'Acoustic Guitar', description: 'T-Series — Mithoon, heartfelt guitar ballad' },
+    { videoId: 'fR5_MWHYWX0', title: 'Pehla Nasha — Jo Jeeta Wohi Sikandar | Udit Narayan', duration: '4:40', date: '1991', views: '50M+', category: 'Acoustic Guitar', description: 'Classic — Jatin-Lalit, evergreen guitar song' },
+    { videoId: 'rmTDdZpf56U', title: 'Pehla Nasha 2.0 — Armaan Malik, Pragati | Saregama', duration: '3:30', date: '2025', views: '18M+', category: 'Acoustic Guitar', description: 'Saregama — Amaal Mallik, acoustic reimagined' },
+    { videoId: 'OozJV1TOHZ0', title: 'Kal Ho Naa Ho — Acoustic Guitar | Acoustic NItz', duration: '4:00', date: '2020', views: '2M+', category: 'Acoustic Guitar', description: 'Full guitar rendition — Sonu Nigam classic' },
+    { videoId: 'qb0soTLeFL4', title: 'Tere Bina — 1921 Acoustic | Guitar Lesson', duration: '6:00', date: '2019', views: '1M+', category: 'Acoustic Guitar', description: 'Arijit Singh — Acoustic Shubham, full rendition' },
+    { videoId: 'XN1zrRspy7E', title: 'Khamoshiyan — Arijit Singh | Jeet Gannguli', duration: '5:35', date: '2015', views: '33M+', category: 'Acoustic Guitar', description: 'Sony Music — romantic ballad, guitar-driven' },
+  ],
+
   party_anthems: [
     { videoId: 'g8bTNID9nPs', title: 'Zingaat (Jhing Jhing Jhingat) — Sairat | Ajay-Atul', duration: '4:27', date: '2016', views: '450M+', category: 'Party Anthems', description: 'Zee Music Marathi — viral rhythm & energy, wedding & party favorite' },
     { videoId: 'xmCFHqLcZvc', title: 'Kala Chashma — Baar Baar Dekho | Neha Kakkar, Badshah', duration: '4:08', date: '2016', views: '500M+', category: 'Party Anthems', description: 'T-Series — Katrina, Sidharth, dance floor banger' },
     { videoId: 'NTHz9ephYTw', title: 'Kar Gayi Chull — Kapoor & Sons | Badshah, Neha Kakkar', duration: '3:40', date: '2016', views: '559M+', category: 'Party Anthems', description: 'T-Series — Alia, Sidharth, house party anthem' },
-    { videoId: 'PeYxEd_TG_s', title: 'Dilbar — Satyameva Jayate | Nora Fatehi, Neha Kakkar', duration: '3:04', date: '2018', views: '1B+', category: 'Party Anthems', description: 'T-Series — Dhvani Bhanushali, viral dance club hit' },
-    { videoId: '4P1vdQcaHaw', title: 'Proper Patola — Diljit, Aastha Gill, Badshah', duration: '3:42', date: '2018', views: '300M+', category: 'Party Anthems', description: 'Speed Records — wedding & club dance energy' },
-    { videoId: 'opG3Fdy_esU', title: 'Lamberghini — The Doorbeen, Sartaaj', duration: '3:05', date: '2017', views: '200M+', category: 'Party Anthems', description: 'Speed Records — high-beat Punjabi party banger' },
-    { videoId: 'YKppYND6V9c', title: 'Brown Munde — AP Dhillon, Gurinder Gill', duration: '3:28', date: '2020', views: '400M+', category: 'Party Anthems', description: 'Run-Up — viral club dance anthem' },
-    { videoId: 'Jt5yIFgh6wQ', title: 'Bom Diggy Diggy — Sonu Ke Titu Ki Sweety | Zack Knight', duration: '3:48', date: '2018', views: '177M+', category: 'Party Anthems', description: 'T-Series — Jasmin Walia, party dance energy' },
+    { videoId: 'SD4Z8dlZPd8', title: 'Genda Phool — Badshah | Jacqueline Fernandez, Payal Dev', duration: '2:51', date: '2020', views: '989M+', category: 'Party Anthems', description: 'Sony Music — hit anthem, wedding & club favorite' },
+    { videoId: 'i0_m90T04uw', title: 'Kamariya — Mitron | Darshan Raval, DJ Chetas, Ikka', duration: '3:29', date: '2018', views: '300M+', category: 'Party Anthems', description: 'Sony Music — Jackky Bhagnani, Kritika, club dance' },
+    { videoId: '5X7WWVTrBvM', title: 'Lamberghini — The Doorbeen, Ragini', duration: '3:38', date: '2018', views: '573M+', category: 'Party Anthems', description: 'Speed Records — high-beat Punjabi party banger' },
+    { videoId: 'jCEdTq3j-0U', title: 'Gallan Goodiyaan — Dil Dhadakne Do | Farhan, Priyanka', duration: '4:03', date: '2015', views: '483M+', category: 'Party Anthems', description: 'T-Series — Shankar-Ehsaan-Loy, wedding celebration hit' },
+    { videoId: 'Oo7vqCpry-U', title: 'O Saki Saki — Batla House | Nora Fatehi, Neha Kakkar', duration: '4:07', date: '2019', views: '250M+', category: 'Party Anthems', description: 'Tanishk B, Tulsi Kumar, B Praak — club dance anthem' },
     { videoId: 'xmU0s2QtaEY', title: 'Swag Se Swagat — Tiger Zinda Hai | Salman, Katrina', duration: '3:56', date: '2017', views: '600M+', category: 'Party Anthems', description: 'YRF — Vishal-Shekhar, groovy club anthem' },
     { videoId: 'HgIW7P4dsXU', title: 'Nachde Ne Saare — Baar Baar Dekho | Sidharth, Katrina', duration: '3:22', date: '2016', views: '337M+', category: 'Party Anthems', description: 'Zee Music — Jasleen Royal, wedding celebration energy' },
     { videoId: '69CEiHfS_mc', title: 'Lungi Dance — Chennai Express | Honey Singh, SRK, Deepika', duration: '3:32', date: '2013', views: '547M+', category: 'Party Anthems', description: 'T-Series — Rajinikanth tribute, party dance' },
