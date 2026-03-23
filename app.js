@@ -1,5 +1,5 @@
 (function () {
-  const CATEGORY_KEYS = ['celine', 'shakira', 'enrique', 'dance', 'classics', 'football', 'pele', 'maradona', 'messi', 'messigear', 'ronaldo', 'cruyff', 'zidane', 'ronaldinho', 'r9', 'vanbasten', 'beckenbauer', 'playlist', 'love', 'african', 'latin', 'flamenco'];
+  const CATEGORY_KEYS = ['celine', 'shakira', 'enrique', 'dance', 'classics', 'football', 'pele', 'maradona', 'messi', 'messigear', 'ronaldo', 'cruyff', 'zidane', 'ronaldinho', 'r9', 'vanbasten', 'beckenbauer', 'oscar_songs', 'musical_films', 'classic_themes', 'movie_dance', 'romantic_moments', 'web_series', 'hindi_web_series', 'hindi_movies', 'bengali_movies', 'malayalam_movies', 'playlist', 'love', 'african', 'latin', 'flamenco'];
   const BADGE_MAP = {
     celine: 'badge-celine', shakira: 'badge-shakira', enrique: 'badge-enrique', dance: 'badge-dance',
     classics: 'badge-classics', football: 'badge-football', playlist: 'badge-playlist', love: 'badge-love',
@@ -7,6 +7,10 @@
     pele: 'badge-pele', maradona: 'badge-maradona', messi: 'badge-messi', messigear: 'badge-messigear',
     ronaldo: 'badge-ronaldo', cruyff: 'badge-cruyff', zidane: 'badge-zidane', ronaldinho: 'badge-ronaldinho',
     r9: 'badge-r9', vanbasten: 'badge-vanbasten', beckenbauer: 'badge-beckenbauer',
+    oscar_songs: 'badge-oscar', musical_films: 'badge-musical', classic_themes: 'badge-themes',
+    movie_dance: 'badge-movie-dance', romantic_moments: 'badge-romantic',
+    hindi_movies: 'badge-hindi', bengali_movies: 'badge-bengali', malayalam_movies: 'badge-malayalam',
+    web_series: 'badge-web', hindi_web_series: 'badge-hindi-web',
   };
 
   function getAllVideos() {
