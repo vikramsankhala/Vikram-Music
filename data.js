@@ -721,6 +721,12 @@ var CONCERT_DATA = {
     { videoId: '4P1vdQcaHaw', title: 'Proper Patola — Diljit Dosanjh | Dance', duration: '3:42', date: '2018', views: '300M+', category: 'Punjabi Dance', description: 'Speed Records — Badshah' },
   ],
 
+  ghazal_party: [
+    { videoId: 'F4X-2CwOAPg', title: 'Jagjit Singh — Film Ghazals Nonstop | Jhuki Jhuki, Tumko Dekha', duration: '1:25', date: '2025', views: '35K+', category: 'Ghazal', description: 'Saregama — 15 film ghazals, Jhuki Jhuki Si Nazar, Chithi Na Koi Sandesh, party perfect' },
+    { videoId: '75VnN1dLA-Q', title: 'Chupke Chupke Raat Din — Ghulam Ali', duration: '8:00', date: '1976', views: '9M+', category: 'Ghazal', description: 'Saregama — Maulana Hasrat Mohani, Raga Kafi, Nikaah, mehfil classic' },
+    { videoId: 'PTXlA6Yx1AY', title: 'Saqi Ki Har Nigah — Pankaj Udhas | Khamoshi Ki Aawaz', duration: '5:30', date: '2018', views: '2M+', category: 'Ghazal', description: 'ArtistAloud — romantic ghazal, wedding favorite' },
+  ],
+
   flamenco: [
     { videoId: 'cFlDf7Ck-N4', title: 'Al Di Meola, McLaughlin, Paco De Lucia – Warfield 1980', duration: '2:24:19', date: '1980', views: '1.5M', category: 'Flamenco', description: 'Flamenco Fusion' },
     { videoId: 'erZZSsjvUmI', title: 'Paco De Lucía – North Sea Jazz 2006', duration: '1:06:30', date: '2006', views: '500K+', category: 'Flamenco', description: 'Full concert' },
