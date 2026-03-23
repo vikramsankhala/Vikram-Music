@@ -28,6 +28,25 @@ const CONCERT_DATA = {
     { videoId: '2Ndra-1Pwug', title: 'Hips Don\'t Lie – LMYNL Tour w/ Wyclef', duration: '4:55', date: '2024', views: '69M', category: 'Shakira', description: 'World Tour' },
   ],
 
+  dance: [
+    { videoId: 'sOnqjkJTMaA', title: 'Thriller (Official 4K) — Greatest Music Video Ever', duration: '13:42', date: '1984', views: '1.1B', category: 'Dance', description: 'Michael Jackson — Library of Congress, VEVO 4K' },
+    { videoId: 'ZXmjhRkPVFc', title: 'Billie Jean — First Moonwalk Ever (Motown 25)', duration: '4:50', date: '1983', views: '180M', category: 'Dance', description: 'Michael Jackson — HD 60fps, historic' },
+    { videoId: 'FdX8_GyNycQ', title: 'Billie Jean — 30th Anniversary 4K', duration: '8:00', date: '2001', views: '45M', category: 'Dance', description: 'Michael Jackson — Madison Square Garden 4K' },
+    { videoId: 'RU52dSNrgCg', title: 'Single Ladies (Put a Ring on It) — 4K Remaster', duration: '3:20', date: '2008', views: '1B+', category: 'Dance', description: 'Beyoncé — Official VEVO 4K' },
+    { videoId: 'Ye2OMov9dQs', title: 'Waka Waka — FIFA World Cup 2010 Live', duration: '3:09', date: '2010', views: '5M+', category: 'Dance', description: 'Shakira — Official FIFA, HD sound' },
+    { videoId: 'Gs069dndIYk', title: 'September — Official HD', duration: '3:36', date: '2013', views: '864M', category: 'Dance', description: 'Earth, Wind & Fire — Official HD audio' },
+    { videoId: 'G3lAM_L3jR0', title: 'The Babbitt and the Bromide — Astaire & Kelly', duration: '7:18', date: '1946', views: '1.5M', category: 'Dance', description: 'Fred Astaire & Gene Kelly — Classic Hollywood' },
+    { videoId: 'ru0K8uYEZWw', title: "Can't Stop the Feeling! — Official Video", duration: '3:56', date: '2016', views: '1.7B', category: 'Dance', description: 'Justin Timberlake — Grammy winner, HD' },
+    { videoId: 'LjiUn1MZZwQ', title: 'Yeah! — Live HD Truth Tour', duration: '5:00', date: '2005', views: '1.7M', category: 'Dance', description: 'Usher ft. Lil Jon — Atlanta' },
+    { videoId: 'OPf0YbXqDm0', title: 'Uptown Funk — Official Video', duration: '4:30', date: '2014', views: '4.7B', category: 'Dance', description: 'Mark Ronson ft. Bruno Mars — VEVO HD' },
+    { videoId: 'lYBUbBu4W08', title: 'Happy — Official Video (24 Hours)', duration: '4:14', date: '2013', views: '1.4B', category: 'Dance', description: 'Pharrell Williams — Official HD' },
+    { videoId: '4fndeDfaWCg', title: 'Get Lucky — Grammy 2014 Live', duration: '5:30', date: '2014', views: '25M+', category: 'Dance', description: 'Daft Punk, Pharrell, Stevie Wonder, Nile Rodgers' },
+    { videoId: '09R8_2nJtjg', title: 'Blurred Lines — Live (HD)', duration: '4:15', date: '2013', views: '120M', category: 'Dance', description: 'Robin Thicke ft. Pharrell, T.I.' },
+    { videoId: 'OAwaNWGLM0c', title: 'Rhythm Nation — Official Video', duration: '4:26', date: '1989', views: '37M', category: 'Dance', description: 'Janet Jackson — Iconic choreography, VEVO' },
+    { videoId: 'JGwWNGJdvx8', title: 'Shape of You — Official Video', duration: '3:53', date: '2017', views: '5.8B', category: 'Dance', description: 'Ed Sheeran — VEVO HD' },
+    { videoId: 'CevxZvSJLk8', title: 'Uptown Funk — Live Grammys 2015', duration: '4:30', date: '2015', views: '80M', category: 'Dance', description: 'Bruno Mars & Mark Ronson' },
+  ],
+
   enrique: [
     { videoId: 'ZfMsdNh0qZU', title: 'All The Hits LIVE Tour - Cluj, Romania 2019 (4K)', duration: '1:09:26', date: '2019', views: '2M', category: 'Enrique Iglesias', description: 'Full concert 4K' },
     { videoId: 'KcY7P4uB0fE', title: 'Trilogy Tour Montreal 2024 Full Segment 4K', duration: '34:17', date: '2024', views: '1M', category: 'Enrique Iglesias', description: 'With Ricky Martin & Pitbull' },

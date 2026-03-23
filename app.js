@@ -1,9 +1,10 @@
 (function () {
-  const CATEGORY_KEYS = ['celine', 'shakira', 'enrique', 'playlist', 'love', 'african', 'latin', 'flamenco'];
+  const CATEGORY_KEYS = ['celine', 'shakira', 'enrique', 'dance', 'playlist', 'love', 'african', 'latin', 'flamenco'];
   const BADGE_MAP = {
     celine: 'badge-celine',
     shakira: 'badge-shakira',
     enrique: 'badge-enrique',
+    dance: 'badge-dance',
     playlist: 'badge-playlist',
     love: 'badge-love',
     african: 'badge-african',
