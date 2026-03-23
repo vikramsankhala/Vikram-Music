@@ -224,14 +224,14 @@ var CONCERT_DATA = {
   ],
 
   enrique: [
-    { videoId: 'ZfMsdNh0qZU', title: 'All The Hits LIVE Tour - Cluj, Romania 2019 (4K)', duration: '1:09:26', date: '2019', views: '2M', category: 'Enrique Iglesias', description: 'Full concert 4K' },
-    { videoId: 'KcY7P4uB0fE', title: 'Trilogy Tour Montreal 2024 Full Segment 4K', duration: '34:17', date: '2024', views: '1M', category: 'Enrique Iglesias', description: 'With Ricky Martin & Pitbull' },
-    { videoId: '44KtWt5VnGw', title: 'Bailando LIVE HD + I Like It ft. Pitbull', duration: '7:50', date: '2014', views: '144M', category: 'Enrique Iglesias', description: 'Official' },
-    { videoId: 'M94c_7i3L-s', title: 'Hero (Live) – Official 2024', duration: '3:18', date: '2024', views: '15M', category: 'Enrique Iglesias', description: 'Official channel' },
-    { videoId: 'j0T3d_jqFQI', title: 'Hero (LIVE) – 2001 Historic First Performance', duration: '4:35', date: '2001', views: '8M', category: 'Enrique Iglesias', description: 'First ever live' },
-    { videoId: 'l0U7SxXHkPY', title: 'Escape (Live) – Official 2024', duration: '3:23', date: '2024', views: '5M', category: 'Enrique Iglesias', description: 'Official' },
-    { videoId: 'ylBIyQaraSA', title: 'Full Concert – Odyssey Arena Belfast 2007', duration: '59:54', date: '2007', views: '1M', category: 'Enrique Iglesias', description: 'Full show' },
-    { videoId: 'Tr1l0gyV4nc', title: 'Trilogy Tour Vancouver 2023 – Full Concert', duration: '2:45:11', date: '2023', views: '3M', category: 'Enrique Iglesias', description: 'Ricky Martin & Pitbull' },
+    { videoId: 'koJlIGDImiU', title: 'Hero — Official Music Video', duration: '4:24', date: '2001', views: '600M+', category: 'Enrique Iglesias', description: 'EnriqueIglesiasVEVO — classic ballad' },
+    { videoId: 'b8I-7Wk_Vbc', title: 'Bailando ft. Sean Paul, Descemer Bueno, Gente De Zona', duration: '4:03', date: '2014', views: '2B+', category: 'Enrique Iglesias', description: 'EnriqueIglesiasVEVO — 2 billion views' },
+    { videoId: '9mQJaXwGPlg', title: 'Escape — Official Music Video', duration: '3:28', date: '2001', views: '177M', category: 'Enrique Iglesias', description: 'EnriqueIglesiasVEVO — Escape album' },
+    { videoId: 'NUsoVlDFqZg', title: 'Bailando — Spanish Version', duration: '4:03', date: '2014', views: '500M+', category: 'Enrique Iglesias', description: 'Descemer Bueno, Gente De Zona' },
+    { videoId: 'X9_n8jakvWU', title: 'I Like It — Official Music Video', duration: '3:53', date: '2010', views: '400M+', category: 'Enrique Iglesias', description: 'EnriqueIglesiasVEVO — Pitbull collab' },
+    { videoId: '5sye_VxmNZA', title: 'Bailamos — Official', duration: '3:33', date: '1999', views: '100M+', category: 'Enrique Iglesias', description: 'EnriqueIglesiasVEVO — Wild Wild West' },
+    { videoId: '4DO8GsIYfhQ', title: 'Cuando Me Enamoro ft. Juan Luis Guerra', duration: '3:58', date: '2010', views: '300M+', category: 'Enrique Iglesias', description: 'EnriqueIglesiasVEVO' },
+    { videoId: '9sg-A-eS6Ig', title: 'Subeme La Radio ft. Descemer Bueno, Zion & Lennox', duration: '3:27', date: '2017', views: '800M+', category: 'Enrique Iglesias', description: 'EnriqueIglesiasVEVO — Official' },
   ],
 
   love: [
