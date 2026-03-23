@@ -72,6 +72,23 @@ const CONCERT_DATA = {
     { videoId: 'VpE2pnIzGmM', title: 'I Left My Heart in San Francisco — Live', duration: '2:55', date: '1962', views: '8M', category: 'Tony Bennett', description: 'Signature song, Grammy winner' },
   ],
 
+  football: [
+    { videoId: 'Da_CDPRG2j0', title: "Maradona — Goal of the Century (1986 World Cup)", duration: '2:15', date: '1986', views: '3.2M', category: 'Football', description: 'Argentina vs England — FIFA, 68m solo run' },
+    { videoId: 'KbHSqABJF_0', title: "Messi — Legendary Solo vs Getafe (Maradona Replica)", duration: '1:30', date: '2007', views: '25M', category: 'Football', description: 'Barcelona, Copa del Rey — 48m dribble' },
+    { videoId: 'WLgMRyRjVrI', title: 'Roberto Carlos — Impossible Free Kick vs France 1997', duration: '1:20', date: '1997', views: '15M', category: 'Football', description: 'Brazil — Physics-defying curl' },
+    { videoId: 'Ly3mSsHg9T0', title: 'Van Basten — Euro 1988 Final Volley', duration: '0:41', date: '1988', views: '550K', category: 'Football', description: 'Netherlands vs USSR — UEFA iconic' },
+    { videoId: '2RIuzgf9X_8', title: 'Carlos Alberto — Brazil 1970 World Cup Final Goal', duration: '1:30', date: '1970', views: '8M', category: 'Football', description: 'Team goal of the century — FIFA' },
+    { videoId: 'bUTRZGCiiFs', title: "Pelé's Top 5 World Cup Goals", duration: '4:00', date: '2022', views: '2M', category: 'Football', description: 'FIFA Official — Brazil legend' },
+    { videoId: 'T1O2Ygkg9s8', title: "Zidane — Champions League Volley 2002", duration: '0:45', date: '2002', views: '5M', category: 'Football', description: 'Real Madrid vs Leverkusen final' },
+    { videoId: 'i8W0Yj5rb_c', title: "Beckham — Free Kick vs Greece (England to World Cup)", duration: '1:30', date: '2001', views: '8M', category: 'Football', description: '93rd-minute qualifier' },
+    { videoId: '2VJ4LdXJViM', title: "Rooney — Bicycle Kick vs Man City", duration: '0:50', date: '2011', views: '25M', category: 'Football', description: 'Premier League iconic' },
+    { videoId: 'x-fL0rJc6SU', title: "Zlatan — Bicycle Kick vs England", duration: '0:40', date: '2012', views: '20M', category: 'Football', description: 'Sweden 4-2 England, 30-yard overhead' },
+    { videoId: 'NgWnbPNs3I4', title: 'Ronaldinho — Top 10 Barcelona Goals', duration: '7:12', date: '2020', views: '5M', category: 'Football', description: 'Chelsea, Real Madrid, skills' },
+    { videoId: 'ebrOqR4dqB8', title: 'Ronaldo — Best Solo Goals Compilation', duration: '5:00', date: '2022', views: '15M', category: 'Football', description: 'Cristiano — Juventus, Real Madrid' },
+    { videoId: 'H3C3XC2cQPM', title: 'Salah — Solo Goals Liverpool', duration: '4:30', date: '2022', views: '8M', category: 'Football', description: 'Premier League & Champions League' },
+    { videoId: 'TgR1QlF7V_s', title: 'Best Goals of the Decade — FIFA Puskás Style', duration: '8:00', date: '2019', views: '12M', category: 'Football', description: 'Solo runs, volleys, free kicks worldwide' },
+  ],
+
   enrique: [
     { videoId: 'ZfMsdNh0qZU', title: 'All The Hits LIVE Tour - Cluj, Romania 2019 (4K)', duration: '1:09:26', date: '2019', views: '2M', category: 'Enrique Iglesias', description: 'Full concert 4K' },
     { videoId: 'KcY7P4uB0fE', title: 'Trilogy Tour Montreal 2024 Full Segment 4K', duration: '34:17', date: '2024', views: '1M', category: 'Enrique Iglesias', description: 'With Ricky Martin & Pitbull' },
