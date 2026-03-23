@@ -691,13 +691,13 @@ var CONCERT_DATA = {
   ],
 
   atif_aslam: [
-    { videoId: 'RVJrjZ5h8H4', title: 'Pehli Dafa — Jism 2 | Atif Aslam', duration: '4:33', date: '2012', views: '100M+', category: 'Atif Aslam', description: 'T-Series — romantic hit' },
-    { videoId: 'KWK3s1LL1DA', title: 'Tere Bin — Ek Villain | Atif Aslam', duration: '4:20', date: '2014', views: '200M+', category: 'Atif Aslam', description: 'T-Series — Emraan Hashmi' },
-    { videoId: 'Tu7F-RB7VbE', title: 'Jeena Jeena — Badlapur | Atif Aslam', duration: '3:35', date: '2015', views: '150M+', category: 'Atif Aslam', description: 'T-Series — Varun Dhawan' },
+    { videoId: 'SxTYjptEzZs', title: 'Pehli Dafa — Jism 2 | Atif Aslam, Ileana D\'Cruz', duration: '4:33', date: '2012', views: '100M+', category: 'Atif Aslam', description: 'T-Series — romantic hit' },
+    { videoId: 'GmbOGB91CYg', title: 'Tere Bin — Atif Aslam | Bas Ek Pal', duration: '4:20', date: '2006', views: '200M+', category: 'Atif Aslam', description: 'Atif Aslam — iconic romantic ballad' },
+    { videoId: 'ziTHTlmPdhQ', title: 'Jeena Jeena — Badlapur | Atif Aslam', duration: '3:35', date: '2015', views: '150M+', category: 'Atif Aslam', description: 'Sony Music — Sachin-Jigar, Varun Dhawan' },
   ],
 
   rubaru: [
-    { videoId: 'V4jq9IDpnPQ', title: 'Rubaru — Jamai 2.0 | Ravi Dubey, Nia Sharma', duration: '2:52', date: '2019', views: '50M+', category: 'Rubaru', description: 'Zee Music — Mere rubaru tu hi tu' },
+    { videoId: '_S__Nu_5KSU', title: 'Rubaru — Jamai 2.0 | Ravi Dubey, Nia Sharma', duration: '2:52', date: '2019', views: '50M+', category: 'Rubaru', description: 'Zee Music — Mere rubaru tu hi tu, Saurabh Kalsi' },
   ],
 
   punjabi_songs: [
