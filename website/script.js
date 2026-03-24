@@ -52,20 +52,20 @@ document.addEventListener('DOMContentLoaded', () => {
   // Favourites Playlist Logic
   const favVideoPlayer = document.getElementById('fav-video-player');
   const playlistItems = document.querySelectorAll('.playlist-item');
-  
+
   if (favVideoPlayer && playlistItems.length > 0) {
     let currentVideoIndex = 0;
 
     const loadVideo = (index) => {
       // Remove active class from all
       playlistItems.forEach(item => item.classList.remove('active'));
-      
+
       // Update active class
       playlistItems[index].classList.add('active');
-      
+
       // Update video source
-      const videoSrc = playlistItems[index].getAttribute('data-src');
-      favVideoPlayer.querySelector('source').setAttribute('src', videoSrc);
+      const videoSrc = encodeURI(playlistItems[index].getAttribute('data-src'));
+      favVideoPlayer.src = videoSrc;
       favVideoPlayer.load();
       favVideoPlayer.play().catch(e => console.log('Autoplay prevented:', e));
     };
