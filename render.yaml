@@ -1,0 +1,9 @@
+# Render Web Service
+# Deploy at https://dashboard.render.com
+# Add env var: ANTHROPIC_API_KEY
+services:
+  - type: web
+    name: vikram-music
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
