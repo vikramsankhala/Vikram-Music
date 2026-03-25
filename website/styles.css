@@ -2584,7 +2584,7 @@ body::before {
 }
 
 .philosophy-category .video-links a {
-  color: var(--text);
+  color: #FFFFFF;
   text-decoration: none;
   font-size: 0.55rem;
   line-height: 1.1;
