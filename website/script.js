@@ -98,11 +98,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Advanced Audio Player Controls
-  const favVideoPlayer = document.getElementById('fav-video-player');
+  const favAudioPlayer = document.getElementById('fav-audio-player');
   const playlistItems = document.querySelectorAll('.playlist-item');
 
-  if (favVideoPlayer && playlistItems.length > 0) {
-    let currentVideoIndex = 0;
+  if (favAudioPlayer && playlistItems.length > 0) {
+    let currentAudioIndex = 0;
     let isPlaying = false;
     let isMuted = false;
     let isLooping = false;
@@ -134,19 +134,19 @@ document.addEventListener('DOMContentLoaded', () => {
     // Tone sliders
     const toneValues = document.querySelectorAll('.tone-value');
 
-    const loadVideo = (index) => {
+    const loadAudio = (index) => {
       // Remove active class from all
       playlistItems.forEach(item => item.classList.remove('active'));
       
       // Update active class
       playlistItems[index].classList.add('active');
       
-      // Update video source
-      const videoSrc = encodeURI(playlistItems[index].getAttribute('data-src'));
-      favVideoPlayer.src = videoSrc;
-      favVideoPlayer.load();
+      // Update audio source
+      const audioSrc = encodeURI(playlistItems[index].getAttribute('data-src'));
+      favAudioPlayer.src = audioSrc;
+      favAudioPlayer.load();
       
-      currentVideoIndex = index;
+      currentAudioIndex = index;
       updateProgress();
     };
 
@@ -157,21 +157,21 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const updateProgress = () => {
-      if (favVideoPlayer.duration) {
-        progressBar.value = (favVideoPlayer.currentTime / favVideoPlayer.duration) * 100;
-        currentTimeEl.textContent = formatTime(favVideoPlayer.currentTime);
-        totalTimeEl.textContent = formatTime(favVideoPlayer.duration);
+      if (favAudioPlayer.duration) {
+        progressBar.value = (favAudioPlayer.currentTime / favAudioPlayer.duration) * 100;
+        currentTimeEl.textContent = formatTime(favAudioPlayer.currentTime);
+        totalTimeEl.textContent = formatTime(favAudioPlayer.duration);
       }
     };
 
     // Play/Pause functionality
     playPauseBtn.addEventListener('click', () => {
       if (isPlaying) {
-        favVideoPlayer.pause();
+        favAudioPlayer.pause();
         playPauseBtn.textContent = '▶️';
         isPlaying = false;
       } else {
-        favVideoPlayer.play();
+        favAudioPlayer.play();
         playPauseBtn.textContent = '⏸️';
         isPlaying = true;
       }
@@ -179,8 +179,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Stop functionality
     stopBtn.addEventListener('click', () => {
-      favVideoPlayer.pause();
-      favVideoPlayer.currentTime = 0;
+      favAudioPlayer.pause();
+      favAudioPlayer.currentTime = 0;
       playPauseBtn.textContent = '▶️';
       isPlaying = false;
       updateProgress();
@@ -188,20 +188,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Progress bar functionality
     progressBar.addEventListener('input', () => {
-      if (favVideoPlayer.duration) {
-        favVideoPlayer.currentTime = (progressBar.value / 100) * favVideoPlayer.duration;
+      if (favAudioPlayer.duration) {
+        favAudioPlayer.currentTime = (progressBar.value / 100) * favAudioPlayer.duration;
       }
     });
 
     // Volume controls
     volumeSlider.addEventListener('input', () => {
-      favVideoPlayer.volume = volumeSlider.value / 100;
+      favAudioPlayer.volume = volumeSlider.value / 100;
       volumeDisplay.textContent = `${volumeSlider.value}%`;
     });
 
     muteBtn.addEventListener('click', () => {
       isMuted = !isMuted;
-      favVideoPlayer.muted = isMuted;
+      favAudioPlayer.muted = isMuted;
       muteBtn.textContent = isMuted ? '🔇' : '🔊';
     });
 
@@ -238,7 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Advanced controls
     loopBtn.addEventListener('click', () => {
       isLooping = !isLooping;
-      favVideoPlayer.loop = isLooping;
+      favAudioPlayer.loop = isLooping;
       loopBtn.style.background = isLooping ? 'var(--accent)' : 'var(--card-bg)';
       loopBtn.style.color = isLooping ? '#000' : 'var(--accent)';
     });
@@ -257,7 +257,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const currentIndex = speeds.indexOf(playbackSpeed);
       const nextIndex = (currentIndex + 1) % speeds.length;
       playbackSpeed = speeds[nextIndex];
-      favVideoPlayer.playbackRate = playbackSpeed;
+      favAudioPlayer.playbackRate = playbackSpeed;
       speedBtn.textContent = `⚡ ${playbackSpeed}x`;
     });
 
@@ -292,26 +292,26 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Update progress during playback
-    favVideoPlayer.addEventListener('timeupdate', updateProgress);
+    favAudioPlayer.addEventListener('timeupdate', updateProgress);
 
     // Click event for playlist items
     playlistItems.forEach((item, index) => {
       item.addEventListener('click', () => {
-        currentVideoIndex = index;
-        loadVideo(currentVideoIndex);
+        currentAudioIndex = index;
+        loadAudio(currentAudioIndex);
       });
     });
 
     // Auto-play next video when current ends
-    favVideoPlayer.addEventListener('ended', () => {
+    favAudioPlayer.addEventListener('ended', () => {
       if (isLooping) {
-        loadVideo(currentVideoIndex);
+        loadAudio(currentAudioIndex);
       } else {
-        currentVideoIndex++;
-        if (currentVideoIndex >= playlistItems.length) {
-          currentVideoIndex = 0; // Loop back to start
+        currentAudioIndex++;
+        if (currentAudioIndex >= playlistItems.length) {
+          currentAudioIndex = 0; // Loop back to start
         }
-        loadVideo(currentVideoIndex);
+        loadAudio(currentAudioIndex);
       }
     });
   }

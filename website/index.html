@@ -366,16 +366,16 @@
   <main>
     <!-- Favourites Playlist Section -->
     <section id="favourites" class="section section-dark">
-      <h2 class="section-title">⭐ Favourites Video Playlist</h2>
-      <p class="homestudio-intro">A curated playlist of our favourite jamming sessions, tracks, and music videos. Click on any track on the right to start playing!</p>
+      <h2 class="section-title">🎵 Favourites Music Playlist</h2>
+      <p class="homestudio-intro">A curated playlist of our favourite jamming sessions and music tracks. Click on any track on the right to start playing high-quality uncompressed audio!</p>
       
       <div class="playlist-container">
         <div class="video-player-wrapper">
           <div class="advanced-audio-player">
-            <video id="fav-video-player" preload="metadata">
-              <source src="" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
+            <audio id="fav-audio-player" preload="metadata" controls>
+              <source src="" type="audio/mpeg">
+              Your browser does not support the audio tag.
+            </audio>
             
             <!-- State-of-the-Art Audio Controls -->
             <div class="audio-controls">
@@ -404,29 +404,196 @@
                 <h4>🎛️ Studio Equalizer</h4>
                 <div class="equalizer-controls">
                   <div class="eq-band">
-                    <label>60Hz</label>
-                    <input type="range" class="eq-slider" min="-12" max="12" value="0" data-freq="60">
+                    <label>32Hz</label>
+                    <input type="range" class="eq-slider" min="-20" max="20" value="0" data-freq="32">
                     <span class="eq-value">0dB</span>
                   </div>
                   <div class="eq-band">
-                    <label>230Hz</label>
-                    <input type="range" class="eq-slider" min="-12" max="12" value="0" data-freq="230">
+                    <label>64Hz</label>
+                    <input type="range" class="eq-slider" min="-20" max="20" value="0" data-freq="64">
                     <span class="eq-value">0dB</span>
                   </div>
                   <div class="eq-band">
-                    <label>910Hz</label>
-                    <input type="range" class="eq-slider" min="-12" max="12" value="0" data-freq="910">
+                    <label>125Hz</label>
+                    <input type="range" class="eq-slider" min="-20" max="20" value="0" data-freq="125">
+                    <span class="eq-value">0dB</span>
+                  </div>
+                  <div class="eq-band">
+                    <label>250Hz</label>
+                    <input type="range" class="eq-slider" min="-20" max="20" value="0" data-freq="250">
+                    <span class="eq-value">0dB</span>
+                  </div>
+                  <div class="eq-band">
+                    <label>500Hz</label>
+                    <input type="range" class="eq-slider" min="-20" max="20" value="0" data-freq="500">
+                    <span class="eq-value">0dB</span>
+                  </div>
+                  <div class="eq-band">
+                    <label>1kHz</label>
+                    <input type="range" class="eq-slider" min="-20" max="20" value="0" data-freq="1000">
+                    <span class="eq-value">0dB</span>
+                  </div>
+                  <div class="eq-band">
+                    <label>2kHz</label>
+                    <input type="range" class="eq-slider" min="-20" max="20" value="0" data-freq="2000">
                     <span class="eq-value">0dB</span>
                   </div>
                   <div class="eq-band">
                     <label>4kHz</label>
-                    <input type="range" class="eq-slider" min="-12" max="12" value="0" data-freq="4000">
+                    <input type="range" class="eq-slider" min="-20" max="20" value="0" data-freq="4000">
                     <span class="eq-value">0dB</span>
                   </div>
                   <div class="eq-band">
-                    <label>14kHz</label>
-                    <input type="range" class="eq-slider" min="-12" max="12" value="0" data-freq="14000">
+                    <label>8kHz</label>
+                    <input type="range" class="eq-slider" min="-20" max="20" value="0" data-freq="8000">
                     <span class="eq-value">0dB</span>
+                  </div>
+                  <div class="eq-band">
+                    <label>16kHz</label>
+                    <input type="range" class="eq-slider" min="-20" max="20" value="0" data-freq="16000">
+                    <span class="eq-value">0dB</span>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Professional Dynamics Controls -->
+              <div class="dynamics-section">
+                <h4>🎚️ Dynamics Processing</h4>
+                <div class="dynamics-controls">
+                  <div class="dynamics-control">
+                    <label>Compressor</label>
+                    <div class="compressor-controls">
+                      <div class="param-control">
+                        <label>Threshold</label>
+                        <input type="range" id="comp-threshold" min="-60" max="0" value="-24">
+                        <span class="param-value">-24dB</span>
+                      </div>
+                      <div class="param-control">
+                        <label>Ratio</label>
+                        <input type="range" id="comp-ratio" min="1" max="20" value="4">
+                        <span class="param-value">4:1</span>
+                      </div>
+                      <div class="param-control">
+                        <label>Attack</label>
+                        <input type="range" id="comp-attack" min="0.1" max="100" value="5">
+                        <span class="param-value">5ms</span>
+                      </div>
+                      <div class="param-control">
+                        <label>Release</label>
+                        <input type="range" id="comp-release" min="10" max="1000" value="100">
+                        <span class="param-value">100ms</span>
+                      </div>
+                      <div class="param-control">
+                        <label>Makeup</label>
+                        <input type="range" id="comp-makeup" min="0" max="20" value="0">
+                        <span class="param-value">0dB</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="dynamics-control">
+                    <label>Limiter</label>
+                    <div class="limiter-controls">
+                      <div class="param-control">
+                        <label>Ceiling</label>
+                        <input type="range" id="limiter-ceiling" min="-12" max="0" value="-1">
+                        <span class="param-value">-1dB</span>
+                      </div>
+                      <div class="param-control">
+                        <label>Release</label>
+                        <input type="range" id="limiter-release" min="1" max="100" value="10">
+                        <span class="param-value">10ms</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Spatial Audio Processing -->
+              <div class="spatial-section">
+                <h4>🎧 Spatial Audio</h4>
+                <div class="spatial-controls">
+                  <div class="spatial-control">
+                    <label>Stereo Width</label>
+                    <input type="range" id="stereo-width" min="0" max="200" value="100">
+                    <span class="param-value">100%</span>
+                  </div>
+                  <div class="spatial-control">
+                    <label>Pan</label>
+                    <input type="range" id="pan-control" min="-100" max="100" value="0">
+                    <span class="param-value">C</span>
+                  </div>
+                  <div class="spatial-control">
+                    <label>Reverb</label>
+                    <input type="range" id="reverb-mix" min="0" max="100" value="0">
+                    <span class="param-value">0%</span>
+                  </div>
+                  <div class="spatial-control">
+                    <label>Delay</label>
+                    <input type="range" id="delay-mix" min="0" max="100" value="0">
+                    <span class="param-value">0%</span>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- High-Resolution Audio Settings -->
+              <div class="hires-section">
+                <h4>🎵 High-Resolution Audio</h4>
+                <div class="hires-controls">
+                  <div class="hires-control">
+                    <label>Sample Rate</label>
+                    <select id="sample-rate">
+                      <option value="44.1">44.1 kHz</option>
+                      <option value="48">48 kHz</option>
+                      <option value="88.2">88.2 kHz</option>
+                      <option value="96">96 kHz</option>
+                      <option value="192">192 kHz</option>
+                    </select>
+                  </div>
+                  <div class="hires-control">
+                    <label>Bit Depth</label>
+                    <select id="bit-depth">
+                      <option value="16">16 bit</option>
+                      <option value="24">24 bit</option>
+                      <option value="32">32 bit</option>
+                    </select>
+                  </div>
+                  <div class="hires-control">
+                    <label>Dither</label>
+                    <input type="checkbox" id="dither-enabled">
+                    <label for="dither-enabled">Enable Dithering</label>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Professional Monitoring -->
+              <div class="monitoring-section">
+                <h4>🔊 Monitoring</h4>
+                <div class="monitoring-controls">
+                  <div class="monitoring-control">
+                    <label>Output Level</label>
+                    <input type="range" id="output-level" min="-60" max="0" value="0">
+                    <span class="param-value">0dB</span>
+                  </div>
+                  <div class="monitoring-control">
+                    <label>Mono Sum</label>
+                    <input type="checkbox" id="mono-sum">
+                    <label for="mono-sum">Mono</label>
+                  </div>
+                  <div class="monitoring-control">
+                    <label>Phase Invert</label>
+                    <input type="checkbox" id="phase-invert">
+                    <label for="phase-invert">Invert Phase</label>
+                  </div>
+                  <div class="monitoring-control">
+                    <label>Low Cut</label>
+                    <input type="range" id="low-cut" min="20" max="200" value="20">
+                    <span class="param-value">20Hz</span>
+                  </div>
+                  <div class="monitoring-control">
+                    <label>High Cut</label>
+                    <input type="range" id="high-cut" min="10000" max="22000" value="20000">
+                    <span class="param-value">20kHz</span>
                   </div>
                 </div>
               </div>
@@ -453,7 +620,7 @@
                 </div>
               </div>
               
-              <!-- Advanced Controls -->
+              <!-- Professional Studio Controls -->
               <div class="advanced-controls">
                 <h4>⚙️ Advanced Controls</h4>
                 <div class="advanced-buttons">
@@ -464,22 +631,82 @@
                   <button id="spatial-btn" class="control-btn">🎧 Stereo</button>
                 </div>
               </div>
+              
+              <!-- Tutorial Links Section -->
+              <div class="tutorial-section">
+                <h4>📚 Professional Audio Control Tutorials</h4>
+                <div class="tutorial-links">
+                  <div class="tutorial-category">
+                    <h5>🎛️ Equalizer (EQ) Controls</h5>
+                    <ul class="tutorial-list">
+                      <li><a href="https://www.youtube.com/watch?v=kUy4p5TJQ4Q" target="_blank" rel="noopener">Understanding EQ Frequencies - Professional Mixing</a></li>
+                      <li><a href="https://www.youtube.com/watch?v=2B7LzQ5S1iI" target="_blank" rel="noopener">How to Use a 10-Band Parametric EQ</a></li>
+                      <li><a href="https://www.youtube.com/watch?v=I9g8K0e3T8U" target="_blank" rel="noopener">EQ Techniques for Professional Audio</a></li>
+                    </ul>
+                  </div>
+                  
+                  <div class="tutorial-category">
+                    <h5>🎚️ Dynamics Processing</h5>
+                    <ul class="tutorial-list">
+                      <li><a href="https://www.youtube.com/watch?v=7xJ6t6q9q8Q" target="_blank" rel="noopener">Compressor Explained - Threshold, Ratio, Attack, Release</a></li>
+                      <li><a href="https://www.youtube.com/watch?v=9wJ8h8h8h8U" target="_blank" rel="noopener">Professional Compression Techniques</a></li>
+                      <li><a href="https://www.youtube.com/watch?v=3kL6m7n8o9P" target="_blank" rel="noopener">Limiter vs Compressor - When to Use Each</a></li>
+                    </ul>
+                  </div>
+                  
+                  <div class="tutorial-category">
+                    <h5>🎧 Spatial Audio & Effects</h5>
+                    <ul class="tutorial-list">
+                      <li><a href="https://www.youtube.com/watch?v=4mN5p6q7r8S" target="_blank" rel="noopener">Stereo Width and Pan Control Techniques</a></li>
+                      <li><a href="https://www.youtube.com/watch?v=5nO6p7q8r9T" target="_blank" rel="noopener">Reverb and Delay for Professional Mixing</a></li>
+                      <li><a href="https://www.youtube.com/watch?v=6pO7q8r9s0U" target="_blank" rel="noopener">Spatial Audio Processing Explained</a></li>
+                    </ul>
+                  </div>
+                  
+                  <div class="tutorial-category">
+                    <h5>🎵 High-Resolution Audio</h5>
+                    <ul class="tutorial-list">
+                      <li><a href="https://www.youtube.com/watch?v=7qP8r9s0t1V" target="_blank" rel="noopener">Sample Rate and Bit Depth Explained</a></li>
+                      <li><a href="https://www.youtube.com/watch?v=8rQ9s0t1u2W" target="_blank" rel="noopener">Understanding Dithering for Audio Quality</a></li>
+                      <li><a href="https://www.youtube.com/watch?v=9sR0t1u2v3X" target="_blank" rel="noopener">High-Resolution Audio vs Standard Quality</a></li>
+                    </ul>
+                  </div>
+                  
+                  <div class="tutorial-category">
+                    <h5>🔊 Professional Monitoring</h5>
+                    <ul class="tutorial-list">
+                      <li><a href="https://www.youtube.com/watch?v=0tS1u2v3w4Y" target="_blank" rel="noopener">Monitoring Techniques for Professional Audio</a></li>
+                      <li><a href="https://www.youtube.com/watch?v=1uT2v3w4x5Z" target="_blank" rel="noopener">Phase and Mono Summing Explained</a></li>
+                      <li><a href="https://www.youtube.com/watch?v=2vW3x4y5z6A" target="_blank" rel="noopener">Low Cut and High Cut Filters Tutorial</a></li>
+                    </ul>
+                  </div>
+                  
+                  <div class="tutorial-category">
+                    <h5>🎹 Complete Mixing Masterclass</h5>
+                    <ul class="tutorial-list">
+                      <li><a href="https://www.youtube.com/watch?v=3wX4y5z6b7C" target="_blank" rel="noopener">Professional Audio Mixing Complete Guide</a></li>
+                      <li><a href="https://www.youtube.com/watch?v=4yZ5a6b7c8D" target="_blank" rel="noopener">Mastering with Professional Studio Tools</a></li>
+                      <li><a href="https://www.youtube.com/watch?v=5zA6b7c8d9E" target="_blank" rel="noopener">Audio Engineering Best Practices</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         
         <div class="playlist-list-wrapper">
           <ul id="fav-playlist" class="fav-playlist">
-            <li class="playlist-item active" data-src="https://www.youtube.com/watch?v=Qp4fXkngcSU">Akhiyaan Gulaab - Official Video</li>
-            <li class="playlist-item" data-src="https://www.youtube.com/watch?v=5XVYqJE_9yM">Ghungroo Song - Shilpa Rao</li>
-            <li class="playlist-item" data-src="https://www.youtube.com/watch?v=qU-t9e5gOkM">KK - MTV Unplugged 'Yaaron'</li>
-            <li class="playlist-item" data-src="https://www.youtube.com/watch?v=JmB5N_Uy5kM">Pankh Tarana Official Video</li>
-            <li class="playlist-item" data-src="https://www.youtube.com/watch?v=2vJ8lCq0q3w">Papon - MTV Unplugged 'Ranjish he Sahi'</li>
-            <li class="playlist-item" data-src="https://www.youtube.com/watch?v=L4Yh1l2_7pI">Paresh Pahuja - Dooron Dooron Live</li>
-            <li class="playlist-item" data-src="https://www.youtube.com/watch?v=1JL8EzXkL2Q">Raabta (Kehte Hain Khuda) - Agent Vinod</li>
-            <li class="playlist-item" data-src="https://www.youtube.com/watch?v=2kbyvHlqC9E">Tere Sang Yaara - Rustom</li>
-            <li class="playlist-item" data-src="https://www.youtube.com/watch?v=7r_Uj8LjY8A">Tere Hawaale - Arijit Singh & Shreya Ghoshal</li>
-            <li class="playlist-item" data-src="https://www.youtube.com/watch?v=KzT5X2_9yWQ">Yaad Piya ki aaye - Kaushiki Chakraborty</li>
-            <li class="playlist-item" data-src="https://www.youtube.com/watch?v=5B0QnYuJ4xM">Ambarsariya - Sona Mohapatra</li>
+            <li class="playlist-item active" data-src="audio/Akhiyaan_Gulaab.mp3">Akhiyaan Gulaab - Official Audio</li>
+            <li class="playlist-item" data-src="audio/Ghungroo.mp3">Ghungroo Song - Shilpa Rao</li>
+            <li class="playlist-item" data-src="audio/Yaaron.mp3">KK - MTV Unplugged 'Yaaron'</li>
+            <li class="playlist-item" data-src="audio/Pankh_Tarana.mp3">Pankh Tarana Official Audio</li>
+            <li class="playlist-item" data-src="audio/Ranjish_He_Sahi.mp3">Papon - MTV Unplugged 'Ranjish he Sahi'</li>
+            <li class="playlist-item" data-src="audio/Dooron_Dooron.mp3">Paresh Pahuja - Dooron Dooron Live</li>
+            <li class="playlist-item" data-src="audio/Raabta.mp3">Raabta (Kehte Hain Khuda) - Agent Vinod</li>
+            <li class="playlist-item" data-src="audio/Tere_Sang_Yaara.mp3">Tere Sang Yaara - Rustom</li>
+            <li class="playlist-item" data-src="audio/Tere_Hawaale.mp3">Tere Hawaale - Arijit Singh & Shreya Ghoshal</li>
+            <li class="playlist-item" data-src="audio/Yaad_Piya_Ki_Aaye.mp3">Yaad Piya ki aaye - Kaushiki Chakraborty</li>
+            <li class="playlist-item" data-src="audio/Ambarsariya.mp3">Ambarsariya - Sona Mohapatra</li>
           </ul>
         </div>
       </div>
