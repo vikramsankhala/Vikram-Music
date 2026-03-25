@@ -2379,6 +2379,111 @@ body::before {
 }
 
 /* ============================================
+   Vedic Chants Categories Styling
+   ============================================ */
+
+.vedic-categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.vedic-category {
+  background: linear-gradient(135deg, rgba(232, 185, 35, 0.08), rgba(232, 185, 35, 0.12));
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  border: 1px solid rgba(232, 185, 35, 0.2);
+  transition: all 0.3s ease;
+}
+
+.vedic-category:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(232, 185, 35, 0.3);
+}
+
+.vedic-category h4 {
+  color: var(--accent);
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+  position: relative;
+}
+
+.vedic-category h4::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 1px;
+}
+
+.vedic-category .video-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.vedic-category .video-links a {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.7rem;
+  line-height: 1.1;
+  padding: 0.2rem 0.3rem;
+  border-radius: calc(var(--radius) * 0.3);
+  transition: all 0.3s ease;
+  border-left: 2px solid transparent;
+  display: block;
+}
+
+.vedic-category .video-links a:hover {
+  color: var(--accent);
+  background: rgba(232, 185, 35, 0.05);
+  border-left-color: var(--accent);
+  transform: translateX(2px);
+}
+
+/* Responsive Vedic Categories */
+@media (max-width: 768px) {
+  .vedic-categories {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .vedic-category {
+    padding: 1rem;
+  }
+  
+  .vedic-category .video-links a {
+    font-size: 0.65rem;
+    padding: 0.15rem 0.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .vedic-categories {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+  
+  .vedic-category {
+    padding: 0.8rem;
+  }
+  
+  .vedic-category .video-links a {
+    font-size: 0.6rem;
+    padding: 0.1rem 0.2rem;
+  }
+}
+
+/* ============================================
    Speaker Categories Styling
    ============================================ */
 
