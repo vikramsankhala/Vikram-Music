@@ -2016,27 +2016,18 @@ body::before {
   font-weight: 600;
   color: var(--accent);
   min-width: 200px;
-  width: 22%;
+  width: 25%;
 }
 
 .ai-courses-table td:nth-child(2) {
   min-width: 350px;
-  width: 43%;
+  width: 55%;
 }
 
 .ai-courses-table td:nth-child(3) {
   color: var(--muted);
   font-size: 0.9rem;
   min-width: 130px;
-  width: 15%;
-  white-space: nowrap;
-}
-
-.ai-courses-table td:nth-child(4) {
-  color: var(--success);
-  font-weight: 600;
-  font-size: 0.85rem;
-  min-width: 100px;
   width: 20%;
   white-space: nowrap;
 }
@@ -2110,7 +2101,7 @@ body::before {
   
   .ai-courses-table {
     font-size: 0.8rem;
-    min-width: 700px;
+    min-width: 600px;
   }
   
   .ai-courses-table th,
@@ -2128,10 +2119,6 @@ body::before {
   
   .ai-courses-table td:nth-child(3) {
     min-width: 100px;
-  }
-  
-  .ai-courses-table td:nth-child(4) {
-    min-width: 80px;
   }
 }
 
