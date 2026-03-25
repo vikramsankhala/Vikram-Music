@@ -4,11 +4,13 @@ services:
   - type: web
     name: jam-room
     runtime: static
-    buildCommand: echo "Static site - no build required"
+    buildCommand: "echo 'Building static site...' && ls -la website/ && echo 'Build complete'"
     staticPublishPath: website
     envVars:
       - key: NODE_ENV
         value: production
+      - key: GIT_LFS_SKIP_SMUDGE
+        value: "1"
     routes:
       - type: rewrite
         source: /*
