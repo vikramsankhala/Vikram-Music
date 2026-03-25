@@ -97,26 +97,202 @@ document.addEventListener('DOMContentLoaded', () => {
     observer.observe(el);
   });
 
-  // Favourites Playlist Logic
+  // Advanced Audio Player Controls
   const favVideoPlayer = document.getElementById('fav-video-player');
   const playlistItems = document.querySelectorAll('.playlist-item');
 
   if (favVideoPlayer && playlistItems.length > 0) {
     let currentVideoIndex = 0;
+    let isPlaying = false;
+    let isMuted = false;
+    let isLooping = false;
+    let playbackSpeed = 1;
+    let currentEqPreset = 'flat';
+
+    // Initialize controls
+    const playPauseBtn = document.getElementById('play-pause-btn');
+    const stopBtn = document.getElementById('stop-btn');
+    const progressBar = document.getElementById('progress-bar');
+    const currentTimeEl = document.getElementById('current-time');
+    const totalTimeEl = document.getElementById('total-time');
+    const muteBtn = document.getElementById('mute-btn');
+    const volumeSlider = document.getElementById('volume-slider');
+    const volumeDisplay = document.getElementById('volume-display');
+    const bassControl = document.getElementById('bass-control');
+    const midControl = document.getElementById('mid-control');
+    const trebleControl = document.getElementById('treble-control');
+    const loopBtn = document.getElementById('loop-btn');
+    const shuffleBtn = document.getElementById('shuffle-btn');
+    const speedBtn = document.getElementById('speed-btn');
+    const eqPresetBtn = document.getElementById('eq-preset-btn');
+    const spatialBtn = document.getElementById('spatial-btn');
+
+    // EQ Sliders
+    const eqSliders = document.querySelectorAll('.eq-slider');
+    const eqValues = document.querySelectorAll('.eq-value');
+
+    // Tone sliders
+    const toneValues = document.querySelectorAll('.tone-value');
 
     const loadVideo = (index) => {
       // Remove active class from all
       playlistItems.forEach(item => item.classList.remove('active'));
-
+      
       // Update active class
       playlistItems[index].classList.add('active');
-
+      
       // Update video source
       const videoSrc = encodeURI(playlistItems[index].getAttribute('data-src'));
       favVideoPlayer.src = videoSrc;
       favVideoPlayer.load();
-      favVideoPlayer.play().catch(e => console.log('Autoplay prevented:', e));
+      
+      currentVideoIndex = index;
+      updateProgress();
     };
+
+    const formatTime = (seconds) => {
+      const mins = Math.floor(seconds / 60);
+      const secs = Math.floor(seconds % 60);
+      return `${mins}:${secs.toString().padStart(2, '0')}`;
+    };
+
+    const updateProgress = () => {
+      if (favVideoPlayer.duration) {
+        progressBar.value = (favVideoPlayer.currentTime / favVideoPlayer.duration) * 100;
+        currentTimeEl.textContent = formatTime(favVideoPlayer.currentTime);
+        totalTimeEl.textContent = formatTime(favVideoPlayer.duration);
+      }
+    };
+
+    // Play/Pause functionality
+    playPauseBtn.addEventListener('click', () => {
+      if (isPlaying) {
+        favVideoPlayer.pause();
+        playPauseBtn.textContent = '▶️';
+        isPlaying = false;
+      } else {
+        favVideoPlayer.play();
+        playPauseBtn.textContent = '⏸️';
+        isPlaying = true;
+      }
+    });
+
+    // Stop functionality
+    stopBtn.addEventListener('click', () => {
+      favVideoPlayer.pause();
+      favVideoPlayer.currentTime = 0;
+      playPauseBtn.textContent = '▶️';
+      isPlaying = false;
+      updateProgress();
+    });
+
+    // Progress bar functionality
+    progressBar.addEventListener('input', () => {
+      if (favVideoPlayer.duration) {
+        favVideoPlayer.currentTime = (progressBar.value / 100) * favVideoPlayer.duration;
+      }
+    });
+
+    // Volume controls
+    volumeSlider.addEventListener('input', () => {
+      favVideoPlayer.volume = volumeSlider.value / 100;
+      volumeDisplay.textContent = `${volumeSlider.value}%`;
+    });
+
+    muteBtn.addEventListener('click', () => {
+      isMuted = !isMuted;
+      favVideoPlayer.muted = isMuted;
+      muteBtn.textContent = isMuted ? '🔇' : '🔊';
+    });
+
+    // EQ Controls
+    eqSliders.forEach((slider, index) => {
+      slider.addEventListener('input', () => {
+        eqValues[index].textContent = `${slider.value}dB`;
+        applyEqualizer();
+      });
+    });
+
+    // Tone Controls
+    [bassControl, midControl, trebleControl].forEach((slider, index) => {
+      slider.addEventListener('input', () => {
+        toneValues[index].textContent = slider.value;
+        applyToneControls();
+      });
+    });
+
+    const applyEqualizer = () => {
+      // Apply EQ settings to audio context (simplified for demo)
+      const eqSettings = Array.from(eqSliders).map(slider => parseFloat(slider.value));
+      console.log('EQ Settings:', eqSettings);
+    };
+
+    const applyToneControls = () => {
+      // Apply tone controls to audio context (simplified for demo)
+      const bass = parseFloat(bassControl.value);
+      const mid = parseFloat(midControl.value);
+      const treble = parseFloat(trebleControl.value);
+      console.log('Tone Controls:', { bass, mid, treble });
+    };
+
+    // Advanced controls
+    loopBtn.addEventListener('click', () => {
+      isLooping = !isLooping;
+      favVideoPlayer.loop = isLooping;
+      loopBtn.style.background = isLooping ? 'var(--accent)' : 'var(--card-bg)';
+      loopBtn.style.color = isLooping ? '#000' : 'var(--accent)';
+    });
+
+    shuffleBtn.addEventListener('click', () => {
+      // Shuffle playlist
+      const shuffledArray = Array.from(playlistItems).sort(() => Math.random() - 0.5);
+      playlistItems.forEach((item, index) => {
+        item.parentNode.insertBefore(shuffledArray[index], item.nextSibling);
+      });
+    });
+
+    speedBtn.addEventListener('click', () => {
+      // Cycle through playback speeds: 0.5x, 1x, 1.5x, 2x
+      const speeds = [0.5, 1, 1.5, 2];
+      const currentIndex = speeds.indexOf(playbackSpeed);
+      const nextIndex = (currentIndex + 1) % speeds.length;
+      playbackSpeed = speeds[nextIndex];
+      favVideoPlayer.playbackRate = playbackSpeed;
+      speedBtn.textContent = `⚡ ${playbackSpeed}x`;
+    });
+
+    eqPresetBtn.addEventListener('click', () => {
+      // Cycle through EQ presets: flat, rock, pop, jazz, classical
+      const presets = ['flat', 'rock', 'pop', 'jazz', 'classical'];
+      const currentIndex = presets.indexOf(currentEqPreset);
+      const nextIndex = (currentIndex + 1) % presets.length;
+      currentEqPreset = presets[nextIndex];
+      
+      // Apply preset values
+      const presetValues = {
+        flat: [0, 0, 0, 0],
+        rock: [3, 1, -2, 4],
+        pop: [2, 0, 2, 3],
+        jazz: [1, 2, 1, 2],
+        classical: [0, 1, 0, 1]
+      };
+      
+      const values = presetValues[currentEqPreset];
+      eqSliders.forEach((slider, index) => {
+        slider.value = values[index];
+        eqValues[index].textContent = `${values[index]}dB`;
+      });
+      
+      eqPresetBtn.textContent = `🎛️ ${currentEqPreset.charAt(0).toUpperCase()}`;
+    });
+
+    spatialBtn.addEventListener('click', () => {
+      // Toggle spatial audio (simplified for demo)
+      console.log('Spatial audio toggled');
+    });
+
+    // Update progress during playback
+    favVideoPlayer.addEventListener('timeupdate', updateProgress);
 
     // Click event for playlist items
     playlistItems.forEach((item, index) => {
@@ -128,11 +304,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Auto-play next video when current ends
     favVideoPlayer.addEventListener('ended', () => {
-      currentVideoIndex++;
-      if (currentVideoIndex >= playlistItems.length) {
-        currentVideoIndex = 0; // Loop back to start
+      if (isLooping) {
+        loadVideo(currentVideoIndex);
+      } else {
+        currentVideoIndex++;
+        if (currentVideoIndex >= playlistItems.length) {
+          currentVideoIndex = 0; // Loop back to start
+        }
+        loadVideo(currentVideoIndex);
       }
-      loadVideo(currentVideoIndex);
     });
   }
 });

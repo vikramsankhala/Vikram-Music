@@ -129,6 +129,41 @@
         <a href="https://www.youtube.com/watch?v=L88tjpNRnhs" target="_blank" rel="noopener">Bedroom to Pro Studio</a>
       </div>
       
+      <!-- Featured Projects Section -->
+      <section id="featured-projects" class="section">
+        <h2 class="section-title">🚀 Featured Projects</h2>
+        <p class="homestudio-intro">Showcasing three key projects that demonstrate expertise in AI development, data science, and music technology. Each project represents a different aspect of technical excellence and innovation.</p>
+        
+        <div class="equipment-grid">
+          <!-- Python Mastery -->
+          <div class="tips-box">
+            <h3>🐍 Python Mastery - Data Science & AI Platform</h3>
+            <p><strong>http://pythonmastery.club/</strong> - Comprehensive Python learning platform with 160+ structured lessons covering data science, machine learning, and AI development. Features 21 libraries and zero-fluff approach to practical coding skills.</p>
+            <div class="youtube-links">
+              <a href="http://pythonmastery.club/" target="_blank" rel="noopener">Visit Python Mastery Platform</a>
+            </div>
+          </div>
+          
+          <!-- Dashboard Masters -->
+          <div class="tips-box">
+            <h3>📊 Dashboard Masters - Business Intelligence Platform</h3>
+            <p><strong>https://dashboardmasters.org/</strong> - Professional BI platform for MBA students and managers. Learn Power BI, Tableau, and build executive-ready dashboards without heavy coding. Perfect for data-driven decision making.</p>
+            <div class="youtube-links">
+              <a href="https://dashboardmasters.org/" target="_blank" rel="noopener">Explore Dashboard Masters</a>
+            </div>
+          </div>
+          
+          <!-- Vikram's Portfolio -->
+          <div class="tips-box">
+            <h3>🌐 Vikram's Portfolio - Personal Brand & Projects</h3>
+            <p><strong>https://vikramsankhala.org.in/</strong> - Professional portfolio showcasing music technology projects, audio engineering work, and creative innovations. Features responsive design and comprehensive project documentation.</p>
+            <div class="youtube-links">
+              <a href="https://vikramsankhala.org.in/" target="_blank" rel="noopener">View Complete Portfolio</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <div class="founder-section">
         <div class="founder-header">
           <img src="Vikram-Sankhala.jpg" alt="Vikram Singh Sankhala" class="founder-photo">
@@ -263,11 +298,101 @@
       
       <div class="playlist-container">
         <div class="video-player-wrapper">
-          <video id="fav-video-player" controls preload="metadata">
-            <source src="Favourites/Akhiyaan Gulaab (Song) Shahid Kapoor, Kriti Sanon  Mitraz  Teri Baaton Mein Aisa Uljha Jiya.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
+          <div class="advanced-audio-player">
+            <video id="fav-video-player" preload="metadata">
+              <source src="" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            
+            <!-- State-of-the-Art Audio Controls -->
+            <div class="audio-controls">
+              <div class="controls-main">
+                <div class="playback-controls">
+                  <button id="play-pause-btn" class="control-btn play-btn">▶️</button>
+                  <button id="stop-btn" class="control-btn">⏹️</button>
+                  <div class="time-display">
+                    <span id="current-time">0:00</span>
+                    <div class="progress-container">
+                      <input type="range" id="progress-bar" class="progress-slider" min="0" max="100" value="0">
+                    </div>
+                    <span id="total-time">0:00</span>
+                  </div>
+                </div>
+                
+                <div class="volume-controls">
+                  <button id="mute-btn" class="control-btn">🔊</button>
+                  <input type="range" id="volume-slider" class="volume-slider" min="0" max="100" value="80">
+                  <span id="volume-display">80%</span>
+                </div>
+              </div>
+              
+              <!-- Professional Studio Equalizer -->
+              <div class="equalizer-section">
+                <h4>🎛️ Studio Equalizer</h4>
+                <div class="equalizer-controls">
+                  <div class="eq-band">
+                    <label>60Hz</label>
+                    <input type="range" class="eq-slider" min="-12" max="12" value="0" data-freq="60">
+                    <span class="eq-value">0dB</span>
+                  </div>
+                  <div class="eq-band">
+                    <label>230Hz</label>
+                    <input type="range" class="eq-slider" min="-12" max="12" value="0" data-freq="230">
+                    <span class="eq-value">0dB</span>
+                  </div>
+                  <div class="eq-band">
+                    <label>910Hz</label>
+                    <input type="range" class="eq-slider" min="-12" max="12" value="0" data-freq="910">
+                    <span class="eq-value">0dB</span>
+                  </div>
+                  <div class="eq-band">
+                    <label>4kHz</label>
+                    <input type="range" class="eq-slider" min="-12" max="12" value="0" data-freq="4000">
+                    <span class="eq-value">0dB</span>
+                  </div>
+                  <div class="eq-band">
+                    <label>14kHz</label>
+                    <input type="range" class="eq-slider" min="-12" max="12" value="0" data-freq="14000">
+                    <span class="eq-value">0dB</span>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Tone Controls -->
+              <div class="tone-controls">
+                <h4>🎛️ Tone Controls</h4>
+                <div class="tone-sliders">
+                  <div class="tone-control">
+                    <label>Bass</label>
+                    <input type="range" id="bass-control" class="tone-slider" min="-20" max="20" value="0">
+                    <span class="tone-value">0</span>
+                  </div>
+                  <div class="tone-control">
+                    <label>Mid</label>
+                    <input type="range" id="mid-control" class="tone-slider" min="-20" max="20" value="0">
+                    <span class="tone-value">0</span>
+                  </div>
+                  <div class="tone-control">
+                    <label>Treble</label>
+                    <input type="range" id="treble-control" class="tone-slider" min="-20" max="20" value="0">
+                    <span class="tone-value">0</span>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Advanced Controls -->
+              <div class="advanced-controls">
+                <h4>⚙️ Advanced Controls</h4>
+                <div class="advanced-buttons">
+                  <button id="loop-btn" class="control-btn">🔁 Loop</button>
+                  <button id="shuffle-btn" class="control-btn">🔀 Shuffle</button>
+                  <button id="speed-btn" class="control-btn">⚡ 1x</button>
+                  <button id="eq-preset-btn" class="control-btn">🎛️ Flat</button>
+                  <button id="spatial-btn" class="control-btn">🎧 Stereo</button>
+                </div>
+              </div>
+            </div>
+          </div>
         
         <div class="playlist-list-wrapper">
           <ul id="fav-playlist" class="fav-playlist">
