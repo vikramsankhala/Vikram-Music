@@ -3381,5 +3381,146 @@
       </div>
     </footer>
   </div>
+  
+  <!-- Modal for Enlarged Cards -->
+  <div class="modal-overlay" id="enlargedCardModal">
+    <div class="enlarged-card">
+      <button class="close-modal" onclick="closeEnlargedCard()">×</button>
+      <h3 id="modalTitle">Loading...</h3>
+      <div class="enlarged-card-content" id="modalContent">
+        <div class="loading-spinner"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Card click handler
+    document.addEventListener('DOMContentLoaded', function() {
+      // Add click handlers to all cards
+      const cards = document.querySelectorAll('.shuffle-card');
+      cards.forEach(card => {
+        card.addEventListener('click', function(e) {
+          // Don't trigger modal if clicking on a link inside the card
+          if (e.target.tagName === 'A' || e.target.closest('a')) {
+            return;
+          }
+          
+          const title = this.querySelector('h5')?.textContent || this.querySelector('h3')?.textContent || 'Card Information';
+          const description = this.querySelector('p')?.textContent || '';
+          
+          showEnlargedCard(title, description);
+        });
+      });
+    });
+    
+    // Show enlarged card with enhanced content
+    async function showEnlargedCard(title, description) {
+      const modal = document.getElementById('enlargedCardModal');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalContent = document.getElementById('modalContent');
+      
+      // Show modal with loading state
+      modal.classList.add('active');
+      modalTitle.textContent = title;
+      modalContent.innerHTML = '<div class="loading-spinner"></div>';
+      
+      try {
+        // Generate enhanced content
+        const enhancedContent = generateEnhancedContent(title, description);
+        modalContent.innerHTML = enhancedContent;
+      } catch (error) {
+        console.error('Error generating content:', error);
+        // Fallback to basic content
+        modalContent.innerHTML = `
+          <div class="enlarged-card-content">
+            <h4>Overview</h4>
+            <p>${description}</p>
+            <h4>Key Features</h4>
+            <ul>
+              <li>Professional quality standards</li>
+              <li>Expert guidance and support</li>
+              <li>Comprehensive learning resources</li>
+              <li>World-class implementation</li>
+            </ul>
+            <h4>Benefits</h4>
+            <p>Experience the best in class with premium features and exceptional quality.</p>
+          </div>
+        `;
+      }
+    }
+    
+    // Generate enhanced content
+    function generateEnhancedContent(title, description) {
+      // Enhanced content based on card type
+      const enhancedContent = {
+        'Thai Massage': {
+          overview: 'Thai Massage is an ancient healing practice that combines acupressure, Indian Ayurvedic principles, and assisted yoga postures. This therapeutic massage has been practiced for over 2,500 years and is known for its ability to improve flexibility, relieve muscle tension, and promote overall wellness.',
+          features: ['Acupressure techniques on energy lines', 'Passive yoga-like stretching', 'Herbal compress applications', 'Improved circulation and flexibility'],
+          benefits: 'Reduces stress, relieves muscle pain, improves flexibility, enhances energy flow',
+          tips: 'Wear comfortable clothing, communicate pressure preferences, stay hydrated'
+        },
+        'Vipassana Meditation': {
+          overview: 'Vipassana is one of India\'s most ancient meditation techniques, meaning "to see things as they really are." This practice focuses on self-observation and mindfulness, providing a path to mental purification and liberation from suffering.',
+          features: ['Mindfulness of breath and body', 'Systematic self-observation', 'Non-judgmental awareness', 'Progressive insight development'],
+          benefits: 'Reduces stress and anxiety, improves concentration, emotional balance, spiritual growth',
+          tips: 'Practice daily, start with short sessions, maintain consistent schedule'
+        },
+        'Swedish Massage': {
+          overview: 'Swedish massage is the most popular type of massage in the Western world, developed by Per Henrik Ling in the 19th century. It uses long, flowing strokes, kneading, and circular movements to promote relaxation and improve circulation.',
+          features: ['Effleurage (long gliding strokes)', 'Petrissage (kneading)', 'Friction (deep circular movements)', 'Tapotement (rhythmic tapping)'],
+          benefits: 'Reduces muscle tension, improves circulation, stress relief, enhanced flexibility',
+          tips: 'Communicate pressure preferences, breathe deeply, relax completely'
+        }
+      };
+      
+      const content = enhancedContent[title] || {
+        overview: `${title} offers exceptional quality and professional standards. This comprehensive solution provides world-class features and benefits for users seeking the best in class experience.`,
+        features: ['Premium quality standards', 'Expert guidance and support', 'Comprehensive resources', 'Professional implementation'],
+        benefits: 'Enhanced user experience, reliable performance, exceptional value, trusted quality',
+        tips: 'Follow best practices, utilize available resources, maintain consistency'
+      };
+      
+      return `
+        <div class="enlarged-card-content">
+          <h4>Overview</h4>
+          <p>${content.overview}</p>
+          
+          <h4>Key Features</h4>
+          <ul>
+            ${content.features.map(feature => `<li>${feature}</li>`).join('')}
+          </ul>
+          
+          <h4>Benefits</h4>
+          <p>${content.benefits}</p>
+          
+          <h4>Expert Tips</h4>
+          <p>${content.tips}</p>
+          
+          <h4>Getting Started</h4>
+          <p>Click on any external links provided in the original card to access detailed resources, tutorials, and professional guidance. This ensures you get the most comprehensive and up-to-date information available.</p>
+        </div>
+      `;
+    }
+    
+    // Close modal function
+    function closeEnlargedCard() {
+      const modal = document.getElementById('enlargedCardModal');
+      modal.classList.remove('active');
+    }
+    
+    // Close modal when clicking outside
+    document.getElementById('enlargedCardModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeEnlargedCard();
+      }
+    });
+    
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeEnlargedCard();
+      }
+    });
+  </script>
 </body>
 </html>
