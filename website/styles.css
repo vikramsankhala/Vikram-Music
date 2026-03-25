@@ -2379,6 +2379,255 @@ body::before {
 }
 
 /* ============================================
+   Tutorial Categories Styling
+   ============================================ */
+
+.tutorial-categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.tutorial-category {
+  background: linear-gradient(135deg, rgba(232, 185, 35, 0.08), rgba(232, 185, 35, 0.12));
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  border: 1px solid rgba(232, 185, 35, 0.2);
+  transition: all 0.3s ease;
+}
+
+.tutorial-category:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(232, 185, 35, 0.3);
+}
+
+.tutorial-category h4 {
+  color: var(--accent);
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+  position: relative;
+}
+
+.tutorial-category h4::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 1px;
+}
+
+.tutorial-category .video-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.tutorial-category .video-links a {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.8rem;
+  line-height: 1.3;
+  padding: 0.3rem 0.5rem;
+  border-radius: calc(var(--radius) * 0.4);
+  transition: all 0.3s ease;
+  border-left: 2px solid transparent;
+  display: block;
+}
+
+.tutorial-category .video-links a:hover {
+  color: var(--accent);
+  background: rgba(232, 185, 35, 0.05);
+  border-left-color: var(--accent);
+  transform: translateX(3px);
+}
+
+/* Responsive Tutorial Categories */
+@media (max-width: 768px) {
+  .tutorial-categories {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .tutorial-category {
+    padding: 1rem;
+  }
+  
+  .tutorial-category .video-links a {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .tutorial-categories {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+  
+  .tutorial-category {
+    padding: 0.8rem;
+  }
+  
+  .tutorial-category .video-links a {
+    font-size: 0.7rem;
+    padding: 0.15rem 0.3rem;
+  }
+}
+
+/* ============================================
+   DIY Equipment Section Styling
+   ============================================ */
+
+.equipment-categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.equipment-category {
+  background: linear-gradient(135deg, rgba(232, 185, 35, 0.08), rgba(232, 185, 35, 0.12));
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  border: 1px solid rgba(232, 185, 35, 0.2);
+  transition: all 0.3s ease;
+}
+
+.equipment-category:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(232, 185, 35, 0.3);
+}
+
+.equipment-category h4 {
+  color: var(--accent);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+  position: relative;
+}
+
+.equipment-category h4::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 1px;
+}
+
+.video-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.video-links a {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  padding: 0.4rem 0.6rem;
+  border-radius: calc(var(--radius) * 0.4);
+  transition: all 0.3s ease;
+  border-left: 3px solid transparent;
+  display: block;
+}
+
+.video-links a:hover {
+  color: var(--accent);
+  background: rgba(232, 185, 35, 0.05);
+  border-left-color: var(--accent);
+  transform: translateX(4px);
+}
+
+.component-list {
+  margin-top: 1rem;
+}
+
+.component-list h5 {
+  color: var(--accent);
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.component-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+}
+
+.component-list li {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  margin-bottom: 0.4rem;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.component-list li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-weight: bold;
+}
+
+/* Responsive Equipment Section */
+@media (max-width: 768px) {
+  .equipment-categories {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .equipment-category {
+    padding: 1rem;
+  }
+  
+  .video-links a {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .equipment-categories {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+  
+  .equipment-category {
+    padding: 0.8rem;
+  }
+  
+  .video-links a {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.4rem;
+  }
+  
+  .component-list li {
+    font-size: 0.75rem;
+  }
+}
+
+/* ============================================
    Website Links Styling
    ============================================ */
 
