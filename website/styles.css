@@ -1069,6 +1069,23 @@ body::before {
   backdrop-filter: blur(8px);
 }
 
+.founder-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  justify-content: center;
+}
+
+.founder-photo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--accent);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
 .founder-section h3 {
   color: var(--accent);
   font-size: 1.5rem;
