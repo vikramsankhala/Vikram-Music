@@ -2247,6 +2247,138 @@ body::before {
 }
 
 /* ============================================
+   Founder Quote Styling
+   ============================================ */
+
+.founder-quote {
+  background: linear-gradient(135deg, rgba(232, 185, 35, 0.15), rgba(232, 185, 35, 0.05));
+  border-radius: var(--radius);
+  padding: 2rem;
+  margin: 2rem 0;
+  border: 2px solid rgba(232, 185, 35, 0.3);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.founder-quote::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, 
+    rgba(232, 185, 35, 0.2), 
+    rgba(255, 255, 255, 0.1), 
+    rgba(232, 185, 35, 0.2));
+  border-radius: var(--radius);
+  z-index: -1;
+  animation: quoteGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes quoteGlow {
+  0% {
+    opacity: 0.7;
+    box-shadow: 0 0 10px rgba(232, 185, 35, 0.3);
+  }
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 20px rgba(232, 185, 35, 0.5);
+  }
+}
+
+.founder-quote h2 {
+  color: var(--accent);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.quote-text {
+  font-size: 1.3rem;
+  line-height: 1.6;
+  font-style: italic;
+  color: var(--text);
+  margin: 0;
+  padding: 1.5rem 2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: calc(var(--radius) * 0.8);
+  border-left: 4px solid var(--accent);
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.quote-text::before {
+  content: '"';
+  position: absolute;
+  top: -0.5rem;
+  left: 1rem;
+  font-size: 3rem;
+  color: var(--accent);
+  opacity: 0.3;
+  font-family: Georgia, serif;
+}
+
+.quote-text::after {
+  content: '"';
+  position: absolute;
+  bottom: -1rem;
+  right: 1rem;
+  font-size: 3rem;
+  color: var(--accent);
+  opacity: 0.3;
+  font-family: Georgia, serif;
+}
+
+.quote-author {
+  display: block;
+  text-align: right;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-top: 1rem;
+  font-style: normal;
+  letter-spacing: 0.5px;
+}
+
+/* Responsive Quote */
+@media (max-width: 768px) {
+  .founder-quote {
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+  }
+  
+  .quote-text {
+    font-size: 1.1rem;
+    padding: 1rem 1.5rem;
+  }
+  
+  .quote-author {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .founder-quote {
+    padding: 1rem;
+    margin: 1rem 0;
+  }
+  
+  .quote-text {
+    font-size: 1rem;
+    padding: 0.8rem 1rem;
+  }
+  
+  .quote-author {
+    font-size: 0.85rem;
+  }
+}
+
+/* ============================================
    Website Links Styling
    ============================================ */
 
