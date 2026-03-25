@@ -1116,6 +1116,41 @@ body::before {
   margin-bottom: 0;
 }
 
+.premium-profile {
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  background: rgba(232, 185, 35, 0.1);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius);
+}
+
+.premium-profile h4 {
+  color: var(--accent);
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.profile-text {
+  color: var(--text);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  text-align: justify;
+}
+
+.profile-text:last-child {
+  margin-bottom: 0;
+}
+
+.profile-text strong {
+  color: var(--accent);
+  font-weight: 600;
+}
+
 .theory-card .youtube-links,
 .gig-card .youtube-links,
 .music-card .youtube-links,
