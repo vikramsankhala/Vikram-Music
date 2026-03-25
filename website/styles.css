@@ -2379,6 +2379,111 @@ body::before {
 }
 
 /* ============================================
+   Speaker Categories Styling
+   ============================================ */
+
+.speaker-categories {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.speaker-category {
+  background: linear-gradient(135deg, rgba(232, 185, 35, 0.08), rgba(232, 185, 35, 0.12));
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  border: 1px solid rgba(232, 185, 35, 0.2);
+  transition: all 0.3s ease;
+}
+
+.speaker-category:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(232, 185, 35, 0.3);
+}
+
+.speaker-category h4 {
+  color: var(--accent);
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+  position: relative;
+}
+
+.speaker-category h4::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 1px;
+}
+
+.speaker-category .video-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.speaker-category .video-links a {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.75rem;
+  line-height: 1.2;
+  padding: 0.25rem 0.4rem;
+  border-radius: calc(var(--radius) * 0.3);
+  transition: all 0.3s ease;
+  border-left: 2px solid transparent;
+  display: block;
+}
+
+.speaker-category .video-links a:hover {
+  color: var(--accent);
+  background: rgba(232, 185, 35, 0.05);
+  border-left-color: var(--accent);
+  transform: translateX(2px);
+}
+
+/* Responsive Speaker Categories */
+@media (max-width: 768px) {
+  .speaker-categories {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .speaker-category {
+    padding: 1rem;
+  }
+  
+  .speaker-category .video-links a {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .speaker-categories {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+  }
+  
+  .speaker-category {
+    padding: 0.8rem;
+  }
+  
+  .speaker-category .video-links a {
+    font-size: 0.65rem;
+    padding: 0.15rem 0.25rem;
+  }
+}
+
+/* ============================================
    Tutorial Categories Styling
    ============================================ */
 
