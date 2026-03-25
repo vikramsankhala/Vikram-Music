@@ -14,6 +14,10 @@
   --success: #4ade80;
   --radius: 12px;
   --shadow: 0 4px 24px rgba(0,0,0,0.4);
+  --cubist-black: #000000;
+  --cubist-white: #ffffff;
+  --cubist-gray: #808080;
+  --cubist-light-gray: #f0f0f0;
 }
 
 * {
@@ -34,7 +38,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Background pattern */
+/* Background pattern with cubist motifs */
 body::before {
   content: '';
   position: fixed;
@@ -43,9 +47,38 @@ body::before {
   right: 0;
   bottom: 0;
   background: 
+    /* Cubist geometric patterns */
+    linear-gradient(45deg, transparent 48%, var(--cubist-black) 48%, var(--cubist-black) 52%, transparent 52%),
+    linear-gradient(-45deg, transparent 48%, var(--cubist-black) 48%, var(--cubist-black) 52%, transparent 52%),
+    linear-gradient(135deg, transparent 48%, var(--cubist-gray) 48%, var(--cubist-gray) 52%, transparent 52%),
+    linear-gradient(-135deg, transparent 48%, var(--cubist-gray) 48%, var(--cubist-gray) 52%, transparent 52%),
+    /* Existing gradient overlays */
     radial-gradient(ellipse 80% 50% at 50% -20%, rgba(232, 185, 35, 0.08), transparent),
     radial-gradient(ellipse 60% 40% at 100% 50%, rgba(232, 185, 35, 0.04), transparent),
     radial-gradient(ellipse 60% 40% at 0% 80%, rgba(232, 185, 35, 0.04), transparent);
+  background-size: 60px 60px, 60px 60px, 80px 80px, 80px 80px, 100% 100%;
+  background-position: 0 0, 30px 30px, 0 0, 40px 40px, 0 0;
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Cubist floating elements */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    /* Abstract cubist shapes */
+    polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%),
+    polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  background-size: 120px 120px, 150px 150px;
+  background-position: 10% 10%, 80% 80%;
+  background-repeat: repeat;
+  opacity: 0.02;
   pointer-events: none;
   z-index: 0;
 }
@@ -187,7 +220,7 @@ body::before {
   cursor: pointer;
 }
 
-/* Hero */
+/* Hero with cubist design elements */
 .hero {
   min-height: 70vh;
   display: flex;
@@ -196,6 +229,51 @@ body::before {
   padding: 8rem 2rem 4rem;
   text-align: center;
   position: relative;
+  overflow: hidden;
+}
+
+/* Cubist hero background elements */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    /* Cubist geometric shapes */
+    linear-gradient(30deg, transparent 48%, var(--cubist-white) 48%, var(--cubist-white) 52%, transparent 52%),
+    linear-gradient(-30deg, transparent 48%, var(--cubist-black) 48%, var(--cubist-black) 52%, transparent 52%),
+    linear-gradient(60deg, transparent 48%, var(--cubist-gray) 48%, var(--cubist-gray) 52%, transparent 52%),
+    linear-gradient(-60deg, transparent 48%, var(--cubist-light-gray) 48%, var(--cubist-light-gray) 52%, transparent 52%);
+  background-size: 100px 100px, 120px 120px, 80px 80px, 90px 90px;
+  background-position: 0 0, 50px 50px, 20px 20px, 70px 70px;
+  opacity: 0.05;
+  z-index: -1;
+}
+
+/* Floating cubist elements */
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 10%;
+  left: 5%;
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(45deg, var(--cubist-black) 25%, transparent 25%, transparent 75%, var(--cubist-black) 75%, var(--cubist-black)),
+              linear-gradient(45deg, var(--cubist-black) 25%, transparent 25%, transparent 75%, var(--cubist-black) 75%, var(--cubist-black));
+  background-size: 40px 40px;
+  background-position: 0 0, 20px 20px;
+  transform: rotate(15deg);
+  opacity: 0.1;
+  animation: floatCubist 20s infinite ease-in-out;
+}
+
+@keyframes floatCubist {
+  0%, 100% { transform: rotate(15deg) translateY(0px); }
+  25% { transform: rotate(20deg) translateY(-10px); }
+  50% { transform: rotate(10deg) translateY(5px); }
+  75% { transform: rotate(25deg) translateY(-5px); }
 }
 
 .hero-content {
@@ -276,10 +354,48 @@ body::before {
 }
 
 .section-dark {
-  background: rgba(22, 26, 34, 0.6);
+  background: 
+    /* Cubist pattern for dark sections */
+    linear-gradient(45deg, transparent 48%, var(--cubist-white) 48%, var(--cubist-white) 52%, transparent 52%),
+    linear-gradient(-45deg, transparent 48%, var(--cubist-black) 48%, var(--cubist-black) 52%, transparent 52%),
+    rgba(22, 26, 34, 0.6);
+  background-size: 60px 60px, 60px 60px, 100% 100%;
+  background-position: 0 0, 30px 30px, 0 0;
+  background-blend-mode: overlay, overlay, normal;
   border-radius: var(--radius);
   margin: 2rem auto;
   padding: 4rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Cubist section accents */
+.section-dark::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, var(--cubist-black) 25%, transparent 25%, transparent 75%, var(--cubist-black) 75%, var(--cubist-black));
+  background-size: 40px 40px;
+  background-position: 0 0;
+  opacity: 0.15;
+  transform: rotate(45deg);
+}
+
+.section-dark::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: -20px;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(45deg, var(--cubist-gray) 25%, transparent 25%, transparent 75%, var(--cubist-gray) 75%, var(--cubist-gray));
+  background-size: 30px 30px;
+  background-position: 0 0;
+  opacity: 0.1;
+  transform: rotate(-45deg);
 }
 
 /* Join Us Section */
@@ -1119,9 +1235,47 @@ body::before {
 .premium-profile {
   margin-top: 1.5rem;
   padding: 1.5rem;
-  background: rgba(232, 185, 35, 0.1);
+  background: 
+    /* Cubist pattern overlay */
+    linear-gradient(45deg, transparent 48%, var(--cubist-white) 48%, var(--cubist-white) 52%, transparent 52%),
+    linear-gradient(-45deg, transparent 48%, var(--cubist-black) 48%, var(--cubist-black) 52%, transparent 52%),
+    rgba(232, 185, 35, 0.1);
+  background-size: 40px 40px, 40px 40px, 100% 100%;
+  background-position: 0 0, 20px 20px, 0 0;
   border: 1px solid var(--accent);
   border-radius: var(--radius);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Cubist corner accents */
+.premium-profile::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--cubist-black) 25%, transparent 25%, transparent 75%, var(--cubist-black) 75%, var(--cubist-black)),
+              linear-gradient(135deg, var(--cubist-gray) 25%, transparent 25%, transparent 75%, var(--cubist-gray) 75%, var(--cubist-gray));
+  background-size: 30px 30px;
+  background-position: 0 0, 15px 15px;
+  opacity: 0.3;
+  border-radius: 0 var(--radius) 0 0;
+}
+
+.premium-profile::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(45deg, var(--cubist-black) 25%, transparent 25%, transparent 75%, var(--cubist-black) 75%, var(--cubist-black));
+  background-size: 25px 25px;
+  background-position: 0 0;
+  opacity: 0.2;
+  border-radius: 0 0 0 var(--radius);
 }
 
 .premium-profile h4 {
