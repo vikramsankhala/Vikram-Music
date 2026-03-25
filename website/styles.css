@@ -1947,18 +1947,21 @@ body::before {
   overflow-x: auto;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
+  background: var(--card-bg);
+  padding: 1rem;
 }
 
 .ai-courses-table {
   width: 100%;
-  min-width: 800px;
+  min-width: 900px;
   border-collapse: separate;
   border-spacing: 0;
   background: var(--card-bg);
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: var(--shadow);
-  border: 1px solid var(--border);
+  border: 2px solid var(--border);
+  table-layout: fixed;
 }
 
 .ai-courses-table thead {
@@ -1974,6 +1977,7 @@ body::before {
   letter-spacing: 0.5px;
   text-transform: uppercase;
   border-right: 1px solid rgba(255, 255, 255, 0.1);
+  white-space: nowrap;
 }
 
 .ai-courses-table th:last-child {
@@ -1983,6 +1987,7 @@ body::before {
 .ai-courses-table tbody tr {
   border-bottom: 1px solid var(--border);
   transition: all 0.3s ease;
+  background: var(--card-bg);
 }
 
 .ai-courses-table tbody tr:last-child {
@@ -1999,6 +2004,8 @@ body::before {
   vertical-align: top;
   line-height: 1.5;
   border-right: 1px solid var(--border);
+  word-wrap: break-word;
+  overflow: hidden;
 }
 
 .ai-courses-table td:last-child {
@@ -2008,43 +2015,50 @@ body::before {
 .ai-courses-table td:first-child {
   font-weight: 600;
   color: var(--accent);
-  min-width: 180px;
-  width: 20%;
+  min-width: 200px;
+  width: 22%;
 }
 
 .ai-courses-table td:nth-child(2) {
-  min-width: 300px;
-  width: 45%;
+  min-width: 350px;
+  width: 43%;
 }
 
 .ai-courses-table td:nth-child(3) {
   color: var(--muted);
   font-size: 0.9rem;
-  min-width: 120px;
+  min-width: 130px;
   width: 15%;
+  white-space: nowrap;
 }
 
 .ai-courses-table td:nth-child(4) {
   color: var(--success);
   font-weight: 600;
   font-size: 0.85rem;
-  min-width: 80px;
+  min-width: 100px;
   width: 20%;
+  white-space: nowrap;
 }
 
 .ai-courses-table a {
   color: var(--text);
   text-decoration: none;
   display: inline-block;
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.4rem;
   transition: all 0.3s ease;
   border-bottom: 1px solid transparent;
+  line-height: 1.4;
 }
 
 .ai-courses-table a:hover {
   color: var(--accent);
   border-bottom-color: var(--accent);
   transform: translateX(4px);
+}
+
+.ai-courses-table a:last-child {
+  margin-bottom: 0;
 }
 
 .table-footer {
@@ -2079,7 +2093,7 @@ body::before {
 @media (max-width: 1024px) {
   .ai-courses-table {
     font-size: 0.9rem;
-    min-width: 700px;
+    min-width: 800px;
   }
   
   .ai-courses-table th,
@@ -2096,7 +2110,7 @@ body::before {
   
   .ai-courses-table {
     font-size: 0.8rem;
-    min-width: 600px;
+    min-width: 700px;
   }
   
   .ai-courses-table th,
@@ -2105,26 +2119,26 @@ body::before {
   }
   
   .ai-courses-table td:first-child {
-    min-width: 120px;
+    min-width: 150px;
   }
   
   .ai-courses-table td:nth-child(2) {
-    min-width: 200px;
+    min-width: 250px;
   }
   
   .ai-courses-table td:nth-child(3) {
-    min-width: 80px;
+    min-width: 100px;
   }
   
   .ai-courses-table td:nth-child(4) {
-    min-width: 60px;
+    min-width: 80px;
   }
 }
 
 @media (max-width: 480px) {
   .ai-courses-table {
     font-size: 0.75rem;
-    min-width: 500px;
+    min-width: 600px;
   }
   
   .ai-courses-table th,
