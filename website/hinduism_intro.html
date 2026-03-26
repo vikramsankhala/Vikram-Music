@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Introduction to Hinduism — The Eternal Dharma</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600;800&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --saffron: #E8650A;
+    --deep-saffron: #C4500A;
+    --gold: #D4A017;
+    --bright-gold: #F5C842;
+    --cream: #FAF3E0;
+    --parchment: #F2E8D0;
+    --dark-brown: #1A0E05;
+    --warm-brown: #3D1F08;
+    --mid-brown: #6B3A1F;
+    --burgundy: #6B1A1A;
+    --lotus-pink: #D4608A;
+    --teal: #1A6B6B;
+    --deep-teal: #0D4040;
+    --text-dark: #1E1208;
+    --text-mid: #4A2C10;
+    --text-light: #7A5030;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--dark-brown);
+    color: var(--cream);
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.8;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    background: radial-gradient(ellipse at 50% 0%, #4A1A00 0%, #1A0800 50%, #0A0500 100%);
+  }
+
+  .mandala-bg {
+    position: absolute;
+    inset: 0;
+    opacity: 0.07;
+    background-image:
+      repeating-conic-gradient(from 0deg at 50% 50%, transparent 0deg, rgba(212,160,23,0.4) 2deg, transparent 4deg, transparent 15deg),
+      repeating-conic-gradient(from 7.5deg at 50% 50%, transparent 0deg, rgba(232,101,10,0.3) 1.5deg, transparent 3deg, transparent 15deg);
+    animation: mandala-spin 120s linear infinite;
+  }
+
+  @keyframes mandala-spin {
+    to { transform: rotate(360deg); }
+  }
+
+  .om-symbol {
+    font-size: clamp(80px, 15vw, 160px);
+    color: var(--gold);
+    line-height: 1;
+    text-shadow: 0 0 60px rgba(212,160,23,0.5), 0 0 120px rgba(232,101,10,0.3);
+    animation: pulse-glow 4s ease-in-out infinite;
+    margin-bottom: 0.3em;
+    display: block;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { text-shadow: 0 0 40px rgba(212,160,23,0.4), 0 0 80px rgba(232,101,10,0.2); }
+    50% { text-shadow: 0 0 80px rgba(212,160,23,0.8), 0 0 160px rgba(232,101,10,0.4), 0 0 240px rgba(245,200,66,0.2); }
+  }
+
+  .hero-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2.2rem, 6vw, 5rem);
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    background: linear-gradient(135deg, var(--bright-gold) 0%, var(--gold) 40%, var(--saffron) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.1;
+    margin-bottom: 0.3em;
+    animation: fade-up 1.2s ease forwards;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.7rem);
+    font-style: italic;
+    font-weight: 300;
+    color: rgba(250,243,224,0.75);
+    letter-spacing: 0.12em;
+    margin-bottom: 2.5em;
+    animation: fade-up 1.2s 0.3s ease forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  @keyframes fade-up {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .scroll-cue {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--gold);
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    opacity: 0.6;
+    animation: bounce 2s ease-in-out infinite;
+  }
+
+  @keyframes bounce {
+    0%,100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+
+  .scroll-cue::after {
+    content: '';
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(20, 8, 2, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(212,160,23,0.2);
+    padding: 0.9rem 2rem;
+  }
+
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .nav-brand {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 1.8rem;
+    list-style: none;
+    flex-wrap: wrap;
+  }
+
+  .nav-links a {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(250,243,224,0.65);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--bright-gold); }
+
+  /* ── MAIN CONTENT ── */
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* ── SECTION WRAPPER ── */
+  .section {
+    padding: 6rem 0;
+    border-bottom: 1px solid rgba(212,160,23,0.1);
+    position: relative;
+  }
+
+  .section:last-child { border-bottom: none; }
+
+  /* ── SECTION HEADER ── */
+  .section-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--saffron);
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .section-label::before, .section-label::after {
+    content: '';
+    flex: 1;
+    max-width: 40px;
+    height: 1px;
+    background: var(--saffron);
+    opacity: 0.5;
+  }
+
+  .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 600;
+    background: linear-gradient(135deg, var(--bright-gold), var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+    margin-bottom: 2rem;
+  }
+
+  /* ── INTRO BLOCK ── */
+  .intro-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+    margin-top: 3rem;
+  }
+
+  @media (max-width: 768px) {
+    .intro-grid { grid-template-columns: 1fr; gap: 2rem; }
+  }
+
+  .intro-body p {
+    margin-bottom: 1.4rem;
+    font-size: 1.05rem;
+    color: rgba(250,243,224,0.88);
+    font-weight: 300;
+  }
+
+  .intro-body p:first-child::first-letter {
+    font-family: 'Cinzel', serif;
+    font-size: 3.5em;
+    font-weight: 800;
+    color: var(--saffron);
+    float: left;
+    line-height: 0.75;
+    margin: 0.1em 0.1em 0 0;
+  }
+
+  /* ── STAT BOXES ── */
+  .stat-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .stat-box {
+    border: 1px solid rgba(212,160,23,0.25);
+    border-left: 4px solid var(--saffron);
+    padding: 1.4rem 1.8rem;
+    background: rgba(212,160,23,0.04);
+    border-radius: 0 4px 4px 0;
+  }
+
+  .stat-number {
+    font-family: 'Cinzel', serif;
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--bright-gold);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+
+  .stat-desc {
+    font-size: 0.85rem;
+    color: rgba(250,243,224,0.6);
+    font-style: italic;
+    letter-spacing: 0.03em;
+  }
+
+  /* ── TIMELINE ── */
+  .timeline {
+    position: relative;
+    margin: 3rem 0;
+    padding-left: 2rem;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--saffron), var(--gold), transparent);
+  }
+
+  .timeline-item {
+    position: relative;
+    padding-left: 2rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -2rem;
+    top: 0.4rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--saffron);
+    border: 2px solid var(--dark-brown);
+    box-shadow: 0 0 0 3px rgba(232,101,10,0.3);
+  }
+
+  .timeline-period {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--saffron);
+    margin-bottom: 0.3rem;
+  }
+
+  .timeline-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--bright-gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .timeline-text {
+    font-size: 0.95rem;
+    color: rgba(250,243,224,0.75);
+    font-weight: 300;
+  }
+
+  /* ── CARD GRID ── */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .card {
+    background: linear-gradient(145deg, rgba(61,31,8,0.5), rgba(26,14,5,0.7));
+    border: 1px solid rgba(212,160,23,0.2);
+    border-radius: 2px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--saffron), var(--gold));
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .card:hover {
+    border-color: rgba(212,160,23,0.5);
+    transform: translateY(-3px);
+  }
+
+  .card:hover::before { opacity: 1; }
+
+  .card-icon {
+    font-size: 2.2rem;
+    margin-bottom: 0.8rem;
+    display: block;
+  }
+
+  .card-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.8rem;
+  }
+
+  .card-text {
+    font-size: 0.92rem;
+    color: rgba(250,243,224,0.72);
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  /* ── QUOTE BLOCK ── */
+  .quote-block {
+    margin: 3rem 0;
+    padding: 2.5rem 3rem;
+    border-left: 4px solid var(--gold);
+    background: linear-gradient(to right, rgba(212,160,23,0.06), transparent);
+    position: relative;
+  }
+
+  .quote-block::before {
+    content: '"';
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 8rem;
+    color: var(--gold);
+    opacity: 0.12;
+    position: absolute;
+    top: -1rem;
+    left: 1.5rem;
+    line-height: 1;
+  }
+
+  .quote-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-style: italic;
+    font-weight: 300;
+    color: rgba(250,243,224,0.9);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+
+  .quote-source {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--saffron);
+  }
+
+  /* ── ACCORDION ── */
+  .accordion {
+    margin-top: 2.5rem;
+    border: 1px solid rgba(212,160,23,0.2);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .accordion-item {
+    border-bottom: 1px solid rgba(212,160,23,0.15);
+  }
+
+  .accordion-item:last-child { border-bottom: none; }
+
+  .accordion-btn {
+    width: 100%;
+    background: rgba(26,14,5,0.6);
+    border: none;
+    cursor: pointer;
+    padding: 1.4rem 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+    transition: background 0.2s;
+    gap: 1rem;
+  }
+
+  .accordion-btn:hover { background: rgba(61,31,8,0.5); }
+
+  .accordion-btn-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+  }
+
+  .accordion-arrow {
+    color: var(--saffron);
+    font-size: 1rem;
+    transition: transform 0.3s;
+    flex-shrink: 0;
+  }
+
+  .accordion-item.open .accordion-arrow { transform: rotate(180deg); }
+
+  .accordion-body {
+    display: none;
+    padding: 1.5rem 1.8rem 2rem;
+    background: rgba(15,8,2,0.4);
+    font-size: 0.95rem;
+    color: rgba(250,243,224,0.78);
+    font-weight: 300;
+    line-height: 1.8;
+  }
+
+  .accordion-item.open .accordion-body { display: block; }
+
+  /* ── TABLE ── */
+  .table-wrapper {
+    overflow-x: auto;
+    margin-top: 2.5rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.92rem;
+  }
+
+  thead tr {
+    background: linear-gradient(90deg, rgba(232,101,10,0.25), rgba(212,160,23,0.2));
+  }
+
+  th {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--bright-gold);
+    padding: 1rem 1.4rem;
+    text-align: left;
+    border-bottom: 2px solid rgba(212,160,23,0.3);
+  }
+
+  td {
+    padding: 0.9rem 1.4rem;
+    border-bottom: 1px solid rgba(212,160,23,0.1);
+    color: rgba(250,243,224,0.78);
+    vertical-align: top;
+    font-weight: 300;
+  }
+
+  tbody tr:hover td { background: rgba(212,160,23,0.04); }
+
+  td:first-child {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--gold);
+    font-size: 1rem;
+    white-space: nowrap;
+  }
+
+  /* ── HIGHLIGHT BOX ── */
+  .highlight-box {
+    border: 1px solid rgba(232,101,10,0.4);
+    border-radius: 2px;
+    padding: 2rem 2.5rem;
+    background: linear-gradient(135deg, rgba(232,101,10,0.08), rgba(212,160,23,0.05));
+    margin: 2.5rem 0;
+    position: relative;
+  }
+
+  .highlight-box-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--saffron);
+    margin-bottom: 1rem;
+  }
+
+  .highlight-box-body {
+    font-size: 0.98rem;
+    color: rgba(250,243,224,0.82);
+    font-weight: 300;
+    line-height: 1.8;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(212,160,23,0.3), transparent);
+  }
+
+  .divider-symbol {
+    color: var(--gold);
+    font-size: 1.2rem;
+    opacity: 0.6;
+  }
+
+  /* ── CONCEPT PILLARS ── */
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    margin-top: 3rem;
+    border: 1px solid rgba(212,160,23,0.2);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  @media (max-width: 700px) {
+    .pillars { grid-template-columns: 1fr; }
+  }
+
+  .pillar {
+    padding: 2.5rem 2rem;
+    border-right: 1px solid rgba(212,160,23,0.15);
+    background: rgba(26,14,5,0.4);
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+
+  .pillar:last-child { border-right: none; }
+  .pillar:hover { background: rgba(61,31,8,0.5); }
+
+  .pillar::after {
+    content: attr(data-number);
+    position: absolute;
+    bottom: -0.5rem;
+    right: 1rem;
+    font-family: 'Cinzel', serif;
+    font-size: 5rem;
+    font-weight: 800;
+    color: rgba(212,160,23,0.05);
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .pillar-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--saffron);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.6rem;
+  }
+
+  .pillar-sanskrit {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-style: italic;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .pillar-body {
+    font-size: 0.88rem;
+    color: rgba(250,243,224,0.68);
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: rgba(10,5,2,0.95);
+    border-top: 1px solid rgba(212,160,23,0.15);
+    padding: 4rem 2rem;
+    text-align: center;
+  }
+
+  .footer-inner {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .footer-om {
+    font-size: 3rem;
+    color: var(--gold);
+    opacity: 0.4;
+    margin-bottom: 1rem;
+  }
+
+  .footer-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    font-style: italic;
+    color: rgba(250,243,224,0.4);
+    letter-spacing: 0.05em;
+  }
+
+  .footer-note {
+    margin-top: 1.5rem;
+    font-size: 0.75rem;
+    color: rgba(250,243,224,0.25);
+    font-family: 'Cinzel', serif;
+    letter-spacing: 0.1em;
+  }
+
+  /* ── MISC ── */
+  strong {
+    color: var(--bright-gold);
+    font-weight: 600;
+  }
+
+  em {
+    color: rgba(250,243,224,0.9);
+    font-style: italic;
+  }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-top: 2rem;
+  }
+
+  @media (max-width: 700px) {
+    .two-col { grid-template-columns: 1fr; gap: 1.5rem; }
+  }
+
+  .section-body {
+    font-size: 1.02rem;
+    color: rgba(250,243,224,0.82);
+    font-weight: 300;
+    line-height: 1.85;
+  }
+
+  .section-body p { margin-bottom: 1.3rem; }
+  .section-body ul { padding-left: 1.5rem; margin-bottom: 1.3rem; }
+  .section-body li { margin-bottom: 0.5rem; }
+
+  .text-center { text-align: center; }
+  .mt-2 { margin-top: 2rem; }
+  .mt-3 { margin-top: 3rem; }
+</style>
+</head>
+<body>
+
+<!-- ══════════ HERO ══════════ -->
+<section class="hero">
+  <div class="mandala-bg"></div>
+  <span class="om-symbol">ॐ</span>
+  <h1 class="hero-title">Introduction to Hinduism</h1>
+  <p class="hero-subtitle">The Vedas · The Upanishads · The Nature of Brahman</p>
+  <div class="scroll-cue">SCROLL</div>
+</section>
+
+<!-- ══════════ NAV ══════════ -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-brand">ॐ Sanātana Dharma</a>
+    <ul class="nav-links">
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#vedas">The Vedas</a></li>
+      <li><a href="#upanishads">Upanishads</a></li>
+      <li><a href="#brahman">Brahman</a></li>
+      <li><a href="#concepts">Key Concepts</a></li>
+      <li><a href="#schools">Schools</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ══════════ OVERVIEW ══════════ -->
+  <section class="section" id="overview">
+    <div class="section-label">Chapter I</div>
+    <h2 class="section-title">What Is Hinduism?</h2>
+
+    <div class="intro-grid">
+      <div class="intro-body">
+        <p>Hinduism — known to its practitioners as <strong>Sanātana Dharma</strong>, the "Eternal Law" or "Eternal Way" — is the world's oldest living religious tradition and its most philosophically diverse. It is not a single, monolithic faith with a single founder, creed, or central institution, but rather a vast and organic constellation of beliefs, practices, philosophies, and ways of life that have evolved over more than four millennia on the Indian subcontinent.</p>
+        <p>To enter Hinduism is to enter a world of extraordinary richness: a tradition that simultaneously affirms absolute non-dualism and ecstatic devotion to personal deities; that contains rigorous metaphysical argumentation alongside ritual, myth, and mystical poetry; that has generated the world's earliest known literature and continues to evolve in the contemporary moment.</p>
+        <p>At its intellectual core lies a set of sacred texts — the <strong>Vedas</strong> and the <strong>Upanishads</strong> — and a central metaphysical inquiry into the nature of ultimate reality, which the tradition calls <strong>Brahman</strong>. These three pillars form the foundation of what Hindu philosophy calls the <em>Jñāna Kāṇḍa</em>: the path of knowledge.</p>
+      </div>
+      <div class="stat-stack">
+        <div class="stat-box">
+          <div class="stat-number">1.2B+</div>
+          <div class="stat-desc">Adherents worldwide — the third largest religion on Earth</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">~4,000</div>
+          <div class="stat-desc">Years of documented textual tradition, dating from ~1500 BCE</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">4</div>
+          <div class="stat-desc">Primary Vedas: Rigveda, Samaveda, Yajurveda, Atharvaveda</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-number">108</div>
+          <div class="stat-desc">Principal Upanishads, of which 13 are considered canonical</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"><span class="divider-symbol">❖</span></div>
+
+    <div class="section-label">Timeline</div>
+    <h3 style="font-family:'Cinzel',serif; font-size:1.3rem; color:var(--gold); margin-bottom:2rem;">A Historical Overview</h3>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-period">c. 3000–1500 BCE</div>
+        <div class="timeline-heading">Indus Valley Civilization</div>
+        <div class="timeline-text">Urban cultures at Mohenjo-daro and Harappa show evidence of ritual bathing, proto-Śiva iconography, and fire altars — possible precursors to later Vedic and Hindu practice.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-period">c. 1500–1200 BCE</div>
+        <div class="timeline-heading">Composition of the Rigveda</div>
+        <div class="timeline-text">The earliest hymns of the Rigveda are composed in Vedic Sanskrit. These 1,028 hymns to cosmic deities form the bedrock of the entire Hindu scriptural tradition.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-period">c. 1200–900 BCE</div>
+        <div class="timeline-heading">Later Vedas & Brāhmaṇas</div>
+        <div class="timeline-text">The Samaveda, Yajurveda, and Atharvaveda take shape, followed by the Brāhmaṇas — complex prose texts explaining the theology of Vedic sacrifice.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-period">c. 800–200 BCE</div>
+        <div class="timeline-heading">The Upanishadic Age</div>
+        <div class="timeline-text">Philosophical dialogues between teachers and students produce the Upanishads — meditations on Ātman (the inner self) and Brahman (ultimate reality) that transform Vedic religion into a profound metaphysical system.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-period">c. 500 BCE – 500 CE</div>
+        <div class="timeline-heading">Classical Hindu Synthesis</div>
+        <div class="timeline-text">The two great epics — the Mahābhārata (containing the Bhagavad Gītā) and the Rāmāyaṇa — are composed. The six classical schools of philosophy (darśanas) crystallize. Devotional religion (bhakti) begins to flourish.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-period">788–820 CE</div>
+        <div class="timeline-heading">Ādi Śaṅkarācārya</div>
+        <div class="timeline-text">The great philosopher-monk Śaṅkara systematizes Advaita Vedānta — the doctrine of non-dual Brahman — and writes commentaries on the Upanishads, the Brahma Sūtras, and the Bhagavad Gītā.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-period">Modern Era</div>
+        <div class="timeline-heading">Global Hinduism</div>
+        <div class="timeline-text">Reformers like Ramakrishna, Swami Vivekananda, and Sri Aurobindo reinterpret Hindu thought for modern contexts. Hinduism becomes a global presence while remaining rooted in the ancient Vedic-Upanishadic tradition.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ VEDAS ══════════ -->
+  <section class="section" id="vedas">
+    <div class="section-label">Chapter II</div>
+    <h2 class="section-title">The Vedas</h2>
+    <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-style:italic; color:rgba(250,243,224,0.7); margin-bottom:2.5rem; font-weight:300;">Śruti — "That Which Was Heard"</h3>
+
+    <div class="section-body">
+      <p>The word <strong>Veda</strong> derives from the Sanskrit root <em>vid</em> — "to know." The Vedas are thus, literally, the Books of Knowledge. But in the Hindu understanding, they are far more than books: they are <strong>śruti</strong>, meaning "that which was heard" — eternal, uncreated sound vibrations that were perceived in deep meditation by ancient seers (ṛṣis) and transmitted orally from teacher to student across hundreds of generations before they were ever written down.</p>
+      <p>There are four Vedas, each with four distinct layers of text. Together they form the most comprehensive religious literature of the ancient world — a corpus spanning cosmic hymns, ritual manuals, mystical forest treatises, and the philosophical dialogues of the Upanishads.</p>
+    </div>
+
+    <div class="quote-block">
+      <div class="quote-text">The Vedas are the breath of the Supreme Being. As a man breathes, so the Vedas are breathed out by Brahman. One must study the Vedas.</div>
+      <div class="quote-source">— Bṛhadāraṇyaka Upaniṣad II.4.10</div>
+    </div>
+
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Veda</th>
+            <th>Primary Purpose</th>
+            <th>Character</th>
+            <th>Associated Deity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Rigveda</td>
+            <td>Collection of 1,028 hymns (sūktas) to the gods</td>
+            <td>Oldest; lyrical, cosmological poetry. Includes the Purusha Sūkta and the Nāsadīya Sūkta (hymn of creation)</td>
+            <td>Agni, Indra, Soma, Varuna</td>
+          </tr>
+          <tr>
+            <td>Sāmaveda</td>
+            <td>Liturgical melodies for Soma sacrifice</td>
+            <td>Largely drawn from the Rigveda but set to musical notation; the "Veda of Song." Foundation of Indian classical music</td>
+            <td>Soma</td>
+          </tr>
+          <tr>
+            <td>Yajurveda</td>
+            <td>Prose formulas (yajus) for ritual priests</td>
+            <td>Practical ritual manual; exists in "Black" (Kṛṣṇa) and "White" (Śukla) recensions. Contains the Śatapatha Brāhmaṇa</td>
+            <td>Yajña (sacrifice itself)</td>
+          </tr>
+          <tr>
+            <td>Atharvaveda</td>
+            <td>Spells, charms, healing hymns, cosmological speculation</td>
+            <td>Closer to folk religion; includes hymns on kingship, cosmology, and the nature of time (Kāla). Contains early precursors to Upanishadic thought</td>
+            <td>Atharvan seers; Brahman</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="font-family:'Cinzel',serif; font-size:1.3rem; color:var(--gold); margin-top:3.5rem; margin-bottom:1.5rem;">The Four Layers of Each Veda</h3>
+
+    <div class="card-grid">
+      <div class="card">
+        <span class="card-icon">🔥</span>
+        <div class="card-title">Saṃhitā</div>
+        <div class="card-text">The core collection of hymns and mantras. These are the most ancient layer — lyrical invocations of cosmic powers understood both as nature deities and as aspects of a single underlying reality. The Rigveda Saṃhitā is the oldest known literary text in any Indo-European language.</div>
+      </div>
+      <div class="card">
+        <span class="card-icon">🕯️</span>
+        <div class="card-title">Brāhmaṇa</div>
+        <div class="card-text">Prose commentaries on ritual procedure, explaining the meaning and purpose of Vedic sacrifices. The Brāhmaṇas represent a priestly elaboration of Vedic religion, systematizing the correspondence between cosmic order (ṛta) and ritual action. The Śatapatha Brāhmaṇa is among the most important.</div>
+      </div>
+      <div class="card">
+        <span class="card-icon">🌿</span>
+        <div class="card-title">Āraṇyaka</div>
+        <div class="card-text">The "Forest Books" — composed for renunciants who had retired from household life into the forest. These transitional texts begin to shift emphasis from external ritual to internal, contemplative equivalents. They form a bridge between ritualism and philosophy.</div>
+      </div>
+      <div class="card">
+        <span class="card-icon">✨</span>
+        <div class="card-title">Upaniṣad</div>
+        <div class="card-text">The philosophical summit of the Vedic corpus. Sometimes called the Vedānta — "End (or Fulfillment) of the Vedas" — the Upanishads turn from ritual performance to the deepest questions of existence: What is the self? What is ultimate reality? What is liberation? These are explored next in full.</div>
+      </div>
+    </div>
+
+    <div class="highlight-box mt-3">
+      <div class="highlight-box-title">The Vedic Worldview: Ṛta and Dharma</div>
+      <div class="highlight-box-body">
+        Central to the Vedas is the concept of <strong>ṛta</strong> — the cosmic order that underlies both the physical universe (the regular rising of the sun, the turning of the seasons) and the moral order (truth, right action, fidelity to one's role). Ṛta is upheld by Varuṇa, the guardian of cosmic law. From ṛta is derived the concept of <strong>dharma</strong>, which becomes the cornerstone of all subsequent Hindu ethics and cosmology. To live in accordance with dharma is to align oneself with the deepest grain of reality itself.
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ UPANISHADS ══════════ -->
+  <section class="section" id="upanishads">
+    <div class="section-label">Chapter III</div>
+    <h2 class="section-title">The Upanishads</h2>
+    <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-style:italic; color:rgba(250,243,224,0.7); margin-bottom:2.5rem; font-weight:300;">Vedānta — The Fulfillment of Vedic Wisdom</h3>
+
+    <div class="section-body">
+      <p>The word <strong>Upaniṣad</strong> is traditionally derived from the Sanskrit roots <em>upa</em> (near), <em>ni</em> (down), and <em>sad</em> (to sit) — meaning "to sit down near." It evokes the image of a student sitting at the feet of a teacher, receiving secret wisdom transmitted in intimate dialogue. This image captures something essential about the Upanishads: they are not systematic treatises but living conversations — exchanges between seekers and sages about the deepest mysteries of existence.</p>
+      <p>There are over 200 texts that bear the name Upaniṣad, but the <strong>13 principal Upanishads</strong> (mukhya upaniṣads) form the canonical core, quoted and commented upon by all the major schools of Vedānta philosophy. The oldest date to approximately 800 BCE; others were composed centuries later.</p>
+    </div>
+
+    <div class="quote-block">
+      <div class="quote-text">Tat tvam asi — Thou art That. The deepest Self within you is identical with the ultimate ground of all being.</div>
+      <div class="quote-source">— Chāndogya Upaniṣad VI.8.7 (one of the "Great Sayings," Mahāvākyas)</div>
+    </div>
+
+    <h3 style="font-family:'Cinzel',serif; font-size:1.3rem; color:var(--gold); margin-top:3rem; margin-bottom:1.5rem;">The 13 Principal Upanishads</h3>
+
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Upanishad</th>
+            <th>Associated Veda</th>
+            <th>Key Teachings</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Bṛhadāraṇyaka</td>
+            <td>Śukla Yajurveda</td>
+            <td>Longest and oldest; contains the great dialogue of Yājñavalkya. Teaches the identity of Ātman and Brahman, and the doctrine of rebirth and karma.</td>
+          </tr>
+          <tr>
+            <td>Chāndogya</td>
+            <td>Sāmaveda</td>
+            <td>Contains <em>tat tvam asi</em>. Teaches Brahman as the subtle inner essence of all things (sarvam khalv idam brahma — "All of this is indeed Brahman").</td>
+          </tr>
+          <tr>
+            <td>Taittirīya</td>
+            <td>Kṛṣṇa Yajurveda</td>
+            <td>The doctrine of the five sheaths (pañca kośa) of the self. Brahman as ānanda (bliss) — "He who knows Brahman as bliss is not afraid."</td>
+          </tr>
+          <tr>
+            <td>Aitareya</td>
+            <td>Rigveda</td>
+            <td>Consciousness (prajñā) as Brahman. The cosmogonic story of Ātman creating the universe from itself.</td>
+          </tr>
+          <tr>
+            <td>Kaṭha</td>
+            <td>Kṛṣṇa Yajurveda</td>
+            <td>The boy Naciketa and Yama (Death) — teaching on the eternal Ātman. Contains the famous chariot metaphor for the self, senses, and intellect.</td>
+          </tr>
+          <tr>
+            <td>Īśā</td>
+            <td>Śukla Yajurveda</td>
+            <td>Shortest principal Upanishad (18 verses). Teaches that the Lord (Īśa) pervades all — one must act without attachment, renouncing ownership.</td>
+          </tr>
+          <tr>
+            <td>Kena</td>
+            <td>Sāmaveda</td>
+            <td>"By whom is the mind directed?" — inquiry into the unknown knower behind all knowing. Brahman as that which cannot be an object of knowledge.</td>
+          </tr>
+          <tr>
+            <td>Praśna</td>
+            <td>Atharvaveda</td>
+            <td>Six questions about creation, prāṇa (life-force), sleep, consciousness, Oṃkāra, and the nature of the sixteen-fold person (ṣoḍaśakala puruṣa).</td>
+          </tr>
+          <tr>
+            <td>Muṇḍaka</td>
+            <td>Atharvaveda</td>
+            <td>Distinction between higher knowledge (Brahman) and lower knowledge (the Vedas, sciences). The metaphor of Brahman as a bow and the self as an arrow.</td>
+          </tr>
+          <tr>
+            <td>Māṇḍūkya</td>
+            <td>Atharvaveda</td>
+            <td>Only 12 verses, yet considered the most important. Analysis of the four states of consciousness (waking, dreaming, deep sleep, turīya) and Oṃ as the symbol of Brahman.</td>
+          </tr>
+          <tr>
+            <td>Śvetāśvatara</td>
+            <td>Kṛṣṇa Yajurveda</td>
+            <td>Theistic; identifies Brahman with Rudra/Śiva. One of the earliest systematic theologies in Indian thought.</td>
+          </tr>
+          <tr>
+            <td>Aitareya</td>
+            <td>Rigveda</td>
+            <td>Prajñānam brahma — "Consciousness is Brahman." One of the four Mahāvākyas.</td>
+          </tr>
+          <tr>
+            <td>Maitrī (Maitrāyaṇī)</td>
+            <td>Kṛṣṇa Yajurveda</td>
+            <td>Later Upanishad synthesizing earlier thought; introduces the concept of the three guṇas (qualities) of nature that become central to Sāṃkhya philosophy.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="font-family:'Cinzel',serif; font-size:1.3rem; color:var(--gold); margin-top:3.5rem; margin-bottom:0.5rem;">The Four Great Sayings (Mahāvākyas)</h3>
+    <p style="font-size:0.9rem; color:rgba(250,243,224,0.55); margin-bottom:2rem; font-style:italic;">Each of the four Vedas contributes one of the principal statements of Upanishadic metaphysics.</p>
+
+    <div class="card-grid">
+      <div class="card">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; color:var(--gold); font-style:italic; margin-bottom:0.5rem;">Prajñānam Brahma</div>
+        <div class="card-title">Consciousness is Brahman</div>
+        <div class="card-text">From the Aitareya Upanishad (Rigveda). Consciousness is not a product of matter or the body — it is the fundamental nature of ultimate reality itself. To know is to be Brahman.</div>
+      </div>
+      <div class="card">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; color:var(--gold); font-style:italic; margin-bottom:0.5rem;">Aham Brahmāsmi</div>
+        <div class="card-title">I am Brahman</div>
+        <div class="card-text">From the Bṛhadāraṇyaka Upanishad (Yajurveda). The deepest "I" — not the ego, but the pure witnessing awareness — is none other than Brahman, infinite and eternal.</div>
+      </div>
+      <div class="card">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; color:var(--gold); font-style:italic; margin-bottom:0.5rem;">Tat Tvam Asi</div>
+        <div class="card-title">Thou Art That</div>
+        <div class="card-text">From the Chāndogya Upanishad (Sāmaveda). Repeated nine times by the sage Uddālaka to his son Śvetaketu — the individual self (Ātman) is identical to the universal ground (Brahman). There is no ultimate separation.</div>
+      </div>
+      <div class="card">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; color:var(--gold); font-style:italic; margin-bottom:0.5rem;">Ayam Ātmā Brahma</div>
+        <div class="card-title">This Self is Brahman</div>
+        <div class="card-text">From the Māṇḍūkya Upanishad (Atharvaveda). The Ātman — the innermost self behind all states of consciousness — is Brahman, the infinite, unconditioned ground of all existence.</div>
+      </div>
+    </div>
+
+    <div class="highlight-box mt-3">
+      <div class="highlight-box-title">The Method of the Upanishads</div>
+      <div class="highlight-box-body">
+        The Upanishads do not proceed by assertion alone, but by a method of negation (<strong>neti, neti</strong> — "not this, not this") combined with direct pointing. When Yājñavalkya is asked "What is Ātman?", he famously replies: "It is not this, not this" — the self cannot be reduced to any object, because it is the very subject of all experience. Simultaneously, the sages point to immediate experience: "That by which you see, hear, think, and know — that is Brahman; everything else is miserable." This double movement — via negativa and direct recognition — forms the heart of Upanishadic teaching.
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ BRAHMAN ══════════ -->
+  <section class="section" id="brahman">
+    <div class="section-label">Chapter IV</div>
+    <h2 class="section-title">Brahman</h2>
+    <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-style:italic; color:rgba(250,243,224,0.7); margin-bottom:2.5rem; font-weight:300;">The Ground of All Being</h3>
+
+    <div class="section-body">
+      <p>The word <strong>Brahman</strong> (not to be confused with <em>Brahmin</em>, the priestly caste, or <em>Brahmā</em>, the creator deity) derives from the Sanskrit root <em>bṛh</em> — "to grow, swell, expand." It points to that which is infinitely vast, boundless, the inexhaustible ground from which all existence arises and to which it returns.</p>
+      <p>Brahman is the central metaphysical concept of the Upanishads and the foundational principle of all Vedānta philosophy. It is defined by three primary attributes: <strong>Sat</strong> (pure being, existence), <strong>Cit</strong> (pure consciousness, awareness), and <strong>Ānanda</strong> (pure bliss). Together these form the formula <em>Saccidānanda</em> — the most complete description the tradition offers of ultimate reality.</p>
+      <p>Yet even this description is understood to fall short. Brahman is ultimately <strong>nirguṇa</strong> — without qualities, attributes, or limitations. Any positive description is a pointer, not an adequate characterization. As the Taittirīya Upaniṣad says: <em>"From which words turn back, unable to reach, along with the mind — one who knows the bliss of Brahman is not afraid."</em></p>
+    </div>
+
+    <div class="pillars mt-3">
+      <div class="pillar" data-number="1">
+        <div class="pillar-title">Pure Being</div>
+        <div class="pillar-sanskrit">Sat — सत्</div>
+        <div class="pillar-body">Brahman simply <em>is</em> — it is existence itself, not a being among beings. It cannot come into being or cease to be, for it is the very ground of all being. Perishable things exist <em>within</em> Brahman; they do not exist <em>as fully</em> as Brahman.</div>
+      </div>
+      <div class="pillar" data-number="2">
+        <div class="pillar-title">Pure Consciousness</div>
+        <div class="pillar-sanskrit">Cit — चित्</div>
+        <div class="pillar-body">Brahman is not unconscious matter — it is luminous awareness. Consciousness is not an emergent property of the physical world but its ground. The universe does not produce consciousness; consciousness is the medium in which the universe appears.</div>
+      </div>
+      <div class="pillar" data-number="3">
+        <div class="pillar-title">Pure Bliss</div>
+        <div class="pillar-sanskrit">Ānanda — आनन्द</div>
+        <div class="pillar-body">Brahman is ānanda — not happiness dependent on circumstances, but uncaused, unconditional bliss. The Taittirīya Upanishad contains a remarkable meditation on the "bliss-body" (ānandamaya kośa), suggesting that the deepest level of our being is bliss identical with Brahman.</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Cinzel',serif; font-size:1.3rem; color:var(--gold); margin-top:3.5rem; margin-bottom:1.5rem;">Saguna vs. Nirguna Brahman</h3>
+
+    <div class="two-col">
+      <div>
+        <div class="card" style="height:100%">
+          <div class="card-title">Nirguṇa Brahman — Without Attributes</div>
+          <div class="card-text">
+            <p style="margin-bottom:0.8rem;">The ultimate, absolute Brahman — infinite, formless, beyond all qualities and description. This is Brahman as it is in itself, prior to all conceptualization.</p>
+            <p style="margin-bottom:0.8rem;"><em>"Neti, neti"</em> — not this, not this. All concepts ultimately fail. Brahman exceeds every definition, every category, every limitation.</p>
+            <p>This aspect of Brahman is the basis for the <strong>Advaita Vedānta</strong> of Śaṅkara — the school of pure non-dualism, in which the apparent multiplicity of the world is ultimately <em>māyā</em> (appearance, illusion), and only Brahman is real.</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="card" style="height:100%">
+          <div class="card-title">Saguṇa Brahman — With Attributes</div>
+          <div class="card-text">
+            <p style="margin-bottom:0.8rem;">Brahman as approached through qualities: as omniscient, omnipotent, all-loving; as the personal God (Īśvara) who creates, sustains, and dissolves the universe. Known through devotion, ritual, and relationship.</p>
+            <p style="margin-bottom:0.8rem;">This is the basis for <strong>Viśiṣṭādvaita</strong> (Rāmānuja) — "qualified non-dualism" — in which souls and the world are real but exist as the body of Brahman/God; and for <strong>Dvaita</strong> (Madhva) — dualism — in which God and individual souls are eternally distinct.</p>
+            <p>The great devotional traditions of Hinduism — worship of Viṣṇu/Kṛṣṇa, Śiva, Devī — are all oriented toward Saguṇa Brahman.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="quote-block" style="margin-top:3rem;">
+      <div class="quote-text">Brahman is the Truth, Knowledge, and Infinity. He who knows Brahman hidden in the cave of the heart in the highest space, he enjoys all desires, together with the omniscient Brahman.</div>
+      <div class="quote-source">— Taittirīya Upaniṣad II.1</div>
+    </div>
+
+    <h3 style="font-family:'Cinzel',serif; font-size:1.3rem; color:var(--gold); margin-top:3rem; margin-bottom:1.5rem;">Ātman: The Individual Self</h3>
+
+    <div class="section-body">
+      <p>The Upanishads teach that the individual self — <strong>Ātman</strong> — is ultimately identical with Brahman. The apparent separateness of individual souls is a product of <em>avidyā</em> (ignorance) and <em>māyā</em> (the power of appearance/illusion). Beneath the multiplicity of names and forms, there is one undivided reality.</p>
+      <p>The Kaṭha Upaniṣad offers the famous <strong>chariot metaphor</strong>: the body is the chariot, the senses are the horses, the mind is the reins, the intellect (buddhi) is the charioteer, and the Ātman is the rider — the pure witness who is never destroyed when the chariot is dismantled.</p>
+    </div>
+
+    <div class="accordion">
+      <div class="accordion-item open">
+        <button class="accordion-btn" onclick="toggleAccordion(this)">
+          <span class="accordion-btn-title">The Five Sheaths (Pañca Kośa) of the Self</span>
+          <span class="accordion-arrow">▾</span>
+        </button>
+        <div class="accordion-body">
+          The Taittirīya Upanishad presents a layered model of the human self — five concentric "sheaths" (kośas) surrounding the innermost Ātman: <strong>(1) Annamaya kośa</strong> — the physical body, made of food; <strong>(2) Prāṇamaya kośa</strong> — the vital/breath body, the life-force animating the physical; <strong>(3) Manomaya kośa</strong> — the mental body, the seat of emotion and thought; <strong>(4) Vijñānamaya kośa</strong> — the intellect-body, the discriminating wisdom-mind; <strong>(5) Ānandamaya kośa</strong> — the bliss-body, experienced in deep dreamless sleep. Beyond all five sheaths is the pure Ātman — Brahman itself — which is not a sheath at all, but the luminous awareness in which all sheaths appear.
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-btn" onclick="toggleAccordion(this)">
+          <span class="accordion-btn-title">The Three States of Consciousness</span>
+          <span class="accordion-arrow">▾</span>
+        </button>
+        <div class="accordion-body">
+          The Māṇḍūkya Upanishad — one of the most compact and profound texts in world philosophy — analyzes consciousness through three ordinary states and a fourth: <strong>Jāgrat</strong> (waking consciousness), where the self experiences the outer world through the senses; <strong>Svapna</strong> (dream state), where the mind creates its own world of appearances; <strong>Suṣupti</strong> (deep dreamless sleep), where all experience ceases and there is undifferentiated bliss; and <strong>Turīya</strong> ("the fourth") — not a fourth state added to the three, but the silent, aware ground in which all three states arise and subside. Turīya is Brahman — pure, unconditioned awareness — recognized as one's own deepest nature.
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-btn" onclick="toggleAccordion(this)">
+          <span class="accordion-btn-title">Māyā: The Mystery of Appearance</span>
+          <span class="accordion-arrow">▾</span>
+        </button>
+        <div class="accordion-body">
+          If Brahman alone is real, why does the multiplicity of the world appear? The tradition's answer is <strong>māyā</strong> — a concept far subtler than simple "illusion." Māyā is Brahman's own creative power of self-concealment and manifestation. It is not "unreal" (the world genuinely appears and functions) but it is not ultimately real either (it has no existence independent of Brahman). The classic analogy: a rope mistaken for a snake in twilight. The "snake" is not real — but the fear it causes is real, and only when the light reveals the rope does the snake vanish. Similarly, ignorance (avidyā) causes us to mistake the world of multiplicity for ultimate reality; wisdom (jñāna) reveals that Brahman alone is.
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-btn" onclick="toggleAccordion(this)">
+          <span class="accordion-btn-title">Karma and Rebirth (Saṃsāra)</span>
+          <span class="accordion-arrow">▾</span>
+        </button>
+        <div class="accordion-body">
+          The Upanishads introduce and develop the doctrine of <strong>karma</strong> (action and its consequences) and <strong>saṃsāra</strong> (the cycle of birth, death, and rebirth). The Bṛhadāraṇyaka Upanishad first clearly articulates: "According as one acts, according as one conducts oneself, so does one become." Each action leaves a trace (saṃskāra) that shapes the character of the self and determines the conditions of future lives. Liberation (<strong>mokṣa</strong>) consists in the complete dissolution of the false identification of Ātman with the body-mind complex — the recognition that one is Brahman, which was never born and can never die. For such a one, the cycle of rebirth ends.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ KEY CONCEPTS ══════════ -->
+  <section class="section" id="concepts">
+    <div class="section-label">Chapter V</div>
+    <h2 class="section-title">Key Concepts</h2>
+    <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-style:italic; color:rgba(250,243,224,0.7); margin-bottom:2.5rem; font-weight:300;">The Vocabulary of Hindu Philosophy</h3>
+
+    <div class="card-grid">
+      <div class="card">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.4rem; color:var(--gold); font-style:italic; margin-bottom:0.3rem;">Dharma — धर्म</div>
+        <div class="card-title">Cosmic & Moral Order</div>
+        <div class="card-text">Often translated as "duty," "righteousness," or "law," dharma is far richer: it is the inherent nature and ordering principle of all things. Cosmic dharma holds the universe together; social dharma prescribes one's duties according to role and stage of life; personal dharma is the unique calling of each individual soul.</div>
+      </div>
+      <div class="card">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.4rem; color:var(--gold); font-style:italic; margin-bottom:0.3rem;">Karma — कर्म</div>
+        <div class="card-title">Action & Consequence</div>
+        <div class="card-text">Every intentional action leaves a trace in consciousness that shapes future experience and rebirth. Karma is not fate but moral physics: the universe tends toward equilibrium. The Bhagavad Gītā offers a revolutionary teaching: act according to dharma, without attachment to results, and karma does not bind.</div>
+      </div>
+      <div class="card">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.4rem; color:var(--gold); font-style:italic; margin-bottom:0.3rem;">Mokṣa — मोक्ष</div>
+        <div class="card-title">Liberation</div>
+        <div class="card-text">The ultimate goal of human life in the Hindu framework: liberation from the cycle of birth and death (saṃsāra) through the realization of one's identity with Brahman. Also called <em>mukti</em>. Different schools envision mokṣa differently — as merger with Brahman, as eternal companionship with God, or as the cessation of suffering.</div>
+      </div>
+      <div class="card">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.4rem; color:var(--gold); font-style:italic; margin-bottom:0.3rem;">Avidyā — अविद्या</div>
+        <div class="card-title">Ignorance</div>
+        <div class="card-text">The root cause of suffering (duḥkha) and bondage is not sin but <em>ignorance</em> — the mistaken identification of the self with the body, mind, and ego rather than with the infinite Ātman-Brahman. This is not intellectual ignorance but a deeper existential misidentification that meditation, inquiry, and grace work to dissolve.</div>
+      </div>
+      <div class="card">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.4rem; color:var(--gold); font-style:italic; margin-bottom:0.3rem;">Ṛta & Satya — ऋत & सत्य</div>
+        <div class="card-title">Cosmic Truth</div>
+        <div class="card-text">Ṛta is the Vedic concept of cosmic order — the invisible law that ensures the sun rises, seasons turn, and right action bears fruit. Satya (truth) is its ethical expression — truthfulness is considered the supreme virtue in most Hindu ethical traditions. "Satyam eva jayate" — Truth alone triumphs.</div>
+      </div>
+      <div class="card">
+        <div style="font-family:'Cormorant Garamond',serif; font-size:1.4rem; color:var(--gold); font-style:italic; margin-bottom:0.3rem;">Puruṣārthas — पुरुषार्थ</div>
+        <div class="card-title">The Four Goals of Life</div>
+        <div class="card-text">Hindu ethics recognizes four legitimate human aims: <strong>Dharma</strong> (righteousness), <strong>Artha</strong> (prosperity, material welfare), <strong>Kāma</strong> (pleasure, love, beauty), and <strong>Mokṣa</strong> (liberation). All four are honored; none is to be pursued at the expense of the others. Mokṣa is the highest, but the others are real goods.</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Cinzel',serif; font-size:1.3rem; color:var(--gold); margin-top:3.5rem; margin-bottom:1.5rem;">The Three Paths to Liberation</h3>
+
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Path (Mārga/Yoga)</th>
+            <th>Meaning</th>
+            <th>Method</th>
+            <th>Key Text</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Jñāna Yoga</td>
+            <td>Path of Knowledge</td>
+            <td>Philosophical inquiry, meditation, and direct recognition of Ātman as Brahman. Discrimination (viveka) between the real and unreal; dispassion (vairāgya); self-surrender. Culminates in the direct experience of non-duality.</td>
+            <td>Upanishads, Advaita Vedānta</td>
+          </tr>
+          <tr>
+            <td>Bhakti Yoga</td>
+            <td>Path of Devotion</td>
+            <td>Loving surrender to a personal form of God (Kṛṣṇa, Rāma, Devī, Śiva). Through worship, prayer, chanting (kīrtana), and the cultivation of divine love, the devotee's heart is purified and the ego dissolved in God's grace.</td>
+            <td>Bhagavad Gītā, Bhāgavata Purāṇa</td>
+          </tr>
+          <tr>
+            <td>Karma Yoga</td>
+            <td>Path of Action</td>
+            <td>Selfless action performed as an offering to God or as service to all beings, without attachment to results. The secret lies not in renouncing action but in renouncing the ego that acts — acting from one's deepest nature, not from craving or aversion.</td>
+            <td>Bhagavad Gītā II–III</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ══════════ SCHOOLS ══════════ -->
+  <section class="section" id="schools">
+    <div class="section-label">Chapter VI</div>
+    <h2 class="section-title">Schools of Vedānta</h2>
+    <h3 style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-style:italic; color:rgba(250,243,224,0.7); margin-bottom:2.5rem; font-weight:300;">How Philosophers Have Understood Brahman</h3>
+
+    <div class="section-body">
+      <p>The Upanishads do not speak with a single voice, and the tradition has generated extraordinary philosophical debate about their meaning. Three schools of <strong>Vedānta</strong> — all accepting the Upanishads, Brahma Sūtras, and Bhagavad Gītā as authoritative — have produced the most influential interpretations.</p>
+    </div>
+
+    <div class="accordion" style="margin-top:2.5rem;">
+      <div class="accordion-item open">
+        <button class="accordion-btn" onclick="toggleAccordion(this)">
+          <span class="accordion-btn-title">Advaita Vedānta — Non-Dualism (Ādi Śaṅkarācārya, c. 788–820 CE)</span>
+          <span class="accordion-arrow">▾</span>
+        </button>
+        <div class="accordion-body">
+          Śaṅkara's Advaita (lit. "not two") is the most rigorous non-dualistic philosophy ever formulated. Its central thesis: <strong>Brahman alone is real; the world of multiplicity is appearance (vivartavāda); and the individual self (jīva) is ultimately identical to Brahman.</strong> The experience of being a separate self is produced by māyā — Brahman's inexplicable power of self-concealment. Liberation is not the <em>attainment</em> of Brahman but the <em>recognition</em> that one has always already been Brahman. Śaṅkara developed the concept of two levels of truth: at the empirical level, the world and individual selves are real; at the absolute level, only Brahman exists. His commentaries on the ten principal Upanishads, the Brahma Sūtras, and the Bhagavad Gītā remain unsurpassed in their philosophical depth.
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-btn" onclick="toggleAccordion(this)">
+          <span class="accordion-btn-title">Viśiṣṭādvaita — Qualified Non-Dualism (Rāmānuja, 1017–1137 CE)</span>
+          <span class="accordion-arrow">▾</span>
+        </button>
+        <div class="accordion-body">
+          Rāmānuja's Viśiṣṭādvaita (lit. "non-dualism with distinctions") accepts Brahman as the only ultimate reality, but insists that individual souls (cit) and the material world (acit) are real — not illusions — and exist as the "body" of Brahman/God (Viṣṇu/Nārāyaṇa). The relationship is one of inseparable difference-in-unity: souls are genuinely distinct from God, yet have no existence independent of him. Liberation is not absorption into Brahman but eternal loving communion with God in his highest realm (Vaikuṇṭha). Rāmānuja's theology forms the philosophical foundation of the great devotional Vaiṣṇava traditions (including the later traditions of Caitanya and the Haridāsī saints).
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-btn" onclick="toggleAccordion(this)">
+          <span class="accordion-btn-title">Dvaita Vedānta — Dualism (Madhvācārya, 1238–1317 CE)</span>
+          <span class="accordion-arrow">▾</span>
+        </button>
+        <div class="accordion-body">
+          Madhva's Dvaita (lit. "two") insists on five eternal distinctions: between God (Viṣṇu) and individual souls; between God and matter; between individual souls themselves; between souls and matter; and between different forms of matter. God alone is independent (svatantra); everything else is eternally dependent (paratantra) on him. Liberation is the eternal, distinct enjoyment of God's bliss in his presence — not merger, not even the bliss-body identity of Advaita. Madhva's sharp dualism provides a robust theological basis for theistic devotion and personal relationship with God.
+        </div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-btn" onclick="toggleAccordion(this)">
+          <span class="accordion-btn-title">Achintya Bhedābheda — Inconceivable Difference-in-Unity (Caitanya, 1486–1534 CE)</span>
+          <span class="accordion-arrow">▾</span>
+        </button>
+        <div class="accordion-body">
+          The great Bengali saint Caitanya Mahāprabhu taught an <em>achintya</em> (inconceivable) relationship between Brahman/Kṛṣṇa and individual souls — simultaneously different and non-different, in a way that exceeds human logic. This position preserves both the devotional possibility of real loving relationship with God <em>and</em> the non-dual insight that God is the all. Caitanya's tradition became one of the most vibrant devotional movements in Indian history, and in the 20th century reached global audiences through the work of A.C. Bhaktivedanta Swami Prabhupāda (ISKCON).
+        </div>
+      </div>
+    </div>
+
+    <div class="highlight-box mt-3">
+      <div class="highlight-box-title">Beyond Schools: The Living Tradition</div>
+      <div class="highlight-box-body">
+        While these philosophical systems represent Hinduism's intellectual pinnacle, it is important to remember that Hinduism is above all a <em>lived tradition</em>. For hundreds of millions of people, it is the daily act of lighting a lamp before the household shrine, the sound of the conch shell at dawn, the smell of jasmine and sandalwood in a temple, the songs of the bhakti saints, the observance of the seasons through festival and ritual, and the quiet turning inward in meditation. The philosophy and the practice, the thought and the devotion, the cosmic and the intimate — in Hinduism, all these are held together in a single, inexhaustible embrace.
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-om">ॐ</div>
+    <p class="footer-text">Sarve bhavantu sukhinaḥ — May all beings be happy.<br>Sarve santu nirāmayāḥ — May all beings be free from illness.</p>
+    <p class="footer-note" style="margin-top:1rem;">Oṃ śāntiḥ śāntiḥ śāntiḥ</p>
+    <p class="footer-note" style="margin-top:1.5rem; opacity:0.4;">An educational introduction to Hindu scripture and philosophy · Sources: The Principal Upanishads (Radhakrishnan), The Vedic Experience (Panikkar), A History of Indian Philosophy (Dasgupta)</p>
+  </div>
+</footer>
+
+<script>
+  function toggleAccordion(btn) {
+    const item = btn.closest('.accordion-item');
+    const wasOpen = item.classList.contains('open');
+    // Optionally close siblings
+    // item.closest('.accordion').querySelectorAll('.accordion-item').forEach(i => i.classList.remove('open'));
+    item.classList.toggle('open', !wasOpen);
+  }
+
+  // Scroll-triggered fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.card, .timeline-item, .stat-box, .pillar, .quote-block, .highlight-box').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
