@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vikram's AMD Mini Data Center — ₹1,00,000 Build</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0d0f;
+    --surface: #111416;
+    --card: #161a1e;
+    --border: #222830;
+    --accent: #00e5a0;
+    --accent2: #ff6b35;
+    --accent3: #4d9fff;
+    --text: #e8edf2;
+    --muted: #6b7a8d;
+    --mono: 'Space Mono', monospace;
+    --sans: 'Syne', sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    overflow-x: hidden;
+  }
+
+  /* ---- GRID OVERLAY ---- */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,229,160,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,229,160,0.025) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ---- HERO ---- */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 60px;
+    overflow: hidden;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: -200px;
+    right: -200px;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(0,229,160,0.08) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .hero-title {
+    font-size: clamp(48px, 7vw, 96px);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    max-width: 800px;
+    margin-bottom: 32px;
+  }
+
+  .hero-title em {
+    font-style: normal;
+    color: var(--accent);
+  }
+
+  .hero-sub {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--muted);
+    max-width: 520px;
+    line-height: 1.8;
+    margin-bottom: 48px;
+  }
+
+  .hero-budget {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+    background: rgba(0,229,160,0.08);
+    border: 1px solid rgba(0,229,160,0.25);
+    padding: 16px 28px;
+    font-family: var(--mono);
+  }
+
+  .hero-budget .amount {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .hero-budget .label {
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+  }
+
+  .hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 32px;
+  }
+
+  .tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    border: 1px solid var(--border);
+    color: var(--muted);
+  }
+
+  /* ---- SECTION ---- */
+  section {
+    position: relative;
+    padding: 80px 60px;
+    border-top: 1px solid var(--border);
+  }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 48px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+    max-width: 200px;
+  }
+
+  .section-title {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 40px;
+    letter-spacing: -0.02em;
+  }
+
+  /* ---- BUDGET BREAKDOWN ---- */
+  .budget-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-bottom: 48px;
+  }
+
+  .budget-card {
+    background: var(--card);
+    padding: 28px 24px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.2s;
+  }
+
+  .budget-card:hover { background: #1a1f25; }
+
+  .budget-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+
+  .budget-card:hover::before { transform: scaleX(1); }
+
+  .budget-card .cat {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  .budget-card .val {
+    font-size: 28px;
+    font-weight: 700;
+    font-family: var(--mono);
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .budget-card .val span { font-size: 14px; color: var(--muted); }
+
+  .budget-card .pct {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+  }
+
+  /* ---- COMPONENTS TABLE ---- */
+  .comp-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--mono);
+    font-size: 12px;
+  }
+
+  .comp-table th {
+    text-align: left;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+
+  .comp-table td {
+    padding: 16px;
+    border-bottom: 1px solid rgba(34,40,48,0.5);
+    vertical-align: top;
+    line-height: 1.6;
+  }
+
+  .comp-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+  .priority-badge {
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    font-weight: 700;
+  }
+
+  .p-must { background: rgba(0,229,160,0.12); color: var(--accent); }
+  .p-rec  { background: rgba(77,159,255,0.12); color: var(--accent3); }
+  .p-opt  { background: rgba(255,107,53,0.12); color: var(--accent2); }
+
+  .comp-price {
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .comp-name {
+    color: var(--text);
+    font-weight: 700;
+    display: block;
+    margin-bottom: 4px;
+    font-family: var(--sans);
+  }
+
+  .comp-spec {
+    color: var(--muted);
+    font-size: 11px;
+  }
+
+  /* ---- SOFTWARE GRID ---- */
+  .sw-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+  }
+
+  .sw-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .sw-card:hover {
+    border-color: rgba(0,229,160,0.3);
+    transform: translateY(-2px);
+  }
+
+  .sw-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .sw-name {
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  .sw-cat {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent3);
+    background: rgba(77,159,255,0.08);
+    padding: 3px 7px;
+    white-space: nowrap;
+  }
+
+  .sw-purpose {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .sw-badges {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+  }
+
+  .oss-badge {
+    font-family: var(--mono);
+    font-size: 9px;
+    padding: 2px 7px;
+    background: rgba(0,229,160,0.08);
+    color: var(--accent);
+    letter-spacing: 0.1em;
+  }
+
+  .install-badge {
+    font-family: var(--mono);
+    font-size: 9px;
+    padding: 2px 7px;
+    background: rgba(255,107,53,0.08);
+    color: var(--accent2);
+    letter-spacing: 0.1em;
+  }
+
+  /* ---- NOTES ---- */
+  .notes-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    counter-reset: note;
+  }
+
+  .note-item {
+    display: flex;
+    gap: 24px;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: flex-start;
+    counter-increment: note;
+  }
+
+  .note-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    min-width: 28px;
+    padding-top: 2px;
+  }
+
+  .note-text {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--muted);
+  }
+
+  /* ---- BAR CHART ---- */
+  .bar-chart {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 700px;
+  }
+
+  .bar-row {
+    display: grid;
+    grid-template-columns: 160px 1fr 90px;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .bar-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    text-align: right;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .bar-track {
+    height: 6px;
+    background: var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .bar-fill {
+    height: 100%;
+    background: var(--accent);
+    animation: barIn 1s cubic-bezier(0.25,0,0,1) forwards;
+    transform-origin: left;
+    transform: scaleX(0);
+  }
+
+  @keyframes barIn {
+    to { transform: scaleX(1); }
+  }
+
+  .bar-val {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    text-align: right;
+  }
+
+  /* ---- FOOTER ---- */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 40px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  footer .f-left {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.8;
+  }
+
+  footer .f-right {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--border);
+    letter-spacing: 0.1em;
+  }
+
+  /* ---- NAV ---- */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 60px;
+    background: rgba(10,13,15,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  @media (max-width: 768px) {
+    nav, section, .hero, footer { padding-left: 24px; padding-right: 24px; }
+    .hero-title { font-size: 42px; }
+    .bar-row { grid-template-columns: 100px 1fr 70px; }
+    .bar-label { font-size: 9px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">VKM // DATACENTER</div>
+  <ul class="nav-links">
+    <li><a href="#budget">Budget</a></li>
+    <li><a href="#components">Components</a></li>
+    <li><a href="#software">Software</a></li>
+    <li><a href="#notes">Notes</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero" style="padding-top:120px">
+  <div class="hero-eyebrow">Build Specification — 2026</div>
+  <h1 class="hero-title">AMD Mini<br><em>Data Center</em><br>Build</h1>
+  <p class="hero-sub">Software development · Local DevOps · ROS 2 · Music & Design Studio · Open-source home lab — all in one compact AMD-powered workstation.</p>
+  <div class="hero-budget">
+    <span class="amount">₹1,00,000</span>
+    <span class="label">Target Budget</span>
+  </div>
+  <div class="hero-tags">
+    <span class="tag">AMD Ryzen 7</span>
+    <span class="tag">32 GB RAM</span>
+    <span class="tag">1 TB NVMe</span>
+    <span class="tag">8 TB HDD</span>
+    <span class="tag">Ubuntu 24.04 LTS</span>
+    <span class="tag">Docker + K3s</span>
+    <span class="tag">ROS 2</span>
+    <span class="tag">Audio DAC</span>
+  </div>
+</div>
+
+<!-- BUDGET OVERVIEW -->
+<section id="budget">
+  <div class="section-label">01 — Budget Breakdown</div>
+  <h2 class="section-title">Planned Spend</h2>
+
+  <div class="budget-grid">
+    <div class="budget-card">
+      <div class="cat">Core Platform</div>
+      <div class="val">₹68,000<span> /1L</span></div>
+      <div class="pct">68% of budget</div>
+    </div>
+    <div class="budget-card">
+      <div class="cat">8 TB Storage</div>
+      <div class="val">₹14,000<span> /1L</span></div>
+      <div class="pct">14% of budget</div>
+    </div>
+    <div class="budget-card">
+      <div class="cat">Audio DAC / Interface</div>
+      <div class="val">₹9,000<span> /1L</span></div>
+      <div class="pct">9% of budget</div>
+    </div>
+    <div class="budget-card">
+      <div class="cat">Power / Network / Accessories</div>
+      <div class="val">₹9,000<span> /1L</span></div>
+      <div class="pct">9% of budget</div>
+    </div>
+  </div>
+
+  <div class="bar-chart">
+    <div class="bar-row">
+      <div class="bar-label">Core Mini-PC</div>
+      <div class="bar-track"><div class="bar-fill" style="width:68%;animation-delay:0.1s"></div></div>
+      <div class="bar-val">₹68,000</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">8 TB HDD</div>
+      <div class="bar-track"><div class="bar-fill" style="width:14%;animation-delay:0.2s;background:var(--accent3)"></div></div>
+      <div class="bar-val">₹14,000</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Audio DAC</div>
+      <div class="bar-track"><div class="bar-fill" style="width:9%;animation-delay:0.3s;background:var(--accent2)"></div></div>
+      <div class="bar-val">₹9,000</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">Power / Network</div>
+      <div class="bar-track"><div class="bar-fill" style="width:9%;animation-delay:0.4s;background:var(--accent2)"></div></div>
+      <div class="bar-val">₹9,000</div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPONENTS -->
+<section id="components">
+  <div class="section-label">02 — Components</div>
+  <h2 class="section-title">Full Parts List</h2>
+
+  <table class="comp-table">
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>Component</th>
+        <th>Specification</th>
+        <th>Price</th>
+        <th>Priority</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span style="color:var(--muted);font-size:10px;letter-spacing:0.1em;text-transform:uppercase">Compute</span></td>
+        <td>
+          <span class="comp-name">AMD Ryzen 7 Mini-PC</span>
+          <span class="comp-spec">Minisforum UM773 Lite or similar</span>
+        </td>
+        <td><span class="comp-spec">Linux-friendly barebone, upgradeable RAM slots</span></td>
+        <td><span class="comp-price">₹50,000</span></td>
+        <td><span class="priority-badge p-must">Must-have</span></td>
+      </tr>
+      <tr>
+        <td><span style="color:var(--muted);font-size:10px;letter-spacing:0.1em;text-transform:uppercase">Memory</span></td>
+        <td>
+          <span class="comp-name">32 GB SODIMM Kit</span>
+          <span class="comp-spec">Crucial / Kingston 2×16 GB</span>
+        </td>
+        <td><span class="comp-spec">DDR5 or DDR4 matching chosen mini-PC</span></td>
+        <td><span class="comp-price">₹12,000</span></td>
+        <td><span class="priority-badge p-must">Must-have</span></td>
+      </tr>
+      <tr>
+        <td><span style="color:var(--muted);font-size:10px;letter-spacing:0.1em;text-transform:uppercase">Primary Storage</span></td>
+        <td>
+          <span class="comp-name">1 TB NVMe SSD</span>
+          <span class="comp-spec">Crucial P3 Plus / WD Blue SN580</span>
+        </td>
+        <td><span class="comp-spec">OS, Docker, active projects, ROS 2 workspaces</span></td>
+        <td><span class="comp-price">₹6,000</span></td>
+        <td><span class="priority-badge p-must">Must-have</span></td>
+      </tr>
+      <tr>
+        <td><span style="color:var(--muted);font-size:10px;letter-spacing:0.1em;text-transform:uppercase">Bulk Storage</span></td>
+        <td>
+          <span class="comp-name">8 TB HDD</span>
+          <span class="comp-spec">Seagate BarraCuda / WD Blue 8TB</span>
+        </td>
+        <td><span class="comp-spec">Cold storage, datasets, backups, archives</span></td>
+        <td><span class="comp-price">₹14,000</span></td>
+        <td><span class="priority-badge p-must">Must-have</span></td>
+      </tr>
+      <tr>
+        <td><span style="color:var(--muted);font-size:10px;letter-spacing:0.1em;text-transform:uppercase">Audio</span></td>
+        <td>
+          <span class="comp-name">USB DAC / Audio Interface</span>
+          <span class="comp-spec">Behringer UMC202HD or similar</span>
+        </td>
+        <td><span class="comp-spec">Cleaner line-out to amp, better monitoring</span></td>
+        <td><span class="comp-price">₹9,000</span></td>
+        <td><span class="priority-badge p-rec">Recommended</span></td>
+      </tr>
+      <tr>
+        <td><span style="color:var(--muted);font-size:10px;letter-spacing:0.1em;text-transform:uppercase">Audio</span></td>
+        <td>
+          <span class="comp-name">Audio-Technica ATH-M50x</span>
+          <span class="comp-spec">Closed-back studio headphone</span>
+        </td>
+        <td><span class="comp-spec">Mid-range reference for editing and monitoring</span></td>
+        <td><span class="comp-price">₹12,000</span></td>
+        <td><span class="priority-badge p-rec">Recommended</span></td>
+      </tr>
+      <tr>
+        <td><span style="color:var(--muted);font-size:10px;letter-spacing:0.1em;text-transform:uppercase">Power</span></td>
+        <td>
+          <span class="comp-name">UPS + Surge Reserve</span>
+          <span class="comp-spec">APC / Zebronics UPS + cables</span>
+        </td>
+        <td><span class="comp-spec">Power safety and connectivity buffer</span></td>
+        <td><span class="comp-price">₹5,000</span></td>
+        <td><span class="priority-badge p-rec">Recommended</span></td>
+      </tr>
+      <tr>
+        <td><span style="color:var(--muted);font-size:10px;letter-spacing:0.1em;text-transform:uppercase">Expansion</span></td>
+        <td>
+          <span class="comp-name">Cooling / Hub / Enclosure</span>
+          <span class="comp-spec">USB hub / HDD enclosure reserve</span>
+        </td>
+        <td><span class="comp-spec">Small expansion buffer</span></td>
+        <td><span class="comp-price">₹4,000</span></td>
+        <td><span class="priority-badge p-opt">Optional</span></td>
+      </tr>
+      <tr>
+        <td><span style="color:var(--muted);font-size:10px;letter-spacing:0.1em;text-transform:uppercase">Peripherals</span></td>
+        <td>
+          <span class="comp-name">40" Ultrawide Monitor</span>
+          <span class="comp-spec">Dell U4025QW / Lenovo ThinkVision class</span>
+        </td>
+        <td><span class="comp-spec">4K/5K2K, non-touch, 24" monitor as secondary</span></td>
+        <td><span class="comp-price">₹80,000</span></td>
+        <td><span class="priority-badge p-rec">Recommended</span></td>
+      </tr>
+      <tr>
+        <td><span style="color:var(--muted);font-size:10px;letter-spacing:0.1em;text-transform:uppercase">Peripherals</span></td>
+        <td>
+          <span class="comp-name">Keyboard + Mouse Combo</span>
+          <span class="comp-spec">Logitech MK275 / MK345</span>
+        </td>
+        <td><span class="comp-spec">Reliable daily-use combo</span></td>
+        <td><span class="comp-price">₹3,000</span></td>
+        <td><span class="priority-badge p-must">Must-have</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- SOFTWARE -->
+<section id="software">
+  <div class="section-label">03 — Software Stack</div>
+  <h2 class="section-title">Open-Source First</h2>
+  <div class="sw-grid">
+
+    <!-- OS + Dev -->
+    <div class="sw-card">
+      <div class="sw-card-top">
+        <div class="sw-name">Ubuntu 24.04 LTS</div>
+        <div class="sw-cat">OS</div>
+      </div>
+      <div class="sw-purpose">Main Linux desktop and server base. Strong package support and hardware compatibility.</div>
+      <div class="sw-badges"><span class="oss-badge">OSS</span><span class="oss-badge">Base System</span></div>
+    </div>
+    <div class="sw-card">
+      <div class="sw-card-top">
+        <div class="sw-name">Git + VS Code</div>
+        <div class="sw-cat">Development</div>
+      </div>
+      <div class="sw-purpose">Version control and code editing. VSCodium for pure OSS preference.</div>
+      <div class="sw-badges"><span class="oss-badge">OSS</span><span class="oss-badge">Base System</span></div>
+    </div>
+    <div class="sw-card">
+      <div class="sw-card-top">
+        <div class="sw-name">Python 3 + venv</div>
+        <div class="sw-cat">Development</div>
+      </div>
+      <div class="sw-purpose">Backend, scripts, automation, ML utilities. Required for ROS and tooling.</div>
+      <div class="sw-badges"><span class="oss-badge">OSS</span><span class="oss-badge">Base System</span></div>
+    </div>
+    <div class="sw-card">
+      <div class="sw-card-top">
+        <div class="sw-name">Docker + Compose</div>
+        <div class="sw-cat">Containers</div>
+      </div>
+      <div class="sw-purpose">Container runtime and multi-container local stacks. Core infrastructure layer.</div>
+      <div class="sw-badges"><span class="oss-badge">OSS</span><span class="oss-badge">Base System</span></div>
+    </div>
+    <div class="sw-card">
+      <div class="sw-card-top">
+        <div class="sw-name">K3s</div>
+        <div class="sw-cat">Containers</div>
+      </div>
+      <div class="sw-purpose">Lightweight Kubernetes. Good local cluster for mini data center workflows.</div>
+      <div class="sw-badges"><span class="oss-badge">OSS</span><span class="install-badge">Container</span></div>
+    </div>
+    <div class="sw-card">
+      <div class="sw-card-top">
+        <div class="sw-name">Grafana + Prometheus</div>
+        <div class="sw-cat">Monitoring</div>
+      </div>
+      <div class="sw-purpose">Dashboards, observability, and metrics collection for infra.</div>
+      <div class="sw-badges"><span class="oss-badge">OSS</span><span class="install-badge">Container</span></div>
+    </div>
+    <div class="sw-card">
+      <div class="sw-card-top">
+        <div class="sw-name">Gitea / Forgejo</div>
+        <div class="sw-cat">Self-hosting</div>
+      </div>
+      <div class="sw-purpose">Local Git service and MinIO for S3-style object storage.</div>
+      <div class="sw-badges"><span class="oss-badge">OSS</span><span class="install-badge">Container</span></div>
+    </div>
+    <div class="sw-card">
+      <div class="sw-card-top">
+        <div class="sw-name">Tailscale</div>
+        <div class="sw-cat">Networking</div>
+      </div>
+      <div class="sw-purpose">Secure remote access to the mini datacenter from anywhere.</div>
+      <div class="sw-badges"><span class="oss-badge">Base System</span></div>
+    </div>
+    <div class="sw-card">
+      <div class="sw-card-top">
+        <div class="sw-name">ROS 2 Humble / Jazzy</div>
+        <div class="sw-cat">Robotics</div>
+      </div>
+      <div class="sw-purpose">Robotics middleware and development stack. Pick distro matching Ubuntu version.</div>
+      <div class="sw-badges"><span class="oss-badge">OSS</span><span class="oss-badge">Base System</span></div>
+    </div>
+    <div class="sw-card">
+      <div class="sw-card-top">
+        <div class="sw-name">PipeWire + Ardour</div>
+        <div class="sw-cat">Audio</div>
+      </div>
+      <div class="sw-purpose">Low-latency audio plumbing via PipeWire/JACK. Ardour as the DAW for recording and mixing.</div>
+      <div class="sw-badges"><span class="oss-badge">OSS</span><span class="oss-badge">Base System</span></div>
+    </div>
+    <div class="sw-card">
+      <div class="sw-card-top">
+        <div class="sw-name">Krita + Inkscape + Blender</div>
+        <div class="sw-cat">Design</div>
+      </div>
+      <div class="sw-purpose">Digital art, vector graphics, and 3D rendering. Full open-source creative suite.</div>
+      <div class="sw-badges"><span class="oss-badge">OSS</span><span class="oss-badge">Base System</span></div>
+    </div>
+    <div class="sw-card">
+      <div class="sw-card-top">
+        <div class="sw-name">Restic / BorgBackup</div>
+        <div class="sw-cat">Backup</div>
+      </div>
+      <div class="sw-purpose">Encrypted backups to the 8 TB HDD. Syncthing for peer-to-peer file sync.</div>
+      <div class="sw-badges"><span class="oss-badge">OSS</span><span class="oss-badge">Base System</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- NOTES -->
+<section id="notes">
+  <div class="section-label">04 — Build Notes</div>
+  <h2 class="section-title">Buying Logic</h2>
+  <div class="notes-list">
+    <div class="note-item">
+      <span class="note-num">01</span>
+      <p class="note-text">Keep Ubuntu Linux and all active development workloads on the NVMe SSD for responsiveness.</p>
+    </div>
+    <div class="note-item">
+      <span class="note-num">02</span>
+      <p class="note-text">Reserve the 8 TB HDD for backups, cold archives, datasets, rendered exports, and media storage.</p>
+    </div>
+    <div class="note-item">
+      <span class="note-num">03</span>
+      <p class="note-text">For music work, a USB DAC or audio interface is preferable to onboard analog audio for cleaner line-out to the amplifier.</p>
+    </div>
+    <div class="note-item">
+      <span class="note-num">04</span>
+      <p class="note-text">For ROS 2 and container-heavy work, choose a mini-PC with upgradeable RAM and at least one additional storage path if possible.</p>
+    </div>
+    <div class="note-item">
+      <span class="note-num">05</span>
+      <p class="note-text">If the chosen mini-PC does not support an internal 3.5" HDD, use the 8 TB drive in an external USB enclosure or NAS-style dock.</p>
+    </div>
+    <div class="note-item">
+      <span class="note-num">06</span>
+      <p class="note-text">Remaining budget can be kept as reserve for UPS, better cooling, Ethernet switch, or a second SSD later.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="f-left">
+    Vikram's AMD Mini Data Center — ₹1,00,000 Build Plan<br>
+    Sourcing via Amazon.in · Generated 2026-03-27
+  </div>
+  <div class="f-right">VKM // BUILD-2026</div>
+</footer>
+
+</body>
+</html>
