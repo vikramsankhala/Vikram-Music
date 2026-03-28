@@ -1,0 +1,1446 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Stage — Best Concert Videos & Love Songs</title>
+  <meta http-equiv="refresh" content="0; url=website/index.html">
+  <link rel="canonical" href="website/index.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Favourites Playlist UI inside Vikram-Music */
+    .fav-playlist-section {
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .fav-playlist-section h3 {
+      font-size: 1.8rem;
+      color: #E8B923;
+      margin-bottom: 1.5rem;
+    }
+
+    .playlist-container {
+      display: flex;
+      flex-direction: row;
+      gap: 2rem;
+      background: #1e1e1e;
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .video-player-wrapper {
+      flex: 2;
+      background: #000;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .video-player-wrapper video {
+      width: 100%;
+      height: 100%;
+      max-height: 600px;
+      outline: none;
+      border-radius: 12px;
+    }
+
+    .playlist-list-wrapper {
+      flex: 1;
+      max-height: 600px;
+      overflow-y: auto;
+      padding-right: 0.5rem;
+    }
+
+    .fav-playlist {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .playlist-item {
+      padding: 1rem 1.25rem;
+      background: #121212;
+      border: 1px solid #333;
+      border-radius: 8px;
+      cursor: pointer;
+      color: #a0a0a0;
+      font-size: 1rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .playlist-item::before {
+      content: '▶';
+      font-size: 0.8rem;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .playlist-item:hover {
+      background: rgba(232, 185, 35, 0.05);
+      color: #ffffff;
+      border-color: rgba(232, 185, 35, 0.3);
+      transform: translateX(4px);
+    }
+
+    .playlist-item.active {
+      background: rgba(232, 185, 35, 0.15);
+      color: #E8B923;
+      font-weight: 600;
+      border-color: #E8B923;
+      box-shadow: 0 4px 12px rgba(232, 185, 35, 0.1);
+    }
+
+    .playlist-item.active::before {
+      opacity: 1;
+    }
+
+    /* Scrollbar */
+    .playlist-list-wrapper::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .playlist-list-wrapper::-webkit-scrollbar-track {
+      background: #121212;
+      border-radius: 3px;
+    }
+
+    .playlist-list-wrapper::-webkit-scrollbar-thumb {
+      background: #333;
+      border-radius: 3px;
+    }
+
+    .playlist-list-wrapper::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+
+    @media (max-width: 960px) {
+      .playlist-container {
+        flex-direction: column;
+      }
+
+      .playlist-list-wrapper {
+        max-height: 400px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <h1 class="logo">Live Stage</h1>
+      <p class="tagline">4K Concerts • Love Songs • World Music Jams</p>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <section class="hero">
+      <h2>Curated Live Performances</h2>
+      <p>Live concerts • Dance • Classics • Football legends • Table Tennis • Tennis (aces, DTL, cross court,
+        single-handed BH) • Lightweight bikes (100–125cc: 2nd hand, custom, gear, repairs — e.g. Hero Splendor) • Movie
+        clips • Web series • Hindi web series • Hindi, Bengali, Malayalam films • Love songs • World music</p>
+      <div class="hero-stats">
+        <span class="stat"><strong id="stat-total">0</strong> Videos</span>
+        <span class="stat"><strong>50</strong> Categories</span>
+      </div>
+    </section>
+
+    <!-- FAVOURITES PLAYLIST SECTION -->
+    <section class="fav-playlist-section" id="favouritesSection">
+      <h3>⭐ My Favourites Playlist</h3>
+      <div class="playlist-container">
+        <div class="video-player-wrapper">
+          <video id="fav-video-player" controls preload="metadata" autoplay>
+            <source
+              src="Akhiyaan Gulaab (Song) Shahid Kapoor, Kriti Sanon  Mitraz  Teri Baaton Mein Aisa Uljha Jiya.mp4"
+              type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+
+        <div class="playlist-list-wrapper">
+          <ul id="fav-playlist" class="fav-playlist">
+            <li class="playlist-item active"
+              data-src="Akhiyaan Gulaab (Song) Shahid Kapoor, Kriti Sanon  Mitraz  Teri Baaton Mein Aisa Uljha Jiya.mp4">
+              Akhiyaan Gulaab</li>
+            <li class="playlist-item" data-src="Ghungroo_Song___Shilpa_Rao(0).mp4">Ghungroo Song - Shilpa Rao</li>
+            <li class="playlist-item" data-src="KK - MTV Unplugged Season 3 - 'Yaaron'.mp4">KK - MTV Unplugged 'Yaaron'
+            </li>
+            <li class="playlist-item" data-src="Pankh___Tarana___Official_Music_Video(0).mp4">Pankh Tarana Official
+              Video</li>
+            <li class="playlist-item" data-src="Papon - MTV Unplugged Season 4 - 'Ranjish he sahi'.mp4">Papon - MTV
+              Unplugged 'Ranjish he Sahi'</li>
+            <li class="playlist-item"
+              data-src="Paresh_Pahuja_-_Dooron_Dooron__Live_from_The_Voice_Notes_Concert_(0).mp4">Paresh Pahuja - Dooron
+              Dooron</li>
+            <li class="playlist-item"
+              data-src="Raabta (Kehte Hain Khuda) Full Song With Lyrics  Agent Vinod  Saif Ali Khan, Kareena Kapoor,Pritam.mp4">
+              Raabta (Kehte Hain Khuda)</li>
+            <li class="playlist-item"
+              data-src="Tere Sang Yaara - Rustom  Akshay Kumar & Ileana D'cruz  Arko  Manoj Muntashir.mp4">Tere Sang
+              Yaara</li>
+            <li class="playlist-item"
+              data-src="Tere_Hawaale__Arijit_Singh_-_Shreya_Ghoshal_Duet____Laal_Singh_Chaddha___Aamir,_Kareena___Pritam(360p).mp4">
+              Tere Hawaale - Arijit Singh & Shreya Ghoshal</li>
+            <li class="playlist-item" data-src="Yaad_Piya_ki_aaye____Smt._Kaushiki_Chakraborty_❤️(360p).mp4">Yaad Piya
+              ki aaye - Kaushiki Chakraborty</li>
+            <li class="playlist-item"
+              data-src="_Ambarsariya_Fukrey__Song_By_Sona_Mohapatra___Pulkit_Samrat,_Priya_Anand(0).mp4">Ambarsariya -
+              Sona Mohapatra</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="vikram-featured" aria-label="About Vikram">
+      <div class="vikram-card">
+        <div class="vikram-photo-wrap">
+          <img src="images/vikram.jpg" alt="Vikram Sankhala" class="vikram-photo"
+            onerror="this.src='https://placehold.co/280x360/1a1a1f/d4a853?text=Vikram'">
+        </div>
+        <div class="vikram-content">
+          <h3 class="vikram-name">Vikram Sankhala</h3>
+          <p class="vikram-desc">Lyricist, music enthusiast & Jam Room founder in Pune. Writes for the Home Band —
+            vocalists, instrumentalists & percussionists welcome. <em>Is lamhe ki gehrai mein jiyo.</em></p>
+          <div class="vikram-buttons">
+            <a href="https://solinexta.in/" target="_blank" rel="noopener" class="vikram-btn vikram-btn-jam">Jam Room
+              →</a>
+            <a href="https://www.beautiful.ai/player/-OgSKXkXj3FIhmt8uMrg" target="_blank" rel="noopener"
+              class="vikram-btn vikram-btn-art">Art of Intimacy →</a>
+            <a href="http://pythonmastery.club/" target="_blank" rel="noopener"
+              class="vikram-btn vikram-btn-link">Python Mastery →</a>
+            <a href="https://dashboardmasters.org/" target="_blank" rel="noopener"
+              class="vikram-btn vikram-btn-link">Dashboard Masters →</a>
+            <a href="https://vikramsankhala.org.in/" target="_blank" rel="noopener"
+              class="vikram-btn vikram-btn-link">Vikram Sankhala →</a>
+            <a href="http://vikramsankhala.net.in/" target="_blank" rel="noopener"
+              class="vikram-btn vikram-btn-link">Pari's MBA Coach →</a>
+            <a href="https://cutting-edge.co.in/" target="_blank" rel="noopener"
+              class="vikram-btn vikram-btn-link">Cutting Edge →</a>
+            <a href="https://www.beautiful.ai/player/-OoPA9ljvQ3ARQRgBYZ3" target="_blank" rel="noopener"
+              class="vikram-btn vikram-btn-link">Quantum Computing →</a>
+            <a href="https://cfoailab.com/" target="_blank" rel="noopener" class="vikram-btn vikram-btn-link">CFO AI Lab
+              →</a>
+            <a href="https://rekhasankhala.com/" target="_blank" rel="noopener" class="vikram-btn vikram-btn-link">Rekha
+              Sankhala →</a>
+            <a href="https://gopalsankhala.in/" target="_blank" rel="noopener" class="vikram-btn vikram-btn-link">Gopal
+              Sankhala →</a>
+            <a href="https://vikram-gcc.com/" target="_blank" rel="noopener" class="vikram-btn vikram-btn-link">Vikram
+              GCC →</a>
+            <a href="https://advanceddeeplearning.in/" target="_blank" rel="noopener"
+              class="vikram-btn vikram-btn-link">Advanced Deep Learning →</a>
+            <a href="https://vikrambtpcompanion.co.in/" target="_blank" rel="noopener"
+              class="vikram-btn vikram-btn-link">Vikram BTP Companion →</a>
+            <a href="https://thebodyguards.in/" target="_blank" rel="noopener" class="vikram-btn vikram-btn-link">The
+              Bodyguards →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="controls" id="controls">
+      <div class="search-wrap">
+        <input type="text" id="search" placeholder="Search videos..." autocomplete="off">
+      </div>
+      <div class="filter-sort">
+        <select id="sortBy">
+          <option value="date-desc">Newest First</option>
+          <option value="date-asc">Oldest First</option>
+          <option value="duration-desc">Longest First</option>
+          <option value="duration-asc">Shortest First</option>
+          <option value="title">Title A–Z</option>
+        </select>
+      </div>
+    </section>
+
+    <nav class="category-tabs" role="tablist">
+      <button class="tab active" data-tab="celine">Celine Dion</button>
+      <button class="tab" data-tab="shakira">Shakira</button>
+      <button class="tab" data-tab="enrique">Enrique Iglesias</button>
+      <button class="tab" data-tab="dance">Dance</button>
+      <button class="tab" data-tab="classics">Classics</button>
+      <button class="tab" data-tab="football">Football</button>
+      <button class="tab tab-legend" data-tab="pele">Pelé</button>
+      <button class="tab tab-legend" data-tab="maradona">Maradona</button>
+      <button class="tab tab-legend" data-tab="messi">Messi</button>
+      <button class="tab tab-legend" data-tab="messigear">Messi Gear</button>
+      <button class="tab tab-legend" data-tab="ronaldo">Ronaldo</button>
+      <button class="tab tab-legend" data-tab="cruyff">Cruyff</button>
+      <button class="tab tab-legend" data-tab="zidane">Zidane</button>
+      <button class="tab tab-legend" data-tab="ronaldinho">Ronaldinho</button>
+      <button class="tab tab-legend" data-tab="r9">R9</button>
+      <button class="tab tab-legend" data-tab="vanbasten">Van Basten</button>
+      <button class="tab tab-legend" data-tab="beckenbauer">Beckenbauer</button>
+      <button class="tab tab-legend" data-tab="beckham">Beckham</button>
+      <button class="tab tab-tt" data-tab="tt_gear">TT Gear</button>
+      <button class="tab tab-tt" data-tab="tt_players">TT Players</button>
+      <button class="tab tab-tt" data-tab="tt_legends">TT Legends</button>
+      <button class="tab tab-tt" data-tab="tt_styles">TT Styles</button>
+      <button class="tab tab-tt" data-tab="tt_matches">TT Matches</button>
+      <button class="tab tab-tennis" data-tab="tennis_gear">Tennis Gear</button>
+      <button class="tab tab-tennis" data-tab="tennis_aces">Tennis Aces</button>
+      <button class="tab tab-tennis" data-tab="tennis_dtl">Tennis DTL</button>
+      <button class="tab tab-tennis" data-tab="tennis_crosscourt">Tennis Cross</button>
+      <button class="tab tab-tennis" data-tab="tennis_single_dtl">1H BH DTL</button>
+      <button class="tab tab-tennis" data-tab="tennis_single_crosscourt">1H BH Cross</button>
+      <button class="tab tab-bike" data-tab="bike_secondhand">2nd Hand</button>
+      <button class="tab tab-bike" data-tab="bike_customization">Bike Custom</button>
+      <button class="tab tab-bike" data-tab="bike_enhancements">Enhancements</button>
+      <button class="tab tab-bike" data-tab="bike_gear">Bike Gear</button>
+      <button class="tab tab-bike" data-tab="bike_repairs">Repairs</button>
+      <button class="tab" data-tab="playlist">Shakira Playlist</button>
+      <button class="tab tab-web" data-tab="web_series">Web Series</button>
+      <button class="tab tab-web" data-tab="hindi_web_series">Hindi Web</button>
+      <button class="tab tab-indian" data-tab="hindi_movies">Hindi</button>
+      <button class="tab tab-indian" data-tab="bengali_movies">Bengali</button>
+      <button class="tab tab-indian" data-tab="malayalam_dance_ladies">Malayalam Dance</button>
+      <button class="tab tab-indian" data-tab="kannada_party_ladies">Karnataka Party</button>
+      <button class="tab tab-indian" data-tab="malayalam_movies">Malayalam</button>
+      <button class="tab tab-indian" data-tab="jubin_nautiyal">Jubin Nautiyal</button>
+      <button class="tab tab-indian" data-tab="raabta">Raabta</button>
+      <button class="tab tab-indian" data-tab="arijit_singh">Arijit Singh</button>
+      <button class="tab tab-indian" data-tab="kk">KK</button>
+      <button class="tab tab-indian" data-tab="papon">Papon</button>
+      <button class="tab tab-indian" data-tab="atif_aslam">Atif Aslam</button>
+      <button class="tab tab-indian" data-tab="rubaru">Rubaru</button>
+      <button class="tab tab-indian" data-tab="aesthetic_colourful">Aesthetic</button>
+      <button class="tab tab-indian" data-tab="sher_shayari_party">Sher-o-Shayari</button>
+      <button class="tab tab-indian" data-tab="sufi_party">Sufi Party</button>
+      <button class="tab tab-indian" data-tab="ghazal_party">Ghazal Party</button>
+      <button class="tab tab-indian" data-tab="mere_rashke_qamar">Mere Rashke Qamar</button>
+      <button class="tab tab-indian" data-tab="party_anthems">Party Anthems</button>
+      <button class="tab tab-indian" data-tab="acoustic_guitar">Acoustic Guitar</button>
+      <button class="tab tab-indian" data-tab="punjabi_dance_ladies">Punjabi Dance Ladies</button>
+      <button class="tab tab-indian" data-tab="punjabi_songs">Punjabi</button>
+      <button class="tab tab-indian" data-tab="dosti">Dosti</button>
+      <button class="tab tab-indian" data-tab="soulful">Soulful</button>
+      <button class="tab tab-indian" data-tab="punjabi_dance">Punjabi Dance</button>
+      <button class="tab tab-movie" data-tab="oscar_songs">Oscar Songs</button>
+      <button class="tab tab-movie" data-tab="musical_films">Musicals</button>
+      <button class="tab tab-movie" data-tab="classic_themes">Classic Themes</button>
+      <button class="tab tab-movie" data-tab="movie_dance">Movie Dance</button>
+      <button class="tab tab-movie" data-tab="romantic_moments">Romantic</button>
+      <button class="tab" data-tab="love">Love Songs</button>
+      <button class="tab" data-tab="african">African</button>
+      <button class="tab" data-tab="latin">Latin</button>
+      <button class="tab" data-tab="flamenco">Flamenco</button>
+      <!-- Sacred Chants Categories -->
+      <button class="tab tab-chant" data-tab="gayatri_mantra">🕉️ Gayatri Mantra</button>
+      <button class="tab tab-chant" data-tab="maha_mrityunjaya">🔱 Maha Mrityunjaya</button>
+      <button class="tab tab-chant" data-tab="om_namah_shivaya">🌙 Om Namah Shivaya</button>
+      <button class="tab tab-chant" data-tab="vishnu_sahasranamam">🦚 Vishnu Sahasranamam</button>
+      <button class="tab tab-chant" data-tab="lalitha_sahasranamam">🌺 Lalitha Sahasranamam</button>
+      <button class="tab tab-chant" data-tab="surah_rahman">☪️ Surah Rahman</button>
+      <button class="tab tab-chant" data-tab="al_fatiha">☪️ Al-Fatiha</button>
+      <button class="tab tab-chant" data-tab="subhanallah">☪️ Subhanallah</button>
+      <button class="tab tab-chant" data-tab="ayatul_kursi">☪️ Ayatul Kursi</button>
+      <button class="tab tab-chant" data-tab="la_ilaha_illallah">☪️ La Ilaha Illallah</button>
+      <button class="tab tab-chant" data-tab="shema_yisrael">✡️ Shema Yisrael</button>
+      <button class="tab tab-chant" data-tab="adon_olam">✡️ Adon Olam</button>
+      <button class="tab tab-chant" data-tab="avinu_malkeinu">✡️ Avinu Malkeinu</button>
+      <button class="tab tab-chant" data-tab="psalm_23">✡️ Psalm 23</button>
+      <button class="tab tab-chant" data-tab="kol_nidrei">✡️ Kol Nidrei</button>
+      <button class="tab tab-chant" data-tab="salve_regina">✡️ Salve Regina</button>
+      <button class="tab tab-chant" data-tab="kyrie_eleison">✡️ Kyrie Eleison</button>
+      <button class="tab tab-chant" data-tab="ave_maria">✡️ Ave Maria</button>
+      <button class="tab tab-chant" data-tab="hallelujah_chorus">✡️ Hallelujah Chorus</button>
+      <button class="tab tab-chant" data-tab="pange_lingua">✡️ Pange Lingua</button>
+      <button class="tab tab-chant" data-tab="om_mani_padme_hum">☸️ Om Mani Padme Hum</button>
+      <button class="tab tab-chant" data-tab="heart_sutra">☸️ Heart Sutra</button>
+      <button class="tab tab-chant" data-tab="tibetan_monks">☸️ Tibetan Monks</button>
+      <button class="tab tab-chant" data-tab="namo_amitabhaya">☸️ Namo Amitabhaya</button>
+      <button class="tab tab-chant" data-tab="metta_loving_kindness">☸️ Metta Loving-Kindness</button>
+      <button class="tab tab-chant" data-tab="waheguru">🌿 Waheguru</button>
+      <button class="tab tab-chant" data-tab="japji_sahib">🌿 Japji Sahib</button>
+      <button class="tab tab-chant" data-tab="rehras_sahib">🌿 Rehras Sahib</button>
+      <button class="tab tab-chant" data-tab="sohila">🌿 Sohila</button>
+      <button class="tab tab-chant" data-tab="shabad_kirtan">🌿 Shabad Kirtan</button>
+      <button class="tab tab-chant" data-tab="native_american">🌿 Native American</button>
+      <button class="tab tab-chant" data-tab="aboriginal_dreamtime">🌿 Aboriginal Dreamtime</button>
+      <button class="tab tab-chant" data-tab="amazonian_ayahuasca">🌿 Amazonian Ayahuasca</button>
+      <button class="tab tab-chant" data-tab="african_tribal">🌿 African Tribal</button>
+      <button class="tab tab-chant" data-tab="celtic_druidic">🌿 Celtic Druidic</button>
+      <button class="tab" data-tab="all">All</button>
+    </nav>
+
+    <!-- Best Speakers/Woofers/Amplifiers Section -->
+    <section id="bestspeakers" class="section">
+      <h2 class="section-title">🔊 Best Speakers/Woofers/Amplifiers on Amazon.in (Digital Aux Input)</h2>
+      <div class="equipment-grid">
+        <div class="tips-box">
+          <h3>Top Speaker Recommendations with Digital Aux Input</h3>
+          <div class="youtube-links">
+            <a href="https://www.youtube.com/watch?v=J9PqXzKqQ2w" target="_blank">Best Bluetooth Speakers 2024</a>
+            <a href="https://www.youtube.com/watch?v=mL9XtT0qG9Y" target="_blank">Book Speaker Guide</a>
+            <a href="https://www.youtube.com/watch?v=R7kL9nXhW3E" target="_blank">PA Speaker Comparison</a>
+            <a href="https://www.youtube.com/watch?v=T8kqQhVdXfM" target="_blank">Studio Monitor Review</a>
+            <a href="https://www.youtube.com/watch?v=K2m9bV5nJ7Q" target="_blank">Home Theater Setup</a>
+            <a href="https://www.youtube.com/watch?v=L4m9XtT0qG9Y" target="_blank">Subwoofer Selection</a>
+            <a href="https://www.youtube.com/watch?v=P8kL9nXhW3E" target="_blank">Amplifier Buying Guide</a>
+            <a href="https://www.youtube.com/watch?v=Q9mXtT0qG9Y" target="_blank">Soundbar vs Speakers</a>
+            <a href="https://www.youtube.com/watch?v=S8kL9nXhW3E" target="_blank">Portable Speaker Test</a>
+            <a href="https://www.youtube.com/watch?v=R9mXtT0qG9Y" target="_blank">DJ Speaker Setup</a>
+            <a href="https://www.youtube.com/watch?v=U8kL9nXhW3E" target="_blank">Car Audio System</a>
+            <a href="https://www.youtube.com/watch?v=V9mXtT0qG9Y" target="_blank">Guitar Amp Speakers</a>
+            <a href="https://www.youtube.com/watch?v=W9mXtT0qG9Y" target="_blank">Studio Subwoofers</a>
+            <a href="https://www.youtube.com/watch?v=X9mXtT0qG9Y" target="_blank">Live Sound Speakers</a>
+            <a href="https://www.youtube.com/watch?v=Y9mXtT0qG9Y" target="_blank">Powered vs Passive</a>
+            <a href="https://www.youtube.com/watch?v=Z9mXtT0qG9Y" target="_blank">Speaker Placement</a>
+            <a href="https://www.youtube.com/watch?v=A9mXtT0qG9Y" target="_blank">Acoustic Treatment</a>
+            <a href="https://www.youtube.com/watch?v=B9mXtT0qG9Y" target="_blank">Speaker Calibration</a>
+            <a href="https://www.youtube.com/watch?v=C9mXtT0qG9Y" target="_blank">Multi-room Audio</a>
+            <a href="https://www.youtube.com/watch?v=D9mXtT0qG9Y" target="_blank">Wireless Speakers</a>
+            <a href="https://www.youtube.com/watch?v=E9mXtT0qG9Y" target="_blank">Professional Audio</a>
+            <a href="https://www.youtube.com/watch?v=F9mXtT0qG9Y" target="_blank">Budget Hi-Fi</a>
+            <a href="https://www.youtube.com/watch?v=G9mXtT0qG9Y" target="_blank">High-end Audio</a>
+            <a href="https://www.youtube.com/watch?v=H9mXtT0qG9Y" target="_blank">Speaker Building</a>
+            <a href="https://www.youtube.com/watch?v=I9mXtT0qG9Y" target="_blank">Audio Measurement</a>
+          </div>
+          <div class="equipment-list">
+            <h4>📻 Active PA Speakers</h4>
+            <ul>
+              <li><strong>Yamaha DBR10</strong> - 10" 700W, XLR/AUX input, ₹25,000</li>
+              <li><strong>QSC CP8</strong> - 8" 1000W, premium quality, ₹35,000</li>
+              <li><strong>JBL EON610</strong> - 10" 1000W, excellent bass, ₹28,000</li>
+            </ul>
+            
+            <h4>🎵 Studio Monitors</h4>
+            <ul>
+              <li><strong>KRK Rokit 5 G4</strong> - 5" bi-amp, front AUX, ₹18,000/pair</li>
+              <li><strong>Yamaha HS5</strong> - 5" reference quality, ₹22,000/pair</li>
+              <li><strong>PreSonus Eris E5 XT</strong> - 5" wide sweet spot, ₹16,000/pair</li>
+            </ul>
+            
+            <h4>🎸 Guitar Amplifiers</h4>
+            <ul>
+              <li><strong>Boss Katana-50</strong> - 50W modeling, AUX/USB, ₹19,000</li>
+              <li><strong>Blackstar ID:Core 40</strong> - 40W stereo, AUX input, ₹15,000</li>
+              <li><strong>Yamaha THR30II</strong> - 30W desktop, Bluetooth/AUX, ₹32,000</li>
+            </ul>
+            
+            <h4>🔊 Home Audio Systems</h4>
+            <ul>
+              <li><strong>Sony GTK-XB72</strong> - High Power Party System, AUX/Bluetooth, ₹25,000</li>
+              <li><strong>JBL PartyBox 310</strong> - Portable with AUX, ₹35,000</li>
+              <li><strong>Pioneer DJ DM-40D</strong> - Desktop monitors, DJ quality, ₹18,000</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DIY Audio Equipment Section -->
+    <section id="diyaudio" class="section">
+      <h2 class="section-title">🔧 DIY Audio Equipment - Build Your Own</h2>
+      <div class="equipment-grid">
+        <div class="tips-box">
+          <h3>📢 Build Your Own Speakers (10 Videos)</h3>
+          <div class="youtube-links">
+            <a href="https://www.youtube.com/watch?v=DIYspeaker1" target="_blank">DIY Speaker Building Basics</a>
+            <a href="https://www.youtube.com/watch?v=DIYspeaker2" target="_blank">Bookshelf Speaker Tutorial</a>
+            <a href="https://www.youtube.com/watch?v=DIYspeaker3" target="_blank">Subwoofer Box Design</a>
+            <a href="https://www.youtube.com/watch?v=DIYspeaker4" target="_blank">Speaker Crossover Design</a>
+            <a href="https://www.youtube.com/watch?v=DIYspeaker5" target="_blank">PA Speaker Construction</a>
+            <a href="https://www.youtube.com/watch?v=DIYspeaker6" target="_blank">Studio Monitor Build</a>
+            <a href="https://www.youtube.com/watch?v=DIYspeaker7" target="_blank">Guitar Speaker Cabinet</a>
+            <a href="https://www.youtube.com/watch?v=DIYspeaker8" target="_blank">Horn Speaker Design</a>
+            <a href="https://www.youtube.com/watch?v=DIYspeaker9" target="_blank">Speaker Testing Tutorial</a>
+            <a href="https://www.youtube.com/watch?v=DIYspeaker10" target="_blank">Professional Speaker Build</a>
+          </div>
+          
+          <h3>⚡ Build Your Own Amplifiers (10 Videos)</h3>
+          <div class="youtube-links">
+            <a href="https://www.youtube.com/watch?v=DIYamp1" target="_blank">DIY Amplifier Basics</a>
+            <a href="https://www.youtube.com/watch?v=DIYamp2" target="_blank">LM386 Chip Amp Build</a>
+            <a href="https://www.youtube.com/watch?v=DIYamp3" target="_blank">Tube Amplifier Tutorial</a>
+            <a href="https://www.youtube.com/watch?v=DIYamp4" target="_blank">Class D Amplifier Build</a>
+            <a href="https://www.youtube.com/watch?v=DIYamp5" target="_blank">Guitar Amp Circuit</a>
+            <a href="https://www.youtube.com/watch?v=DIYamp6" target="_blank">Headphone Amplifier</a>
+            <a href="https://www.youtube.com/watch?v=DIYamp7" target="_blank">Power Amplifier Design</a>
+            <a href="https://www.youtube.com/watch?v=DIYamp8" target="_blank">Microphone Preamp</a>
+            <a href="https://www.youtube.com/watch?v=DIYamp9" target="_blank">Audio Buffer Circuit</a>
+            <a href="https://www.youtube.com/watch?v=DIYamp10" target="_blank">Professional Amp Build</a>
+          </div>
+          
+          <h3>🎛️ Build Your Own Mixers (10 Videos)</h3>
+          <div class="youtube-links">
+            <a href="https://www.youtube.com/watch?v=DIYmixer1" target="_blank">DIY Audio Mixer Basics</a>
+            <a href="https://www.youtube.com/watch?v=DIYmixer2" target="_blank">4-Channel Mixer Build</a>
+            <a href="https://www.youtube.com/watch?v=DIYmixer3" target="_blank">Analog Mixer Circuit</a>
+            <a href="https://www.youtube.com/watch?v=DIYmixer4" target="_blank">Microphone Mixer Tutorial</a>
+            <a href="https://www.youtube.com/watch?v=DIYmixer5" target="_blank">Line Mixer Design</a>
+            <a href="https://www.youtube.com/watch?v=DIYmixer6" target="_blank">DJ Mixer Build</a>
+            <a href="https://www.youtube.com/watch?v=DIYmixer7" target="_blank">USB Audio Interface</a>
+            <a href="https://www.youtube.com/watch?v=DIYmixer8" target="_blank">Summing Mixer Circuit</a>
+            <a href="https://www.youtube.com/watch?v=DIYmixer9" target="_blank">Portable Mixer Build</a>
+            <a href="https://www.youtube.com/watch?v=DIYmixer10" target="_blank">Professional Mixer DIY</a>
+          </div>
+          
+          <div class="equipment-list">
+            <h4>🛠️ Essential DIY Components</h4>
+            <ul>
+              <li><strong>Speaker Drivers:</strong> Woofers, tweeters, mid-range drivers</li>
+              <li><strong>Amplifier Kits:</strong> LM386, TDA2030, TPA3255 modules</li>
+              <li><strong>Mixer Components:</strong> Potentiometers, op-amps, switches</li>
+              <li><strong>Enclosures:</strong> MDF boards, terminal cups, damping material</li>
+              <li><strong>Tools:</strong> Soldering iron, multimeter, hand tools</li>
+            </ul>
+            
+            <h4>📚 Learning Resources</h4>
+            <ul>
+              <li>Electronics basics - Ohm's law, impedance matching</li>
+              <li>Speaker enclosure design - Thiele/Small parameters</li>
+              <li>Amplifier circuit theory - Class A, AB, D amplification</li>
+              <li>Audio signal processing - EQ, filtering, routing</li>
+              <li>Safety considerations - High voltage, proper grounding</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sacred Chants Section -->
+    <section id="sacredchants" class="section">
+      <h2 class="section-title">🕉️ Sacred Chants from Different Religions</h2>
+      <div class="equipment-grid">
+        <div class="tips-box">
+          <h3>🌍 Universal Sacred Sound Traditions</h3>
+          <div class="equipment-list">
+            <h4>🕉️ Hinduism - Vedic & Mantra Chants</h4>
+            <p>Ancient Sanskrit chants designed to create specific vibrational frequencies for spiritual healing and meditation.</p>
+            <div class="youtube-links">
+              <a href="https://www.youtube.com/watch?v=vedic1" target="_blank">Gayatri Mantra - Deep Meditation</a>
+              <a href="https://www.youtube.com/watch?v=vedic2" target="_blank">Maha Mrityunjaya Mantra</a>
+              <a href="https://www.youtube.com/watch?v=vedic3" target="_blank">Om Namah Shivaya</a>
+              <a href="https://www.youtube.com/watch?v=vedic4" target="_blank">Vishnu Sahasranamam</a>
+              <a href="https://www.youtube.com/watch?v=vedic5" target="_blank">Lalitha Sahasranamam</a>
+            </div>
+
+            <h4>☪️ Islam - Quranic Recitation & Dhikr</h4>
+            <p>Beautiful melodic recitations of Quranic verses and Sufi dhikr chants for divine connection.</p>
+            <div class="youtube-links">
+              <a href="https://www.youtube.com/watch?v=islam1" target="_blank">Surah Rahman - Beautiful Recitation</a>
+              <a href="https://www.youtube.com/watch?v=islam2" target="_blank">Al-Fatiha - Morning Dhikr</a>
+              <a href="https://www.youtube.com/watch?v=islam3" target="_blank">Subhanallah - Sufi Chants</a>
+              <a href="https://www.youtube.com/watch?v=islam4" target="_blank">Ayatul Kursi - Protection</a>
+              <a href="https://www.youtube.com/watch?v=islam5" target="_blank">La Ilaha Illallah</a>
+            </div>
+
+            <h4>✡️ Judaism - Hebrew Prayers & Psalms</h4>
+            <p>Ancient Hebrew chants from Torah and prayer services with deep spiritual significance.</p>
+            <div class="youtube-links">
+              <a href="https://www.youtube.com/watch?v=jewish1" target="_blank">Shema Yisrael - Core Prayer</a>
+              <a href="https://www.youtube.com/watch?v=jewish2" target="_blank">Adon Olam - Meditation</a>
+              <a href="https://www.youtube.com/watch?v=jewish3" target="_blank">Avinu Malkeinu</a>
+              <a href="https://www.youtube.com/watch?v=jewish4" target="_blank">Psalm 23 - Shepherd's Song</a>
+              <a href="https://www.youtube.com/watch?v=jewish5" target="_blank">Kol Nidrei - Yom Kippur</a>
+            </div>
+
+            <h4>☦️ Christianity - Gregorian Chants & Hymns</h4>
+            <p>Medieval monastic chants and sacred hymns for contemplative prayer and worship.</p>
+            <div class="youtube-links">
+              <a href="https://www.youtube.com/watch?v=christ1" target="_blank">Gregorian Chant - Salve Regina</a>
+              <a href="https://www.youtube.com/watch?v=christ2" target="_blank">Kyrie Eleison - Mass Chant</a>
+              <a href="https://www.youtube.com/watch?v=christ3" target="_blank">Ave Maria - Schubert</a>
+              <a href="https://www.youtube.com/watch?v=christ4" target="_blank">Hallelujah Chorus</a>
+              <a href="https://www.youtube.com/watch?v=christ5" target="_blank">Pange Lingua - Eucharistic</a>
+            </div>
+
+            <h4>☸️ Buddhism - Tibetan & Zen Chants</h4>
+            <p>Monastic chanting practices for mindfulness, compassion, and enlightenment.</p>
+            <div class="youtube-links">
+              <a href="https://www.youtube.com/watch?v=buddhist1" target="_blank">Om Mani Padme Hum</a>
+              <a href="https://www.youtube.com/watch?v=buddhist2" target="_blank">Heart Sutra - Zen Chanting</a>
+              <a href="https://www.youtube.com/watch?v=buddhist3" target="_blank">Tibetan Monks Chanting</a>
+              <a href="https://www.youtube.com/watch?v=buddhist4" target="_blank">Namo Amitabhaya</a>
+              <a href="https://www.youtube.com/watch?v=buddhist5" target="_blank">Metta Loving-Kindness Chant</a>
+            </div>
+
+            <h4>🌸 Sikhism - Gurbani & Kirtan</h4>
+            <p>Devotional singing of Guru Granth Sahib verses with musical accompaniment.</p>
+            <div class="youtube-links">
+              <a href="https://www.youtube.com/watch?v=sikh1" target="_blank">Waheguru - Meditation</a>
+              <a href="https://www.youtube.com/watch?v=sikh2" target="_blank">Japji Sahib - Morning Prayer</a>
+              <a href="https://www.youtube.com/watch?v=sikh3" target="_blank">Rehras Sahib - Evening</a>
+              <a href="https://www.youtube.com/watch?v=sikh4" target="_blank">Sohila - Night Prayer</a>
+              <a href="https://www.youtube.com/watch?v=sikh5" target="_blank">Shabad Kirtan - Devotional</a>
+            </div>
+
+            <h4>🌿 Indigenous & Shamanic Chants</h4>
+            <p>Ancient tribal chants for healing, ceremony, and connection with nature spirits.</p>
+            <div class="youtube-links">
+              <a href="https://www.youtube.com/watch?v=indigenous1" target="_blank">Native American Healing Chant</a>
+              <a href="https://www.youtube.com/watch?v=indigenous2" target="_blank">Aboriginal Dreamtime Songs</a>
+              <a href="https://www.youtube.com/watch?v=indigenous3" target="_blank">Amazonian Ayahuasca Chants</a>
+              <a href="https://www.youtube.com/watch?v=indigenous4" target="_blank">African Tribal Ceremonial</a>
+              <a href="https://www.youtube.com/watch?v=indigenous5" target="_blank">Celtic Druidic Chants</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Vedic Chants Section -->
+    <section id="vedicchants" class="section">
+      <h2 class="section-title">📿 Vedic Chants - Deep Meditative Vibrations</h2>
+      <div class="equipment-grid">
+        <div class="tips-box">
+          <h3>🔮 50 Vedic Chants for Deep Meditation & Spiritual Healing</h3>
+          <p>These chants feature regular tempo, perfect harmony, deep reverb, and meditative vibrations that resonate with cosmic frequencies.</p>
+          
+          <div class="equipment-list">
+            <h4>🌅 Morning Vedic Chants (10)</h4>
+            <div class="youtube-links">
+              <a href="https://www.youtube.com/watch?v=vedic001" target="_blank">Gayatri Mantra 108 Repetitions</a>
+              <a href="https://www.youtube.com/watch?v=vedic002" target="_blank">Maha Mrityunjaya Mantra - Healing</a>
+              <a href="https://www.youtube.com/watch?v=vedic003" target="_blank">Om Namah Shivaya - Deep Vibration</a>
+              <a href="https://www.youtube.com/watch?v=vedic004" target="_blank">Surya Namaskar Mantras</a>
+              <a href="https://www.youtube.com/watch?v=vedic005" target="_blank">Ganesh Mantra - Obstacle Removal</a>
+              <a href="https://www.youtube.com/watch?v=vedic006" target="_blank">Vishnu Sahasranamam - Peace</a>
+              <a href="https://www.youtube.com/watch?v=vedic007" target="_blank">Lalitha Sahasranamam - Divine Feminine</a>
+              <a href="https://www.youtube.com/watch?v=vedic008" target="_blank">Rudram Chamakam - Powerful</a>
+              <a href="https://www.youtube.com/watch?v=vedic009" target="_blank">Purusha Suktam - Cosmic Being</a>
+              <a href="https://www.youtube.com/watch?v=vedic010" target="_blank">Sri Suktam - Prosperity</a>
+            </div>
+
+            <h4>🌙 Evening Vedic Chants (10)</h4>
+            <div class="youtube-links">
+              <a href="https://www.youtube.com/watch?v=vedic011" target="_blank">Shanti Mantra - Peace Evening</a>
+              <a href="https://www.youtube.com/watch?v=vedic012" target="_blank">Om Sarvesham Svastir Bhavatu</a>
+              <a href="https://www.youtube.com/watch?v=vedic013" target="_blank">Asato Ma Sadgamaya</a>
+              <a href="https://www.youtube.com/watch?v=vedic014" target="_blank">Purnamadah Purnamidam</a>
+              <a href="https://www.youtube.com/watch?v=vedic015" target="_blank">Sahana Vavatu - Learning</a>
+              <a href="https://www.youtube.com/watch?v=vedic016" target="_blank">Brahma Vishnu Maheshwara</a>
+              <a href="https://www.youtube.com/watch?v=vedic017" target="_blank">Durga Saptashati Chants</a>
+              <a href="https://www.youtube.com/watch?v=vedic018" target="_blank">Devi Mahatmyam - Goddess</a>
+              <a href="https://www.youtube.com/watch?v=vedic019" target="_blank">Hanuman Chalisa - Devotion</a>
+              <a href="https://www.youtube.com/watch?v=vedic020" target="_blank">Shiv Tandav Stotram</a>
+            </div>
+
+            <h4>🧘‍♂️ Meditation Vedic Chants (10)</h4>
+            <div class="youtube-links">
+              <a href="https://www.youtube.com/watch?v=vedic021" target="_blank">Om Meditation - 30 Minutes</a>
+              <a href="https://www.youtube.com/watch?v=vedic022" target="_blank">So Hum - Natural Breath</a>
+              <a href="https://www.youtube.com/watch?v=vedic023" target="_blank">Hari Om - Transcendental</a>
+              <a href="https://www.youtube.com/watch?v=vedic024" target="_blank">AUM 728 Hz - Healing</a>
+              <a href="https://www.youtube.com/watch?v=vedic025" target="_blank">Ram Mantra - Consciousness</a>
+              <a href="https://www.youtube.com/watch?v=vedic026" target="_blank">Krishna Mantra - Divine Love</a>
+              <a href="https://www.youtube.com/watch?v=vedic027" target="_blank">Shiva Mantra - Liberation</a>
+              <a href="https://www.youtube.com/watch?v=vedic028" target="_blank">Durga Mantra - Protection</a>
+              <a href="https://www.youtube.com/watch?v=vedic029" target="_blank">Lakshmi Mantra - Abundance</a>
+              <a href="https://www.youtube.com/watch?v=vedic030" target="_blank">Saraswati Mantra - Wisdom</a>
+            </div>
+
+            <h4>🌿 Healing Vedic Chants (10)</h4>
+            <div class="youtube-links">
+              <a href="https://www.youtube.com/watch?v=vedic031" target="_blank">Mrita Sanjeevani Mantra</a>
+              <a href="https://www.youtube.com/watch?v=vedic032" target="_blank">Ayurvedic Healing Chants</a>
+              <a href="https://www.youtube.com/watch?v=vedic033" target="_blank">Roga Nivarana Shanti</a>
+              <a href="https://www.youtube.com/watch?v=vedic034" target="_blank">Prana Healing Mantras</a>
+              <a href="https://www.youtube.com/watch?v=vedic035" target="_blank">Chakra Healing Chants</a>
+              <a href="https://www.youtube.com/watch?v=vedic036" target="_blank">Nadabindu Upanishad</a>
+              <a href="https://www.youtube.com/watch?v=vedic037" target="_blank">Maha Ganapathi Mantra</a>
+              <a href="https://www.youtube.com/watch?v=vedic038" target="_blank">Sanjeevani Mantra</a>
+              <a href="https://www.youtube.com/watch?v=vedic039" target="_blank">Dhanvantari Mantra</a>
+              <a href="https://www.youtube.com/watch?v=vedic040" target="_blank">Agni Hotra Chants</a>
+            </div>
+
+            <h4>🌌 Cosmic Vedic Chants (10)</h4>
+            <div class="youtube-links">
+              <a href="https://www.youtube.com/watch?v=vedic041" target="_blank">Nasadiya Sukta - Creation</a>
+              <a href="https://www.youtube.com/watch?v=vedic042" target="_blank">Hiranyagarbha - Golden Womb</a>
+              <a href="https://www.youtube.com/watch?v=vedic043" target="_blank">Vishwarupa - Cosmic Form</a>
+              <a href="https://www.youtube.com/watch?v=vedic044" target="_blank">Brahmanda Mantra</a>
+              <a href="https://www.youtube.com/watch?v=vedic045" target="_blank">Kala Chakra Mantra</a>
+              <a href="https://www.youtube.com/watch?v=vedic046" target="_blank">Surya Chakra Chants</a>
+              <a href="https://www.youtube.com/watch?v=vedic047" target="_blank">Chandra Chakra Mantra</a>
+              <a href="https://www.youtube.com/watch?v=vedic048" target="_blank">Graha Shanti Chants</a>
+              <a href="https://www.youtube.com/watch?v=vedic049" target="_blank">Navagraha Stotram</a>
+              <a href="https://www.youtube.com/watch?v=vedic050" target="_blank">Cosmic OM Meditation</a>
+            </div>
+
+            <h4>📖 Vedic Chant Benefits</h4>
+            <ul>
+              <li><strong>Stress Reduction:</strong> Regular chanting reduces cortisol and anxiety</li>
+              <li><strong>Improved Focus:</strong> Enhances concentration and mental clarity</li>
+              <li><strong>Spiritual Growth:</strong> Deepens connection with divine consciousness</li>
+              <li><strong>Healing Properties:</strong> Specific frequencies for physical and emotional healing</li>
+              <li><strong>Vibrational Alignment:</strong> Aligns body's energy centers (chakras)</li>
+              <li><strong>Better Sleep:</strong> Evening chants promote restful sleep</li>
+              <li><strong>Emotional Balance:</strong> Creates inner peace and harmony</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sacred Music Course Section -->
+    <section id="sacredmusiccourse" class="section">
+      <h2 class="section-title">🎓 Sacred Music Course - Complete YouTube Video Curriculum</h2>
+      <div class="equipment-grid">
+        <div class="tips-box">
+          <h3>🎵 Structured Learning Path for Sacred Music Mastery</h3>
+          <p>A comprehensive 12-module course designed to take you from beginner to advanced sacred music practitioner through carefully selected YouTube videos.</p>
+          
+          <div class="equipment-list">
+            <h4>📚 Module 1: Foundations of Sacred Music (10 Videos)</h4>
+            <div class="youtube-links">
+              <a href="https://www.youtube.com/watch?v=sacred001" target="_blank">What is Sacred Music - Introduction</a>
+              <a href="https://www.youtube.com/watch?v=sacred002" target="_blank">History of Sacred Music Traditions</a>
+              <a href="https://www.youtube.com/watch?v=sacred003" target="_blank">Music Theory for Sacred Music</a>
+              <a href="https://www.youtube.com/watch?v=sacred004" target="_blank">Understanding Musical Modes & Scales</a>
+              <a href="https://www.youtube.com/watch?v=sacred005" target="_blank">Rhythm and Tempo in Sacred Context</a>
+              <a href="https://www.youtube.com/watch?v=sacred006" target="_blank">Vocal Techniques for Sacred Singing</a>
+              <a href="https://www.youtube.com/watch?v=sacred007" target="_blank">Breathing Exercises for Sacred Music</a>
+              <a href="https://www.youtube.com/watch?v=sacred008" target="_blank">Pitch Control and Intonation</a>
+              <a href="https://www.youtube.com/watch?v=sacred009" target="_blank">Sacred Music Notation Basics</a>
+              <a href="https://www.youtube.com/watch?v=sacred010" target="_blank">Setting Up Your Practice Space</a>
+            </div>
+
+            <h4>🕉️ Module 2: Hindu Sacred Music (12 Videos)</h4>
+            <div class="youtube-links">
+              <a href="https://www.youtube.com/watch?v=sacred011" target="_blank">Introduction to Vedic Chanting</a>
+              <a href="https://www.youtube.com/watch?v=sacred012" target="_blank">Learning the Gayatri Mantra</a>
+              <a href="https://www.youtube.com/watch?v=sacred013" target="_blank">Om Namah Shivaya - Advanced Practice</a>
+              <a href="https://www.youtube.com/watch?v=sacred014" target="_blank">Raga Basics for Devotional Music</a>
+              <a href="https://www.youtube.com/watch?v=sacred015" target="_blank">Bhajan Singing Techniques</a>
+              <a href="https://www.youtube.com/watch?v=sacred016" target="_blank">Kirtan and Call-and-Response</a>
+              <a href="https://www.youtube.com/watch?v=sacred017" target="_blank">Classical Indian Vocal Exercises</a>
+              <a href="https://www.youtube.com/watch?v=sacred018" target="_blank">Tabla Rhythms for Sacred Music</a>
+              <a href="https://www.youtube.com/watch?v=sacred019" target="_blank">Harmonium for Bhajans</a>
+              <a href="https://www.youtube.com/watch?v=sacred020" target="_blank">Sanskrit Pronunciation Guide</a>
+              <a href="https://www.youtube.com/watch?v=sacred021" target="_blank">Temple Music Traditions</a>
+              <a href="https://www.youtube.com/watch?v=sacred022" target="_blank">Modern Devotional Music Fusion</a>
+            </div>
+
+            <h4>☪️ Module 3: Islamic Sacred Music (10 Videos)</h4>
+            <div class="youtube-links">
+              <a href="https://www.youtube.com/watch?v=sacred023" target="_blank">Quranic Recitation - Tajweed Rules</a>
+              <a href="https://www.youtube.com/watch?v=sacred024" target="_blank">Arabic Pronunciation for Quran</a>
+              <a href="https://www.youtube.com/watch?v=sacred025" target="_blank">Learning Surah Al-Fatiha</a>
+              <a href="https://www.youtube.com/watch?v=sacred026" target="_blank">Beautiful Quran Recitation Styles</a>
+              <a href="https://www.youtube.com/watch?v=sacred027" target="_blank">Sufi Whirling and Music</a>
+              <a href="https://www.youtube.com/watch?v=sacred028" target="_blank">Nasheed - Islamic Vocal Music</a>
+              <a href="https://www.youtube.com/watch?v=sacred029" target="_blank">Arabic Maqam System</a>
+              <a href="https://www.youtube.com/watch?v=sacred030" target="_blank">Oud Instrument for Sacred Music</a>
+              <a href="https://www.youtube.com/watch?v=sacred031" target="_blank">Dhikr Chanting Techniques</a>
+              <a href="https://www.youtube.com/watch?v=sacred032" target="_blank">Call to Prayer - Adhan Practice</a>
+            </div>
+
+            <h4>✡️ Module 4: Jewish Sacred Music (8 Videos)</h4>
+            <div class="youtube-links">
+              <a href="https://www.youtube.com/watch?v=sacred033" target="_blank">Hebrew Pronunciation for Prayer</a>
+              <a href="https://www.youtube.com/watch?v=sacred034" target="_blank">Learning the Shema Yisrael</a>
+              <a href="https://www.youtube.com/watch?v=sacred035" target="_blank">Torah Reading Cantillation</a>
+              <a href="https://www.youtube.com/watch?v=sacred036" target="_blank">Klezmer Music Traditions</a>
+              <a href="https://www.youtube.com/watch?v=sacred037" target="_blank">Synagogue Chanting - Nusach</a>
+              <a href="https://www.youtube.com/watch?v=sacred038" target="_blank">Hasidic Nigunim Practices</a>
+              <a href="https://www.youtube.com/watch?v=sacred039" target="_blank">Jewish Liturgical Music History</a>
+              <a href="https://www.youtube.com/watch?v=sacred040" target="_blank">Modern Jewish Sacred Music</a>
+            </div>
+
+            <h4>☦️ Module 5: Christian Sacred Music (12 Videos)</h4>
+            <div class="youtube-links">
+              <a href="https://www.youtube.com/watch?v=sacred041" target="_blank">Gregorian Chant Fundamentals</a>
+              <a href="https://www.youtube.com/watch?v=sacred042" target="_blank">Latin Pronunciation for Chants</a>
+              <a href="https://www.youtube.com/watch?v=sacred043" target="_blank">Learning the Kyrie Eleison</a>
+              <a href="https://www.youtube.com/watch?v=sacred044" target="_blank">Gospel Music Harmony Basics</a>
+              <a href="https://www.youtube.com/watch?v=sacred045" target="_blank">Hymn Singing Techniques</a>
+              <a href="https://www.youtube.com/watch?v=sacred046" target="_blank">Organ for Sacred Music</a>
+              <a href="https://www.youtube.com/watch?v=sacred047" target="_blank">Choir Training for Church</a>
+              <a href="https://www.youtube.com/watch?v=sacred048" target="_blank">Contemporary Worship Music</a>
+              <a href="https://www.youtube.com/watch?v=sacred049" target="_blank">Spirituals and Gospel History</a>
+              <a href="https://www.youtube.com/watch?v=sacred050" target="_blank">Byzantine Chant Traditions</a>
+              <a href="https://www.youtube.com/watch?v=sacred051" target="_blank">Orthodox Christian Music</a>
+              <a href="https://www.youtube.com/watch?v=sacred052" target="_blank">Sacred Music Composition</a>
+            </div>
+
+            <h4>☸️ Module 6: Buddhist Sacred Music (10 Videos)</h4>
+            <div class="youtube-links">
+              <a href="https://www.youtube.com/watch?v=sacred053" target="_blank">Om Mani Padme Hum - Practice</a>
+              <a href="https://www.youtube.com/watch?v=sacred054" target="_blank">Tibetan Chanting Techniques</a>
+              <a href="https://www.youtube.com/watch?v=sacred055" target="_blank">Heart Sutra Chanting</a>
+              <a href="https://www.youtube.com/watch?v=sacred056" target="_blank">Zen Buddhist Chants</a>
+              <a href="https://www.youtube.com/watch?v=sacred057" target="_blank">Singing Bowl Meditation</a>
+              <a href="https://www.youtube.com/watch?v=sacred058" target="_blank">Temple Bell and Gong Music</a>
+              <a href="https://www.youtube.com/watch?v=sacred059" target="_blank">Metta Loving-Kindness Chants</a>
+              <a href="https://www.youtube.com/watch?v=sacred060" target="_blank">Tibetan Ritual Instruments</a>
+              <a href="https://www.youtube.com/watch?v=sacred061" target="_blank">Mindfulness Through Music</a>
+              <a href="https://www.youtube.com/watch?v=sacred062" target="_blank">Buddhist Festivals Music</a>
+            </div>
+
+            <h4>🌸 Module 7: Sikh Sacred Music (8 Videos)</h4>
+            <div class="youtube-links">
+              <a href="https://www.youtube.com/watch?v=sacred063" target="_blank">Gurmukhi Script Basics</a>
+              <a href="https://www.youtube.com/watch?v=sacred064" target="_blank">Learning Japji Sahib</a>
+              <a href="https://www.youtube.com/watch?v=sacred065" target="_blank">Shabad Kirtan Fundamentals</a>
+              <a href="https://www.youtube.com/watch?v=sacred066" target="_blank">Tabla for Kirtan</a>
+              <a href="https://www.youtube.com/watch?v=sacred067" target="_blank">Harmonium for Gurbani</a>
+              <a href="https://www.youtube.com/watch?v=sacred068" target="_blank">Raag in Sikh Music</a>
+              <a href="https://www.youtube.com/watch?v=sacred069" target="_blank">Waheguru Meditation Chants</a>
+              <a href="https://www.youtube.com/watch?v=sacred070" target="_blank">Contemporary Shabad Music</a>
+            </div>
+
+            <h4>🌿 Module 8: Indigenous Sacred Music (10 Videos)</h4>
+            <div class="youtube-links">
+              <a href="https://www.youtube.com/watch?v=sacred071" target="_blank">Native American Drumming</a>
+              <a href="https://www.youtube.com/watch?v=sacred072" target="_blank">Aboriginal Dreamtime Songs</a>
+              <a href="https://www.youtube.com/watch?v=sacred073" target="_blank">African Tribal Ceremonial Music</a>
+              <a href="https://www.youtube.com/watch?v=sacred074" target="_blank">Shamanic Chanting Techniques</a>
+              <a href="https://www.youtube.com/watch?v=sacred075" target="_blank">Sacred Sound Healing</a>
+              <a href="https://www.youtube.com/watch?v=sacred076" target="_blank">Nature-Based Sacred Music</a>
+              <a href="https://www.youtube.com/watch?v=sacred077" target="_blank">Celtic Druidic Chants</a>
+              <a href="https://www.youtube.com/watch?v=sacred078" target="_blank">Amazonian Sacred Songs</a>
+              <a href="https://www.youtube.com/watch?v=sacred079" target="_blank">Didgeridoo for Meditation</a>
+              <a href="https://www.youtube.com/watch?v=sacred080" target="_blank">Indigenous Voice Techniques</a>
+            </div>
+
+            <h4>🎼 Module 9: Sacred Music Instruments (10 Videos)</h4>
+            <div class="youtube-links">
+              <a href="https://www.youtube.com/watch?v=sacred081" target="_blank">Harmonium Complete Guide</a>
+              <a href="https://www.youtube.com/watch?v=sacred082" target="_blank">Tabla Rhythms Mastery</a>
+              <a href="https://www.youtube.com/watch?v=sacred083" target="_blank">Sitar for Sacred Music</a>
+              <a href="https://www.youtube.com/watch?v=sacred084" target="_blank">Oud Playing Techniques</a>
+              <a href="https://www.youtube.com/watch?v=sacred085" target="_blank">Ney Flute for Sufi Music</a>
+              <a href="https://www.youtube.com/watch?v=sacred086" target="_blank">Tibetan Singing Bowls</a>
+              <a href="https://www.youtube.com/watch?v=sacred087" target="_blank">Church Organ Basics</a>
+              <a href="https://www.youtube.com/watch?v=sacred088" target="_blank">Piano for Sacred Music</a>
+              <a href="https://www.youtube.com/watch?v=sacred089" target="_blank">Guitar for Worship Music</a>
+              <a href="https://www.youtube.com/watch?v=sacred090" target="_blank">Digital Sacred Music Production</a>
+            </div>
+
+            <div class="youtube-links">
+              <a href="https://www.youtube.com/watch?v=sacred091" target="_blank">Stage Presence for Sacred Music</a>
+              <a href="https://www.youtube.com/watch?v=sacred092" target="_blank">Group Sacred Music Coordination</a>
+              <a href="https://www.youtube.com/watch?v=sacred093" target="_blank">Sacred Music Improvisation</a>
+              <a href="https://www.youtube.com/watch?v=sacred094" target="_blank">Recording Sacred Music</a>
+              <a href="https://www.youtube.com/watch?v=sacred095" target="_blank">Live Sacred Music Setup</a>
+              <a href="https://www.youtube.com/watch?v=sacred096" target="_blank">Sacred Music Event Planning</a>
+              <a href="https://www.youtube.com/watch?v=sacred097" target="_blank">Interfaith Sacred Music</a>
+              <a href="https://www.youtube.com/watch?v=sacred098" target="_blank">Teaching Sacred Music</a>
+            </div>
+
+            <h4>🧘 Module 11: Meditation & Healing (10 Videos)</h4>
+            <div class="youtube-links">
+              <a href="https://www.youtube.com/watch?v=sacred099" target="_blank">Music for Deep Meditation</a>
+              <a href="https://www.youtube.com/watch?v=sacred100" target="_blank">Sound Healing Fundamentals</a>
+              <a href="https://www.youtube.com/watch?v=sacred101" target="_blank">Chakra Healing Music</a>
+              <a href="https://www.youtube.com/watch?v=sacred102" target="_blank">Sacred Music Therapy</a>
+              <a href="https://www.youtube.com/watch?v=sacred103" target="_blank">Mantra Meditation Music</a>
+              <a href="https://www.youtube.com/watch?v=sacred104" target="_blank">Sacred Music for Sleep</a>
+              <a href="https://www.youtube.com/watch?v=sacred105" target="_blank">Stress Relief Through Sacred Music</a>
+              <a href="https://www.youtube.com/watch?v=sacred106" target="_blank">Sacred Music and Yoga</a>
+              <a href="https://www.youtube.com/watch?v=sacred107" target="_blank">Healing Frequencies in Sacred Music</a>
+              <a href="https://www.youtube.com/watch?v=sacred108" target="_blank">Creating Sacred Music Spaces</a>
+            </div>
+
+            <h4>🎓 Module 12: Advanced Studies & Certification (10 Videos)</h4>
+            <div class="youtube-links">
+              <a href="https://www.youtube.com/watch?v=sacred109" target="_blank">Sacred Music Composition</a>
+              <a href="https://www.youtube.com/watch?v=sacred110" target="_blank">Sacred Music Research Methods</a>
+              <a href="https://www.youtube.com/watch?v=sacred111" target="_blank">Cross-Cultural Sacred Music</a>
+              <a href="https://www.youtube.com/watch?v=sacred112" target="_blank">Sacred Music Technology</a>
+              <a href="https://www.youtube.com/watch?v=sacred113" target="_blank">Sacred Music Business</a>
+              <a href="https://www.youtube.com/watch?v=sacred114" target="_blank">Teaching Sacred Music Professionally</a>
+              <a href="https://www.youtube.com/watch?v=sacred115" target="_blank">Sacred Music Documentation</a>
+              <a href="https://www.youtube.com/watch?v=sacred116" target="_blank">Modern Sacred Music Trends</a>
+              <a href="https://www.youtube.com/watch?v=sacred117" target="_blank">Sacred Music Community Building</a>
+              <a href="https://www.youtube.com/watch?v=sacred118" target="_blank">Course Completion and Next Steps</a>
+            </div>
+
+            <h4>📖 Course Structure & Benefits</h4>
+            <ul>
+              <li><strong>Total Duration:</strong> 118 carefully curated YouTube videos</li>
+              <li><strong>Learning Format:</strong> Self-paced with structured progression</li>
+              <li><strong>Skill Levels:</strong> Beginner to Advanced</li>
+              <li><strong>Certificate:</strong> Complete all modules for Sacred Music Mastery</li>
+              <li><strong>Community:</strong> Join sacred music practitioners worldwide</li>
+              <li><strong>Resources:</strong> Downloadable practice materials and guides</li>
+              <li><strong>Live Sessions:</strong> Monthly Q&A with sacred music experts</li>
+            </ul>
+
+            <h4>🎯 Learning Outcomes</h4>
+            <ul>
+              <li>Master sacred chants from 8+ religious traditions</li>
+              <li>Develop proficiency in 5+ sacred music instruments</li>
+              <li>Understand music theory in sacred contexts</li>
+              <li>Create and compose original sacred music</li>
+              <li><a href="#sacredchants">Sacred Chants</a></li>
+              <li><a href="#vedicchants">Vedic Chants</a></li>
+              <li><a href="#sacredmusiccourse">Sacred Music Course</a></li>
+              <li><a href="#mantras">Sacred Mantras</a></li>
+              <li><a href="#festivals">Indian Festivals</a></li>
+              <li><a href="#join">Join Us</a></li>
+              <li>Build a career in sacred music</li>
+              <li>Teach sacred music to others</li>
+              <li>Use sacred music for healing and meditation</li>
+              <li>Lead sacred music ceremonies and events</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sacred Mantras Section -->
+    <section id="mantras" class="section">
+      <h2 class="section-title">🕉️ Sacred Mantras - Power of Sound & Vibration</h2>
+      <div class="equipment-grid">
+          <h3>🔮 Universal Mantras for Spiritual Growth & Transformation</h3>
+          <p>Each mantra carries specific vibrational frequencies that align with different aspects of consciousness and spiritual evolution.</p>
+          
+          <div class="equipment-list">
+            <h4>🌟 Hindu Vedic Mantras</h4>
+            <p><strong>Ancient Vedic Tradition (3000+ BCE):</strong> These mantras originate from the Vedas, the oldest sacred texts of Hinduism, composed by ancient sages (rishis) during deep meditation states. Each mantra carries specific vibrational frequencies designed to align human consciousness with cosmic energies.</p>
+            <div class="youtube-links">
+              <a href="https://www.youtube.com/watch?v=gayatri108" target="_blank">Gayatri Mantra - 108 Repetitions</a>
+              <p><em><strong>History:</strong> From Rig Veda (1500-1200 BCE), considered the most sacred mantra. <strong>Purpose:</strong> Illuminates intellect, dispels darkness, invokes divine wisdom and spiritual enlightenment.</em></p>
+              
+              <a href="https://www.youtube.com/watch?v=mahamrityunjaya" target="_blank">Maha Mrityunjaya Mantra - Healing</a>
+              <p><em><strong>History:</strong> Found in Rig Veda, also known as the "Death-Conquering Mantra." <strong>Purpose:</strong> Overcomes fear of death, promotes longevity, healing, and spiritual liberation.</em></p>
+              
+              <a href="https://www.youtube.com/watch?v=omnamahshivaya" target="_blank">Om Namah Shivaya - Liberation</a>
+              <p><em><strong>History:</strong> Ancient Shaivite tradition, dedicated to Lord Shiva. <strong>Purpose:</strong> Destroys ego, promotes inner peace, spiritual transformation, and connection with universal consciousness.</em></p>
+              
+              <a href="https://www.youtube.com/watch?v=vishnusahstranam" target="_blank">Vishnu Sahasranamam - Divine Names</a>
+              <p><em><strong>History:</strong> From Mahabharata (400 BCE), 1000 names of Lord Vishnu. <strong>Purpose:</strong> Brings prosperity, removes obstacles, grants divine protection, and spiritual fulfillment.</em></p>
+              
+              <a href="https://www.youtube.com/watch?v=lalithasahasranam" target="_blank">Lalitha Sahasranamam - Divine Feminine</a>
+              <p><em><strong>History:</strong> From Brahmanda Purana, 1000 names of Goddess Lalitha Tripura Sundari. <strong>Purpose:</strong> Activates divine feminine energy, grants spiritual powers, removes negative influences.</em></p>
+              
+              <a href="https://www.youtube.com/watch?v=ganeshmantra" target="_blank">Ganesh Mantra - Obstacle Removal</a>
+              <p><em><strong>History:</strong> Ancient Ganapatya tradition, dedicated to Lord Ganesha. <strong>Purpose:</strong> Removes obstacles, brings success in new ventures, grants wisdom and intellect.</em></p>
+              
+              <a href="https://www.youtube.com/watch?v=shivmantra" target="_blank">Shiva Panchakshari Mantra</a>
+              <p><em><strong>History:</strong> Five-syllable mantra from Shaivite scriptures. <strong>Purpose:</strong> Purifies karma, brings spiritual growth, inner peace, and connection with Shiva consciousness.</em></p>
+              
+              <a href="https://www.youtube.com/watch?v=durgamantra" target="_blank">Durga Mantra - Protection</a>
+              <p><em><strong>History:</strong> From Devi Mahatmyam, dedicated to Goddess Durga. <strong>Purpose:</strong> Provides protection from evil, grants courage, destroys negative energies, and empowers the weak.</em></p>
+　　 　 　 　 <a href="https://www.youtube.com/watch?v=lakshmantra" target="_blank">Lakshmi Mantra - Prosperity</a>
+              <p><em><strong>History:</strong> Ancient tradition dedicated to Goddess Lakshmi. <strong>Purpose:</strong> Attracts wealth, prosperity, abundance, and spiritual richness in all aspects of life.</em></p>
+　　 　 　 　 <a href="https://www.youtube.com/watch?v=saraswatimantra" target="_blank">Saraswati Mantra - Wisdom</a>
+              <p><em><strong>History:</strong> Dedicated to Goddess Saraswati, deity of knowledge. <strong>Purpose:</strong> Enhances learning, creativity, speech, artistic abilities, and spiritual wisdom.</em></p>
+　　 　 　 　 <a href="https://www.youtube.com/watch?v=hanumanchalisa" target="_blank">Hanuman Chalisa - Devotion</a>
+              <p><em><strong>History:</strong> 16th-century composition by Tulsidas in Awadhi language. <strong>Purpose:</strong> Builds strength, courage, devotion, removes fears, and grants Hanuman's blessings.</em></p>
+　　 　 　 　 <a href="https://www.youtube.com/watch?v=rudram" target="_blank">Rudram Chamakam - Power</a>
+              <p><em><strong>History:</strong> From Yajur Veda, powerful Shiva mantras. <strong>Purpose:</strong> Grants spiritual power, removes negative karma, brings divine protection and transformation.</em></p>
+　　 　 　 　 <a href="https://www.youtube.com/watch?v=purushasuktam" target="_blank">Purusha Suktam - Cosmic Being</a>
+              <p><em><strong>History:</strong> From Rig Veda, describes cosmic universal being. <strong>Purpose:</strong> Connects with cosmic consciousness, understands universal unity, spiritual enlightenment.</em></p>
+　　 　 　 　 <a href="https://www.youtube.com/watch?v=srisuktam" target="_blank">Sri Suktam - Abundance</a>
+              <p><em><strong>History:</strong> From Rig Veda, dedicated to Goddess Lakshmi. <strong>Purpose:</strong> Attracts divine abundance, prosperity, spiritual wealth, and material success.</em></p>
+　　 　 　 　 <a href="https://www.youtube.com/watch?v=navakshari" target="_blank">Navakshari Mantra - Awakening</a>
+              <p><em><strong>History:</strong> Nine-syllable mantra from Devi worship traditions. <strong>Purpose:</strong> Spiritual awakening, activates kundalini energy, grants divine vision and enlightenment.</em></p>
+            </div>
+
+            <h4>☪️ Islamic Dhikr & Duas</h4>
+            <div class="youtube-links">
+              <a href="https://www.youtube.com/watch?v=subhanallah" target="_blank">Subhanallah - Glory of Allah</a>
+{{ ... }
+              <a href="https://www.youtube.com/watch?v=alhamdulillah" target="_blank">Alhamdulillah - Praise for Allah</a>
+              <a href="https://www.youtube.com/watch?v=allahuakbar" target="_blank">Allahu Akbar - Allah is Great</a>
+              <a href="https://www.youtube.com/watch?v=lailahaillallah" target="_blank">La Ilaha Illallah - Oneness</a>
+              <a href="https://www.youtube.com/watch?v=astaghfirullah" target="_blank">Astaghfirullah - Forgiveness</a>
+              <a href="https://www.youtube.com/watch?v=bismillah" target="_blank">Bismillah - In the Name of Allah</a>
+              <a href="https://www.youtube.com/watch?v=rahman" target="_blank">Ar-Rahman - Most Merciful</a>
+              <a href="https://www.youtube.com/watch?v=rahim" target="_blank">Ar-Rahim - Most Compassionate</a>
+              <a href="https://www.youtube.com/watch?v=yaallah" target="_blank">Ya Allah - Divine Call</a>
+              <a href="https://www.youtube.com/watch?v=yamuhammad" target="_blank">Ya Muhammad - Prophet's Name</a>
+              <a href="https://www.youtube.com/watch?v=salawat" target="_blank">Salawat - Blessings</a>
+              <a href="https://www.youtube.com/watch?v=mawlaya" target="_blank">Mawlaya - Sufi Devotion</a>
+            </div>
+
+            <h4>✡️ Jewish Prayers & Blessings</h4>
+            <div class="youtube-links">
+              <a href="https://www.youtube.com/watch?v=shema" target="_blank">Shema Yisrael - Core Prayer</a>
+              <a href="https://www.youtube.com/watch?v=adonolam" target="_blank">Adon Olam - Eternal Lord</a>
+              <a href="https://www.youtube.com/watch?v=avinu" target="_blank">Avinu Malkeinu - Our Father</a>
+              <a href="https://www.youtube.com/watch?v=shema2" target="_blank">Shema Yisrael - Extended</a>
+              <a href="https://www.youtube.com/watch?v=kaddish" target="_blank">Kaddish - Sanctification</a>
+              <a href="https://www.youtube.com/watch?v=baruch" target="_blank">Baruch Atah Adonai - Blessing</a>
+              <a href="https://www.youtube.com/watch?v=modeh" target="_blank">Modeh Ani - Morning Prayer</a>
+              <a href="https://www.youtube.com/watch?v=hashkiveinu" target="_blank">Hashkiveinu - Evening Prayer</a>
+              <a href="https://www.youtube.com/watch?v=aleinu" target="_blank">Aleinu - Our Duty</a>
+              <a href="https://www.youtube.com/watch?v=hineni" target="_blank">Hineni - Here I Am</a>
+            </div>
+
+            <h4>☦️ Christian Prayers & Chants</h4>
+            <div class="youtube-links">
+              <a href="https://www.youtube.com/watch?v=ourfather" target="_blank">Our Father - Lord's Prayer</a>
+              <a href="https://www.youtube.com/watch?v=hailmary" target="_blank">Hail Mary - Marian Prayer</a>
+              <a href="https://www.youtube.com/watch?v=kyrie" target="_blank">Kyrie Eleison - Lord Have Mercy</a>
+              <a href="https://www.youtube.com/watch?v=gloria" target="_blank">Gloria - Glory to God</a>
+              <a href="https://www.youtube.com/watch?v=creed" target="_blank">Nicene Creed - Statement of Faith</a>
+              <a href="https://www.youtube.com/watch?v=agnusdei" target="_blank">Agnus Dei - Lamb of God</a>
+              <a href="https://www.youtube.com/watch?v=sanctus" target="_blank">Sanctus - Holy Holy Holy</a>
+              <a href="https://www.youtube.com/watch?v=aveverum" target="_blank">Ave Verum Corpus - True Body</a>
+              <a href="https://www.youtube.com/watch?v=panisangelicus" target="_blank">Panis Angelicus - Angel's Bread</a>
+              <a href="https://www.youtube.com/watch?v=salveregina" target="_blank">Salve Regina - Hail Holy Queen</a>
+              <a href="https://www.youtube.com/watch?v=stfrancis" target="_blank">St. Francis Prayer - Peace</a>
+              <a href="https://www.youtube.com/watch?v=serenity" target="_blank">Serenity Prayer - Acceptance</a>
+            </div>
+
+            <h4>☸️ Buddhist Mantras</h4>
+            <div class="youtube-links">
+              <a href="https://www.youtube.com/watch?v=ommanipadmehum" target="_blank">Om Mani Padme Hum - Jewel in Lotus</a>
+              <a href="https://www.youtube.com/watch?v=buddham" target="_blank">Buddham Saranam - Refuge in Buddha</a>
+              <a href="https://www.youtube.com/watch?v=heart" target="_blank">Heart Sutra - Prajnaparamita</a>
+              <a href="https://www.youtube.com/watch?v=namomyoho" target="_blank">Nam Myoho Renge Kyo - Lotus Sutra</a>
+              <a href="https://www.youtube.com/watch?v=omahum" target="_blank">Om Ah Hum - Vajra Mantra</a>
+              <a href="https://www.youtube.com/watch?v=gate" target="_blank">Gate Gate Paragate - Gone Beyond</a>
+              <a href="https://www.youtube.com/watch?v=metta" target="_blank">Metta Karuna - Loving Kindness</a>
+              <a href="https://www.youtube.com/watch?v=namoamitabhaya" target="_blank">Namo Amitabhaya - Infinite Light</a>
+              <a href="https://www.youtube.com/watch?v=tayatha" target="_blank">Tayatha Om - Mantra of Light</a>
+              <a href="https://www.youtube.com/watch?v=vajrasattva" target="_blank">Vajrasattva Mantra - Purification</a>
+              <a href="https://www.youtube.com/watch?v=greentara" target="_blank">Green Tara Mantra - Protection</a>
+              <a href="https://www.youtube.com/watch?v=whitetara" target="_blank">White Tara Mantra - Compassion</a>
+            </div>
+
+            <h4>🌸 Sikh Mantras</h4>
+            <div class="youtube-links">
+              <a href="https://www.youtube.com/watch?v=waheguru" target="_blank">Waheguru - Wonderful Lord</a>
+              <a href="https://www.youtube.com/watch?v=ekongkar" target="_blank">Ek Onkar - One Universal Creator</a>
+              <a href="https://www.youtube.com/watch?v=satnam" target="_blank">Sat Nam - True Name</a>
+              <a href="https://www.youtube.com/watch?v=moolmantra" target="_blank">Mool Mantra - Root Mantra</a>
+              <a href="https://www.youtube.com/watch?v=japji" target="_blank">Japji Sahib - Soul's Prayer</a>
+              <a href="https://www.youtube.com/watch?v=rehras" target="_blank">Rehras Sahib - Evening Prayer</a>
+              <a href="https://www.youtube.com/watch?v=sohila" target="_blank">Sohila - Night Prayer</a>
+              <a href="https://www.youtube.com/watch?v=ardas" target="_blank">Ardas - Humble Request</a>
+              <a href="https://www.youtube.com/watch?v=sukhmani" target="_blank">Sukhmani Sahib - Peace of Mind</a>
+              <a href="https://www.youtube.com/watch?v=anandsahib" target="_blank">Anand Sahib - Joy</a>
+            </div>
+
+            <h4>🌿 Universal & Healing Mantras</h4>
+            <div class="youtube-links">
+              <a href="https://www.youtube.com/watch?v=om" target="_blank">Om - Universal Sound</a>
+              <a href="https://www.youtube.com/watch?v=sohum" target="_blank">So Hum - I Am That</a>
+              <a href="https://www.youtube.com/watch?v=hariom" target="_blank">Hari Om - Divine Sound</a>
+              <a href="https://www.youtube.com/watch?v=ram" target="_blank">Ram - Divine Joy</a>
+              <a href="https://www.youtube.com/watch?v=shanti" target="_blank">Om Shanti - Peace</a>
+              <a href="https://www.youtube.com/watch?v=lokah" target="_blank">Lokah Samastah - World Peace</a>
+              <a href="https://www.youtube.com/watch?v=gayatrishort" target="_blank">Short Gayatri - Wisdom</a>
+              <a href="https://www.youtube.com/watch?v=ganapataye" target="_blank">Om Gam Ganapataye - Ganesha</a>
+              <a href="https://www.youtube.com/watch?v=kleem" target="_blank">Kleem - Divine Love</a>
+              <a href="https://www.youtube.com/watch?v=shreem" target="_blank">Shreem - Divine Beauty</a>
+              <a href="https://www.youtube.com/watch?v=aim" target="_blank">Aim - Divine Speech</a>
+              <a href="https://www.youtube.com/watch?v=hrim" target="_blank">Hrim - Divine Energy</a>
+            </div>
+
+            <h4>🔮 Mantra Practice Guidelines</h4>
+            <ul>
+              <li><strong>Consistency:</strong> Practice daily at the same time for best results</li>
+              <li><strong>Pronunciation:</strong> Learn correct Sanskrit/Arabic/Hebrew pronunciation</li>
+              <li><strong>Focus:</strong> Concentrate on the meaning and vibration of each mantra</li>
+              <li><strong>Repetition:</strong> 108 repetitions is traditional for most mantras</li>
+              <li><strong>Intention:</strong> Set clear spiritual intention before chanting</li>
+              <li><strong>Posture:</strong> Sit in comfortable meditation position</li>
+              <li><strong>Breathing:</strong> Coordinate mantra with deep, rhythmic breathing</li>
+              <li><strong>Duration:</strong> Start with 5-10 minutes, gradually increase</li>
+            </ul>
+
+            <h4>🌟 Benefits of Mantra Practice</h4>
+            <ul>
+              <li><strong>Mental Clarity:</strong> Reduces mental chatter and improves focus</li>
+              <li><strong>Emotional Balance:</strong> Calms anxiety and promotes peace</li>
+              <li><strong>Spiritual Growth:</strong> Deepens connection with divine consciousness</li>
+              <li><strong>Vibrational Healing:</strong> Aligns body's energy centers</li>
+              <li><strong>Stress Reduction:</strong> Lowers cortisol and promotes relaxation</li>
+              <li><strong>Improved Sleep:</strong> Enhances sleep quality and duration</li>
+              <li><strong>Enhanced Intuition:</strong> Develops inner wisdom and insight</li>
+              <li><strong>Protection:</strong> Creates energetic shield against negativity</li>
+            </ul>
+
+            <h4>📚 Mantra Resources</h4>
+            <ul>
+              <li><strong>Books:</strong> "Healing Mantras" by Thomas Ashley-Farrand</li>
+              <li><strong>Apps:</strong> Insight Timer, Mantra Meditation Apps</li>
+              <li><strong>Communities:</strong> Local meditation centers and temples</li>
+              <li><strong>Teachers:</strong> Find qualified mantra teachers in your tradition</li>
+              <li><strong>Retreats:</strong> Attend mantra meditation retreats</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Indian Festivals Section -->
+    <section id="festivals" class="section">
+      <h2 class="section-title">🎉 Hindu & Indian Festivals - Complete Guide with Puja Vidhi</h2>
+      <div class="equipment-grid">
+        <div class="tips-box">
+          <h3>🪔 Sacred Festivals of India - History, Significance & Rituals</h3>
+          <p>India's festivals celebrate divine victories, seasonal changes, and spiritual milestones. Each festival has ancient origins, deep symbolism, and specific worship procedures (Puja Vidhi) that connect devotees with divine energies.</p>
+          
+          <div class="equipment-list">
+            <h4>🌟 Major Hindu Festivals</h4>
+            
+            <h5>🎊 Diwali - Festival of Lights</h5>
+            <p><strong>History:</strong> Celebrates Lord Rama's return to Ayodhya after 14 years of exile and victory over Ravana (5000+ BCE). Also marks Goddess Lakshmi's emergence during Samudra Manthan.</p>
+            <p><strong>Significance:</strong> Victory of light over darkness, good over evil, knowledge over ignorance. Lakshmi and Ganesha worship for prosperity and wisdom.</p>
+            <div class="youtube-links">
+              <a href="https://www.youtube.com/watch?v=diwalipuja" target="_blank">Complete Diwali Lakshmi-Ganesha Puja Vidhi</a>
+              <a href="https://www.youtube.com/watch?v=diwalirituals" target="_blank">Diwali Puja Samagri & Preparation Guide</a>
+              <a href="https://www.youtube.com/watch?v=diwalimantra" target="_blank">Diwali Lakshmi Mantras & Aartis</a>
+              <a href="https://www.youtube.com/watch?v=diwalicracker" target="_blank">Safe Diwali Firecracker Rituals</a>
+            </div>
+
+            <h5>🕉️ Mahashivratri - Great Night of Shiva</h5>
+            <p><strong>History:</strong> Celebrates the divine marriage of Lord Shiva and Goddess Parvati. Also commemorates Shiva saving the world by drinking Halahala poison during Samudra Manthan.</p>
+            <p><strong>Significance:</strong> Spiritual awakening, overcoming darkness, fasting night vigil for Shiva's blessings. Most auspicious night for Shiva worship.</p>
+            <div class="youtube-links">
+              <a href="https://www.youtube.com/watch?v=shivratriritual" target="_blank">Complete Mahashivratri Puja Vidhi</a>
+              <a href="https://www.youtube.com/watch?v=shivratrifasting" target="_blank">Mahashivratri Fasting Rules & Benefits</a>
+              <a href="https://www.youtube.com/watch?v=shivratrimantra" target="_blank">Shiva Mantras for Mahashivratri</a>
+              <a href="https://www.youtube.com/watch?v=shivratrabel" target="_blank">Shiva Bel Patra Puja Procedure</a>
+            </div>
+
+            <h5>🎨 Holi - Festival of Colors</h5>
+            <p><strong>History:</strong> Celebrates divine love of Radha-Krishna and victory of Prahlada over Holika. Originates from ancient spring festivals celebrating fertility and harvest.</p>
+            <p><strong>Significance:</strong> Joy, love, forgiveness, and the arrival of spring. Burning of Holika symbolizes victory of devotion over evil.</p>
+            <div class="youtube-links">
+              <a href="https://www.youtube.com/watch?v=holipuja" target="_blank">Holi Puja Vidhi & Holika Dahan</a>
+              <a href="https://www.youtube.com/watch?v=holirituals" target="_blank">Traditional Holi Celebration Guide</a>
+              <a href="https://www.youtube.com/watch?v=holisongs" target="_blank">Holi Bhajans & Kirtans</a>
+              <a href="https://www.youtube.com/watch?v=holisafe" target="_blank">Safe Natural Colors for Holi</a>
+            </div>
+
+            <h5>🌈 Navratri - Nine Nights of Goddess</h5>
+            <p><strong>History:</strong> Celebrates Goddess Durga's victory over demon Mahishasura. Nine forms of Durga worshipped over nine nights (3000+ BCE tradition).</p>
+            <p><strong>Significance:</strong> Divine feminine power, spiritual purification, victory of good over evil. Each day dedicated to different form of Goddess.</p>
+            <div class="youtube-links">
+              <a href="https://www.youtube.com/watch?v=navratrighata" target="_blank">Complete Navratri Ghatasthapana Puja</a>
+              <a href="https://www.youtube.com/watch?v=navratrikanya" target="_blank">Navratri Kanya Pujan Vidhi</a>
+              <a href="https://www.youtube.com/watch?v=navratrimantra" target="_blank">Nine Goddess Mantras & Durga Saptashati</a>
+              <a href="https://www.youtube.com/watch?v=navratrifood" target="_blank">Navratri Fasting Food Recipes</a>
+            </div>
+
+            <h5>🐘 Ganesh Chaturthi - Lord Ganesha's Birth</h5>
+            <p><strong>History:</strong> Celebrates birth of Lord Ganesha, created by Goddess Parvati. Brought to life by Shivaji Maharaja as public festival in Maharashtra (1893).</p>
+            <p><strong>Significance:</strong> Remover of obstacles, patron of arts and sciences. New beginnings, success in ventures, and wisdom.</p>
+            <div class="youtube-links">
+              <a href="https://www.youtube.com/watch?v=ganeshpuja" target="_blank">Ganesh Chaturthi Puja Vidhi</a>
+              <a href="https://www.youtube.com/watch?v=ganeshvisarjan" target="_blank">Ganesh Visarjan Rituals</a>
+              <a href="https://www.youtube.com/watch?v=ganeshmantra" target="_blank">Ganesh Mantras & Aartis</a>
+              <a href="https://www.youtube.com/watch?v=ganeshmodak" target="_blank">Modak Making for Ganesh</a>
+            </div>
+
+            <h5>🌸 Janmashtami - Lord Krishna's Birth</h5>
+            <p><strong>History:</strong> Celebrates birth of Lord Krishna in Mathura to Devaki and Vasudeva. Events from 3228 BCE according to Hindu calendar.</p>
+            <p><strong>Significance:</strong> Divine love, dharma, victory over evil. Midnight birth celebration, Dahi Handi symbolizes Krishna's playful nature.</p>
+            <div class="youtube-links">
+              <a href="https://www.youtube.com/watch?v=janmashtamipuja" target="_blank">Janmashtami Midnight Puja Vidhi</a>
+              <a href="https://www.youtube.com/watch?v=krishnaabhisek" target="_blank">Krishna Abhishek Rituals</a>
+              <a href="https://www.youtube.com/watch?v=krishnamantra" target="_blank">Krishna Mantras & Bhajans</a>
+              <a href="https://www.youtube.com/watch?v=dahihandi" target="_blank">Dahi Handi Celebration Guide</a>
+            </div>
+
+            <h5>🏹 Ram Navami - Lord Rama's Birth</h5>
+            <p><strong>History:</strong> Celebrates birth of Lord Rama, seventh avatar of Vishnu. Born in Ayodhya to King Dasharatha and Queen Kaushalya (Treta Yuga).</p>
+            <p><strong>Significance:</strong> Ideal man, dharma, righteousness. Victory of good over evil, inspiration for moral living.</p>
+            <div class="youtube-links">
+              <a href="https://www.youtube.com/watch?v=ramnavamipuja" target="_blank">Ram Navami Puja Vidhi</a>
+              <a href="https://www.youtube.com/watch?v=ramkatha" target="_blank">Ram Katha & Pathan</a>
+              <a href="https://www.youtube.com/watch?v=rammantra" target="_blank">Ram Mantras & Hanuman Chalisa</a>
+              <a href="https://www.youtube.com/watch?v=ramfood" target="_blank">Ram Navami Prasad Recipes</a>
+            </div>
+
+            <h4>🌿 Seasonal & Harvest Festivals</h4>
+
+            <h5>🌾 Makar Sankranti - Harvest Festival</h5>
+            <p><strong>History:</strong> Ancient festival celebrating sun's transition to Capricorn. Marks harvest season and beginning of auspicious period.</p>
+            <p><strong>Significance:</strong> Gratitude for harvest, sun worship, charity. Different regional celebrations across India.</p>
+            <div class="youtube-links">
+              <a href="https://www.youtube.com/watch?v=sankrantipuja" target="_blank">Makar Sankranti Puja & Daan</a>
+              <a href="https://www.youtube.com/watch?v=pongal" target="_blank">Pongal Celebration & Cooking</a>
+              <a href="https://www.youtube.com/watch?v=kite" target="_blank">International Kite Festival Guide</a>
+              <a href="https://www.youtube.com/watch?v=tilgul" target="_blank">Tilgul Making & Distribution</a>
+            </div>
+
+            <h5>🌸 Vasant Panchami - Goddess of Knowledge</h5>
+            <p><strong>History:</strong> Celebrates Goddess Saraswati, deity of knowledge, music, arts. Also marks beginning of spring season.</p>
+            <p><strong>Significance:</strong> Education, wisdom, creativity. Students worship for academic success and artistic inspiration.</p>
+            <div class="youtube-links">
+              <a href="https://www.youtube.com/watch?v=saraswatipuja" target="_blank">Saraswati Puja Complete Vidhi</a>
+              <a href="https://www.youtube.com/watch?v=pustak" target="_blank">Pustak Puja for Students</a>
+              <a href="https://www.youtube.com/watch?v=saraswatimantra" target="_blank">Saraswati Mantras & Stotrams</a>
+              <a href="https://www.youtube.com/watch?v=basant" target="_blank">Basant Raga & Music</a>
+            </div>
+
+            <h5>🌙 Karva Chauth - Married Women's Fast</h5>
+            <p><strong>History:</strong> Ancient tradition where wives fast for husband's long life. Originates from Vedic times and mentioned in Mahabharata.</p>
+            <p><strong>Significance:</strong> Marital bliss, husband's longevity, family prosperity. Moon worship and breaking fast with husband's help.</p>
+            <div class="youtube-links">
+              <a href="https://www.youtube.com/watch?v=karvachauth" target="_blank">Complete Karva Chauth Puja Vidhi</a>
+              <a href="https://www.youtube.com/watch?v=karvastory" target="_blank">Karva Chauth Vrat Katha</a>
+              <a href="https://www.youtube.com/watch?v=karvamehndi" target="_blank">Karva Chauth Mehndi Designs</a>
+              <a href="https://www.youtube.com/watch?v=karvasargi" target="_blank">Karva Chauth Sargi & Food</a>
+            </div>
+
+            <h4>🔥 Regional & Special Festivals</h4>
+
+            <h5>🎭 Durga Puja - Bengal's Grand Festival</h5>
+            <p><strong>History:</strong> Celebrates Goddess Durga's victory over Mahishasura. Five-day festival with elaborate pandals and cultural programs.</p>
+            <p><strong>Significance:</strong> Divine feminine power, cultural celebration, community bonding. Most important festival in Bengal.</p>
+            <div class="youtube-links">
+              <a href="https://www.youtube.com/watch?v=durgapuja" target="_blank">Complete Durga Puja Vidhi</a>
+              <a href="https://www.youtube.com/watch?v=durgamantra" target="_blank">Durga Mantras & Chandi Path</a>
+              <a href="https://www.youtube.com/watch?v=durgapandal" target="_blank">Durga Puja Pandal Decoration</a>
+              <a href="https://www.youtube.com/watch?v=durgabhog" target="_blank">Durga Puja Bhog Recipes</a>
+            </div>
+
+            <h5>🪔 Guru Purnima - Spiritual Teachers</h5>
+            <p><strong>History:</strong> Celebrates spiritual teachers and gurus. Birthday of Ved Vyasa, who compiled Mahabharata and Puranas.</p>
+            <p><strong>Significance:</strong> Gratitude to teachers, spiritual guidance, knowledge transmission. Disciples honor their gurus.</p>
+            <div class="youtube-links">
+              <a href="https://www.youtube.com/watch?v=gurupurnima" target="_blank">Guru Purnima Puja Vidhi</a>
+              <a href="https://www.youtube.com/watch?v=gurupaduka" target="_blank">Guru Paduka Puja</a>
+              <a href="https://www.youtube.com/watch?v=gurumantra" target="_blank">Guru Mantras & Stotrams</a>
+              <a href="https://www.youtube.com/watch?v=gurudakshina" target="_blank">Guru Dakshina Traditions</a>
+            </div>
+
+            <h5>🌞 Chhath Puja - Sun Worship</h5>
+            <p><strong>History:</strong> Ancient Vedic tradition of sun worship. Particularly important in Bihar, Jharkhand, and Uttar Pradesh.</p>
+            <p><strong>Significance:</strong> Sun worship, gratitude for life, health benefits. Rigorous fasting and water offerings to setting/rising sun.</p>
+            <div class="youtube-links">
+              <a href="https://www.youtube.com/watch?v=chathpuja" target="_blank">Complete Chhath Puja Vidhi</a>
+              <a href="https://www.youtube.com/watch?v=chatharghya" target="_blank">Chhath Arghya to Sun God</a>
+              <a href="https://www.youtube.com/watch?v=chathfasting" target="_blank">Chhath Fasting Rules & Benefits</a>
+              <a href="https://www.youtube.com/watch?v=chathprasad" target="_blank">Chhath Prasad Recipes</a>
+            </div>
+
+            <h4>📚 Festival Resources</h4>
+            <ul>
+              <li><strong>Calendar:</strong> Hindu Panchang for accurate festival dates</li>
+              <li><strong>Books:</strong> "Festivals of India" by various authors</li>
+              <li><strong>Apps:</strong> Hindu Calendar & Festival Reminder Apps</li>
+              <li><strong>Community:</strong> Local temples and cultural organizations</li>
+              <li><strong>Shopping:</strong> Puja items, festive clothes, decorations</li>
+            </ul>
+
+            <h4>🎯 Festival Benefits</h4>
+            <ul>
+              <li><strong>Cultural Heritage:</strong> Preserves ancient traditions and values</li>
+              <li><strong>Family Bonding:</strong> Brings families together in celebration</li>
+              <li><strong>Spiritual Growth:</strong> Enhances devotion and spiritual connection</li>
+              <li><strong>Community Unity:</strong> Strengthens social bonds and harmony</li>
+              <li><strong>Economic Activity:</strong> Supports local artisans and businesses</li>
+              <li><strong>Environmental Awareness:</strong> Many festivals honor nature and seasons</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="playlist-embed" id="playlistSection">
+      <div class="playlist-header">
+        <h3>Shakira Best 4K — Dance, Energy & Live Performances</h3>
+        <a href="https://youtube.com/playlist?list=PLl1nGeQ1UIbw0lAfx8bVlPcF61i_jV5Ec" target="_blank" rel="noopener"
+          class="playlist-link">Open on YouTube →</a>
+      <div class="embed-wrap">
+        <iframe src="https://www.youtube.com/embed/videoseries?list=PLl1nGeQ1UIbw0lAfx8bVlPcF61i_jV5Ec"
+          title="Shakira 4K Playlist"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <section class="video-grid-section">
+      <h3 class="video-grid-title">Videos</h3>
+      <div class="video-grid" id="videoGrid" aria-live="polite">
+        <!-- Populated by app.js -->
+      </div>
+    </section>
+
+    <section class="data-table-section">
+      <h3>All Videos — Sortable</h3>
+      <div class="table-wrap">
+        <table class="data-table" id="dataTable">
+          <thead>
+            <tr>
+              <th data-sort="title">Title</th>
+              <th data-sort="artist">Artist/Category</th>
+              <th data-sort="date">Date</th>
+              <th data-sort="duration">Duration</th>
+              <th data-sort="views">Views</th>
+              <th>Link</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+    <div class="modal-backdrop" data-close></div>
+    <div class="modal-content">
+      <button class="modal-close" data-close aria-label="Close">×</button>
+      <div class="modal-embed-wrap">
+        <iframe id="modalEmbed" title="Video player"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen></iframe>
+      </div>
+      <div class="modal-info">
+        <h2 id="modalTitle"></h2>
+        <div class="modal-meta" id="modalMeta"></div>
+        <p class="modal-desc" id="modalDesc"></p>
+        <a id="modalYt" href="#" target="_blank" rel="noopener" class="yt-link">Watch on YouTube →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="chat-toggle" id="chatToggle" title="AI Assistant">💬</div>
+  <div class="chat-panel" id="chatPanel" hidden>
+    <div class="chat-header">
+      <h4>AI Assistant</h4>
+      <button class="chat-close" id="chatClose" aria-label="Close">×</button>
+    </div>
+    <div class="chat-messages" id="chatMessages"></div>
+    <div class="chat-input-wrap">
+      <input type="text" id="chatInput" placeholder="Ask about videos, get recommendations..." autocomplete="off">
+      <button type="button" id="chatSend">Send</button>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+  <script src="chat.js"></script>
+  <script>
+    // Favs Playlist Logic
+    document.addEventListener('DOMContentLoaded', () => {
+      const favVideoPlayer = document.getElementById('fav-video-player');
+      const playlistItems = document.querySelectorAll('.playlist-item');
+
+      if (favVideoPlayer && playlistItems.length > 0) {
+        let currentVideoIndex = 0;
+
+        const loadVideo = (index) => {
+          playlistItems.forEach(item => item.classList.remove('active'));
+          playlistItems[index].classList.add('active');
+
+          const videoSrc = encodeURI(playlistItems[index].getAttribute('data-src'));
+          favVideoPlayer.src = videoSrc;
+          favVideoPlayer.load();
+          favVideoPlayer.play().catch(e => console.log('Autoplay prevented:', e));
+        };
+
+        playlistItems.forEach((item, index) => {
+          item.addEventListener('click', () => {
+            currentVideoIndex = index;
+            loadVideo(currentVideoIndex);
+          });
+        });
+
+        favVideoPlayer.addEventListener('ended', () => {
+          currentVideoIndex++;
+          if (currentVideoIndex >= playlistItems.length) {
+            currentVideoIndex = 0;
+          }
+          loadVideo(currentVideoIndex);
+        });
+      }
+    });
+  </script>
+
+  <section id="northindiantemples" class="section">
+    <h2 class="section-title">🏛️ North Indian Temple Architecture - Nagara Style</h2>
+    <div class="equipment-grid">
+      <div class="tips-box">
+        <h3>🌟 Nagara Style (Tower Temples)</h3>
+        <p>Characterized by curved shikhara towers and intricate stone carvings. Found primarily in North India with influences from Rajput, Mughal, and colonial periods.</p>
+        
+        <div class="equipment-list">
+          <h4>🌟 Kashi Vishwanath Temple - Varanasi</h4>
+          <div class="youtube-links">
+            <a href="https://www.youtube.com/watch?v=kashi001" target="_blank">Kashi Vishwanath Complete Temple Tour</a>
+            <a href="https://www.youtube.com/watch?v=kashi002" target="_blank">History and Mythology of Kashi</a>
+            <a href="https://www.youtube.com/watch?v=kashi003" target="_blank">Temple Architecture and Design</a>
+            <a href="https://www.youtube.com/watch?v=kashi004" target="_blank">Ganga Aarti and Rituals</a>
+            <a href="https://www.youtube.com/watch?v=kashi005" target="_blank">Temple Darshan Process</a>
+            <a href="https://www.youtube.com/watch?v=kashi006" target="_blank">Spiritual Significance</a>
+            <a href="https://www.youtube.com/watch?v=kashi007" target="_blank">Temple Renovation History</a>
+            <a href="https://www.youtube.com/watch?v=kashi008" target="_blank">Local Culture Around Temple</a>
+            <a href="https://www.youtube.com/watch?v=kashi009" target="_blank">Temple Festivals</a>
+            <a href="https://www.youtube.com/watch?v=kashi010" target="_blank">Prasad and Food Offerings</a>
+            <a href="https://www.youtube.com/watch?v=kashi011" target="_blank">Temple Management</a>
+            <a href="https://www.youtube.com/watch?v=kashi012" target="_blank">Visitor Guidelines</a>
+            <a href="https://www.youtube.com/watch?v=kashi013" target="_blank">Temple Photography</a>
+            <a href="https://www.youtube.com/watch?v=kashi014" target="_blank">Nearby Temples in Varanasi</a>
+            <a href="https://www.youtube.com/watch?v=kashi015" target="_blank">Best Time to Visit</a>
+          </div>
+
+          <h4>🌸 Vaishno Devi Temple - Jammu</h4>
+          <div class="youtube-links">
+            <a href="https://www.youtube.com/watch?v=vaishno001" target="_blank">Vaishno Devi Complete Pilgrimage Guide</a>
+            <a href="https://www.youtube.com/watch?v=vaishno002" target="_blank">Trekking Routes and Options</a>
+            <a href="https://www.youtube.com/watch?v=vaishno003" target="_blank">Temple History and Legends</a>
+            <a href="https://www.youtube.com/watch?v=vaishno004" target="_blank">Cave Temple Architecture</a>
+            <a href="https://www.youtube.com/watch?v=vaishno005" target="_blank">Helicopter Service Guide</a>
+            <a href="https://www.youtube.com/watch?v=vaishno006" target="_blank">Pilgrimage Facilities</a>
+            <a href="https://www.youtube.com/watch?v=vaishno007" target="_blank">Aarti and Rituals</a>
+            <a href="https://www.youtube.com/watch?v=vaishno008" target="_blank">Spiritual Experience</a>
+            <a href="https://www.youtube.com/watch?v=vaishno009" target="_blank">Pilgrimage Preparation</a>
+            <a href="https://www.youtube.com/watch?v=vaishno010" target="_blank">Accommodation Options</a>
+            <a href="https://www.youtube.com/watch?v=vaishno011" target="_blank">Local Culture and Traditions</a>
+            <a href="https://www.youtube.com/watch?v=vaishno012" target="_blank">Temple Management System</a>
+            <a href="https://www.youtube.com/watch?v=vaishno013" target="_blank">Nearby Attractions</a>
+            <a href="https://www.youtube.com/watch?v=vaishno014" target="_blank">Pilgrimage Tips</a>
+            <a href="https://www.youtube.com/watch?v=vaishno015" target="_blank">Festival Celebrations</a>
+          </div>
+
+          <h4>🏰 Golden Temple - Amritsar</h4>
+          <div class="youtube-links">
+            <a href="https://www.youtube.com/watch?v=golden001" target="_blank">Golden Temple Complete Virtual Tour</a>
+            <a href="https://www.youtube.com/watch?v=golden002" target="_blank">Sikh Architecture and Design</a>
+            <a href="https://www.youtube.com/watch?v=golden003" target="_blank">Temple History and Foundation</a>
+            <a href="https://www.youtube.com/watch?v=golden004" target="_blank">Harmandir Sahib Construction</a>
+            <a href="https://www.youtube.com/watch?v=golden005" target="_blank">Marble and Gold Work</a>
+            <a href="https://www.youtube.com/watch?v=golden006" target="_blank">Sacred Pool - Amrit Sarovar</a>
+            <a href="https://www.youtube.com/watch?v=golden007" target="_blank">Langar Community Kitchen</a>
+            <a href="https://www.youtube.com/watch?v=golden008" target="_blank">Kirtan and Spiritual Music</a>
+            <a href="https://www.youtube.com/watch?v=golden009" target="_blank">Temple Rituals and Ceremonies</a>
+            <a href="https://www.youtube.com/watch?v=golden010" target="_blank">Visitor Experience Guide</a>
+            <a href="https://www.youtube.com/watch?v=golden011" target="_blank">Temple Management</a>
+            <a href="https://www.youtube.com/watch?v=golden012" target="_blank">Cultural Significance</a>
+            <a href="https://www.youtube.com/watch?v=golden013" target="_blank">Photography Guidelines</a>
+            <a href="https://www.youtube.com/watch?v=golden014" target="_blank">Nearby Historical Sites</a>
+            <a href="https://www.youtube.com/watch?v=golden015" target="_blank">Best Visiting Times</a>
+          </div>
+
+          <h4>🏔️ North Indian Temple Architecture Features</h4>
+          <ul>
+            <li><strong>Curved Shikhara:</strong> Beehive-shaped tower with upward curvature</li>
+            <li><strong>Amalaka:</strong> Ribbed stone disc at the top of the shikhara</li>
+            <li><strong>Kalasha:</strong> Finial or pot-shaped element crowning the temple</li>
+            <li><strong>Mandapa:</strong> Assembly hall for devotees and ceremonies</li>
+            <li><strong>Garbhagriha:</strong> Inner sanctum housing the main deity</li>
+            <li><strong>Ornate Carvings:</strong> Intricate stone work depicting deities and mythological scenes</li>
+            <li><strong>Elevated Platform:</strong> Temple built on a raised foundation</li>
+            <li><strong>Regional Variations:</strong> Different styles across Rajasthan, Uttar Pradesh, and Punjab</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</body>
+
+</html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jam Room — Shuffle.dev Premium Integration</title>
+  <meta name="description" content="World-class audio production platform with Shuffle.dev premium template integration, featuring the best in layout and graphic design consistency.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="premium-design-system.css">
+  <link rel="stylesheet" href="shuffle-integration.css">
+  <style>
+    /* Premium Shuffle Integration Styles */
+    body {
+      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2a 50%, #2a2a2a 100%);
+      color: var(--shuffle-text-light);
+      font-family: var(--font-primary);
+      overflow-x: hidden;
+    }
+    
+    .premium-gradient-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.05) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    
+    .premium-content-wrapper {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .shuffle-feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: var(--space-3xl);
+      margin-top: var(--space-4xl);
+    }
+    
+    .shuffle-stats {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-3xl);
+      margin: var(--space-3xl) 0;
+    }
+    
+    .shuffle-stat-item {
+      text-align: center;
+      padding: var(--space-xl);
+      background: var(--shuffle-card-bg);
+      border: 1px solid var(--shuffle-border-light);
+      border-radius: var(--radius-2xl);
+      min-width: 150px;
+      transition: all var(--shuffle-transition-base);
+    }
+    
+    .shuffle-stat-item:hover {
+      transform: translateY(-4px);
+      border-color: var(--shuffle-primary);
+      box-shadow: var(--shuffle-shadow-lg);
+    }
+    
+    .shuffle-stat-number {
+      font-family: var(--font-display);
+      font-size: var(--text-4xl);
+      font-weight: 800;
+      color: var(--shuffle-primary);
+      margin-bottom: var(--space-sm);
+    }
+    
+    .shuffle-stat-label {
+      font-size: var(--text-base);
+      color: var(--shuffle-text-secondary);
+    }
+    
+    .hybrid-section {
+      background: linear-gradient(135deg, 
+        rgba(26, 32, 46, 0.95) 0%, 
+        rgba(10, 10, 10, 0.95) 50%, 
+        rgba(26, 32, 46, 0.95) 100%);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-top: 1px solid var(--shuffle-border-light);
+      border-bottom: 1px solid var(--shuffle-border-light);
+    }
+  </style>
+</head>
+<body>
+  <div class="premium-gradient-bg"></div>
+  
+  <div class="premium-content-wrapper">
+    <!-- Shuffle.dev Premium Navigation -->
+    <nav class="shuffle-nav">
+      <div class="premium-container">
+        <div class="shuffle-nav-brand">
+          <img src="ek-lamha-logo.png" alt="Jam Room" class="shuffle-nav-logo">
+          <span class="shuffle-text-primary font-bold">Jam Room</span>
+        </div>
+        <ul class="shuffle-nav-links">
+          <li><a href="#equipment" class="shuffle-nav-link">Equipment</a></li>
+          <li><a href="#shuffle-templates" class="shuffle-nav-link">Shuffle Templates</a></li>
+          <li><a href="#tutorials" class="shuffle-nav-link">Tutorials</a></li>
+          <li><a href="#resources" class="shuffle-nav-link">Resources</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Premium Hero Section -->
+    <header class="shuffle-hero">
+      <div class="shuffle-hero-content">
+        <h1 class="shuffle-hero-title">Jam Room</h1>
+        <p class="shuffle-hero-subtitle">Shuffle.dev Premium Integration • World-Class Design</p>
+        
+        <div class="shuffle-stats">
+          <div class="shuffle-stat-item">
+            <div class="shuffle-stat-number">200+</div>
+            <div class="shuffle-stat-label">Premium Templates</div>
+          </div>
+          <div class="shuffle-stat-item">
+            <div class="shuffle-stat-number">13,400+</div>
+            <div class="shuffle-stat-label">UI Components</div>
+          </div>
+          <div class="shuffle-stat-item">
+            <div class="shuffle-stat-number">AI-Powered</div>
+            <div class="shuffle-stat-label">Design System</div>
+          </div>
+        </div>
+        
+        <div style="margin-top: var(--space-4xl);">
+          <a href="#shuffle-templates" class="shuffle-btn shuffle-btn-primary">Explore Shuffle Templates</a>
+          <a href="#premium-layout" class="shuffle-btn shuffle-btn-secondary">View Premium Design</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Shuffle.dev Templates Section -->
+    <section id="shuffle-templates" class="shuffle-section shuffle-section-dark">
+      <div class="premium-container">
+        <h2 class="shuffle-section-title">🎨 Shuffle.dev Premium Templates</h2>
+        
+        <div class="shuffle-feature-grid">
+          <div class="shuffle-card">
+            <h3 class="shuffle-text-primary">Landing Pages</h3>
+            <p class="shuffle-text-secondary">Stunning landing page templates with AI-powered design optimization and conversion-focused layouts.</p>
+            <div style="margin-top: var(--space-xl);">
+              <a href="https://shuffle.dev/preview/82a714eb53269493ca71784f5e48734c12a6f183?page=index.html&screen=top&iframe=1" target="_blank" rel="noopener" class="shuffle-btn shuffle-btn-secondary">View Landing Templates</a>
+            </div>
+          </div>
+          
+          <div class="shuffle-card">
+            <h3 class="shuffle-text-primary">Dashboard Templates</h3>
+            <p class="shuffle-text-secondary">Professional dashboard layouts with data visualization, analytics, and admin panel designs.</p>
+            <div style="margin-top: var(--space-xl);">
+              <a href="https://shuffle.dev/preview/4fc34d72add50bc73243f43686234115b3b2d651?page=index.html&screen=top&iframe=1" target="_blank" rel="noopener" class="shuffle-btn shuffle-btn-secondary">View Dashboard Templates</a>
+            </div>
+          </div>
+          
+          <div class="shuffle-card">
+            <h3 class="shuffle-text-primary">E-commerce Templates</h3>
+            <p class="shuffle-text-secondary">Complete online store templates with product catalogs, shopping carts, and checkout flows.</p>
+            <div style="margin-top: var(--space-xl);">
+              <a href="https://shuffle.dev/preview/1a4b4a666b662b883ffc6f5a0a7e11a295bd6f8f?page=index.html&screen=top&iframe=1" target="_blank" rel="noopener" class="shuffle-btn shuffle-btn-secondary">View E-commerce Templates</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hybrid Premium Section -->
+    <section id="hybrid-design" class="hybrid-section">
+      <div class="premium-container">
+        <h2 class="premium-section-title">🌟 Premium + Shuffle Hybrid Design</h2>
+        
+        <div class="shuffle-table-container">
+          <table class="shuffle-table">
+            <thead>
+              <tr>
+                <th>Design System</th>
+                <th>Color Palette</th>
+                <th>Typography</th>
+                <th>Components</th>
+                <th>Features</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Jam Room Premium</strong></td>
+                <td><span class="premium-text-gold">Gold Theme</span></td>
+                <td><span class="premium-text-gold">Premium Fonts</span></td>
+                <td><span class="premium-text-gold">Custom Components</span></td>
+                <td><span class="premium-text-gold">Glass Morphism</span></td>
+              </tr>
+              <tr>
+                <td><strong>Shuffle.dev</strong></td>
+                <td><span class="shuffle-text-primary">Modern Blue</span></td>
+                <td><span class="shuffle-text-primary">Inter & Space Grotesk</span></td>
+                <td><span class="shuffle-text-primary">13,400+ Components</span></td>
+                <td><span class="shuffle-text-primary">AI-Powered</span></td>
+              </tr>
+              <tr>
+                <td><strong>Hybrid Integration</strong></td>
+                <td><span class="shuffle-text-primary">Best of Both</span></td>
+                <td><span class="shuffle-text-primary">Mixed Typography</span></td>
+                <td><span class="shuffle-text-primary">Combined Libraries</span></td>
+                <td><span class="shuffle-text-primary">World-Class UX</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <div style="text-align: center; margin-top: var(--space-3xl);">
+          <a href="#integration-benefits" class="shuffle-btn shuffle-btn-primary">🚀 Explore Hybrid Benefits</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Integration Benefits Section -->
+    <section id="integration-benefits" class="shuffle-section shuffle-section-light">
+      <div class="premium-container">
+        <h2 class="shuffle-section-title">🎯 Integration Benefits</h2>
+        
+        <div class="shuffle-feature-grid">
+          <div class="shuffle-card">
+            <h3 class="shuffle-text-primary">🎨 Dual Design Systems</h3>
+            <p class="shuffle-text-secondary">Combine Jam Room's premium gold theme with Shuffle.dev's modern blue palette for ultimate flexibility.</p>
+          </div>
+          
+          <div class="shuffle-card">
+            <h3 class="shuffle-text-primary">🔧 Massive Component Library</h3>
+            <p class="shuffle-text-secondary">Access 13,400+ Shuffle components plus custom Jam Room premium components.</p>
+          </div>
+          
+          <div class="shuffle-card">
+            <h3 class="shuffle-text-primary">🤖 AI-Powered Design</h3>
+            <p class="shuffle-text-secondary">Leverage AI design assistance from both systems for rapid prototyping.</p>
+          </div>
+          
+          <div class="shuffle-card">
+            <h3 class="shuffle-text-primary">📱 Responsive Excellence</h3>
+            <p class="shuffle-text-secondary">Mobile-first design with perfect adaptation across all devices and screen sizes.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Premium Templates Showcase -->
+    <section id="template-showcase" class="shuffle-section shuffle-section-dark">
+      <div class="premium-container">
+        <h2 class="shuffle-section-title">🌟 Premium Template Showcase</h2>
+        
+        <div class="shuffle-grid shuffle-grid-3">
+          <div class="shuffle-card">
+            <h3 class="shuffle-text-primary">🎨 Creative Agency</h3>
+            <p class="shuffle-text-secondary">Modern agency template with portfolio, services, and team sections.</p>
+            <div style="margin-top: var(--space-xl);">
+              <a href="https://shuffle.dev/new?template=agency" target="_blank" rel="noopener" class="shuffle-btn shuffle-btn-primary">Launch Template</a>
+            </div>
+          </div>
+          
+          <div class="shuffle-card">
+            <h3 class="shuffle-text-primary">🚀 SaaS Platform</h3>
+            <p class="shuffle-text-secondary">Complete SaaS template with pricing, features, and authentication flows.</p>
+            <div style="margin-top: var(--space-xl);">
+              <a href="https://shuffle.dev/new?template=saas" target="_blank" rel="noopener" class="shuffle-btn shuffle-btn-primary">Launch Template</a>
+            </div>
+          </div>
+          
+          <div class="shuffle-card">
+            <h3 class="shuffle-text-primary">📱 Mobile App</h3>
+            <p class="shuffle-text-secondary">Mobile-first app template with onboarding, dashboard, and settings.</p>
+            <div style="margin-top: var(--space-xl);">
+              <a href="https://shuffle.dev/new?template=mobile" target="_blank" rel="noopener" class="shuffle-btn shuffle-btn-primary">Launch Template</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Premium Footer -->
+    <footer class="shuffle-section shuffle-section-dark">
+      <div class="premium-container">
+        <div style="text-align: center; padding: var(--space-4xl) 0;">
+          <div class="shuffle-grid shuffle-grid-4" style="gap: var(--space-lg); margin-bottom: var(--space-3xl);">
+            <a href="#equipment" class="shuffle-btn shuffle-btn-secondary">Equipment</a>
+            <a href="#shuffle-templates" class="shuffle-btn shuffle-btn-secondary">Shuffle Templates</a>
+            <a href="#tutorials" class="shuffle-btn shuffle-btn-secondary">Tutorials</a>
+            <a href="#resources" class="shuffle-btn shuffle-btn-secondary">Resources</a>
+          </div>
+          
+          <p class="shuffle-text-secondary" style="margin-bottom: var(--space-md);">&copy; 2024 Jam Room • Shuffle.dev Integration</p>
+          <p class="shuffle-text-sm shuffle-text-secondary">World-Class Premium Design Platform</p>
+          <p class="shuffle-text-xs shuffle-text-secondary">Powered by Shuffle.dev AI + Premium Design Excellence</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

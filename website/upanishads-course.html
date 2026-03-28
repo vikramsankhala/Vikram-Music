@@ -1,0 +1,1642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Introduction to Upanishads – The Essence of Vedic Philosophy</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Cinzel:wght@400;500;600&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0d0a06;
+    --bg2: #13100a;
+    --bg3: #1a1610;
+    --gold: #c9a24a;
+    --gold2: #e8c97a;
+    --gold3: #f5e4b0;
+    --amber: #d4813a;
+    --rust: #8b3a1a;
+    --cream: #f0e8d5;
+    --muted: #a89070;
+    --text: #e8dcc8;
+    --text2: #c8b898;
+    --border: rgba(201,162,74,0.2);
+    --glow: rgba(201,162,74,0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    line-height: 1.8;
+    overflow-x: hidden;
+  }
+
+  /* Noise texture overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
+
+  /* ─── NAVIGATION ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 500;
+    background: rgba(13,10,6,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+
+  .nav-brand {
+    font-family: 'Cinzel', serif;
+    color: var(--gold);
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--gold2); }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 6rem 2rem 4rem;
+  }
+
+  .hero-mandala {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.06;
+    pointer-events: none;
+  }
+
+  .hero-mandala svg {
+    width: min(90vw, 900px);
+    height: min(90vw, 900px);
+    animation: slowRotate 120s linear infinite;
+  }
+
+  @keyframes slowRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .hero-rays {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 60%, rgba(201,162,74,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-content {
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    animation: fadeUp 1.2s ease both;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    animation: fadeUp 1.2s 0.1s ease both;
+  }
+
+  .hero-om {
+    font-size: 4rem;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    animation: fadeUp 1.2s 0.2s ease both;
+    display: block;
+    text-shadow: 0 0 40px rgba(201,162,74,0.4);
+  }
+
+  .hero-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 400;
+    color: var(--cream);
+    line-height: 1.15;
+    margin-bottom: 0.5rem;
+    animation: fadeUp 1.2s 0.3s ease both;
+  }
+
+  .hero-subtitle {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1rem, 2vw, 1.4rem);
+    font-weight: 400;
+    color: var(--gold2);
+    margin-bottom: 2rem;
+    letter-spacing: 0.08em;
+    animation: fadeUp 1.2s 0.4s ease both;
+  }
+
+  .hero-divider {
+    width: 120px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 1.5rem auto;
+    animation: fadeUp 1.2s 0.5s ease both;
+  }
+
+  .hero-desc {
+    font-size: 1.15rem;
+    color: var(--text2);
+    max-width: 680px;
+    margin: 0 auto 2.5rem;
+    font-style: italic;
+    animation: fadeUp 1.2s 0.6s ease both;
+  }
+
+  .hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-bottom: 3rem;
+    animation: fadeUp 1.2s 0.7s ease both;
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-num {
+    display: block;
+    font-family: 'Cinzel', serif;
+    font-size: 1.8rem;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.78rem;
+    color: var(--muted);
+    font-family: 'Cinzel', serif;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 2.5rem;
+    background: linear-gradient(135deg, var(--gold), var(--amber));
+    color: var(--bg);
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    animation: fadeUp 1.2s 0.8s ease both;
+    clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+  }
+
+  .hero-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(201,162,74,0.3);
+  }
+
+  /* ─── SECTION COMMON ─── */
+  section {
+    padding: 6rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-full {
+    max-width: none;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .section-tag {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 1rem;
+  }
+
+  .section-intro {
+    color: var(--text2);
+    font-size: 1.05rem;
+    max-width: 650px;
+    margin: 0 auto;
+    font-style: italic;
+  }
+
+  /* ─── WHAT ARE UPANISHADS ─── */
+  .intro-band {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 5rem 2rem;
+  }
+
+  .intro-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  .intro-text h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--cream);
+    margin-bottom: 1.5rem;
+  }
+
+  .intro-text p {
+    color: var(--text2);
+    margin-bottom: 1.2rem;
+  }
+
+  .intro-text .highlight {
+    color: var(--gold2);
+    font-style: italic;
+  }
+
+  .quote-block {
+    background: linear-gradient(135deg, rgba(201,162,74,0.06), rgba(201,162,74,0.02));
+    border-left: 3px solid var(--gold);
+    padding: 2rem 2rem 2rem 2.5rem;
+    position: relative;
+  }
+
+  .quote-block::before {
+    content: '\201C';
+    font-family: 'IM Fell English', serif;
+    font-size: 6rem;
+    color: var(--gold);
+    opacity: 0.2;
+    position: absolute;
+    top: -1rem;
+    left: 1rem;
+    line-height: 1;
+  }
+
+  .quote-block blockquote {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 1.25rem;
+    color: var(--cream);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .quote-src {
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+  }
+
+  /* ─── TIMELINE ─── */
+  .timeline-wrap {
+    position: relative;
+    padding: 2rem 0;
+  }
+
+  .timeline-line {
+    position: absolute;
+    left: 50%;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(180deg, transparent, var(--gold), var(--gold), transparent);
+    transform: translateX(-50%);
+    opacity: 0.3;
+  }
+
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 1fr 60px 1fr;
+    gap: 0;
+    margin-bottom: 3rem;
+    align-items: center;
+  }
+
+  .timeline-item:nth-child(odd) .t-content { grid-column: 1; text-align: right; padding-right: 2.5rem; }
+  .timeline-item:nth-child(odd) .t-empty { grid-column: 3; }
+  .timeline-item:nth-child(even) .t-content { grid-column: 3; text-align: left; padding-left: 2.5rem; }
+  .timeline-item:nth-child(even) .t-empty { grid-column: 1; }
+
+  .t-dot {
+    grid-column: 2;
+    width: 16px;
+    height: 16px;
+    background: var(--gold);
+    border-radius: 50%;
+    margin: 0 auto;
+    box-shadow: 0 0 12px rgba(201,162,74,0.4);
+    position: relative;
+    z-index: 2;
+  }
+
+  .t-content {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+  }
+
+  .t-era {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+
+  .t-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    color: var(--cream);
+    margin-bottom: 0.5rem;
+  }
+
+  .t-body {
+    color: var(--text2);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* ─── PLAYLIST / CURRICULUM ─── */
+  .curriculum-bg {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .curriculum-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 6rem 2rem;
+  }
+
+  .module {
+    margin-bottom: 2rem;
+    border: 1px solid var(--border);
+    background: var(--bg3);
+    overflow: hidden;
+  }
+
+  .module-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem 2rem;
+    cursor: pointer;
+    transition: background 0.3s;
+    position: relative;
+  }
+
+  .module-header:hover { background: rgba(201,162,74,0.04); }
+
+  .module-num {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    min-width: 40px;
+  }
+
+  .module-title {
+    flex: 1;
+    font-family: 'Cinzel', serif;
+    font-size: 1.05rem;
+    color: var(--cream);
+    font-weight: 400;
+  }
+
+  .module-count {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-right: 1rem;
+  }
+
+  .module-arrow {
+    color: var(--gold);
+    transition: transform 0.3s;
+    font-size: 0.8rem;
+  }
+
+  .module.open .module-arrow { transform: rotate(180deg); }
+
+  .module-lessons {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+
+  .module.open .module-lessons { max-height: 600px; }
+
+  .lesson {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.9rem 2rem 0.9rem 5rem;
+    border-top: 1px solid rgba(201,162,74,0.08);
+    transition: background 0.2s;
+    cursor: pointer;
+  }
+
+  .lesson:hover { background: rgba(201,162,74,0.04); }
+
+  .lesson-icon {
+    color: var(--gold);
+    font-size: 0.85rem;
+    opacity: 0.6;
+    min-width: 20px;
+  }
+
+  .lesson-title {
+    flex: 1;
+    color: var(--text2);
+    font-size: 0.95rem;
+  }
+
+  .lesson-dur {
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+
+  .lesson-free {
+    font-family: 'Cinzel', serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    padding: 0.1rem 0.4rem;
+    text-transform: uppercase;
+    opacity: 0.7;
+  }
+
+  /* ─── UPANISHAD CARDS ─── */
+  .upanishads-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .u-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .u-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .u-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.4); }
+  .u-card:hover::before { opacity: 1; }
+
+  .u-num {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+  }
+
+  .u-name {
+    font-family: 'Cinzel', serif;
+    font-size: 1.2rem;
+    color: var(--cream);
+    margin-bottom: 0.3rem;
+  }
+
+  .u-sanskrit {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+
+  .u-desc {
+    color: var(--text2);
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+
+  .u-tag {
+    display: inline-block;
+    margin-top: 1rem;
+    font-family: 'Cinzel', serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid rgba(201,162,74,0.3);
+    padding: 0.2rem 0.6rem;
+  }
+
+  /* ─── CORE CONCEPTS ─── */
+  .concepts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .concept-cell {
+    background: var(--bg);
+    padding: 2.5rem 2rem;
+    transition: background 0.3s;
+    position: relative;
+  }
+
+  .concept-cell:hover { background: var(--bg2); }
+
+  .concept-sanskrit {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 1.6rem;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  .concept-name {
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--cream);
+    margin-bottom: 0.8rem;
+  }
+
+  .concept-def {
+    color: var(--text2);
+    font-size: 0.92rem;
+    line-height: 1.65;
+  }
+
+  /* ─── PHILOSOPHICAL SCHOOLS ─── */
+  .schools-band {
+    background: linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+    border-top: 1px solid var(--border);
+  }
+
+  .schools-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .school-card {
+    padding: 2rem;
+    border-left: 2px solid var(--border);
+    transition: border-color 0.3s;
+  }
+
+  .school-card:hover { border-color: var(--gold); }
+
+  .school-name {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    color: var(--gold2);
+    margin-bottom: 0.3rem;
+  }
+
+  .school-founder {
+    font-size: 0.82rem;
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 0.8rem;
+  }
+
+  .school-desc {
+    color: var(--text2);
+    font-size: 0.92rem;
+    line-height: 1.65;
+  }
+
+  /* ─── INSTRUCTOR ─── */
+  .instructor-section {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 3rem;
+    align-items: start;
+    max-width: 800px;
+    margin: 0 auto;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    padding: 3rem;
+  }
+
+  .instructor-avatar {
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(135deg, rgba(201,162,74,0.2), rgba(201,162,74,0.05));
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    color: var(--gold);
+    opacity: 0.6;
+  }
+
+  .instructor-name {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    color: var(--cream);
+    margin-bottom: 0.3rem;
+  }
+
+  .instructor-title {
+    font-size: 0.9rem;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    font-style: italic;
+  }
+
+  .instructor-bio {
+    color: var(--text2);
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  /* ─── SACRED TEXTS TABLE ─── */
+  .texts-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .texts-table th {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-align: left;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg2);
+  }
+
+  .texts-table td {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid rgba(201,162,74,0.07);
+    color: var(--text2);
+    font-size: 0.92rem;
+    vertical-align: top;
+    line-height: 1.5;
+  }
+
+  .texts-table tr:hover td { background: rgba(201,162,74,0.03); }
+
+  .texts-table td:first-child {
+    font-family: 'Cinzel', serif;
+    color: var(--cream);
+    font-size: 0.92rem;
+  }
+
+  /* ─── QUOTES STRIP ─── */
+  .quotes-strip {
+    background: linear-gradient(135deg, rgba(201,162,74,0.06) 0%, transparent 50%, rgba(201,162,74,0.04) 100%);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 5rem 2rem;
+  }
+
+  .quotes-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+  }
+
+  .q-item {
+    text-align: center;
+  }
+
+  .q-text {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--cream);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .q-src {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  .q-divider {
+    width: 1px;
+    background: var(--border);
+  }
+
+  /* ─── FAQ ─── */
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+    padding: 1.5rem 0;
+  }
+
+  .faq-q {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    color: var(--cream);
+    margin-bottom: 0.8rem;
+    cursor: pointer;
+  }
+
+  .faq-a {
+    color: var(--text2);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    padding-left: 1rem;
+    border-left: 2px solid rgba(201,162,74,0.3);
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--bg2);
+    border-top: 1px solid var(--border);
+    padding: 3rem 2rem;
+    text-align: center;
+  }
+
+  .footer-om {
+    font-size: 2rem;
+    color: var(--gold);
+    opacity: 0.5;
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  .footer-text {
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  /* ─── PROGRESS BAR ─── */
+  .progress-bar {
+    position: fixed;
+    top: 64px;
+    left: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), var(--amber));
+    z-index: 499;
+    transition: width 0.1s linear;
+    width: 0%;
+    box-shadow: 0 0 8px rgba(201,162,74,0.5);
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    .intro-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .timeline-line { left: 20px; }
+    .timeline-item { grid-template-columns: 40px 1fr; }
+    .timeline-item:nth-child(odd) .t-content,
+    .timeline-item:nth-child(even) .t-content { grid-column: 2; text-align: left; padding-left: 1.5rem; padding-right: 0; }
+    .timeline-item:nth-child(odd) .t-empty,
+    .timeline-item:nth-child(even) .t-empty { display: none; }
+    .t-dot { grid-column: 1; }
+    .concepts-grid { grid-template-columns: 1fr; }
+    .schools-grid { grid-template-columns: 1fr; }
+    .quotes-inner { grid-template-columns: 1fr; }
+    .q-divider { display: none; }
+    .instructor-section { grid-template-columns: 1fr; }
+    .instructor-avatar { width: 100px; height: 100px; font-size: 3rem; }
+    .hero-stats { gap: 1.5rem; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- NAVIGATION -->
+<nav>
+  <div class="nav-brand">Upanishads · Vedic Wisdom</div>
+  <ul class="nav-links">
+    <li><a href="#history">History</a></li>
+    <li><a href="#curriculum">Curriculum</a></li>
+    <li><a href="#texts">Texts</a></li>
+    <li><a href="#philosophy">Philosophy</a></li>
+    <li><a href="#concepts">Concepts</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-rays"></div>
+  <div class="hero-mandala">
+    <svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="400" cy="400" r="380" fill="none" stroke="#c9a24a" stroke-width="1"/>
+      <circle cx="400" cy="400" r="300" fill="none" stroke="#c9a24a" stroke-width="0.5"/>
+      <circle cx="400" cy="400" r="220" fill="none" stroke="#c9a24a" stroke-width="1"/>
+      <circle cx="400" cy="400" r="140" fill="none" stroke="#c9a24a" stroke-width="0.5"/>
+      <circle cx="400" cy="400" r="60" fill="none" stroke="#c9a24a" stroke-width="1"/>
+      <!-- Petals outer -->
+      <g stroke="#c9a24a" stroke-width="0.8" fill="none">
+        <ellipse cx="400" cy="120" rx="20" ry="60" transform="rotate(0 400 400)"/>
+        <ellipse cx="400" cy="120" rx="20" ry="60" transform="rotate(30 400 400)"/>
+        <ellipse cx="400" cy="120" rx="20" ry="60" transform="rotate(60 400 400)"/>
+        <ellipse cx="400" cy="120" rx="20" ry="60" transform="rotate(90 400 400)"/>
+        <ellipse cx="400" cy="120" rx="20" ry="60" transform="rotate(120 400 400)"/>
+        <ellipse cx="400" cy="120" rx="20" ry="60" transform="rotate(150 400 400)"/>
+        <ellipse cx="400" cy="120" rx="20" ry="60" transform="rotate(180 400 400)"/>
+        <ellipse cx="400" cy="120" rx="20" ry="60" transform="rotate(210 400 400)"/>
+        <ellipse cx="400" cy="120" rx="20" ry="60" transform="rotate(240 400 400)"/>
+        <ellipse cx="400" cy="120" rx="20" ry="60" transform="rotate(270 400 400)"/>
+        <ellipse cx="400" cy="120" rx="20" ry="60" transform="rotate(300 400 400)"/>
+        <ellipse cx="400" cy="120" rx="20" ry="60" transform="rotate(330 400 400)"/>
+      </g>
+      <!-- Star of 8 -->
+      <g stroke="#c9a24a" stroke-width="0.6" fill="none">
+        <line x1="400" y1="100" x2="400" y2="700" transform="rotate(0 400 400)"/>
+        <line x1="400" y1="100" x2="400" y2="700" transform="rotate(22.5 400 400)"/>
+        <line x1="400" y1="100" x2="400" y2="700" transform="rotate(45 400 400)"/>
+        <line x1="400" y1="100" x2="400" y2="700" transform="rotate(67.5 400 400)"/>
+        <line x1="400" y1="100" x2="400" y2="700" transform="rotate(90 400 400)"/>
+        <line x1="400" y1="100" x2="400" y2="700" transform="rotate(112.5 400 400)"/>
+        <line x1="400" y1="100" x2="400" y2="700" transform="rotate(135 400 400)"/>
+        <line x1="400" y1="100" x2="400" y2="700" transform="rotate(157.5 400 400)"/>
+      </g>
+    </svg>
+  </div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Course-Style Playlist · Vedantic Studies</p>
+    <span class="hero-om">ॐ</span>
+    <h1 class="hero-title">Introduction to Upanishads</h1>
+    <p class="hero-subtitle">The Essence of Vedic Philosophy</p>
+    <div class="hero-divider"></div>
+    <p class="hero-desc">A structured journey into the oldest philosophical tradition known to humanity — exploring the nature of consciousness, the self, and ultimate reality.</p>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-num">108</span><span class="stat-label">Upanishads</span></div>
+      <div class="stat"><span class="stat-num">12</span><span class="stat-label">Modules</span></div>
+      <div class="stat"><span class="stat-num">800<small style="font-size:1rem">BCE</small></span><span class="stat-label">Origins</span></div>
+      <div class="stat"><span class="stat-num">∞</span><span class="stat-label">Depth</span></div>
+    </div>
+    <a href="#curriculum" class="hero-cta">▶ Begin the Course</a>
+  </div>
+</div>
+
+<!-- WHAT ARE THE UPANISHADS -->
+<div class="intro-band" id="history">
+  <div class="intro-grid">
+    <div class="intro-text">
+      <h2>What Are the Upanishads?</h2>
+      <p>The Upanishads are a collection of ancient Sanskrit texts that form the philosophical foundation of Hinduism — and indeed, of much of Indian thought across millennia. They represent the culminating wisdom of the Vedas, composed between approximately <span class="highlight">800–200 BCE</span>, in a period of extraordinary intellectual and spiritual ferment.</p>
+      <p>The word <span class="highlight">Upanishad</span> derives from the Sanskrit: <em>upa</em> (near), <em>ni</em> (down), and <em>shad</em> (to sit) — "sitting down near" a teacher. This etymology captures their essence: intimate dialogues between a <em>guru</em> and disciple, conducted in forest hermitages, aimed at direct transmission of liberating knowledge.</p>
+      <p>Unlike ritual-focused earlier Vedic texts, the Upanishads turn radically inward, asking: <span class="highlight">What is the ultimate nature of reality? Who am I? What persists after death?</span> These texts gave humanity concepts that reverberate to this day — Brahman, Ātman, karma, moksha, and the doctrine of non-duality.</p>
+    </div>
+    <div>
+      <div class="quote-block" style="margin-bottom:2rem">
+        <blockquote>Tat tvam asi — That thou art. The self within you is the same as the universal self.</blockquote>
+        <span class="quote-src">Chandogya Upanishad · 6.8.7</span>
+      </div>
+      <div class="quote-block">
+        <blockquote>Aham Brahmāsmi — I am Brahman. The individual self and the universal consciousness are one.</blockquote>
+        <span class="quote-src">Brihadaranyaka Upanishad · 1.4.10</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HISTORICAL TIMELINE -->
+<section>
+  <div class="section-header">
+    <span class="section-tag">Historical Context</span>
+    <h2 class="section-title">From Vedic Hymns to Philosophical Inquiry</h2>
+    <p class="section-intro">Trace the evolution of Indian thought from the earliest ritual hymns to the sophisticated metaphysics of the Upanishadic age.</p>
+  </div>
+  <div class="timeline-wrap">
+    <div class="timeline-line"></div>
+
+    <div class="timeline-item">
+      <div class="t-content">
+        <div class="t-era">c. 1500–1200 BCE</div>
+        <div class="t-title">The Rigveda</div>
+        <div class="t-body">The oldest of the four Vedas, the Rigveda contains 1,028 hymns to Vedic deities. It marks the beginning of what would become one of the world's most enduring philosophical traditions, rich in cosmological speculation and ritual poetry.</div>
+      </div>
+      <div class="t-dot"></div>
+      <div class="t-empty"></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="t-empty"></div>
+      <div class="t-dot"></div>
+      <div class="t-content">
+        <div class="t-era">c. 1200–900 BCE</div>
+        <div class="t-title">Samhitās & Brāhmaṇas</div>
+        <div class="t-body">The Samhitas (hymn collections of all four Vedas) and the Brahmanas (prose texts explaining ritual procedures) develop an elaborate sacrificial system. Philosophy here is largely embedded within ritual context and priestly authority.</div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="t-content">
+        <div class="t-era">c. 900–600 BCE</div>
+        <div class="t-title">Āraṇyakas — The Forest Texts</div>
+        <div class="t-body">The Aranyakas ("forest books") were composed for those who had retired to the forest in old age. They represent a transitional literature, beginning to internalize and spiritualize the outer rituals, paving the way for the Upanishads.</div>
+      </div>
+      <div class="t-dot"></div>
+      <div class="t-empty"></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="t-empty"></div>
+      <div class="t-dot"></div>
+      <div class="t-content">
+        <div class="t-era">c. 800–400 BCE</div>
+        <div class="t-title">Early Upanishads — The Axial Age</div>
+        <div class="t-body">The principal Upanishads emerge during the Axial Age — the same era as Socrates, Confucius, and the Buddha. The Brihadaranyaka and Chandogya Upanishads, the oldest, introduce Brahman–Ātman identity and the four Mahāvākyas (Great Sayings).</div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="t-content">
+        <div class="t-era">c. 400–200 BCE</div>
+        <div class="t-title">Middle Upanishads</div>
+        <div class="t-body">Texts like the Katha, Mundaka, and Mandukya Upanishads develop more systematic presentations of Ātman, Brahman, and the path to liberation. The Katha introduces the metaphor of the chariot, influential across traditions including the later Bhagavad Gita.</div>
+      </div>
+      <div class="t-dot"></div>
+      <div class="t-empty"></div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="t-empty"></div>
+      <div class="t-dot"></div>
+      <div class="t-content">
+        <div class="t-era">c. 200 BCE – 500 CE</div>
+        <div class="t-title">Later Upanishads & Vedānta Schools</div>
+        <div class="t-body">Later Upanishads multiply to a traditional count of 108. Commentators such as Ādi Śaṅkarācārya (8th c. CE) systematize Upanishadic thought into the Advaita Vedānta school, which remains among the most influential philosophical systems ever developed.</div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="t-content">
+        <div class="t-era">19th–20th Century CE</div>
+        <div class="t-title">Global Discovery</div>
+        <div class="t-body">Arthur Schopenhauer calls the Upanishads "the most rewarding and the most elevating reading which…is possible in the world." Swami Vivekananda brings Vedanta to the West. Aldous Huxley, W.B. Yeats, and T.S. Eliot draw on Upanishadic themes.</div>
+      </div>
+      <div class="t-dot"></div>
+      <div class="t-empty"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CURRICULUM -->
+<div class="curriculum-bg" id="curriculum">
+  <div class="curriculum-inner">
+    <div class="section-header">
+      <span class="section-tag">Course Structure</span>
+      <h2 class="section-title">Playlist Curriculum</h2>
+      <p class="section-intro">Twelve progressively deepening modules moving from historical foundations to the subtlest reaches of Upanishadic metaphysics.</p>
+    </div>
+
+    <!-- Module 1 -->
+    <div class="module open" onclick="toggleModule(this)">
+      <div class="module-header">
+        <span class="module-num">01</span>
+        <span class="module-title">Origins — The World of the Vedas</span>
+        <span class="module-count">5 lessons · 72 min</span>
+        <span class="module-arrow">▲</span>
+      </div>
+      <div class="module-lessons">
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">Welcome & Course Overview</span><span class="lesson-free">Free</span><span class="lesson-dur">8 min</span></div>
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">The Vedic Tradition: An Introduction</span><span class="lesson-free">Free</span><span class="lesson-dur">14 min</span></div>
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">The Four Vedas and Their Divisions</span><span class="lesson-dur">16 min</span></div>
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">Shruti, Smriti & the Nature of Sacred Knowledge</span><span class="lesson-dur">18 min</span></div>
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">The Axial Age and the Upanishadic Revolution</span><span class="lesson-dur">16 min</span></div>
+      </div>
+    </div>
+
+    <!-- Module 2 -->
+    <div class="module" onclick="toggleModule(this)">
+      <div class="module-header">
+        <span class="module-num">02</span>
+        <span class="module-title">Brahman — The Ground of All Being</span>
+        <span class="module-count">6 lessons · 90 min</span>
+        <span class="module-arrow">▼</span>
+      </div>
+      <div class="module-lessons">
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">What Is Brahman? Defining the Indefinable</span><span class="lesson-dur">18 min</span></div>
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">Nirguna vs. Saguna Brahman</span><span class="lesson-dur">14 min</span></div>
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">Brahman in the Brihadaranyaka Upanishad</span><span class="lesson-dur">16 min</span></div>
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">The Neti-Neti Method: "Not This, Not This"</span><span class="lesson-dur">14 min</span></div>
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">Brahman as Sat-Chit-Ananda</span><span class="lesson-dur">16 min</span></div>
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">Contemplation Practice: Sitting with the Infinite</span><span class="lesson-dur">12 min</span></div>
+      </div>
+    </div>
+
+    <!-- Module 3 -->
+    <div class="module" onclick="toggleModule(this)">
+      <div class="module-header">
+        <span class="module-num">03</span>
+        <span class="module-title">Ātman — The Nature of the Self</span>
+        <span class="module-count">6 lessons · 86 min</span>
+        <span class="module-arrow">▼</span>
+      </div>
+      <div class="module-lessons">
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">The Five Sheaths (Pancha Kosha)</span><span class="lesson-dur">16 min</span></div>
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">Ātman as the Witness Consciousness</span><span class="lesson-dur">14 min</span></div>
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">Yājñavalkya and Maitreyī's Dialogue</span><span class="lesson-dur">16 min</span></div>
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">The Honey Doctrine (Madhu Vidyā)</span><span class="lesson-dur">14 min</span></div>
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">Ātman vs. Jīva: Universal vs. Individual Self</span><span class="lesson-dur">14 min</span></div>
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">Self-Enquiry: Who Am I?</span><span class="lesson-dur">12 min</span></div>
+      </div>
+    </div>
+
+    <!-- Module 4 -->
+    <div class="module" onclick="toggleModule(this)">
+      <div class="module-header">
+        <span class="module-num">04</span>
+        <span class="module-title">The Four Mahāvākyas — Great Sayings</span>
+        <span class="module-count">5 lessons · 70 min</span>
+        <span class="module-arrow">▼</span>
+      </div>
+      <div class="module-lessons">
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">Prajñānam Brahma — Consciousness is Brahman</span><span class="lesson-dur">14 min</span></div>
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">Aham Brahmāsmi — I am Brahman</span><span class="lesson-dur">14 min</span></div>
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">Tat Tvam Asi — That Thou Art</span><span class="lesson-dur">16 min</span></div>
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">Ayam Ātmā Brahma — This Self is Brahman</span><span class="lesson-dur">14 min</span></div>
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">Synthesizing the Four Sayings</span><span class="lesson-dur">12 min</span></div>
+      </div>
+    </div>
+
+    <!-- Module 5 -->
+    <div class="module" onclick="toggleModule(this)">
+      <div class="module-header">
+        <span class="module-num">05</span>
+        <span class="module-title">The Brihadaranyaka Upanishad</span>
+        <span class="module-count">7 lessons · 105 min</span>
+        <span class="module-arrow">▼</span>
+      </div>
+      <div class="module-lessons">
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">Overview and Historical Context</span><span class="lesson-dur">12 min</span></div>
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">The Horse Sacrifice and Cosmic Symbolism</span><span class="lesson-dur">16 min</span></div>
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">Yājñavalkya's Doctrine of Ātman</span><span class="lesson-dur">18 min</span></div>
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">The Dream and Deep Sleep States</span><span class="lesson-dur">14 min</span></div>
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">The Honey Doctrine and Cosmic Interconnection</span><span class="lesson-dur">14 min</span></div>
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">Gārgī's Questioning: The Nature of the Imperishable</span><span class="lesson-dur">16 min</span></div>
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">The Antaḥkaraṇa: Mind, Intellect, Ego, Memory</span><span class="lesson-dur">15 min</span></div>
+      </div>
+    </div>
+
+    <!-- Module 6 -->
+    <div class="module" onclick="toggleModule(this)">
+      <div class="module-header">
+        <span class="module-num">06</span>
+        <span class="module-title">The Chandogya Upanishad</span>
+        <span class="module-count">6 lessons · 92 min</span>
+        <span class="module-arrow">▼</span>
+      </div>
+      <div class="module-lessons">
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">Uddalaka's Teaching to Shvetaketu</span><span class="lesson-dur">16 min</span></div>
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">The Saltwater Analogy: Subtle Essence</span><span class="lesson-dur">14 min</span></div>
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">Satyakama's Quest and the Forest Teachers</span><span class="lesson-dur">16 min</span></div>
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">Nārada and Sanatkumāra: From Knowledge to Bliss</span><span class="lesson-dur">16 min</span></div>
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">Indra and Virocana: The Nature of the Body and Self</span><span class="lesson-dur">16 min</span></div>
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">The City of Brahman (Dahara Vidyā)</span><span class="lesson-dur">14 min</span></div>
+      </div>
+    </div>
+
+    <!-- Module 7 -->
+    <div class="module" onclick="toggleModule(this)">
+      <div class="module-header">
+        <span class="module-num">07</span>
+        <span class="module-title">The Katha Upanishad — Death as Teacher</span>
+        <span class="module-count">5 lessons · 78 min</span>
+        <span class="module-arrow">▼</span>
+      </div>
+      <div class="module-lessons">
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">Naciketas Enters the House of Death</span><span class="lesson-dur">16 min</span></div>
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">Yama's Three Boons and the Refusal</span><span class="lesson-dur">14 min</span></div>
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">The Chariot Metaphor: Body, Senses, Mind, Intellect</span><span class="lesson-dur">18 min</span></div>
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">The Unborn, Eternal Ātman</span><span class="lesson-dur">16 min</span></div>
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">Shreyas vs. Preyas: The Good vs. the Pleasant</span><span class="lesson-dur">14 min</span></div>
+      </div>
+    </div>
+
+    <!-- Module 8 -->
+    <div class="module" onclick="toggleModule(this)">
+      <div class="module-header">
+        <span class="module-num">08</span>
+        <span class="module-title">Māṇḍūkya Upanishad — Four States of Consciousness</span>
+        <span class="module-count">5 lessons · 80 min</span>
+        <span class="module-arrow">▼</span>
+      </div>
+      <div class="module-lessons">
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">The Twelve Verses and Their Structure</span><span class="lesson-dur">14 min</span></div>
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">Vaiśvānara: Waking Consciousness</span><span class="lesson-dur">14 min</span></div>
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">Taijasa: The Dreaming State</span><span class="lesson-dur">16 min</span></div>
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">Prājña: Deep Dreamless Sleep</span><span class="lesson-dur">14 min</span></div>
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">Turīya: The Fourth — Pure Awareness</span><span class="lesson-dur">22 min</span></div>
+      </div>
+    </div>
+
+    <!-- Module 9 -->
+    <div class="module" onclick="toggleModule(this)">
+      <div class="module-header">
+        <span class="module-num">09</span>
+        <span class="module-title">Karma, Rebirth & Liberation</span>
+        <span class="module-count">6 lessons · 88 min</span>
+        <span class="module-arrow">▼</span>
+      </div>
+      <div class="module-lessons">
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">Origins of the Karma Doctrine in the Upanishads</span><span class="lesson-dur">16 min</span></div>
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">Samsāra: The Cycle of Becoming</span><span class="lesson-dur">14 min</span></div>
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">The Two Paths: Devayāna & Pitṛyāna</span><span class="lesson-dur">16 min</span></div>
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">Moksha: The Four Paths to Liberation</span><span class="lesson-dur">18 min</span></div>
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">Jīvanmukti: Liberation While Living</span><span class="lesson-dur">14 min</span></div>
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">The Upanishads vs. Buddhist Anattā Doctrine</span><span class="lesson-dur">10 min</span></div>
+      </div>
+    </div>
+
+    <!-- Module 10 -->
+    <div class="module" onclick="toggleModule(this)">
+      <div class="module-header">
+        <span class="module-num">10</span>
+        <span class="module-title">Vedānta Schools — Interpreting the Upanishads</span>
+        <span class="module-count">5 lessons · 75 min</span>
+        <span class="module-arrow">▼</span>
+      </div>
+      <div class="module-lessons">
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">Advaita Vedānta: Śaṅkara's Non-Dualism</span><span class="lesson-dur">18 min</span></div>
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">Viśiṣṭādvaita: Rāmānuja's Qualified Non-Dualism</span><span class="lesson-dur">16 min</span></div>
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">Dvaita Vedānta: Madhva's Strict Dualism</span><span class="lesson-dur">14 min</span></div>
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">Achintya Bhedabheda: Chaitanya's Inconceivable Difference-in-Identity</span><span class="lesson-dur">14 min</span></div>
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">Comparing the Schools: One Truth, Many Maps</span><span class="lesson-dur">13 min</span></div>
+      </div>
+    </div>
+
+    <!-- Module 11 -->
+    <div class="module" onclick="toggleModule(this)">
+      <div class="module-header">
+        <span class="module-num">11</span>
+        <span class="module-title">Upanishads in the Modern World</span>
+        <span class="module-count">4 lessons · 60 min</span>
+        <span class="module-arrow">▼</span>
+      </div>
+      <div class="module-lessons">
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">Western Discovery: Schopenhauer to Huxley</span><span class="lesson-dur">16 min</span></div>
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">Vivekananda and the Global Vedanta Movement</span><span class="lesson-dur">16 min</span></div>
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">Upanishadic Parallels in Modern Physics & Psychology</span><span class="lesson-dur">16 min</span></div>
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">Practical Vedanta: Living the Philosophy</span><span class="lesson-dur">12 min</span></div>
+      </div>
+    </div>
+
+    <!-- Module 12 -->
+    <div class="module" onclick="toggleModule(this)">
+      <div class="module-header">
+        <span class="module-num">12</span>
+        <span class="module-title">Integration & Continuing Practice</span>
+        <span class="module-count">4 lessons · 55 min</span>
+        <span class="module-arrow">▼</span>
+      </div>
+      <div class="module-lessons">
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">The Path of Jñāna Yoga: Knowledge as Liberation</span><span class="lesson-dur">16 min</span></div>
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">Sravana, Manana, Nididhyāsana: Hearing, Reflecting, Meditating</span><span class="lesson-dur">14 min</span></div>
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">Recommended Further Reading and Resources</span><span class="lesson-dur">12 min</span></div>
+        <div class="lesson"><span class="lesson-icon">▶</span><span class="lesson-title">Closing: The Journey Has No End</span><span class="lesson-dur">13 min</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- THE 12 PRINCIPAL UPANISHADS -->
+<section id="texts">
+  <div class="section-header">
+    <span class="section-tag">Sacred Texts</span>
+    <h2 class="section-title">The Principal Upanishads</h2>
+    <p class="section-intro">Śaṅkara identified twelve Upanishads as principal (<em>mukhya</em>). These are the foundational texts covered in this course.</p>
+  </div>
+  <div class="upanishads-grid">
+
+    <div class="u-card">
+      <div class="u-num">01 · Rigveda</div>
+      <div class="u-name">Aitareya</div>
+      <div class="u-sanskrit">ऐतरेय उपनिषद्</div>
+      <div class="u-desc">Attributed to sage Mahidasa Aitareya. Deals with the creation of the universe, the nature of consciousness, and the three births of the self. One of the shortest principal Upanishads.</div>
+      <span class="u-tag">Creation · Consciousness</span>
+    </div>
+
+    <div class="u-card">
+      <div class="u-num">02 · Samaveda</div>
+      <div class="u-name">Chāndogya</div>
+      <div class="u-sanskrit">छान्दोग्य उपनिषद्</div>
+      <div class="u-desc">One of the oldest and longest Upanishads. Famous for the Tat Tvam Asi mahāvākya and Uddalaka's dialogue with his son Shvetaketu on the nature of Brahman hidden in all things.</div>
+      <span class="u-tag">Tat Tvam Asi · Brahman</span>
+    </div>
+
+    <div class="u-card">
+      <div class="u-num">03 · Kṛṣṇa Yajurveda</div>
+      <div class="u-name">Taittirīya</div>
+      <div class="u-sanskrit">तैत्तिरीय उपनिषद्</div>
+      <div class="u-desc">Contains the famous Pancha Kosha doctrine (five sheaths of existence) and the teaching that Brahman is Ananda (bliss). Systematically describes the layers of the self from gross body to pure bliss.</div>
+      <span class="u-tag">Pancha Kosha · Bliss</span>
+    </div>
+
+    <div class="u-card">
+      <div class="u-num">04 · Kṛṣṇa Yajurveda</div>
+      <div class="u-name">Kaṭha</div>
+      <div class="u-sanskrit">कठ उपनिषद्</div>
+      <div class="u-desc">The story of young Naciketas who receives teaching from Yama, the god of death. Introduces the famous chariot metaphor for the self, and the distinction between shreyas (good) and preyas (pleasant).</div>
+      <span class="u-tag">Death · Chariot Metaphor</span>
+    </div>
+
+    <div class="u-card">
+      <div class="u-num">05 · Kṛṣṇa Yajurveda</div>
+      <div class="u-name">Śvetāśvatara</div>
+      <div class="u-sanskrit">श्वेताश्वतर उपनिषद्</div>
+      <div class="u-desc">Unique among the principal Upanishads for its theistic devotional tone. Identifies Brahman with Rudra-Shiva and explores creation, liberation, and the relationship between God, souls, and matter.</div>
+      <span class="u-tag">Theism · Shiva · Devotion</span>
+    </div>
+
+    <div class="u-card">
+      <div class="u-num">06 · Śukla Yajurveda</div>
+      <div class="u-name">Bṛhadāraṇyaka</div>
+      <div class="u-sanskrit">बृहदारण्यक उपनिषद्</div>
+      <div class="u-desc">The longest and arguably most philosophically rich of all Upanishads. Features dialogues of the great sage Yājñavalkya, the Honey Doctrine, Gārgī's cosmic questioning, and the Aham Brahmāsmi mahāvākya.</div>
+      <span class="u-tag">Yājñavalkya · Aham Brahmāsmi</span>
+    </div>
+
+    <div class="u-card">
+      <div class="u-num">07 · Śukla Yajurveda</div>
+      <div class="u-name">Īśā</div>
+      <div class="u-sanskrit">ईश उपनिषद्</div>
+      <div class="u-desc">The shortest of the principal Upanishads — eighteen verses. Addresses the apparent tension between renunciation and action in the world, teaching that all things are permeated by the Lord (Isha).</div>
+      <span class="u-tag">Action · Renunciation · Shortest</span>
+    </div>
+
+    <div class="u-card">
+      <div class="u-num">08 · Atharvaveda</div>
+      <div class="u-name">Māṇḍūkya</div>
+      <div class="u-sanskrit">माण्डूक्य उपनिषद्</div>
+      <div class="u-desc">Only twelve verses, yet Gaudapada called it sufficient alone for liberation. Presents the profound analysis of OM and the four states of consciousness: waking, dreaming, deep sleep, and Turiya (pure awareness).</div>
+      <span class="u-tag">OM · Four States · Turīya</span>
+    </div>
+
+    <div class="u-card">
+      <div class="u-num">09 · Atharvaveda</div>
+      <div class="u-name">Muṇḍaka</div>
+      <div class="u-sanskrit">मुण्डक उपनिषद्</div>
+      <div class="u-desc">Distinguishes between para vidya (higher knowledge of Brahman) and apara vidya (lower knowledge of ritual and science). Uses the metaphor of the bow and arrow for the seeker aiming at Brahman.</div>
+      <span class="u-tag">Two Knowledges · Bow & Arrow</span>
+    </div>
+
+    <div class="u-card">
+      <div class="u-num">10 · Atharvaveda</div>
+      <div class="u-name">Praśna</div>
+      <div class="u-sanskrit">प्रश्न उपनिषद्</div>
+      <div class="u-desc">Structured as six questions posed to sage Pippalada by six disciples. Covers the origin of creation, the nature of prana, sleep and waking, OM, the number of constituents in a human, and the nature of the highest person.</div>
+      <span class="u-tag">Prana · Six Questions</span>
+    </div>
+
+    <div class="u-card">
+      <div class="u-num">11 · Sāmaveda</div>
+      <div class="u-name">Kena</div>
+      <div class="u-sanskrit">केन उपनिषद्</div>
+      <div class="u-desc">Its very name ("by whom?") captures its inquiry. Asks by what power the mind cognizes, the eye sees, the ear hears. Answers with the teaching that Brahman is the unseen seer, the unknown knower behind all cognition.</div>
+      <span class="u-tag">Consciousness · The Knower</span>
+    </div>
+
+    <div class="u-card">
+      <div class="u-num">12 · Atharvaveda</div>
+      <div class="u-name">Māṇḍūkya Kārikā</div>
+      <div class="u-sanskrit">गौडपाद कारिका</div>
+      <div class="u-desc">Gaudapada's commentary on the Mandukya — technically not an Upanishad, but inseparable from Advaita teaching. Introduces the doctrine of Ajātivāda (non-origination): nothing was ever really born or dies.</div>
+      <span class="u-tag">Gaudapada · Non-Origination</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- CORE CONCEPTS -->
+<section id="concepts" style="padding-top:0">
+  <div class="section-header">
+    <span class="section-tag">Foundational Ideas</span>
+    <h2 class="section-title">Core Philosophical Concepts</h2>
+    <p class="section-intro">The conceptual vocabulary of the Upanishads — terms that have shaped philosophy, psychology, and spiritual inquiry across civilizations.</p>
+  </div>
+  <div class="concepts-grid">
+    <div class="concept-cell">
+      <span class="concept-sanskrit">ब्रह्मन्</span>
+      <div class="concept-name">Brahman</div>
+      <div class="concept-def">The ultimate, unchanging reality that underlies all existence. Not a personal God but the ground of being itself — infinite, self-luminous consciousness beyond all qualities.</div>
+    </div>
+    <div class="concept-cell">
+      <span class="concept-sanskrit">आत्मन्</span>
+      <div class="concept-name">Ātman</div>
+      <div class="concept-def">The innermost self or soul of an individual. The central Upanishadic revelation is that Ātman and Brahman are ultimately identical — the self you truly are is the ground of the universe.</div>
+    </div>
+    <div class="concept-cell">
+      <span class="concept-sanskrit">माया</span>
+      <div class="concept-name">Māyā</div>
+      <div class="concept-def">Cosmic illusion or the creative power of Brahman that makes the One appear as many. Not simple illusion but the mysterious power by which infinite consciousness appears as finite multiplicity.</div>
+    </div>
+    <div class="concept-cell">
+      <span class="concept-sanskrit">कर्म</span>
+      <div class="concept-name">Karma</div>
+      <div class="concept-def">Action and its consequences rippling through time. The Upanishads first articulate the doctrine linking intentional action to rebirth. Liberation requires transcending the karma mechanism through Self-knowledge.</div>
+    </div>
+    <div class="concept-cell">
+      <span class="concept-sanskrit">मोक्ष</span>
+      <div class="concept-name">Moksha</div>
+      <div class="concept-def">Liberation from the cycle of birth and death. In the Upanishads, moksha is not a place but the recognition of one's already-free nature as pure consciousness — the dissolution of the illusion of separate selfhood.</div>
+    </div>
+    <div class="concept-cell">
+      <span class="concept-sanskrit">विद्या</span>
+      <div class="concept-name">Vidyā</div>
+      <div class="concept-def">True knowledge — not information but direct recognition of reality. Contrasted with avidyā (ignorance), which is the root of suffering. Para vidyā (higher knowledge) is direct realization of Brahman-Ātman identity.</div>
+    </div>
+    <div class="concept-cell">
+      <span class="concept-sanskrit">प्राण</span>
+      <div class="concept-name">Prāṇa</div>
+      <div class="concept-def">The vital life force that animates all living beings. The Upanishads describe five pranas governing different biological functions. At a cosmic level, prana is Brahman manifest as living energy in the universe.</div>
+    </div>
+    <div class="concept-cell">
+      <span class="concept-sanskrit">अविद्या</span>
+      <div class="concept-name">Avidyā</div>
+      <div class="concept-def">Ignorance of one's true nature — not mere lack of information but the deep-rooted misidentification of the self with body-mind. All suffering, according to Advaita Vedanta, ultimately traces back to avidya.</div>
+    </div>
+    <div class="concept-cell">
+      <span class="concept-sanskrit">तुरीय</span>
+      <div class="concept-name">Turīya</div>
+      <div class="concept-def">The "Fourth" state of consciousness described in the Mandukya Upanishad — beyond waking, dreaming, and deep sleep. Not a state one enters but the ever-present witness-awareness underlying all three states.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHICAL SCHOOLS -->
+<div class="schools-band" id="philosophy">
+  <section>
+    <div class="section-header">
+      <span class="section-tag">Vedānta Traditions</span>
+      <h2 class="section-title">The Great Interpretive Schools</h2>
+      <p class="section-intro">The Upanishads generated diverse interpretive traditions. These schools agree on the texts' authority but diverge profoundly on what they mean.</p>
+    </div>
+    <div class="schools-grid">
+      <div class="school-card">
+        <div class="school-name">Advaita Vedānta</div>
+        <div class="school-founder">Ādi Śaṅkarācārya · c. 788–820 CE</div>
+        <div class="school-desc">Pure non-dualism. Brahman alone is real; the world and individual selves are ultimately illusory (māyā). The appearance of multiplicity is due to avidya. Liberation is the recognition that "I am Brahman." Shankara's commentaries on ten principal Upanishads remain the definitive Advaita statements.</div>
+      </div>
+      <div class="school-card">
+        <div class="school-name">Viśiṣṭādvaita</div>
+        <div class="school-founder">Rāmānujācārya · c. 1017–1137 CE</div>
+        <div class="school-desc">Qualified non-dualism. Brahman (identified with Vishnu) is the only ultimate reality, but individual souls and the material world are real — they constitute the "body" of Brahman. Liberation is eternal loving service to God, not absorption into an impersonal absolute.</div>
+      </div>
+      <div class="school-card">
+        <div class="school-name">Dvaita Vedānta</div>
+        <div class="school-founder">Madhvācārya · c. 1238–1317 CE</div>
+        <div class="school-desc">Strict dualism. God (Vishnu), souls, and matter are eternally distinct. Rejects Shankara's interpretation of Brahman–Ātman identity as textual distortion. Liberation is eternal blissful nearness to God, not identity. Emphasizes devotion (bhakti) as the means.</div>
+      </div>
+      <div class="school-card">
+        <div class="school-name">Achintya Bhedābheda</div>
+        <div class="school-founder">Caitanya Mahāprabhu · c. 1486–1534 CE</div>
+        <div class="school-desc">Inconceivable simultaneous difference and non-difference between Brahman, souls, and creation. The relationship transcends human logic — simultaneously one and many, same and different. Devotional ecstasy (prema-bhakti) to Krishna as the highest realization.</div>
+      </div>
+      <div class="school-card">
+        <div class="school-name">Śuddhadvaita</div>
+        <div class="school-founder">Vallabhācārya · c. 1479–1531 CE</div>
+        <div class="school-desc">Pure non-dualism of a different flavor: the world is a real manifestation of Brahman (identified with Krishna), not illusory maya as in Shankara. The path is pure devotion (pushti marga) — grace-based surrender to Krishna without restriction of ritual purity.</div>
+      </div>
+      <div class="school-card">
+        <div class="school-name">Neo-Vedānta</div>
+        <div class="school-founder">Swami Vivekananda · 1863–1902 CE</div>
+        <div class="school-desc">A modern synthesis emphasizing the practical, humanitarian dimensions of Advaita Vedanta. All religions are paths to the same truth. Serves social welfare as worship of the divine in human form. Brought Upanishadic philosophy to a global audience at the 1893 Parliament of Religions.</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- SACRED QUOTES -->
+<div class="quotes-strip">
+  <div class="quotes-inner">
+    <div class="q-item">
+      <div class="q-text">"The knower of Brahman becomes Brahman."</div>
+      <div class="q-src">Mundaka Upanishad · 3.2.9</div>
+    </div>
+    <div class="q-divider"></div>
+    <div class="q-item">
+      <div class="q-text">"As rivers flowing into the ocean find their final peace and lose name and form, so even the wise man, freed from name and form, goes to the divine person who is beyond all."</div>
+      <div class="q-src">Mundaka Upanishad · 3.2.8</div>
+    </div>
+    <div class="q-divider"></div>
+    <div class="q-item">
+      <div class="q-text">"Out of abundance he took abundance, and still abundance remained."</div>
+      <div class="q-src">Brihadaranyaka Upanishad · Invocation</div>
+    </div>
+  </div>
+</div>
+
+<!-- SACRED TEXTS REFERENCE TABLE -->
+<section>
+  <div class="section-header">
+    <span class="section-tag">Reference</span>
+    <h2 class="section-title">Key Doctrines by Source Text</h2>
+    <p class="section-intro">A scholar's reference guide to which doctrines originate in which texts.</p>
+  </div>
+  <table class="texts-table">
+    <thead>
+      <tr>
+        <th>Upanishad</th>
+        <th>Key Doctrine / Teaching</th>
+        <th>Famous Passage or Figure</th>
+        <th>Vedic Branch</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Brihadaranyaka</td><td>Aham Brahmāsmi · Ātman as sole reality · Neti-Neti</td><td>Yājñavalkya's dialogues; Gārgī's questioning</td><td>Śukla Yajurveda</td></tr>
+      <tr><td>Chandogya</td><td>Tat Tvam Asi · Subtle essence pervades all</td><td>Uddalaka & Shvetaketu; the salt-water analogy</td><td>Sāmaveda</td></tr>
+      <tr><td>Mandukya</td><td>Four states of consciousness · OM as Brahman</td><td>Twelve verses; Gaudapada's Kārikā</td><td>Atharvaveda</td></tr>
+      <tr><td>Katha</td><td>Chariot metaphor · Shreyas vs. Preyas</td><td>Naciketas & Yama's dialogue</td><td>Kṛṣṇa Yajurveda</td></tr>
+      <tr><td>Mundaka</td><td>Para vidyā vs. Apara vidyā · Bow-and-arrow metaphor</td><td>Two birds on one tree</td><td>Atharvaveda</td></tr>
+      <tr><td>Taittiriya</td><td>Pancha Kosha (five sheaths) · Brahman as Ananda</td><td>Bhrigu's progressive meditations</td><td>Kṛṣṇa Yajurveda</td></tr>
+      <tr><td>Isha</td><td>Reconciliation of renunciation and action</td><td>"All this is enveloped by the Lord"</td><td>Śukla Yajurveda</td></tr>
+      <tr><td>Kena</td><td>Brahman as the unseen seer, unheard hearer</td><td>Indra, Agni, Vayu cannot grasp Brahman</td><td>Sāmaveda</td></tr>
+      <tr><td>Prashna</td><td>Prana doctrine · Structure of man</td><td>Six questions to Pippalada</td><td>Atharvaveda</td></tr>
+      <tr><td>Shvetashvatara</td><td>Theistic Brahman = Shiva · Grace and devotion</td><td>"God is the one web; souls are sparks"</td><td>Kṛṣṇa Yajurveda</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- FAQ -->
+<section id="faq" style="max-width:800px">
+  <div class="section-header">
+    <span class="section-tag">Frequently Asked</span>
+    <h2 class="section-title">Questions About This Course</h2>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Do I need prior knowledge of Hinduism or Sanskrit to take this course?</div>
+    <div class="faq-a">None whatsoever. This course is designed for the intellectually curious newcomer. All Sanskrit terms are explained carefully in context. A background in Western philosophy can actually be an asset — you'll find many surprising parallels.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Which translation of the Upanishads should I read alongside this course?</div>
+    <div class="faq-a">Patrick Olivelle's scholarly translation (Oxford World's Classics) is excellent for critical study. For spiritual reading, Swami Nikhilananda's four-volume translation or Eknath Easwaran's accessible rendering are both highly recommended. Swami Gambhirananda's literal translations are ideal for Advaita study.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">How do the Upanishads relate to the Bhagavad Gita?</div>
+    <div class="faq-a">The Bhagavad Gita is often called the Gitopanishad — an Upanishad in poetic form. It draws heavily on the Katha, Chandogya, and Brihadaranyaka Upanishads. The three texts studied together (the Upanishads, Brahma Sutras, and Bhagavad Gita) form the Prasthanatrayi, the triple canon of Vedanta.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Is there a traditional requirement for a teacher (guru) to study the Upanishads?</div>
+    <div class="faq-a">The tradition strongly emphasizes guru-shishya (teacher-student) transmission — the word "Upanishad" itself refers to this intimate seated relationship. While textual study is possible alone, traditional teaching holds that certain subtle dimensions of the texts only open through the living transmission of a realized teacher. This course provides rigorous intellectual foundation; seekers may then seek a qualified guide.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">How does Upanishadic philosophy compare to Western philosophy?</div>
+    <div class="faq-a">Upanishadic philosophy addresses similar questions as Western philosophy — mind-body problem, the nature of consciousness, ethics, epistemology — but with profoundly different assumptions. Where most Western philosophy treats the individual subject as given, Upanishadic inquiry begins by questioning the very existence of a separate subject. Comparisons with Plato's allegory of the cave, Kant's transcendental self, Schopenhauer's Will, and Heidegger's Being have been richly explored by comparative philosophers.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q">Are there 108 Upanishads or more?</div>
+    <div class="faq-a">The Muktika Upanishad lists 108 as the canonical set. Shankara commented on ten or twelve as "principal." Modern scholarship has identified over 200 texts bearing the Upanishad label, including Sectarian Upanishads associated with Shaivism, Vaishnavism, and even Yoga and Sannyasa practices. This course focuses on the principal twelve identified by Shankara.</div>
+  </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-om">ॐ</span>
+  <p class="footer-text">Introduction to Upanishads · The Essence of Vedic Philosophy</p>
+  <p style="margin-top:0.5rem;font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--muted);font-size:0.9rem;">"Asato mā sad gamaya — Lead me from the unreal to the real."</p>
+</footer>
+
+<script>
+  // Progress bar
+  window.addEventListener('scroll', () => {
+    const el = document.getElementById('progressBar');
+    const pct = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+    el.style.width = pct + '%';
+  });
+
+  // Module accordion
+  function toggleModule(el) {
+    const isOpen = el.classList.contains('open');
+    document.querySelectorAll('.module').forEach(m => {
+      m.classList.remove('open');
+      m.querySelector('.module-arrow').textContent = '▼';
+    });
+    if (!isOpen) {
+      el.classList.add('open');
+      el.querySelector('.module-arrow').textContent = '▲';
+    }
+  }
+
+  // Animate elements on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.u-card, .concept-cell, .school-card, .timeline-item .t-content').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>

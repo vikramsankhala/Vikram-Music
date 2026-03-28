@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jam Room — World-Class Professional Audio Platform</title>
+  <meta name="description" content="World-class professional audio production platform with premium design, expert tutorials, and cutting-edge equipment guides for musicians and producers.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="premium-design-system.css">
+  <style>
+    /* Additional premium styles for this specific layout */
+    body {
+      background: var(--primary-black);
+      color: var(--primary-white);
+      font-family: var(--font-primary);
+      overflow-x: hidden;
+    }
+    
+    .premium-gradient-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 20%, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(212, 175, 55, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    
+    .premium-content-wrapper {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .premium-feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: var(--space-3xl);
+      margin-top: var(--space-4xl);
+    }
+    
+    .premium-stats {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-3xl);
+      margin: var(--space-3xl) 0;
+    }
+    
+    .premium-stat-item {
+      text-align: center;
+      padding: var(--space-xl);
+      background: var(--gradient-glass);
+      border: var(--border-premium);
+      border-radius: var(--radius-2xl);
+      min-width: 150px;
+      transition: all var(--transition-premium);
+    }
+    
+    .premium-stat-item:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent-gold);
+      box-shadow: var(--shadow-gold);
+    }
+    
+    .premium-stat-number {
+      font-family: var(--font-display);
+      font-size: var(--text-4xl);
+      font-weight: 800;
+      color: var(--accent-gold);
+      margin-bottom: var(--space-sm);
+    }
+    
+    .premium-stat-label {
+      font-size: var(--text-base);
+      color: var(--primary-white);
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+  <div class="premium-gradient-bg"></div>
+  
+  <div class="premium-content-wrapper">
+    <!-- Premium Navigation -->
+    <nav class="premium-nav">
+      <div class="premium-container">
+        <div class="premium-nav-brand">
+          <img src="ek-lamha-logo.png" alt="Jam Room" class="premium-nav-logo">
+          <span class="premium-text-gold font-bold">Jam Room</span>
+        </div>
+        <ul class="premium-nav-links">
+          <li><a href="#equipment" class="premium-nav-link">Equipment</a></li>
+          <li><a href="#tutorials" class="premium-nav-link">Tutorials</a></li>
+          <li><a href="#resources" class="premium-nav-link">Resources</a></li>
+          <li><a href="#about" class="premium-nav-link">About</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Premium Hero Section -->
+    <header class="premium-hero">
+      <div class="premium-hero-content">
+        <h1 class="premium-hero-title">Jam Room</h1>
+        <p class="premium-hero-subtitle">World-Class Professional Audio Production Platform</p>
+        
+        <div class="premium-stats">
+          <div class="premium-stat-item">
+            <div class="premium-stat-number">150+</div>
+            <div class="premium-stat-label">Expert Tutorials</div>
+          </div>
+          <div class="premium-stat-item">
+            <div class="premium-stat-number">50+</div>
+            <div class="premium-stat-label">Equipment Guides</div>
+          </div>
+          <div class="premium-stat-item">
+            <div class="premium-stat-number">100%</div>
+            <div class="premium-stat-label">Professional Quality</div>
+          </div>
+        </div>
+        
+        <div style="margin-top: var(--space-4xl);">
+          <a href="#equipment" class="premium-btn premium-btn-primary">Explore Premium Equipment</a>
+          <a href="#tutorials" class="premium-btn premium-btn-secondary">Master Audio Production</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Premium Equipment Section -->
+    <section id="equipment" class="premium-section premium-section-dark">
+      <div class="premium-container">
+        <h2 class="premium-section-title">🎛️ Premium Equipment Guides</h2>
+        
+        <div class="premium-feature-grid">
+          <div class="premium-card premium-interactive">
+            <h3 class="premium-text-gold">Professional PA Systems</h3>
+            <p class="premium-text-muted">Complete guide to professional PA speaker selection, setup, and configuration for optimal sound quality in any venue.</p>
+            <div style="margin-top: var(--space-xl);">
+              <a href="#pa-systems" class="premium-btn premium-btn-secondary">View Complete Guide</a>
+            </div>
+          </div>
+          
+          <div class="premium-card premium-interactive">
+            <h3 class="premium-text-gold">Studio Recording Setup</h3>
+            <p class="premium-text-muted">Professional studio design from acoustic treatment to signal flow, ensuring broadcast-quality recordings.</p>
+            <div style="margin-top: var(--space-xl);">
+              <a href="#studio-setup" class="premium-btn premium-btn-secondary">Build Your Studio</a>
+            </div>
+          </div>
+          
+          <div class="premium-card premium-interactive">
+            <h3 class="premium-text-gold">Audio Engineering</h3>
+            <p class="premium-text-muted">Advanced audio engineering techniques, mixing strategies, and mastering secrets from industry professionals.</p>
+            <div style="margin-top: var(--space-xl);">
+              <a href="#audio-engineering" class="premium-btn premium-btn-secondary">Master Engineering</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Premium Tutorials Section -->
+    <section id="tutorials" class="premium-section premium-section-light">
+      <div class="premium-container">
+        <h2 class="premium-section-title">🎓� Expert-Led Learning Paths</h2>
+        
+        <div class="premium-glass-card">
+          <h3 class="premium-text-gold">Yamaha PSR Keyboard Mastery</h3>
+          <p class="premium-text-muted">Complete professional learning path with 82 structured tutorials covering setup, features, techniques, and performance mastery.</p>
+          
+          <div class="premium-table-container">
+            <table class="premium-table">
+              <thead>
+                <tr>
+                  <th>Module</th>
+                  <th>Focus Area</th>
+                  <th>Tutorials</th>
+                  <th>Level</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>1</strong></td>
+                  <td>Setup & Reviews</td>
+                  <td>9 comprehensive tutorials</td>
+                  <td><span class="premium-text-gold">Beginner</span></td>
+                </tr>
+                <tr>
+                  <td><strong>2</strong></td>
+                  <td>Smart Chord Features</td>
+                  <td>3 specialized tutorials</td>
+                  <td><span class="premium-text-gold">Intermediate</span></td>
+                </tr>
+                <tr>
+                  <td><strong>3</strong></td>
+                  <td>Performance Techniques</td>
+                  <td>15 advanced tutorials</td>
+                  <td><span class="premium-text-gold">Advanced</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          
+          <div style="text-align: center; margin-top: var(--space-3xl);">
+            <a href="#yamaha-keyboard" class="premium-btn premium-btn-primary premium-animate-pulse">🎹 Complete Mastery Course</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Premium Resources Section -->
+    <section id="resources" class="premium-section premium-section-dark">
+      <div class="premium-container">
+        <h2 class="premium-section-title">🎵 Professional Music Resources</h2>
+        
+        <div class="premium-grid premium-grid-3">
+          <div class="premium-glass-card">
+            <h3 class="premium-text-gold">Sample Libraries</h3>
+            <p class="premium-text-muted">Curated professional sample libraries for world-class music production across all genres.</p>
+            <div style="margin-top: var(--space-xl);">
+              <a href="#samples" class="premium-btn premium-btn-secondary">Browse Collection</a>
+            </div>
+          </div>
+          
+          <div class="premium-glass-card">
+            <h3 class="premium-text-gold">VST Plugins</h3>
+            <p class="premium-text-muted">Essential VST plugin recommendations for professional mixing, mastering, and sound design.</p>
+            <div style="margin-top: var(--space-xl);">
+              <a href="#vst-plugins" class="premium-btn premium-btn-secondary">Explore Plugins</a>
+            </div>
+          </div>
+          
+          <div class="premium-glass-card">
+            <h3 class="premium-text-gold">Production Templates</h3>
+            <p class="premium-text-muted">Professional project templates for DAWs to accelerate your workflow and creativity.</p>
+            <div style="margin-top: var(--space-xl);">
+              <a href="#templates" class="premium-btn premium-btn-secondary">Get Templates</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Premium About Section -->
+    <section id="about" class="premium-section premium-section-light">
+      <div class="premium-container">
+        <h2 class="premium-section-title">About Jam Room</h2>
+        
+        <div class="premium-grid premium-grid-2">
+          <div class="premium-card premium-interactive">
+            <h3 class="premium-text-gold">Our Mission</h3>
+            <p class="premium-text-muted">Jam Room represents the pinnacle of professional audio production education, combining world-class design with expert knowledge to deliver unparalleled learning experiences for musicians and producers worldwide.</p>
+          </div>
+          
+          <div class="premium-card premium-interactive">
+            <h3 class="premium-text-gold">Expert Excellence</h3>
+            <p class="premium-text-muted">Led by audio engineering professionals with decades of experience in studio design, live sound, and music production. Our experts provide practical, real-world solutions that deliver professional results.</p>
+          </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: var(--space-4xl);">
+          <a href="#contact" class="premium-btn premium-btn-primary premium-animate-shimmer-effect">Connect With Experts</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Premium Footer -->
+    <footer class="premium-section premium-section-dark">
+      <div class="premium-container">
+        <div style="text-align: center; padding: var(--space-4xl) 0;">
+          <div class="premium-grid premium-grid-4" style="gap: var(--space-lg); margin-bottom: var(--space-3xl);">
+            <a href="#equipment" class="premium-btn premium-btn-secondary">Equipment</a>
+            <a href="#tutorials" class="premium-btn premium-btn-secondary">Tutorials</a>
+            <a href="#resources" class="premium-btn premium-btn-secondary">Resources</a>
+            <a href="#about" class="premium-btn premium-btn-secondary">About</a>
+          </div>
+          
+          <p class="premium-text-muted" style="margin-bottom: var(--space-md);">&copy; 2024 Jam Room</p>
+          <p class="premium-text-sm premium-text-muted">World-Class Professional Audio Production Platform</p>
+          <p class="premium-text-xs premium-text-muted">Crafted with precision and artistic excellence</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
