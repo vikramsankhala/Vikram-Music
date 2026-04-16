@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Biocode // Programmable Drugs Prototype</title>
+  <meta name="description" content="A cinematic prototype inspired by programmable biological drugs—biology treated like software, rendered as a futuristic editorial landing page." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&f[]=zodiak@400,500,700&display=swap" rel="stylesheet">
+  <style>
+    :root, [data-theme="light"] {
+      --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+      --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+      --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+      --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+      --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+      --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3.5rem);
+      --text-3xl: clamp(2.5rem, 1rem + 4vw, 5rem);
+      --text-hero: clamp(3.25rem, 0.8rem + 7vw, 8rem);
+
+      --space-1: 0.25rem;
+      --space-2: 0.5rem;
+      --space-3: 0.75rem;
+      --space-4: 1rem;
+      --space-5: 1.25rem;
+      --space-6: 1.5rem;
+      --space-8: 2rem;
+      --space-10: 2.5rem;
+      --space-12: 3rem;
+      --space-16: 4rem;
+      --space-20: 5rem;
+      --space-24: 6rem;
+      --space-32: 8rem;
+
+      --color-bg: #f7f6f2;
+      --color-surface: #f9f8f5;
+      --color-surface-2: #fbfbf9;
+      --color-surface-offset: #f3f0ec;
+      --color-border: #d4d1ca;
+      --color-divider: #dcd9d5;
+      --color-text: #28251d;
+      --color-text-muted: #67655f;
+      --color-text-faint: #9b9992;
+      --color-text-inverse: #f9f8f4;
+      --color-primary: #01696f;
+      --color-primary-hover: #0c4e54;
+      --color-primary-highlight: #cedcd8;
+      --color-secondary: #6b8df5;
+      --color-secondary-highlight: #dce3ff;
+      --radius-sm: 0.375rem;
+      --radius-md: 0.75rem;
+      --radius-lg: 1.25rem;
+      --radius-xl: 1.75rem;
+      --radius-full: 9999px;
+      --shadow-sm: 0 1px 2px oklch(0.2 0.01 80 / 0.06);
+      --shadow-md: 0 12px 36px oklch(0.2 0.01 80 / 0.10);
+      --shadow-lg: 0 24px 70px oklch(0.2 0.01 80 / 0.16);
+      --font-body: 'General Sans', 'Inter', sans-serif;
+      --font-display: 'Zodiak', 'Georgia', serif;
+      --content: min(1200px, calc(100vw - 2rem));
+      --transition: 200ms cubic-bezier(0.16, 1, 0.3, 1);
+      --grid-line: color-mix(in oklab, var(--color-text) 8%, transparent);
+      --hero-glow: radial-gradient(circle at 20% 20%, color-mix(in oklab, var(--color-primary) 25%, transparent), transparent 35%), radial-gradient(circle at 85% 20%, color-mix(in oklab, var(--color-secondary) 22%, transparent), transparent 28%), linear-gradient(180deg, color-mix(in oklab, var(--color-primary) 8%, var(--color-bg)), var(--color-bg) 55%);
+    }
+
+    [data-theme="dark"] {
+      --color-bg: #090d14;
+      --color-surface: #101723;
+      --color-surface-2: #141c2b;
+      --color-surface-offset: #0d1320;
+      --color-border: rgba(180, 194, 216, 0.16);
+      --color-divider: rgba(180, 194, 216, 0.1);
+      --color-text: #eef3fb;
+      --color-text-muted: #a6b2c7;
+      --color-text-faint: #778197;
+      --color-text-inverse: #091018;
+      --color-primary: #57d3c8;
+      --color-primary-hover: #7ce9df;
+      --color-primary-highlight: rgba(87, 211, 200, 0.12);
+      --color-secondary: #8aa4ff;
+      --color-secondary-highlight: rgba(138, 164, 255, 0.12);
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.2);
+      --shadow-md: 0 14px 36px rgba(0,0,0,0.32);
+      --shadow-lg: 0 30px 80px rgba(0,0,0,0.45);
+      --grid-line: rgba(255,255,255,0.08);
+      --hero-glow: radial-gradient(circle at 20% 20%, rgba(87, 211, 200, 0.14), transparent 32%), radial-gradient(circle at 82% 18%, rgba(138, 164, 255, 0.16), transparent 26%), linear-gradient(180deg, #081018 0%, #090d14 58%);
+    }
+
+    *,:before,:after{box-sizing:border-box}
+    html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+    body{margin:0;font-family:var(--font-body);font-size:var(--text-base);line-height:1.65;background:var(--color-bg);color:var(--color-text)}
+    img,svg{display:block;max-width:100%}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+    h1,h2,h3,p{margin:0}
+    ::selection{background:color-mix(in oklab,var(--color-primary) 30%,transparent);color:var(--color-text)}
+    :focus-visible{outline:2px solid var(--color-primary);outline-offset:4px;border-radius:var(--radius-sm)}
+
+    .skip-link{position:absolute;left:var(--space-4);top:-3rem;background:var(--color-primary);color:var(--color-text-inverse);padding:var(--space-2) var(--space-4);border-radius:var(--radius-full);z-index:999}
+    .skip-link:focus{top:var(--space-4)}
+
+    .site-shell{position:relative;overflow:hidden}
+    .site-shell::before{content:"";position:fixed;inset:0;background-image:linear-gradient(var(--grid-line) 1px, transparent 1px),linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);background-size:48px 48px;mask-image:linear-gradient(180deg, rgba(0,0,0,.6), transparent 90%);pointer-events:none;z-index:-2}
+    .site-shell::after{content:"";position:fixed;inset:0;background:var(--hero-glow);pointer-events:none;z-index:-3}
+
+    .container{width:var(--content);margin:0 auto}
+    .section{padding:clamp(var(--space-16),10vw,var(--space-24)) 0;position:relative}
+    .section-head{display:grid;gap:var(--space-4);margin-bottom:var(--space-12);max-width:760px}
+    .eyebrow{display:inline-flex;align-items:center;gap:var(--space-2);font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.18em;color:var(--color-primary)}
+    .eyebrow::before{content:"";width:1.25rem;height:1px;background:currentColor}
+    .section h2{font-family:var(--font-display);font-size:var(--text-2xl);max-width:14ch}
+    .section p.lead{color:var(--color-text-muted);max-width:66ch}
+
+    .topbar{position:sticky;top:0;z-index:50;backdrop-filter:blur(18px);background:color-mix(in oklab,var(--color-bg) 72%,transparent);border-bottom:1px solid var(--color-divider)}
+    .topbar-inner{width:var(--content);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:var(--space-4);padding:var(--space-4) 0}
+    .brand{display:flex;align-items:center;gap:var(--space-3);font-size:var(--text-sm);font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+    .brand svg{width:2rem;height:2rem;color:var(--color-primary)}
+    .nav{display:flex;gap:clamp(var(--space-3),2vw,var(--space-8));align-items:center;flex-wrap:wrap;justify-content:flex-end}
+    .nav a{font-size:var(--text-sm);color:var(--color-text-muted);position:relative}
+    .nav a::after{content:"";position:absolute;left:0;bottom:-0.4rem;width:100%;height:1px;transform:scaleX(0);transform-origin:left;background:var(--color-primary);transition:transform var(--transition)}
+    .nav a:hover,.nav a:focus-visible{color:var(--color-text)}
+    .nav a:hover::after,.nav a:focus-visible::after{transform:scaleX(1)}
+    .theme-toggle{display:grid;place-items:center;width:2.75rem;height:2.75rem;border:1px solid var(--color-border);border-radius:50%;background:color-mix(in oklab,var(--color-surface) 78%,transparent)}
+
+    .hero{padding:clamp(var(--space-16),12vw,var(--space-32)) 0 var(--space-24)}
+    .hero-grid{width:var(--content);margin:0 auto;display:grid;grid-template-columns:1.2fr .8fr;gap:var(--space-12);align-items:end}
+    .hero-copy{display:grid;gap:var(--space-8)}
+    .kicker{font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.28em;color:var(--color-primary);display:flex;align-items:center;gap:var(--space-3)}
+    .kicker::before,.kicker::after{content:"";width:3rem;height:1px;background:currentColor}
+    h1{font-family:var(--font-display);font-size:var(--text-hero);line-height:.96;letter-spacing:-.04em;max-width:10ch}
+    .hero-copy p{max-width:60ch;color:var(--color-text-muted);font-size:var(--text-lg)}
+    .hero-actions{display:flex;gap:var(--space-4);flex-wrap:wrap}
+    .btn{min-height:48px;padding:0 var(--space-6);border-radius:var(--radius-full);display:inline-flex;align-items:center;justify-content:center;font-size:var(--text-sm);font-weight:600;transition:transform var(--transition),background var(--transition),border-color var(--transition),color var(--transition);border:1px solid transparent}
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{background:var(--color-primary);color:var(--color-text-inverse);box-shadow:var(--shadow-md)}
+    .btn-secondary{border-color:var(--color-border);background:color-mix(in oklab,var(--color-surface) 76%,transparent)}
+
+    .hero-panel{position:relative;background:linear-gradient(180deg,color-mix(in oklab,var(--color-surface-2) 85%,transparent),color-mix(in oklab,var(--color-surface) 85%,transparent));border:1px solid var(--color-border);border-radius:var(--radius-xl);padding:var(--space-8);box-shadow:var(--shadow-lg);overflow:hidden;isolation:isolate}
+    .hero-panel::before{content:"";position:absolute;inset:auto -10% -15% auto;width:16rem;height:16rem;background:radial-gradient(circle,var(--color-primary-highlight),transparent 70%);z-index:-1}
+    .status-chip{display:inline-flex;align-items:center;gap:var(--space-2);padding:var(--space-2) var(--space-3);font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.14em;border-radius:var(--radius-full);background:var(--color-primary-highlight);color:var(--color-primary)}
+    .status-chip::before{content:"";width:.55rem;height:.55rem;border-radius:50%;background:currentColor;box-shadow:0 0 0 .3rem color-mix(in oklab,currentColor 18%,transparent)}
+    .circuit-stack{margin-top:var(--space-6);display:grid;gap:var(--space-4)}
+    .circuit-card{padding:var(--space-4);border-radius:var(--radius-lg);background:color-mix(in oklab,var(--color-bg) 22%,var(--color-surface));border:1px solid var(--color-border);display:grid;grid-template-columns:auto 1fr auto;gap:var(--space-4);align-items:center}
+    .circuit-card strong{font-size:var(--text-sm)}
+    .circuit-card span{font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.1em;color:var(--color-text-faint)}
+    .pill{padding:var(--space-2) var(--space-3);border-radius:var(--radius-full);font-size:var(--text-xs);background:var(--color-secondary-highlight);color:var(--color-secondary)}
+
+    .metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-4);margin-top:var(--space-10)}
+    .metric{padding:var(--space-5);border-top:1px solid var(--color-divider)}
+    .metric strong{display:block;font-family:var(--font-display);font-size:var(--text-xl);margin-bottom:var(--space-2)}
+    .metric span{font-size:var(--text-sm);color:var(--color-text-muted)}
+
+    .cards-3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-5)}
+    .card{background:linear-gradient(180deg,color-mix(in oklab,var(--color-surface-2) 90%,transparent),color-mix(in oklab,var(--color-surface) 85%,transparent));border:1px solid var(--color-border);border-radius:var(--radius-xl);padding:var(--space-6);box-shadow:var(--shadow-sm)}
+    .card h3{font-size:var(--text-lg);margin:var(--space-4) 0 var(--space-3)}
+    .card p{color:var(--color-text-muted)}
+    .card-index{font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.2em;color:var(--color-primary)}
+
+    .layer-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:var(--space-6)}
+    .layers{display:grid;gap:var(--space-4)}
+    .layer-item{padding:var(--space-5);border:1px solid var(--color-border);border-radius:var(--radius-lg);background:color-mix(in oklab,var(--color-surface) 84%,transparent);display:grid;grid-template-columns:auto 1fr;gap:var(--space-4);align-items:start}
+    .layer-num{font-family:var(--font-display);font-size:var(--text-xl);line-height:1;color:var(--color-primary)}
+    .diagram{position:relative;border-radius:var(--radius-xl);padding:var(--space-8);background:radial-gradient(circle at top, color-mix(in oklab,var(--color-secondary) 12%,transparent), transparent 42%), color-mix(in oklab,var(--color-surface) 84%,transparent);border:1px solid var(--color-border);min-height:100%}
+    .diagram-grid{display:grid;gap:var(--space-4)}
+    .node{padding:var(--space-4);border-radius:var(--radius-lg);border:1px solid var(--color-border);background:rgba(255,255,255,0.02)}
+    .node small{display:block;font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.16em;color:var(--color-text-faint);margin-bottom:var(--space-2)}
+    .node strong{font-size:var(--text-lg)}
+    .arrow{height:1.5rem;position:relative}
+    .arrow::before{content:"";position:absolute;left:1rem;right:1rem;top:50%;height:1px;background:linear-gradient(90deg,var(--color-primary),transparent)}
+    .arrow::after{content:"";position:absolute;right:1rem;top:calc(50% - .3rem);width:.6rem;height:.6rem;border-top:1px solid var(--color-primary);border-right:1px solid var(--color-primary);transform:rotate(45deg)}
+
+    .research-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-5)}
+    .research-card{padding:var(--space-6);border-radius:var(--radius-xl);border:1px solid var(--color-border);background:linear-gradient(180deg,color-mix(in oklab,var(--color-surface) 76%,transparent),color-mix(in oklab,var(--color-surface-2) 84%,transparent));display:grid;gap:var(--space-4)}
+    .research-card header{display:flex;justify-content:space-between;gap:var(--space-4);align-items:start}
+    .research-card h3{font-size:var(--text-lg);max-width:22ch;line-height:1.2}
+    .tag{display:inline-flex;align-items:center;padding:var(--space-2) var(--space-3);border-radius:var(--radius-full);font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.12em;background:color-mix(in oklab,var(--color-secondary) 14%,transparent);color:var(--color-secondary)}
+    .research-card-clinical{margin:0;padding:var(--space-4) 0 0;border-top:1px solid var(--color-divider);display:grid;gap:var(--space-4)}
+    .clinical-row{display:grid;gap:var(--space-1)}
+    .research-card-clinical dt{font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.14em;color:var(--color-text-faint);font-weight:600}
+    .research-card-clinical dd{margin:0;font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.55}
+
+    .figure-slot{margin-top:var(--space-10)}
+    .figure-panel{margin:0;border:1px solid var(--color-border);border-radius:var(--radius-xl);overflow:hidden;background:color-mix(in oklab,var(--color-surface) 80%,transparent)}
+    .figure-panel-inner{padding:var(--space-5);background:color-mix(in oklab,var(--color-surface-2) 45%,transparent);border-bottom:1px solid var(--color-divider)}
+    .figure-panel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-3)}
+    .figure-subpanel{border:1px solid var(--color-border);border-radius:var(--radius-md);padding:var(--space-3);background:color-mix(in oklab,var(--color-bg) 35%,transparent)}
+    .figure-subpanel .fp-label{font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.12em;color:var(--color-text-faint);margin-bottom:var(--space-2)}
+    .figure-subpanel .fp-explain{margin:var(--space-3) 0 0;font-size:var(--text-xs);color:var(--color-text-muted);line-height:1.55}
+    .figure-subpanel svg{width:100%;height:auto;display:block;color:var(--color-primary)}
+    .figure-subpanel:nth-child(2) svg{color:var(--color-secondary)}
+    .figure-subpanel:nth-child(3) svg{color:var(--color-primary)}
+    .figure-panel figcaption{padding:var(--space-4) var(--space-5);font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.55}
+    @media (max-width: 900px){.figure-panel-grid{grid-template-columns:1fr}}
+
+    .consort-wrap{margin-top:var(--space-12)}
+    .consort-title{font-family:var(--font-display);font-size:var(--text-xl);margin-bottom:var(--space-2)}
+    .consort-note{font-size:var(--text-sm);color:var(--color-text-muted);margin-bottom:var(--space-4);max-width:70ch}
+    .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--color-border);border-radius:var(--radius-lg);background:color-mix(in oklab,var(--color-surface) 82%,transparent)}
+    .consort-table{width:100%;border-collapse:collapse;font-size:var(--text-sm);min-width:36rem}
+    .consort-table caption{caption-side:top;text-align:left;padding:var(--space-3) var(--space-4);font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.12em;color:var(--color-text-faint)}
+    .consort-table th,.consort-table td{padding:var(--space-3) var(--space-4);text-align:left;border-bottom:1px solid var(--color-divider);vertical-align:top}
+    .consort-table th{font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.1em;color:var(--color-text-faint);font-weight:600;background:color-mix(in oklab,var(--color-surface-2) 60%,transparent)}
+    .consort-table tbody tr:last-child td{border-bottom:none}
+    .consort-table .num{font-variant-numeric:tabular-nums;font-family:ui-monospace,'Cascadia Code',monospace;font-size:0.85em}
+    .consort-foot{margin-top:var(--space-4);padding:var(--space-4);border-radius:var(--radius-md);border:1px dashed var(--color-border);font-size:var(--text-xs);color:var(--color-text-faint);line-height:1.55;max-width:100%}
+
+    .citation-layer{margin-top:var(--space-12);padding:var(--space-6);border:1px solid var(--color-border);border-radius:var(--radius-xl);background:color-mix(in oklab,var(--color-surface) 78%,transparent)}
+    .citation-layer h3{font-family:var(--font-display);font-size:var(--text-lg);margin-bottom:var(--space-4)}
+    .citation-list{margin:0;padding-left:1.25rem;display:grid;gap:var(--space-3);font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.5}
+    .citation-list li{padding-left:var(--space-2)}
+    .citation-list a{color:var(--color-primary);text-decoration:underline;text-underline-offset:2px}
+
+    .timeline{display:grid;gap:var(--space-4)}
+    .time-row{display:grid;grid-template-columns:12rem 1fr;gap:var(--space-5);padding:var(--space-5) 0;border-top:1px solid var(--color-divider)}
+    .time-row strong{font-size:var(--text-sm);text-transform:uppercase;letter-spacing:.16em;color:var(--color-primary)}
+    .time-row h3{font-size:var(--text-lg);margin-bottom:var(--space-2)}
+    .time-row p{color:var(--color-text-muted)}
+
+    .case-study{background:color-mix(in oklab,var(--color-surface-offset) 55%,transparent)}
+    .case-intro{max-width:72ch;margin-bottom:var(--space-12);color:var(--color-text-muted);font-size:var(--text-lg);line-height:1.65}
+    .scenario-block{border:1px solid var(--color-border);border-radius:var(--radius-xl);padding:var(--space-6) var(--space-6) var(--space-8);margin-bottom:var(--space-10);background:linear-gradient(180deg,color-mix(in oklab,var(--color-surface) 88%,transparent),color-mix(in oklab,var(--color-surface-2) 82%,transparent));box-shadow:var(--shadow-sm)}
+    .scenario-head{display:flex;flex-wrap:wrap;gap:var(--space-4);align-items:baseline;justify-content:space-between;margin-bottom:var(--space-6);padding-bottom:var(--space-4);border-bottom:1px solid var(--color-divider)}
+    .scenario-id{font-family:var(--font-display);font-size:var(--text-2xl);color:var(--color-primary);min-width:3ch}
+    .scenario-head h3{font-size:var(--text-xl);flex:1;min-width:12ch;line-height:1.2}
+    .scenario-tag{font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.14em;padding:var(--space-2) var(--space-3);border-radius:var(--radius-full);border:1px solid var(--color-border);color:var(--color-text-muted)}
+    .scenario-lead{color:var(--color-text-muted);font-size:var(--text-sm);line-height:1.6;margin-bottom:var(--space-6);max-width:75ch}
+    .steps-list{display:grid;gap:0;margin:0;padding:0;list-style:none;counter-reset:csstep}
+    .step-item{display:grid;grid-template-columns:auto 1fr;gap:var(--space-4) var(--space-5);padding:var(--space-5) 0;border-top:1px solid var(--color-divider);position:relative}
+    .step-item:first-of-type{border-top:none;padding-top:0}
+    .step-marker{display:flex;flex-direction:column;align-items:center;gap:var(--space-2)}
+    .step-num{width:2.5rem;height:2.5rem;border-radius:50%;border:2px solid var(--color-primary);display:grid;place-items:center;font-family:var(--font-display);font-size:var(--text-sm);color:var(--color-primary);background:var(--color-primary-highlight)}
+    .step-rail{width:2px;flex:1;min-height:var(--space-6);background:linear-gradient(180deg,var(--color-primary),transparent);opacity:.35;margin-bottom:calc(-1 * var(--space-5))}
+    .step-item:last-child .step-rail{display:none}
+    .step-body{display:grid;gap:var(--space-3)}
+    .step-phase{display:inline-flex;align-items:center;gap:var(--space-2);font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.14em;font-weight:600;width:fit-content;padding:var(--space-1) var(--space-3);border-radius:var(--radius-full)}
+    .step-phase.sense{background:color-mix(in oklab,var(--color-primary) 16%,transparent);color:var(--color-primary)}
+    .step-phase.compute{background:color-mix(in oklab,var(--color-secondary) 16%,transparent);color:var(--color-secondary)}
+    .step-phase.respond{background:color-mix(in oklab,var(--color-text-faint) 22%,transparent);color:var(--color-text)}
+    .step-body h4{font-size:var(--text-lg);line-height:1.25}
+    .step-body p{color:var(--color-text-muted);font-size:var(--text-sm);line-height:1.6;margin:0}
+    .step-map{font-size:var(--text-xs);color:var(--color-text-faint);letter-spacing:.04em;border-left:3px solid var(--color-border);padding-left:var(--space-3);margin-top:var(--space-1)}
+    .step-map a{color:var(--color-primary);text-decoration:underline;text-underline-offset:2px}
+
+    @media (max-width: 720px){
+      .step-item{grid-template-columns:1fr;gap:var(--space-3)}
+      .step-rail{display:none!important}
+      .step-marker{flex-direction:row;justify-content:flex-start}
+    }
+
+    .cta{padding-bottom:var(--space-24)}
+    .cta-panel{position:relative;overflow:hidden;border-radius:calc(var(--radius-xl) + .5rem);padding:clamp(var(--space-8),6vw,var(--space-16));background:linear-gradient(135deg,color-mix(in oklab,var(--color-primary) 22%,var(--color-surface)),color-mix(in oklab,var(--color-secondary) 20%,var(--color-surface)));border:1px solid var(--color-border);box-shadow:var(--shadow-lg)}
+    .cta-panel::after{content:"";position:absolute;inset:auto -8% -20% auto;width:18rem;height:18rem;background:radial-gradient(circle,color-mix(in oklab,var(--color-secondary) 24%,transparent),transparent 68%)}
+    .cta-grid{display:grid;grid-template-columns:1fr auto;gap:var(--space-8);align-items:end;position:relative;z-index:1}
+    .cta-grid h2{font-family:var(--font-display);font-size:var(--text-3xl);max-width:10ch}
+    .cta-grid p{max-width:58ch;color:var(--color-text-muted);margin-top:var(--space-4)}
+    .cta-panel a{color:var(--color-text);text-decoration:underline;text-underline-offset:3px}
+    .cta-panel a:hover{color:var(--color-primary)}
+    .cta-panel code{font-family:ui-monospace,'Cascadia Code',monospace;font-size:0.88em;padding:0.12em 0.4em;border-radius:var(--radius-sm);background:color-mix(in oklab,var(--color-text-inverse) 14%,transparent);border:1px solid var(--color-border)}
+
+    footer{padding:var(--space-8) 0 var(--space-12);border-top:1px solid var(--color-divider)}
+    .footer-inner{width:var(--content);margin:0 auto;display:flex;justify-content:space-between;gap:var(--space-4);flex-wrap:wrap;color:var(--color-text-muted);font-size:var(--text-sm)}
+
+    /* Short, low-amplitude reveals so motion does not compete with tables or figures */
+    [data-reveal]{opacity:0;transform:translateY(8px);transition:opacity .32s cubic-bezier(.16,1,.3,1),transform .32s cubic-bezier(.16,1,.3,1)}
+    [data-reveal].is-visible{opacity:1;transform:translateY(0)}
+
+    @media (max-width: 1024px){
+      .hero-grid,.layer-grid,.cta-grid{grid-template-columns:1fr}
+      .cards-3,.research-grid{grid-template-columns:1fr 1fr}
+      .hero-panel{order:-1}
+    }
+
+    @media (max-width: 720px){
+      .topbar-inner{align-items:flex-start}
+      .nav{display:none}
+      h1{max-width:12ch}
+      .metrics,.cards-3,.research-grid{grid-template-columns:1fr}
+      .time-row{grid-template-columns:1fr;gap:var(--space-3)}
+      .hero{padding-top:var(--space-12)}
+      .hero-copy p{font-size:var(--text-base)}
+      .section h2,.cta-grid h2{max-width:none}
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      html{scroll-behavior:auto}
+      *,*:before,*:after{animation:none!important;transition:none!important}
+      [data-reveal]{opacity:1;transform:none}
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="site-shell">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="index.html" aria-label="Biocode main site">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true">
+            <circle cx="18" cy="18" r="7"></circle>
+            <circle cx="46" cy="18" r="7"></circle>
+            <circle cx="18" cy="46" r="7"></circle>
+            <circle cx="46" cy="46" r="7"></circle>
+            <path d="M24 18h16M18 25v14M46 25v14M24 46h16"></path>
+          </svg>
+          <span>BIOCODE // Prototype</span>
+        </a>
+        <nav class="nav" aria-label="Primary navigation">
+          <a href="index.html">Main story</a>
+          <a href="#concept">Concept</a>
+          <a href="#architecture">Architecture</a>
+          <a href="#case-study">Case study</a>
+          <a href="#research">Research</a>
+          <a href="#evidence">Evidence</a>
+          <a href="#frontier">Frontier</a>
+        </nav>
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch theme">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="top">
+        <div class="hero-grid">
+          <div class="hero-copy" data-reveal>
+            <div class="kicker">Next-generation medicine</div>
+            <h1>Drugs that sense, compute, and respond.</h1>
+            <p>
+              This prototype reimagines the reference site as a sharper editorial-product hybrid: programmable therapeutics explained through interface language, systems diagrams, and cinematic depth.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#concept">Explore the concept</a>
+              <a class="btn btn-secondary" href="#research">View research tracks</a>
+            </div>
+            <div class="metrics" aria-label="Key themes">
+              <div class="metric">
+                <strong>Sense</strong>
+                <span>Biomarker-aware detection before action.</span>
+              </div>
+              <div class="metric">
+                <strong>Compute</strong>
+                <span>Logic-gated evaluation inside living systems.</span>
+              </div>
+              <div class="metric">
+                <strong>Respond</strong>
+                <span>Targeted output only after conditions are met.</span>
+              </div>
+            </div>
+          </div>
+
+          <aside class="hero-panel" data-reveal aria-label="Prototype overview panel">
+            <span class="status-chip">Prototype state // concept validated</span>
+            <div class="circuit-stack">
+              <div class="circuit-card">
+                <div class="pill">01</div>
+                <div>
+                  <strong>Sensor Layer</strong>
+                  <span>Protein, RNA, metabolite inputs</span>
+                </div>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12h4l2-6 4 12 2-6h4"/></svg>
+              </div>
+              <div class="circuit-card">
+                <div class="pill">02</div>
+                <div>
+                  <strong>Logic Kernel</strong>
+                  <span>AND / OR / NOT / thresholding</span>
+                </div>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h6M13 12h6M9 8v8M15 8v8"/></svg>
+              </div>
+              <div class="circuit-card">
+                <div class="pill">03</div>
+                <div>
+                  <strong>Therapeutic Output</strong>
+                  <span>Antibody, cytokine, edit, cell-kill signal</span>
+                </div>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3v18M6 9l6-6 6 6M6 15l6 6 6-6"/></svg>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section" id="concept">
+        <div class="container">
+          <div class="section-head" data-reveal>
+            <span class="eyebrow">Core idea</span>
+            <h2>Biology treated like software architecture.</h2>
+            <p class="lead">Instead of static molecules, programmable biological drugs operate more like adaptive programs: they read state, run rules, and trigger an output only when the system context is right.</p>
+          </div>
+          <div class="cards-3">
+            <article class="card" data-reveal>
+              <span class="card-index">Module 01</span>
+              <h3>Sense</h3>
+              <p>Therapeutic systems detect disease signatures such as proteins, metabolites, or gene-expression states before making any move.</p>
+            </article>
+            <article class="card" data-reveal>
+              <span class="card-index">Module 02</span>
+              <h3>Compute</h3>
+              <p>Logic gates and control circuits evaluate whether conditions are jointly satisfied, suppressed, or delayed.</p>
+            </article>
+            <article class="card" data-reveal>
+              <span class="card-index">Module 03</span>
+              <h3>Respond</h3>
+              <p>Only after validation does the payload fire: a signal, an edit, an immune instruction, or a protein output.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="architecture">
+        <div class="container layer-grid">
+          <div>
+            <div class="section-head" data-reveal>
+              <span class="eyebrow">Five layers</span>
+              <h2>A systems map for biological programming.</h2>
+              <p class="lead">The page flow mirrors an engineering stack: circuits, transient RNA control, precise editing, living-cell platforms, and closed-loop gene networks.</p>
+            </div>
+            <div class="layers">
+              <article class="layer-item" data-reveal>
+                <div class="layer-num">01</div>
+                <div><h3>Genetic circuits</h3><p>Logic gate patterns that reduce off-target activation by requiring specific combinations of signals.</p></div>
+              </article>
+              <article class="layer-item" data-reveal>
+                <div class="layer-num">02</div>
+                <div><h3>RNA programming</h3><p>mRNA, siRNA, and riboswitches enable flexible, temporary control without permanently rewriting the genome.</p></div>
+              </article>
+              <article class="layer-item" data-reveal>
+                <div class="layer-num">03</div>
+                <div><h3>CRISPR editing</h3><p>Guide-driven genomic find-and-replace for correction, insertion, deletion, or fine-tuned base editing.</p></div>
+              </article>
+              <article class="layer-item" data-reveal>
+                <div class="layer-num">04</div>
+                <div><h3>Living cell therapies</h3><p>Engineered CAR-T, NK, or macrophage systems become active therapeutic agents with embedded decision rules.</p></div>
+              </article>
+              <article class="layer-item" data-reveal>
+                <div class="layer-num">05</div>
+                <div><h3>Closed-loop networks</h3><p>Sensor, processor, and actuator modules work as a self-regulating therapeutic program.</p></div>
+              </article>
+            </div>
+          </div>
+          <aside class="diagram" data-reveal>
+            <div class="diagram-grid">
+              <div class="node"><small>Input state</small><strong>Biomarker stream</strong><p>Protein levels, metabolic shifts, inflammatory signatures.</p></div>
+              <div class="arrow" aria-hidden="true"></div>
+              <div class="node"><small>Decision logic</small><strong>Circuit evaluation</strong><p>Multi-input thresholds, gating, suppression, memory, timing.</p></div>
+              <div class="arrow" aria-hidden="true"></div>
+              <div class="node"><small>Output action</small><strong>Therapeutic execution</strong><p>Localized release, genomic correction, cell activation, feedback control.</p></div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section case-study" id="case-study">
+        <div class="container">
+          <div class="section-head" data-reveal>
+            <span class="eyebrow">End-to-end walkthrough</span>
+            <h2>Case study: how this prototype behaves as a programmable therapeutic storyboard.</h2>
+            <p class="lead">Four scenarios walk from clinic-like inputs through sense → compute → respond, then show how each step maps onto this page’s modules (research cards, evidence strip, design intent). Numbers are illustrative, not trial data.</p>
+          </div>
+          <p class="case-intro" data-reveal>You can read any scenario alone. Together they show a <strong>positive activation path</strong> (A–C), a <strong>withheld-output path</strong> (D), and how the same UI skeleton would accept real biomarker traces, protocol tables, and citations without rearranging sections.</p>
+
+          <article class="scenario-block" data-reveal aria-labelledby="scen-a-title">
+            <div class="scenario-head">
+              <span class="scenario-id" aria-hidden="true">A</span>
+              <h3 id="scen-a-title">Solid tumor: dual-antigen coincidence before CAR-T activation</h3>
+              <span class="scenario-tag">Synthetic immunology · positive path</span>
+            </div>
+            <p class="scenario-lead">A patient with refractory ovarian carcinoma is enrolled on a concept program using autologous T cells engineered with a two-input AND gate: surface antigen A, surface antigen B, and a tumor-protease-cleaved “arming” peptide must align before full CD3ζ signaling is engaged.</p>
+            <ol class="steps-list">
+              <li class="step-item">
+                <div class="step-marker">
+                  <span class="step-num">1</span>
+                  <span class="step-rail" aria-hidden="true"></span>
+                </div>
+                <div class="step-body">
+                  <span class="step-phase sense">Sense</span>
+                  <h4>Baseline staging and input streams</h4>
+                  <p>Imaging documents disease distribution; blood and ascites show soluble antigen A above a pre-specified floor. Biopsy RNA-seq supports antigen B transcript in tumor epithelium but not in adjacent normal tissue. Pharmacokinetic sampling establishes clearance of lymphodepletion therapy so the engineered product is not competing with residual alemtuzumab.</p>
+                  <p class="step-map"><strong>On this page:</strong> corresponds to <em>Sensor layer</em> in the hero panel and “Input state / biomarker stream” in the architecture diagram. In <a href="#research">Research tracks</a>, populate <strong>Intervention class</strong> and <strong>Biological rationale</strong> on the synthetic immunology card with these modalities.</p>
+                </div>
+              </li>
+              <li class="step-item">
+                <div class="step-marker">
+                  <span class="step-num">2</span>
+                  <span class="step-rail" aria-hidden="true"></span>
+                </div>
+                <div class="step-body">
+                  <span class="step-phase compute">Compute</span>
+                  <h4>Coincidence logic at the cell surface</h4>
+                  <p>After infusion, engineered cells traffic to tumor beds. The circuit requires (A_hi ∧ B_hi ∧ protease_active) within a dwell-time window; if only one antigen dominates, co-receptors remain phosphorylation-limited and the cell stays in a surveillance state with minimal cytokine release.</p>
+                  <p class="step-map"><strong>On this page:</strong> maps to <em>Logic kernel</em> in the hero and “Decision logic / circuit evaluation” in the diagram. The <a href="#concept">Sense · Compute · Respond</a> cards restate the same contract for a non-specialist audience.</p>
+                </div>
+              </li>
+              <li class="step-item">
+                <div class="step-marker">
+                  <span class="step-num">3</span>
+                  <span class="step-rail" aria-hidden="true"></span>
+                </div>
+                <div class="step-body">
+                  <span class="step-phase respond">Respond</span>
+                  <h4>Licensed cytolysis and measurable tumor dynamics</h4>
+                  <p>When the AND condition holds persistently, the construct engages full activation, granzyme release is localized to multi-antigen-positive clusters, and follow-up imaging at week 6 shows partial response by RECIST with declining CA-125.</p>
+                  <p class="step-map"><strong>On this page:</strong> aligns with <em>Therapeutic output</em> in the hero. Under <a href="#evidence">Evidence</a>, you would paste RECIST / CA-125 trajectories into the CONSORT-style table rows and attach the corresponding publication in the <strong>citation layer</strong>.</p>
+                </div>
+              </li>
+              <li class="step-item">
+                <div class="step-marker">
+                  <span class="step-num">4</span>
+                  <span class="step-rail" aria-hidden="true"></span>
+                </div>
+                <div class="step-body">
+                  <span class="step-phase sense">Sense · governance</span>
+                  <h4>Safety readouts close the loop</h4>
+                  <p>CRS grade and ferritin are monitored on a fixed schedule; if grade ≥2 CRS emerges, protocol holds further doses and adds tocilizumab per standard of care. The therapeutic “program” includes an institutional rule layer outside the gene circuit—still part of how the intervention operates in practice.</p>
+                  <p class="step-map"><strong>On this page:</strong> the safety row in the CONSORT scaffold and a footnote column in the same table capture this governance without a new section.</p>
+                </div>
+              </li>
+            </ol>
+          </article>
+
+          <article class="scenario-block" data-reveal aria-labelledby="scen-b-title">
+            <div class="scenario-head">
+              <span class="scenario-id" aria-hidden="true">B</span>
+              <h3 id="scen-b-title">Type 1 diabetes: glucose band drives graded insulin transgene output</h3>
+              <span class="scenario-tag">Closed-loop metabolic · branching</span>
+            </div>
+            <p class="scenario-lead">The same prototype page can narrate <em>two branches</em> from one intervention class: aggressive correction when glucose is high, and conservative withholding when glucose falls toward hypoglycemia.</p>
+            <ol class="steps-list">
+              <li class="step-item">
+                <div class="step-marker">
+                  <span class="step-num">1</span>
+                  <span class="step-rail" aria-hidden="true"></span>
+                </div>
+                <div class="step-body">
+                  <span class="step-phase sense">Sense</span>
+                  <h4>Continuous glucose telemetry as the primary input</h4>
+                  <p>A subcutaneous sensor stream (e.g., 5-minute intervals) feeds a control policy implemented partly in hardware and partly in the genetic program: interstitial glucose is calibrated against capillary checks during the first 72 hours post-implant.</p>
+                  <p class="step-map"><strong>On this page:</strong> the metabolic <a href="#research">research card</a> “Intervention class” names the encapsulated or in vivo circuit; “Biological rationale” explains graded output versus bolus insulin.</p>
+                </div>
+              </li>
+              <li class="step-item">
+                <div class="step-marker">
+                  <span class="step-num">2</span>
+                  <span class="step-rail" aria-hidden="true"></span>
+                </div>
+                <div class="step-body">
+                  <span class="step-phase compute">Compute</span>
+                  <h4>Branch A — hyperglycemia correction</h4>
+                  <p>When smoothed glucose exceeds the upper band for &gt;30 minutes, transcription of the insulin transgene ramps along a saturating curve; the circuit includes a leak term so basal expression is never strictly zero, avoiding complete metabolic silence.</p>
+                  <p class="step-map"><strong>On this page:</strong> diagram node “Decision logic” can be annotated in a future figure with two branches diverging from one comparator node.</p>
+                </div>
+              </li>
+              <li class="step-item">
+                <div class="step-marker">
+                  <span class="step-num">3</span>
+                  <span class="step-rail" aria-hidden="true"></span>
+                </div>
+                <div class="step-body">
+                  <span class="step-phase compute">Compute</span>
+                  <h4>Branch B — hypoglycemia protection</h4>
+                  <p>When glucose crosses below the lower band, the circuit applies rapid negative dominance: transgene output is suppressed within minutes, glucagon rescue remains available per protocol, and logging flags the event for clinician review.</p>
+                  <p class="step-map"><strong>On this page:</strong> a second row group in the <a href="#evidence">CONSORT-style table</a> could separate “efficacy estimand” vs “hypoglycemia avoidance” secondary endpoints without changing layout.</p>
+                </div>
+              </li>
+              <li class="step-item">
+                <div class="step-marker">
+                  <span class="step-num">4</span>
+                  <span class="step-rail" aria-hidden="true"></span>
+                </div>
+                <div class="step-body">
+                  <span class="step-phase respond">Respond</span>
+                  <h4>Time-in-range and rescue medication use</h4>
+                  <p>At month 3, CGM exports show increased time-in-range (70–180 mg/dL) versus the patient’s pre-implant baseline; severe hypoglycemia events are zero in the reporting window. Those become the headline outcomes in the evidence strip.</p>
+                  <p class="step-map"><strong>On this page:</strong> figure panel holds CGM ribbon plots; citation layer cites the protocol registration and statistical analysis plan.</p>
+                </div>
+              </li>
+            </ol>
+          </article>
+
+          <article class="scenario-block" data-reveal aria-labelledby="scen-c-title">
+            <div class="scenario-head">
+              <span class="scenario-id" aria-hidden="true">C</span>
+              <h3 id="scen-c-title">Personalized neoantigen mRNA: from biopsy to peripheral immune readout</h3>
+              <span class="scenario-tag">Vaccines · pipeline choreography</span>
+            </div>
+            <p class="scenario-lead">This scenario emphasizes <strong>steps that are not all biological computing</strong>—manufacturing, release testing, and clinical administration—but still fit the same sense/compute/respond narrative for the overall product story.</p>
+            <ol class="steps-list">
+              <li class="step-item">
+                <div class="step-marker">
+                  <span class="step-num">1</span>
+                  <span class="step-rail" aria-hidden="true"></span>
+                </div>
+                <div class="step-body">
+                  <span class="step-phase sense">Sense</span>
+                  <h4>Tumor and host sequencing define the antigen set</h4>
+                  <p>FFPE tumor and matched normal blood yield exome calls; neoantigen prediction ranks missense variants by HLA binding and RNA support. A clinical tumor board approves the final peptide list encoded into the GMP batch.</p>
+                  <p class="step-map"><strong>On this page:</strong> <strong>Plausible indication anchor</strong> on the mRNA oncology card names adjuvant or MRD contexts; sequencing is the upstream “sensor” before any drug product exists.</p>
+                </div>
+              </li>
+              <li class="step-item">
+                <div class="step-marker">
+                  <span class="step-num">2</span>
+                  <span class="step-rail" aria-hidden="true"></span>
+                </div>
+                <div class="step-body">
+                  <span class="step-phase compute">Compute</span>
+                  <h4>Batch release as a computational QC gate</h4>
+                  <p>Identity, potency (expression in reporter cells), and endotoxin specs must pass before vials ship. That gate is the industrial analogue of a biological AND: “batch ID correct ∧ potency ≥ threshold ∧ safety panel clear.”</p>
+                  <p class="step-map"><strong>On this page:</strong> optional callout box in a future figure could mirror the architecture diagram’s middle node, labeled “QC / release logic.”</p>
+                </div>
+              </li>
+              <li class="step-item">
+                <div class="step-marker">
+                  <span class="step-num">3</span>
+                  <span class="step-rail" aria-hidden="true"></span>
+                </div>
+                <div class="step-body">
+                  <span class="step-phase respond">Respond</span>
+                  <h4>Lymph-node delivery and ex vivo T-cell readout</h4>
+                  <p>Intranodal administration on days 0, 14, 28 is followed by apheresis at day 35. ELISpot against pooled peptides shows new IFN-γ spots versus baseline; tetramer staining enriches for CD8 populations specific to two encoded neoepitopes.</p>
+                  <p class="step-map"><strong>On this page:</strong> the <a href="#evidence">evidence table</a> gains rows for immunogenicity secondary endpoints; the figure slot holds ELISpot / tetramer panels with shared numbering to references [3]–[4] in the list.</p>
+                </div>
+              </li>
+            </ol>
+          </article>
+
+          <article class="scenario-block" data-reveal aria-labelledby="scen-d-title">
+            <div class="scenario-head">
+              <span class="scenario-id" aria-hidden="true">D</span>
+              <h3 id="scen-d-title">Epigenome editor: when the circuit intentionally does not fire</h3>
+              <span class="scenario-tag">Negative path · specificity</span>
+            </div>
+            <p class="scenario-lead">Programmable therapeutics need a credible <strong>off state</strong>. Here, dCas-repressor is targeted to a promoter implicated in a hepatic malignancy, but healthy hepatocytes express a low-level decoy transcript that fails the fold-change threshold.</p>
+            <ol class="steps-list">
+              <li class="step-item">
+                <div class="step-marker">
+                  <span class="step-num">1</span>
+                  <span class="step-rail" aria-hidden="true"></span>
+                </div>
+                <div class="step-body">
+                  <span class="step-phase sense">Sense</span>
+                  <h4>Single-cell RNA in adjacent normal shows sub-threshold target</h4>
+                  <p>Preclinical organoid data show target promoter activity in tumoroids but not in matched normal organoids when normalized to housekeeping expression.</p>
+                  <p class="step-map"><strong>On this page:</strong> the epigenome editor card’s <strong>Biological rationale</strong> cites reversibility; this step supplies the quantitative “why off-target tissue is ignored.”</p>
+                </div>
+              </li>
+              <li class="step-item">
+                <div class="step-marker">
+                  <span class="step-num">2</span>
+                  <span class="step-rail" aria-hidden="true"></span>
+                </div>
+                <div class="step-body">
+                  <span class="step-phase compute">Compute</span>
+                  <h4>Fold-change AND gate returns false in hepatocytes</h4>
+                  <p>In simulation and rodent studies, the ratio of tumor to normal promoter activity never crosses the AND threshold simultaneously with guide occupancy metrics, so the repressor module remains disengaged in healthy tissue.</p>
+                  <p class="step-map"><strong>On this page:</strong> diagram “circuit evaluation” is where a future pathway figure would show the failed branch in muted styling.</p>
+                </div>
+              </li>
+              <li class="step-item">
+                <div class="step-marker">
+                  <span class="step-num">3</span>
+                  <span class="step-rail" aria-hidden="true"></span>
+                </div>
+                <div class="step-body">
+                  <span class="step-phase respond">Respond</span>
+                  <h4>No clinical output change where logic is false</h4>
+                  <p>Liver enzymes remain stable; tumor-specific serum marker declines only after a separate combination agent is introduced—attributable to combination therapy, not spurious epigenetic silencing in normal liver.</p>
+                  <p class="step-map"><strong>On this page:</strong> CONSORT table notes column documents “no emergent hepatotoxicity signal”; citations link to IND-enabling tox package summaries.</p>
+                </div>
+              </li>
+            </ol>
+          </article>
+
+          <p class="scenario-lead" data-reveal style="margin-top:var(--space-4);border:1px dashed var(--color-border);border-radius:var(--radius-lg);padding:var(--space-5)"><strong>Using this case study with stakeholders:</strong> clinicians can follow scenarios A–D in order; engineers map each <em>step-map</em> line to a component they own (assay, vector, control software, statistics); regulatory writers lift the same headings into the briefing book while the public site keeps the shorter modules above. All paths assume fictional composite patients for illustration.</p>
+        </div>
+      </section>
+
+      <section class="section" id="research">
+        <div class="container">
+          <div class="section-head" data-reveal>
+            <span class="eyebrow">Research tracks</span>
+            <h2>Prototype cards for active frontier programs.</h2>
+            <p class="lead">This section turns the source material's frontier-lab survey into a more product-like research gallery, useful if you want the site to feel both scientific and investable.</p>
+          </div>
+          <div class="research-grid">
+            <article class="research-card" data-reveal>
+              <header>
+                <h3>Synthetic immunology circuits</h3>
+                <span class="tag">Oncology</span>
+              </header>
+              <dl class="research-card-clinical">
+                <div class="clinical-row">
+                  <dt>Intervention class</dt>
+                  <dd>Autologous or allogeneic T-cell therapy with synthetic receptor logic (multi-input AND/OR gating on surface antigens and/or protease cleavage).</dd>
+                </div>
+                <div class="clinical-row">
+                  <dt>Biological rationale</dt>
+                  <dd>Restricts cytolytic or co-stimulatory output to combinatorial tumor microenvironment signatures, aiming to widen therapeutic index versus single-antigen CAR approaches.</dd>
+                </div>
+                <div class="clinical-row">
+                  <dt>Plausible indication anchor</dt>
+                  <dd>Solid tumors with heterogeneous antigen loss (e.g., ovarian, pancreatic) where multi-antigen coincidence is hypothesized to enrich tumor-specific activation.</dd>
+                </div>
+              </dl>
+            </article>
+            <article class="research-card" data-reveal>
+              <header>
+                <h3>Closed-loop insulin systems</h3>
+                <span class="tag">Metabolic</span>
+              </header>
+              <dl class="research-card-clinical">
+                <div class="clinical-row">
+                  <dt>Intervention class</dt>
+                  <dd>In vivo gene circuit or encapsulated cell device encoding glucose-responsive insulin secretion (closed-loop endocrine substitute).</dd>
+                </div>
+                <div class="clinical-row">
+                  <dt>Biological rationale</dt>
+                  <dd>Continuous sensing of circulating glucose (or proxy metabolites) drives graded transgene output, reducing exposure during euglycemia and hypoglycemia risk versus fixed dosing.</dd>
+                </div>
+                <div class="clinical-row">
+                  <dt>Plausible indication anchor</dt>
+                  <dd>Type 1 diabetes with labile control or recurrent severe hypoglycemia despite optimized pump/ CGM regimens; adjunct or bridge to transplantation.</dd>
+                </div>
+              </dl>
+            </article>
+            <article class="research-card" data-reveal>
+              <header>
+                <h3>Personalized mRNA oncology</h3>
+                <span class="tag">Vaccines</span>
+              </header>
+              <dl class="research-card-clinical">
+                <div class="clinical-row">
+                  <dt>Intervention class</dt>
+                  <dd>Individualized neoantigen-encoding mRNA (or self-amplifying RNA) delivered via LNP or intranodal routes with defined immunostimulant backbone.</dd>
+                </div>
+                <div class="clinical-row">
+                  <dt>Biological rationale</dt>
+                  <dd>Aligns CD8<sup>+</sup> responses to tumor-specific missense frames predicted from exome and HLA typing; manufacturing batch tied to each patient’s mutanome.</dd>
+                </div>
+                <div class="clinical-row">
+                  <dt>Plausible indication anchor</dt>
+                  <dd>Adjuvant or minimal residual disease settings in high-mutation-burden cancers (e.g., melanoma, MSI-high colorectal) where peripheral T-cell expansion correlates with delayed relapse.</dd>
+                </div>
+              </dl>
+            </article>
+            <article class="research-card" data-reveal>
+              <header>
+                <h3>Epigenome editors</h3>
+                <span class="tag">Genomics</span>
+              </header>
+              <dl class="research-card-clinical">
+                <div class="clinical-row">
+                  <dt>Intervention class</dt>
+                  <dd>Dead Cas (dCas) or nuclease-deficient editors fused to transcriptional activators or repressors targeted to promoter or enhancer elements.</dd>
+                </div>
+                <div class="clinical-row">
+                  <dt>Biological rationale</dt>
+                  <dd>Modulates chromatin accessibility and RNA output without double-strand breaks, offering a titratable, potentially reversible layer versus nuclease editing.</dd>
+                </div>
+                <div class="clinical-row">
+                  <dt>Plausible indication anchor</dt>
+                  <dd>Monogenic disorders with toxic gain-of-function transcription (e.g., selected neurodevelopmental or hepatic storage phenotypes) or oncology programs silencing oncofetal drivers.</dd>
+                </div>
+              </dl>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="evidence">
+        <div class="container">
+          <div class="section-head" data-reveal>
+            <span class="eyebrow">Evidence architecture</span>
+            <h2>Figure panels, CONSORT-aligned outcomes, and citation layer.</h2>
+            <p class="lead">Structured slots that follow the <a href="#research">research cards</a> without reordering the page: swap in arm-level results, extend the reference list, or embed SVG/PNG figure grids—layout and section IDs stay stable for downstream publishing workflows.</p>
+          </div>
+
+          <div class="figure-slot" data-reveal>
+            <figure class="figure-panel">
+              <div class="figure-panel-inner">
+                <div class="figure-panel-grid" role="group" aria-label="Sample multi-panel figure: biomarker inputs, logic gate, therapeutic output">
+                  <div class="figure-subpanel">
+                    <div class="fp-label">(a) Biomarker streams</div>
+                    <svg viewBox="0 0 220 110" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                      <rect x="18" y="18" width="184" height="74" fill="none" stroke="currentColor" stroke-width="1" opacity="0.35"/>
+                      <line x1="28" y1="88" x2="192" y2="88" stroke="currentColor" stroke-width="0.6" opacity="0.4"/>
+                      <line x1="28" y1="88" x2="28" y2="28" stroke="currentColor" stroke-width="0.6" opacity="0.4"/>
+                      <path d="M38 72 L72 58 L108 52 L142 38 L178 42 L202 28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                      <path d="M38 82 L78 74 L118 68 L158 62 L198 50" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.55"/>
+                      <circle cx="142" cy="38" r="3" fill="currentColor" opacity="0.9"/>
+                      <circle cx="158" cy="62" r="3" fill="currentColor" opacity="0.5"/>
+                    </svg>
+                    <p class="fp-explain">The upper curve stands in for a tumor-associated antigen or shed protein rising into a quantifiable reporting window; the lower curve can represent a second modality (e.g., inflammatory index or a second antigen). Markers denote time points where both signals are simultaneously above protocol thresholds—this is the <strong>sense</strong> layer that feeds the logic in panel (b).</p>
+                  </div>
+                  <div class="figure-subpanel">
+                    <div class="fp-label">(b) Logic coincidence</div>
+                    <svg viewBox="0 0 220 110" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                      <line x1="12" y1="32" x2="68" y2="32" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                      <line x1="12" y1="78" x2="68" y2="78" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                      <text x="14" y="26" fill="currentColor" font-size="9" opacity="0.65">A</text>
+                      <text x="14" y="98" fill="currentColor" font-size="9" opacity="0.65">B</text>
+                      <path d="M68 22 L68 88 L118 88 Q168 55 118 22 Z" fill="currentColor" fill-opacity="0.08" stroke="currentColor" stroke-width="2"/>
+                      <text x="88" y="56" fill="currentColor" font-size="10" font-weight="700" opacity="0.85">AND</text>
+                      <line x1="168" y1="55" x2="208" y2="55" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                      <polygon points="200,50 210,55 200,60" fill="currentColor"/>
+                    </svg>
+                    <p class="fp-explain">Inputs <strong>A</strong> and <strong>B</strong> are binary or graded signals from panel (a). The <strong>AND</strong> gate means neither arm alone is sufficient to pass the gate: the therapeutic program only commits to an “on” state when the joint condition is met (optionally with dwell-time or kinetic filters not drawn here). The outgoing arrow is the permission signal for panel (c).</p>
+                  </div>
+                  <div class="figure-subpanel">
+                    <div class="fp-label">(c) Therapeutic output</div>
+                    <svg viewBox="0 0 220 110" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                      <ellipse cx="70" cy="55" rx="38" ry="32" fill="none" stroke="currentColor" stroke-width="1.8" opacity="0.5"/>
+                      <circle cx="70" cy="55" r="14" fill="currentColor" fill-opacity="0.12" stroke="currentColor" stroke-width="1.5"/>
+                      <path d="M108 55 L165 40" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                      <path d="M108 55 L168 70" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+                      <rect x="168" y="28" width="42" height="44" rx="6" fill="currentColor" fill-opacity="0.1" stroke="currentColor" stroke-width="1.5"/>
+                      <text x="189" y="56" text-anchor="middle" fill="currentColor" font-size="8" opacity="0.8">IFNγ</text>
+                      <text x="189" y="68" text-anchor="middle" fill="currentColor" font-size="7" opacity="0.6">payload</text>
+                    </svg>
+                    <p class="fp-explain">The ellipse represents a therapeutic cell or depot at the disease site. When the gate in (b) fires, the cell executes a <strong>respond</strong> program: here illustrated as IFN-γ (immune amplification readout) and a generic <strong>payload</strong> label for cytolysis, secreted biologic, or local gene-regulatory output. The faint second arrow suggests optional multi-lineage secretion or feedback to upstream sensors.</p>
+                  </div>
+                </div>
+              </div>
+              <figcaption><strong>Figure 1 (sample).</strong> Multi-panel schematic aligned to the page narrative: <em>(a)</em> concurrent biomarker trajectories (illustrative axes); <em>(b)</em> coincidence logic before licensing downstream signaling; <em>(c)</em> localized effector output (e.g., cytokine or cytolytic program). Explanations under each panel interpret the graphics for a clinical–translational reader.</figcaption>
+            </figure>
+          </div>
+
+          <div class="consort-wrap" data-reveal>
+            <h3 class="consort-title" id="primary-outcome-table">Primary outcome table (CONSORT-aligned scaffold)</h3>
+            <p class="consort-note">Below is a <strong>fully populated layout sample</strong> for arm-level reporting (hypothetical Phase 2–style program “BIOCODE-204”). Replace every cell with protocol-locked values, estimands, and analysis-set definitions before any regulatory use.</p>
+            <div class="table-scroll">
+              <table class="consort-table" aria-describedby="primary-outcome-table">
+                <caption>Illustrative arm-level results — hypothetical trial BIOCODE-204 (not real data)</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Population / analysis set</th>
+                    <th scope="col">Experimental (n)</th>
+                    <th scope="col">Comparator (n)</th>
+                    <th scope="col">Primary / key secondary</th>
+                    <th scope="col">Effect estimate</th>
+                    <th scope="col">Notes</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>ITT — enrolled and dosed<sup>a</sup></td>
+                    <td class="num">124</td>
+                    <td class="num">62</td>
+                    <td>Progression-free survival (INV)</td>
+                    <td class="num">HR 0.62 (95% CI 0.41–0.94); <em>p</em> = 0.024</td>
+                    <td>Stratified log-rank; primary estimand per SAP §4.1</td>
+                  </tr>
+                  <tr>
+                    <td>mITT — dual-biomarker positive<sup>b</sup></td>
+                    <td class="num">89</td>
+                    <td class="num">44</td>
+                    <td>Objective response (RECIST 1.1, BICR)</td>
+                    <td class="num">34% vs 12%; Δ 22% (95% CI 9–35)</td>
+                    <td>Confirmed responses at week 18</td>
+                  </tr>
+                  <tr>
+                    <td>Per-protocol — completed 6 cycles</td>
+                    <td class="num">102</td>
+                    <td class="num">55</td>
+                    <td>Duration of response (median)</td>
+                    <td class="num">9.4 mo vs 4.1 mo</td>
+                    <td>Kaplan–Meier; Brookmeyer–Crowley CI</td>
+                  </tr>
+                  <tr>
+                    <td>Safety analysis set — as-treated</td>
+                    <td class="num">124</td>
+                    <td class="num">62</td>
+                    <td>Grade ≥3 TRAEs (any cause)</td>
+                    <td class="num">41% vs 28%</td>
+                    <td>CRS grade ≥2: 18% vs 0%; no G5 events</td>
+                  </tr>
+                  <tr>
+                    <td>Health-related QoL (ITT)</td>
+                    <td class="num">118</td>
+                    <td class="num">59</td>
+                    <td>Global health score Δ week 12 vs baseline</td>
+                    <td class="num">+6.8 vs +1.2 (LS mean diff)</td>
+                    <td>EORTC QLQ-C30 v3</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="consort-foot"><sup>a</sup> One patient in the experimental arm did not receive product (randomized in error); counted in ITT per policy. <sup>b</sup> Pre-specified threshold for both tissue and circulating markers; sensitivity ITT analysis HR 0.71 (0.49–1.03) reported in appendix (not shown). Missing RECIST week 18 assessments imputed as non-response per SAP.</p>
+          </div>
+
+          <aside class="citation-layer" data-reveal aria-labelledby="citations-heading">
+            <h3 id="citations-heading">References (citation layer — sample)</h3>
+            <ol class="citation-list">
+              <li id="ref-1">Schulz KF, Altman DG, Moher D; CONSORT Group. CONSORT 2010 Statement: updated guidelines for reporting parallel group randomised trials. <em>BMJ</em>. 2010;340:c332. <a href="https://www.bmj.com/content/340/bmj.c332" rel="noopener noreferrer">doi:10.1136/bmj.c332</a></li>
+              <li id="ref-2">International Council for Harmonisation. ICH E9(R1) Statistical Principles for Clinical Trials: addendum on estimands and sensitivity analysis. 2019. <a href="https://database.ich.org/sites/default/files/E9-R1_Step4_Guideline_2019_1203.pdf" rel="noopener noreferrer">ICH E9(R1) Step 4 PDF</a></li>
+              <li id="ref-3">Eisenhauer EA, Therasse P, Bogaerts J, et al. New response evaluation criteria in solid tumours: revised RECIST guideline (version 1.1). <em>Eur J Cancer</em>. 2009;45(2):228-247. <a href="https://doi.org/10.1016/j.ejca.2008.10.026" rel="noopener noreferrer">doi:10.1016/j.ejca.2008.10.026</a></li>
+              <li id="ref-4">June CH, Sadelain M. Chimeric antigen receptor immunotherapy for human cancer. <em>Science</em>. 2018;359(6382):1361-1365. <a href="https://doi.org/10.1126/science.aar6517" rel="noopener noreferrer">doi:10.1126/science.aar6517</a></li>
+              <li id="ref-5">Rosenberg SA, Restifo NP. Adoptive cell transfer as personalized immunotherapy for human cancer. <em>Science</em>. 2015;348(6230):62-68. <a href="https://doi.org/10.1126/science.aaa4967" rel="noopener noreferrer">doi:10.1126/science.aaa4967</a></li>
+              <li id="ref-6"><strong>Fictitious registry entry for layout only:</strong> BIOCODE-204: A randomized phase 2 study of gated cellular therapy plus standard of care versus standard of care in advanced solid tumors. <em>IllustrativeClinicalTrials.gov</em> identifier NCT00000000 (placeholder — replace with real NCT).</li>
+            </ol>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section" id="frontier">
+        <div class="container">
+          <div class="section-head" data-reveal>
+            <span class="eyebrow">Forward view</span>
+            <h2>A roadmap from AI-designed circuits to biological operating systems.</h2>
+            <p class="lead">The long-term narrative remains the strongest part of the concept, so the prototype keeps it as a timeline that escalates from near-term feasibility to speculative platform thinking.</p>
+          </div>
+          <div class="timeline">
+            <article class="time-row" data-reveal>
+              <strong>2025–2030</strong>
+              <div>
+                <h3>AI-designed genetic circuits</h3>
+                <p>Machine-learning systems help design regulatory architectures faster and with better fit to specific disease contexts.</p>
+              </div>
+            </article>
+            <article class="time-row" data-reveal>
+              <strong>2030–2038</strong>
+              <div>
+                <h3>In vivo reprogramming</h3>
+                <p>Delivery systems evolve so that cell engineering can happen directly inside the body rather than through ex vivo manufacturing.</p>
+              </div>
+            </article>
+            <article class="time-row" data-reveal>
+              <strong>2032–2040</strong>
+              <div>
+                <h3>Distributed therapeutic networks</h3>
+                <p>Distinct engineered cell populations communicate and divide labor like a distributed computing system.</p>
+              </div>
+            </article>
+            <article class="time-row" data-reveal>
+              <strong>2040+</strong>
+              <div>
+                <h3>Germline-safe epigenetic medicine</h3>
+                <p>Reversible expression-layer interventions reset disease states without permanent hereditary edits.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section cta">
+        <div class="container">
+          <div class="cta-panel" data-reveal>
+            <div class="cta-grid">
+              <div>
+                <span class="eyebrow">Design direction</span>
+                <h2>Clinical framing first: indication-relevant biology, then mechanism, then modality.</h2>
+                <p>The narrative is ordered like a translational briefing—surface the disease context and unmet need, then walk from measurable inputs (circulating proteins, tissue biomarkers, gene-expression signatures, metabolic flux) through decision logic that mimics how engineered circuits gate therapeutic output, and only then enumerate delivery modalities (mRNA, viral vectors, lipid nanoparticles, ex vivo–expanded cellular products). That sequencing mirrors how clinicians and reviewers weigh claims: plausibility of sensing, specificity of the conditional response, and a credible path from pharmacodynamics to patient-relevant endpoints.</p>
+                <p>Visually, each block is intended to carry the density of a methods-aware audience without sacrificing scanability: layered “stack” language parallels regulatory and IND-adjacent vocabulary (target product profile, critical quality attributes, control strategy). Research cards now encode three labeled fields—<strong>intervention class</strong>, <strong>biological rationale</strong>, and <strong>plausible indication anchor</strong>—as a fixed <code>dl</code> pattern. The <a href="#evidence">Evidence</a> section provides a figure panel slot, a CONSORT-aligned outcomes table scaffold, and a numbered citation layer so those assets can ship without reordering sections. Light and dark themes support extended reading of mechanistic copy; on-scroll reveals use short, low-amplitude motion so tables and pathway figures remain the visual focus when populated.</p>
+              </div>
+              <a class="btn btn-primary" href="#top">Back to top</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-inner">
+        <span>BIOCODE // Programmable Drugs Prototype · <a href="index.html" style="text-decoration:underline;text-underline-offset:3px">Full editorial story</a></span>
+        <span>Static HTML concept with dual theme, responsive layout, and editorial product styling.</span>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      const root = document.documentElement;
+      const toggle = document.querySelector('[data-theme-toggle]');
+      let theme = root.getAttribute('data-theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      const icons = {
+        dark: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>',
+        light: '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>'
+      };
+      function applyTheme(next) {
+        theme = next;
+        root.setAttribute('data-theme', next);
+        if (toggle) {
+          toggle.innerHTML = next === 'dark' ? icons.dark : icons.light;
+          toggle.setAttribute('aria-label', next === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+        }
+      }
+      applyTheme(theme);
+      toggle?.addEventListener('click', function () {
+        applyTheme(theme === 'dark' ? 'light' : 'dark');
+      });
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('is-visible');
+        });
+      }, { threshold: 0.14 });
+      document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
+    }());
+  </script>
+</body>
+</html>

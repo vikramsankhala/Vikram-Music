@@ -1,3 +1,6 @@
+# Integrated copy lives under website/biological-drugs/ (nested .git in source folder)
+Biological Drugs/
+
 # Temp extraction files
 docx_extract/
 extracted_text.txt

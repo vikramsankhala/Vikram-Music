@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programmable Biological Drugs</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@300;400;600&family=Instrument+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #040b12;
+    --surface: #071522;
+    --surface2: #0c2035;
+    --accent: #00e5c0;
+    --accent2: #3d8bff;
+    --accent3: #ff6b6b;
+    --accent4: #c084fc;
+    --text: #e8f4f0;
+    --muted: #7a9aaa;
+    --border: rgba(0,229,192,0.15);
+    --glow: rgba(0,229,192,0.08);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Instrument Sans', sans-serif;
+    font-weight: 400;
+    overflow-x: hidden;
+    line-height: 1.7;
+  }
+
+  /* ── NOISE TEXTURE ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.5;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 3rem;
+    background: rgba(4,11,18,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 8rem 3rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,229,192,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,229,192,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: gridShift 20s linear infinite;
+  }
+
+  @keyframes gridShift {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(60px); }
+  }
+
+  .hero-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    animation: pulse 8s ease-in-out infinite;
+  }
+
+  .orb1 {
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(0,229,192,0.12) 0%, transparent 70%);
+    top: -100px; right: -100px;
+  }
+
+  .orb2 {
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(61,139,255,0.10) 0%, transparent 70%);
+    bottom: 0; left: 200px;
+    animation-delay: -4s;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.7; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+  }
+
+  .hero-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    animation: fadeUp 0.8s ease both;
+  }
+
+  .hero-tag::before {
+    content: '';
+    display: block;
+    width: 30px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3rem, 7vw, 6.5rem);
+    line-height: 1.05;
+    font-weight: 400;
+    max-width: 900px;
+    animation: fadeUp 0.8s 0.15s ease both;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-sub {
+    max-width: 600px;
+    font-size: 1.1rem;
+    color: var(--muted);
+    margin-top: 2rem;
+    font-weight: 300;
+    animation: fadeUp 0.8s 0.3s ease both;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    margin-top: 3rem;
+    animation: fadeUp 0.8s 0.45s ease both;
+  }
+
+  .btn {
+    padding: 0.85rem 2rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: var(--bg);
+    border: none;
+  }
+
+  .btn-primary:hover {
+    background: #00ffcf;
+    box-shadow: 0 0 30px rgba(0,229,192,0.4);
+    transform: translateY(-2px);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+  }
+
+  .btn-outline:hover {
+    background: var(--glow);
+    transform: translateY(-2px);
+  }
+
+  .scroll-hint {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--muted);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    animation: fadeUp 0.8s 0.6s ease both;
+  }
+
+  .scroll-line {
+    width: 40px;
+    height: 1px;
+    background: var(--muted);
+    animation: lineExpand 2s ease-in-out infinite;
+  }
+
+  @keyframes lineExpand {
+    0%, 100% { transform: scaleX(1); opacity: 0.5; }
+    50% { transform: scaleX(1.4); opacity: 1; }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── SECTIONS SHARED ── */
+  section { padding: 7rem 3rem; position: relative; }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    max-width: 50px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 400;
+    line-height: 1.1;
+    max-width: 700px;
+    margin-bottom: 1.5rem;
+  }
+
+  h2 em { font-style: italic; color: var(--accent); }
+
+  .lead {
+    font-size: 1.05rem;
+    color: var(--muted);
+    max-width: 650px;
+    font-weight: 300;
+    margin-bottom: 4rem;
+  }
+
+  /* ── CORE IDEA SECTION ── */
+  #core {
+    background: linear-gradient(180deg, var(--bg) 0%, var(--surface) 100%);
+  }
+
+  .dna-visual {
+    display: flex;
+    justify-content: center;
+    margin: 3rem 0;
+  }
+
+  .dna-strand {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    max-width: 600px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.1rem;
+    letter-spacing: 0.15em;
+  }
+
+  .dna-char {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 4px;
+    font-weight: 600;
+    animation: charPop 0.5s ease both;
+  }
+
+  .dna-A { background: rgba(0,229,192,0.15); color: var(--accent); }
+  .dna-T { background: rgba(61,139,255,0.15); color: var(--accent2); }
+  .dna-G { background: rgba(255,107,107,0.15); color: var(--accent3); }
+  .dna-C { background: rgba(192,132,252,0.15); color: var(--accent4); }
+
+  @keyframes charPop {
+    from { opacity: 0; transform: scale(0.5); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  /* ── LAYERS SECTION ── */
+  #layers { background: var(--surface); }
+
+  .layers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .layer-card {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s;
+    cursor: default;
+  }
+
+  .layer-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--card-accent, var(--accent));
+  }
+
+  .layer-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 0% 0%, var(--glow) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s;
+  }
+
+  .layer-card:hover { transform: translateY(-4px); border-color: rgba(0,229,192,0.3); }
+  .layer-card:hover::after { opacity: 1; }
+
+  .layer-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--card-accent, var(--accent));
+    letter-spacing: 0.2em;
+    margin-bottom: 0.75rem;
+  }
+
+  .layer-card h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+  }
+
+  .layer-card p {
+    color: var(--muted);
+    font-size: 0.92rem;
+    line-height: 1.7;
+  }
+
+  .gate-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .gate-pill {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 100px;
+    background: rgba(0,229,192,0.08);
+    border: 1px solid rgba(0,229,192,0.2);
+    color: var(--accent);
+    letter-spacing: 0.1em;
+  }
+
+  /* ── DELIVERY SECTION ── */
+  #delivery { background: var(--bg); }
+
+  .delivery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .delivery-card {
+    background: linear-gradient(135deg, var(--surface) 0%, var(--surface2) 100%);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: all 0.4s;
+  }
+
+  .delivery-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+
+  .delivery-icon {
+    width: 3.5rem; height: 3.5rem;
+    border-radius: 50%;
+    margin: 0 auto 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+  }
+
+  .delivery-card h4 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .delivery-card p { color: var(--muted); font-size: 0.88rem; }
+
+  /* ── REAL WORLD TABLE ── */
+  #examples { background: var(--surface); }
+
+  .drug-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 3rem;
+    font-size: 0.92rem;
+  }
+
+  .drug-table thead tr {
+    border-bottom: 2px solid var(--accent);
+  }
+
+  .drug-table th {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding: 1rem 1.5rem;
+    text-align: left;
+  }
+
+  .drug-table td {
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    vertical-align: top;
+  }
+
+  .drug-table tbody tr {
+    transition: background 0.3s;
+  }
+
+  .drug-table tbody tr:hover { background: var(--glow); }
+
+  .drug-name {
+    font-weight: 500;
+    color: var(--text);
+  }
+
+  .drug-status {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 100px;
+    background: rgba(0,229,192,0.1);
+    border: 1px solid rgba(0,229,192,0.3);
+    color: var(--accent);
+    margin-left: 0.5rem;
+    letter-spacing: 0.08em;
+    vertical-align: middle;
+  }
+
+  /* ── RESEARCH PROJECTS ── */
+  #research { background: var(--bg); }
+
+  .research-list {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .research-item {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 2rem;
+    align-items: start;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem;
+    transition: all 0.4s;
+    cursor: default;
+  }
+
+  .research-item:hover {
+    border-color: rgba(0,229,192,0.3);
+    transform: translateX(6px);
+    background: var(--surface2);
+  }
+
+  .research-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: rgba(0,229,192,0.2);
+    line-height: 1;
+    min-width: 3rem;
+  }
+
+  .research-content h4 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+  }
+
+  .research-content p { color: var(--muted); font-size: 0.92rem; }
+
+  .research-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    padding: 0.4rem 0.9rem;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+
+  /* ── POSSIBILITIES ── */
+  #possibilities { background: var(--surface); }
+
+  .possibilities-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  @media (max-width: 768px) {
+    .possibilities-grid { grid-template-columns: 1fr; }
+  }
+
+  .possibility-card {
+    border-radius: 12px;
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.4s;
+  }
+
+  .possibility-card:hover { transform: scale(1.02); }
+
+  .possibility-card.large {
+    grid-column: 1 / -1;
+  }
+
+  .pc-1 { background: linear-gradient(135deg, #071522 0%, #0d2b40 100%); border: 1px solid rgba(0,229,192,0.2); }
+  .pc-2 { background: linear-gradient(135deg, #12071e 0%, #1e0a35 100%); border: 1px solid rgba(192,132,252,0.2); }
+  .pc-3 { background: linear-gradient(135deg, #071222 0%, #09203a 100%); border: 1px solid rgba(61,139,255,0.2); }
+  .pc-4 { background: linear-gradient(135deg, #1a0707 0%, #2d1010 100%); border: 1px solid rgba(255,107,107,0.2); }
+  .pc-5 { background: linear-gradient(135deg, #071a13 0%, #0d2a1e 100%); border: 1px solid rgba(0,229,192,0.2); }
+
+  .possibility-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .possibility-card h4 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .possibility-card p { color: var(--muted); font-size: 0.92rem; line-height: 1.7; }
+
+  .possibility-glow {
+    position: absolute;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    filter: blur(60px);
+    top: -50px; right: -50px;
+    pointer-events: none;
+  }
+
+  /* ── FRONTIERS ── */
+  #frontiers { background: var(--bg); }
+
+  .timeline {
+    position: relative;
+    padding-left: 3rem;
+    margin-top: 3rem;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0.5rem;
+    top: 0.5rem;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--accent), transparent);
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 3rem;
+    animation: fadeLeft 0.6s ease both;
+  }
+
+  .timeline-dot {
+    position: absolute;
+    left: -2.6rem;
+    top: 0.35rem;
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 12px rgba(0,229,192,0.5);
+  }
+
+  .timeline-era {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+
+  .timeline-item h4 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+    margin-bottom: 0.75rem;
+  }
+
+  .timeline-item p { color: var(--muted); max-width: 680px; }
+
+  @keyframes fadeLeft {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  /* ── BIO-OS VISION ── */
+  #vision {
+    background: linear-gradient(180deg, var(--surface) 0%, var(--bg) 100%);
+    text-align: center;
+  }
+
+  .vision-inner {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .vision-circle {
+    width: 260px; height: 260px;
+    border-radius: 50%;
+    margin: 2rem auto 3rem;
+    border: 1px solid rgba(0,229,192,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    position: relative;
+    animation: rotatePulse 10s linear infinite;
+  }
+
+  .vision-circle::before, .vision-circle::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(0,229,192,0.12);
+    animation: ringExpand 3s ease-out infinite;
+  }
+
+  .vision-circle::before {
+    inset: -20px;
+    animation-delay: 0s;
+  }
+
+  .vision-circle::after {
+    inset: -40px;
+    animation-delay: 1s;
+  }
+
+  @keyframes ringExpand {
+    0% { opacity: 0.5; transform: scale(1); }
+    100% { opacity: 0; transform: scale(1.15); }
+  }
+
+  @keyframes rotatePulse {
+    0%, 100% { box-shadow: 0 0 40px rgba(0,229,192,0.15); }
+    50% { box-shadow: 0 0 80px rgba(0,229,192,0.3); }
+  }
+
+  #vision h2 { margin: 0 auto 1.5rem; }
+
+  #vision .lead { margin: 0 auto 2rem; text-align: center; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+    padding: 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .footer-note {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 5rem 1.5rem; }
+    #hero { padding: 6rem 1.5rem 3rem; }
+    .research-item { grid-template-columns: 1fr; }
+    footer { flex-direction: column; text-align: center; }
+  }
+
+  /* ── INTERSECTION OBSERVER REVEALS ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">BioCode // Programmable Drugs</div>
+  <ul class="nav-links">
+    <li><a href="#core">Core Idea</a></li>
+    <li><a href="#layers">Layers</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#possibilities">Possibilities</a></li>
+    <li><a href="#frontiers">Frontiers</a></li>
+    <li><a href="programmable-biological-drugs-prototype.html">Prototype</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-orb orb1"></div>
+  <div class="hero-orb orb2"></div>
+
+  <div class="hero-tag">Next-generation medicine</div>
+
+  <h1>Drugs that<br><em>think,</em> sense,<br>and decide</h1>
+
+  <p class="hero-sub">
+    Programmable biological drugs don't just deliver molecules — they read your body's state, evaluate conditions like logic gates, and respond with surgical precision. Biology, reimagined as software.
+  </p>
+
+  <div class="hero-cta">
+    <a href="#core" class="btn btn-primary">Explore the Science</a>
+    <a href="#research" class="btn btn-outline">Research Projects</a>
+    <a href="programmable-biological-drugs-prototype.html" class="btn btn-outline">Product prototype</a>
+  </div>
+
+  <div class="scroll-hint">
+    <span class="scroll-line"></span>
+    Scroll to explore
+  </div>
+</section>
+
+<!-- CORE IDEA -->
+<section id="core">
+  <div class="section-label">The Foundation</div>
+  <h2>Biology as <em>Code</em></h2>
+  <p class="lead">
+    DNA, RNA, and proteins form a four-letter information system — A, T, G, C — arranged into functional modules: promoters, genes, regulatory sequences, and feedback loops. Programmable drugs treat this system as writable and editable.
+  </p>
+
+  <div class="dna-visual reveal">
+    <div class="dna-strand" id="dnaStrand"></div>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 3rem;">
+    <div class="layer-card reveal" style="--card-accent: var(--accent);">
+      <div class="layer-num">MODULE 01</div>
+      <h3>Sense</h3>
+      <p>Like biological sensors, these drugs detect disease markers — specific proteins, gene expressions, or metabolite concentrations — before initiating any action.</p>
+    </div>
+    <div class="layer-card reveal" style="--card-accent: var(--accent2);">
+      <div class="layer-num">MODULE 02</div>
+      <h3>Compute</h3>
+      <p>Embedded logic circuits evaluate inputs against rules — AND, OR, NOT gates — determining whether the therapeutic response should activate, suppress, or wait.</p>
+    </div>
+    <div class="layer-card reveal" style="--card-accent: var(--accent4);">
+      <div class="layer-num">MODULE 03</div>
+      <h3>Respond</h3>
+      <p>Only if all conditions are met does the drug produce its therapeutic output: an antibody, insulin, a cytokine, or a targeted cell-killing signal.</p>
+    </div>
+  </div>
+</section>
+
+<!-- LAYERS -->
+<section id="layers">
+  <div class="section-label">Technical Architecture</div>
+  <h2>Five Layers of <em>Biological</em> Programming</h2>
+  <p class="lead">Each layer represents a distinct programming paradigm borrowed from engineering, applied at the molecular and cellular scale.</p>
+
+  <div class="layers-grid">
+    <div class="layer-card reveal" style="--card-accent: var(--accent);">
+      <div class="layer-num">LAYER 01 // GENETIC CIRCUITS</div>
+      <h3>Logic Gate Design</h3>
+      <p>Borrowed from synthetic biology, genetic circuits function like logic gates in electronics. A drug can be engineered to activate only under precise multi-condition scenarios — drastically reducing off-target effects.</p>
+      <div class="gate-pills">
+        <span class="gate-pill">AND gates</span>
+        <span class="gate-pill">OR gates</span>
+        <span class="gate-pill">NOT gates</span>
+        <span class="gate-pill">Toggle switches</span>
+        <span class="gate-pill">Oscillators</span>
+      </div>
+    </div>
+
+    <div class="layer-card reveal" style="--card-accent: var(--accent2);">
+      <div class="layer-num">LAYER 02 // RNA PROGRAMMING</div>
+      <h3>Transient Gene Control</h3>
+      <p>RNA is powerful because it's transient, flexible, and doesn't permanently alter the genome. mRNA drugs deliver temporary instructions; siRNA silences genes; riboswitches act as molecular sensor-actuators that respond to metabolites.</p>
+      <div class="gate-pills">
+        <span class="gate-pill" style="color:var(--accent2); border-color:rgba(61,139,255,0.3); background:rgba(61,139,255,0.08);">mRNA</span>
+        <span class="gate-pill" style="color:var(--accent2); border-color:rgba(61,139,255,0.3); background:rgba(61,139,255,0.08);">siRNA</span>
+        <span class="gate-pill" style="color:var(--accent2); border-color:rgba(61,139,255,0.3); background:rgba(61,139,255,0.08);">Riboswitches</span>
+      </div>
+    </div>
+
+    <div class="layer-card reveal" style="--card-accent: var(--accent3);">
+      <div class="layer-num">LAYER 03 // CRISPR</div>
+      <h3>Genomic Find & Replace</h3>
+      <p>CRISPR-Cas9 and next-generation variants (base editors, prime editors) enable precise genomic rewriting. Guide RNAs serve as "search queries" to locate exact 20-letter sequences — then cut, delete, insert, or correct them.</p>
+      <div class="gate-pills">
+        <span class="gate-pill" style="color:var(--accent3); border-color:rgba(255,107,107,0.3); background:rgba(255,107,107,0.08);">Cas9</span>
+        <span class="gate-pill" style="color:var(--accent3); border-color:rgba(255,107,107,0.3); background:rgba(255,107,107,0.08);">Base editors</span>
+        <span class="gate-pill" style="color:var(--accent3); border-color:rgba(255,107,107,0.3); background:rgba(255,107,107,0.08);">Prime editors</span>
+      </div>
+    </div>
+
+    <div class="layer-card reveal" style="--card-accent: var(--accent4);">
+      <div class="layer-num">LAYER 04 // CELL THERAPIES</div>
+      <h3>Living Drug Platforms</h3>
+      <p>CAR-T cells are the pinnacle of living drugs: patient T-cells extracted, reprogrammed with synthetic antigen receptors, then re-infused to hunt cancer. Future versions run multi-input logic circuits for near-perfect precision.</p>
+      <div class="gate-pills">
+        <span class="gate-pill" style="color:var(--accent4); border-color:rgba(192,132,252,0.3); background:rgba(192,132,252,0.08);">CAR-T</span>
+        <span class="gate-pill" style="color:var(--accent4); border-color:rgba(192,132,252,0.3); background:rgba(192,132,252,0.08);">NK cells</span>
+        <span class="gate-pill" style="color:var(--accent4); border-color:rgba(192,132,252,0.3); background:rgba(192,132,252,0.08);">Macrophages</span>
+      </div>
+    </div>
+
+    <div class="layer-card reveal" style="--card-accent: var(--accent);">
+      <div class="layer-num">LAYER 05 // GENE NETWORKS</div>
+      <h3>Closed-Loop Therapeutics</h3>
+      <p>Full synthetic gene networks act like embedded software. A sensor module detects biomarkers → a processor module evaluates logic → an actuator module produces therapeutic output. Analogous to a thermostat — but inside your body.</p>
+      <div class="gate-pills">
+        <span class="gate-pill">Sensor module</span>
+        <span class="gate-pill">Processor module</span>
+        <span class="gate-pill">Actuator module</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DELIVERY -->
+<section id="delivery">
+  <div class="section-label">Delivery Systems</div>
+  <h2>Getting the <em>Code</em> In</h2>
+  <p class="lead">Even the most elegant biological program is useless without a vehicle to carry it into the right cells. Four major platforms are leading the way.</p>
+
+  <div class="delivery-grid">
+    <div class="delivery-card reveal">
+      <div class="delivery-icon" style="background: rgba(0,229,192,0.1);">🫧</div>
+      <h4>Lipid Nanoparticles</h4>
+      <p>Fatty shells that ferry mRNA or DNA into cells. The backbone of all mRNA vaccines — including COVID-19 — and increasingly used for gene therapies.</p>
+    </div>
+    <div class="delivery-card reveal">
+      <div class="delivery-icon" style="background: rgba(61,139,255,0.1);">🦠</div>
+      <h4>Viral Vectors</h4>
+      <p>AAV and lentiviral vectors — engineered viruses stripped of harmful genes — carry large therapeutic genetic cargo with high efficiency and tissue targeting.</p>
+    </div>
+    <div class="delivery-card reveal">
+      <div class="delivery-icon" style="background: rgba(192,132,252,0.1);">⚡</div>
+      <h4>Exosomes</h4>
+      <p>Natural cell-derived vesicles repurposed as stealthy delivery vehicles. They evade immune surveillance and can cross biological barriers like the blood-brain barrier.</p>
+    </div>
+    <div class="delivery-card reveal">
+      <div class="delivery-icon" style="background: rgba(255,107,107,0.1);">🧬</div>
+      <h4>DNA Origami</h4>
+      <p>DNA folded into precise 3D nanostructures that carry payloads and unfold at target sites — enabling targeted, spatially-controlled drug release at the nanoscale.</p>
+    </div>
+  </div>
+</section>
+
+<!-- REAL WORLD EXAMPLES -->
+<section id="examples">
+  <div class="section-label">Today's Applications</div>
+  <h2><em>Clinical</em> Reality</h2>
+  <p class="lead">These are not theoretical futures — they are approved therapies transforming medicine right now.</p>
+
+  <table class="drug-table reveal">
+    <thead>
+      <tr>
+        <th>Drug / Technology</th>
+        <th>Mechanism</th>
+        <th>Impact</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="drug-name">mRNA Vaccines</span><span class="drug-status">APPROVED</span><br><small style="color:var(--muted)">Pfizer-BioNTech, Moderna</small></td>
+        <td>Deliver temporary genetic instructions to produce immune-training proteins</td>
+        <td>Redefined vaccine development speed; used globally for COVID-19</td>
+      </tr>
+      <tr>
+        <td><span class="drug-name">CAR-T Therapies</span><span class="drug-status">APPROVED</span><br><small style="color:var(--muted)">Kymriah, Yescarta</small></td>
+        <td>Reprogram patient T-cells with synthetic receptors targeting specific cancer antigens</td>
+        <td>Remission in patients with relapsed/refractory blood cancers</td>
+      </tr>
+      <tr>
+        <td><span class="drug-name">Inclisiran</span><span class="drug-status">APPROVED</span><br><small style="color:var(--muted)">siRNA cholesterol therapy</small></td>
+        <td>Silences a liver gene (PCSK9) that regulates LDL cholesterol production</td>
+        <td>LDL reduction sustained for 6 months per dose — twice yearly injection</td>
+      </tr>
+      <tr>
+        <td><span class="drug-name">Base Editors</span><span class="drug-status">IN TRIALS</span><br><small style="color:var(--muted)">Sickle cell, beta-thal</small></td>
+        <td>Correct single-letter mutations in the genome without cutting the DNA double strand</td>
+        <td>Potential one-time cure for inherited blood disorders</td>
+      </tr>
+      <tr>
+        <td><span class="drug-name">Casgevy</span><span class="drug-status">APPROVED 2023</span><br><small style="color:var(--muted)">First approved CRISPR therapy</small></td>
+        <td>CRISPR editing of hematopoietic stem cells to restore functional hemoglobin</td>
+        <td>First approved CRISPR therapy — functional cure for sickle cell disease and beta-thalassemia</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- RESEARCH PROJECTS -->
+<section id="research">
+  <div class="section-label">Active Research Projects</div>
+  <h2>The <em>Frontier</em> Laboratories</h2>
+  <p class="lead">Global research institutions are pushing the boundaries of biological programming across these key project domains.</p>
+
+  <div class="research-list">
+    <div class="research-item reveal">
+      <div class="research-num">01</div>
+      <div class="research-content">
+        <h4>Synthetic Immunology Circuits</h4>
+        <p>Engineering T-cells with complex AND-gate logic that requires two distinct tumor antigens to be present simultaneously before activating. Projects at MIT's Synthetic Biology Center and UCSF are combining transcription factors and cell-surface receptor cascades to achieve near-zero false-positive attacks on healthy tissue.</p>
+      </div>
+      <span class="research-tag" style="background:rgba(0,229,192,0.1); color:var(--accent); border:1px solid rgba(0,229,192,0.3);">Immunotherapy</span>
+    </div>
+
+    <div class="research-item reveal">
+      <div class="research-num">02</div>
+      <div class="research-content">
+        <h4>Closed-Loop Insulin Systems</h4>
+        <p>Synthetic gene networks that sense blood glucose levels in real-time and autonomously produce insulin without external pumps or patient intervention. Research groups in Geneva and Boston have demonstrated glucose-responsive gene circuits in mouse models that maintain normoglycemia for weeks.</p>
+      </div>
+      <span class="research-tag" style="background:rgba(61,139,255,0.1); color:var(--accent2); border:1px solid rgba(61,139,255,0.3);">Metabolic Disease</span>
+    </div>
+
+    <div class="research-item reveal">
+      <div class="research-num">03</div>
+      <div class="research-content">
+        <h4>mRNA Oncology Platforms</h4>
+        <p>Personalized cancer vaccines encoding neoantigens unique to an individual's tumor — identified via genomic sequencing of biopsy samples, then synthesized as mRNA vaccines within weeks. BioNTech, Moderna, and academic partners are running Phase II/III trials for melanoma, pancreatic cancer, and lung cancer.</p>
+      </div>
+      <span class="research-tag" style="background:rgba(255,107,107,0.1); color:var(--accent3); border:1px solid rgba(255,107,107,0.3);">Oncology</span>
+    </div>
+
+    <div class="research-item reveal">
+      <div class="research-num">04</div>
+      <div class="research-content">
+        <h4>CRISPR Epigenome Editors</h4>
+        <p>Beyond DNA cutting, new tools like dCas9 fused to epigenetic writers/erasers can switch genes on or off without altering the underlying sequence. Harvard and Broad Institute teams are targeting neurological disorders, cancers, and aging-related gene silencing — without any permanent genomic cuts.</p>
+      </div>
+      <span class="research-tag" style="background:rgba(192,132,252,0.1); color:var(--accent4); border:1px solid rgba(192,132,252,0.3);">Genomics</span>
+    </div>
+
+    <div class="research-item reveal">
+      <div class="research-num">05</div>
+      <div class="research-content">
+        <h4>Neural Organoid Drug Testing</h4>
+        <p>Programmable drug circuits tested on patient-derived brain organoids (mini-brains) to model neurological disease response. This enables personalized drug screening where a patient's own cells validate which genetic circuit architecture will work best before any clinical application.</p>
+      </div>
+      <span class="research-tag" style="background:rgba(0,229,192,0.1); color:var(--accent); border:1px solid rgba(0,229,192,0.3);">Neuroscience</span>
+    </div>
+
+    <div class="research-item reveal">
+      <div class="research-num">06</div>
+      <div class="research-content">
+        <h4>Bacterial Living Therapeutics</h4>
+        <p>Engineered bacteria programmed to colonize the gut microbiome and produce therapeutic molecules — anti-inflammatory cytokines, amino acid supplements, or tumor-infiltrating agents — on-demand in response to local metabolite signals. Phase I trials are underway for IBD and solid tumors.</p>
+      </div>
+      <span class="research-tag" style="background:rgba(61,139,255,0.1); color:var(--accent2); border:1px solid rgba(61,139,255,0.3);">Microbiome</span>
+    </div>
+  </div>
+</section>
+
+<!-- POSSIBILITIES -->
+<section id="possibilities">
+  <div class="section-label">What Becomes Possible</div>
+  <h2><em>Transformative</em> Possibilities</h2>
+  <p class="lead">Programmable biology unlocks capabilities that static molecules can never achieve — these are the near-term and horizon-level possibilities.</p>
+
+  <div class="possibilities-grid">
+    <div class="possibility-card pc-1 reveal">
+      <div class="possibility-glow" style="background: radial-gradient(circle, rgba(0,229,192,0.15), transparent);"></div>
+      <div class="possibility-icon">🎯</div>
+      <h4>Precision Tumor Targeting</h4>
+      <p>Multi-input logic circuits that distinguish cancer cells from healthy tissue with near-100% specificity — eliminating the systemic toxicity that makes chemotherapy so destructive. Future CAR-T cells may run 4–6 input logic gates simultaneously.</p>
+    </div>
+
+    <div class="possibility-card pc-2 reveal">
+      <div class="possibility-glow" style="background: radial-gradient(circle, rgba(192,132,252,0.15), transparent);"></div>
+      <div class="possibility-icon">🔄</div>
+      <h4>Self-Regulating Dosing</h4>
+      <p>Feedback-controlled gene networks that measure real-time biomarkers and auto-titrate drug output — no more daily pills or fixed dosing schedules. The drug continuously recalibrates to maintain therapeutic windows without physician intervention.</p>
+    </div>
+
+    <div class="possibility-card pc-3 reveal">
+      <div class="possibility-glow" style="background: radial-gradient(circle, rgba(61,139,255,0.15), transparent);"></div>
+      <div class="possibility-icon">⏱️</div>
+      <h4>Temporal & Developmental Control</h4>
+      <p>Drugs that activate only during specific life stages, circadian rhythms, or developmental windows. Imagine a therapy that intervenes only during cellular division, or one that activates only at night when repair processes peak.</p>
+    </div>
+
+    <div class="possibility-card pc-4 reveal">
+      <div class="possibility-glow" style="background: radial-gradient(circle, rgba(255,107,107,0.15), transparent);"></div>
+      <div class="possibility-icon">🧩</div>
+      <h4>Modular Disease Reprogramming</h4>
+      <p>Swappable therapeutic modules — change only the "target recognition" component while keeping the rest of the circuit intact. One platform, infinitely reconfigurable. Respond to new viral variants or cancer mutations in weeks, not years.</p>
+    </div>
+
+    <div class="possibility-card pc-5 large reveal">
+      <div class="possibility-glow" style="background: radial-gradient(circle, rgba(0,229,192,0.1), transparent);"></div>
+      <div class="possibility-icon">🧠</div>
+      <h4>Biological Operating System — The Ultimate Vision</h4>
+      <p style="max-width: 700px;">A platform implanted or administered once, onto which different therapeutic "apps" can be loaded as needed. The biological equivalent of a smartphone — hardware installed once, then updated remotely with new capabilities throughout your life. As disease environments change, the OS adapts. As new circuit designs emerge, they're uploaded. Medicine becomes a subscription to continued optimization rather than a series of discrete interventions.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FRONTIERS -->
+<section id="frontiers">
+  <div class="section-label">Looking Forward</div>
+  <h2>The <em>Emerging</em> Frontiers</h2>
+  <p class="lead">The trajectory of programmable biology points toward capabilities that blur the boundary between medicine and computation.</p>
+
+  <div class="timeline">
+    <div class="timeline-item reveal">
+      <div class="timeline-dot"></div>
+      <div class="timeline-era">Near-term // 2025–2030</div>
+      <h4>AI-Designed Genetic Circuits</h4>
+      <p>Machine learning models — trained on vast libraries of genetic part interactions — are now designing synthetic circuits faster and more reliably than human engineers. AlphaFold-style models for gene regulatory networks will enable circuits optimized for patient-specific genomic backgrounds, accelerating from concept to clinical candidate in months.</p>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-dot" style="background: var(--accent2); box-shadow: 0 0 12px rgba(61,139,255,0.5);"></div>
+      <div class="timeline-era" style="color: var(--accent2);">Mid-term // 2030–2038</div>
+      <h4>In Vivo Reprogramming</h4>
+      <p>Rather than extracting cells, modifying them in a lab, and re-infusing them, next-generation delivery systems will reprogram cells directly inside the body. Organ-targeted nanoparticles will reprogram liver cells, neurons, or cardiac tissue in situ — making cell therapy as simple as an injection, without the current multi-week manufacturing bottleneck.</p>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-dot" style="background: var(--accent4); box-shadow: 0 0 12px rgba(192,132,252,0.5);"></div>
+      <div class="timeline-era" style="color: var(--accent4);">Mid-term // 2032–2040</div>
+      <h4>Distributed Therapeutic Networks</h4>
+      <p>Multiple populations of engineered cells — each with distinct sensing and actuating functions — communicating via molecular signals to coordinate a system-level response. Like a distributed computing network, these cellular agents pool information, divide labor, and achieve therapeutic outcomes that no single circuit could accomplish alone.</p>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-dot" style="background: var(--accent3); box-shadow: 0 0 12px rgba(255,107,107,0.5);"></div>
+      <div class="timeline-era" style="color: var(--accent3);">Long-term // 2040+</div>
+      <h4>Germline-Safe Epigenetic Medicine</h4>
+      <p>Epigenome-editing circuits that reprogram disease-associated gene expression across an entire organism — without permanent DNA changes, eliminating germline inheritance concerns. Combined with reversible delivery systems, these treatments could "reset" the epigenetic landscape of aged or diseased tissues, with the ability to be switched off if needed.</p>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="timeline-dot"></div>
+      <div class="timeline-era">Speculative // 2045+</div>
+      <h4>Programmable Aging Intervention</h4>
+      <p>Synthetic gene networks monitoring the hallmarks of aging — telomere attrition, senescent cell accumulation, mitochondrial dysfunction, epigenetic drift — and actively counteracting them in real-time. Not a single drug, but a continuously operating biological management system that maintains cellular homeostasis across decades.</p>
+    </div>
+  </div>
+</section>
+
+<!-- VISION -->
+<section id="vision">
+  <div class="vision-inner">
+    <div class="section-label" style="justify-content: center;">The Destination</div>
+
+    <div class="vision-circle">🧬</div>
+
+    <h2>The Biological <em>Operating System</em></h2>
+
+    <p class="lead">
+      The ultimate vision is a platform implanted or administered once — onto which different therapeutic "apps" can be loaded as needed. In essence, programmable biological drugs replace the blunt hammer of traditional pharmaceuticals with a precise, adaptive, software-like system that reads the body's state, makes decisions, and acts with specificity that static molecules simply cannot achieve.
+    </p>
+
+    <a href="#core" class="btn btn-primary" style="display: inline-block;">Start from the beginning</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">BioCode // Programmable Biological Drugs</div>
+  <div class="footer-note">An exploration of the next era of medicine — where biology meets software</div>
+</footer>
+
+<script>
+  // DNA strand animation
+  const seq = 'ATGCTAGCATGCGTAGCTATGCATCGATGCATGCATCGATGCATGCTAGCAT';
+  const strand = document.getElementById('dnaStrand');
+  if (strand) {
+    seq.split('').forEach((char, i) => {
+      const el = document.createElement('span');
+      el.className = `dna-char dna-${char}`;
+      el.textContent = char;
+      el.style.animationDelay = `${i * 0.04}s`;
+      strand.appendChild(el);
+    });
+  }
+
+  // Intersection observer for reveals
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Stagger children inside sections
+  document.querySelectorAll('.layers-grid, .delivery-grid, .research-list, .possibilities-grid').forEach(container => {
+    Array.from(container.children).forEach((child, i) => {
+      child.style.transitionDelay = `${i * 0.1}s`;
+    });
+  });
+</script>
+</body>
+</html>
