@@ -1,10 +1,22 @@
 # Netlify config at repo root — ensures correct deploy when connected via Git
 
 [build]
-  publish = "website"
+  publish = "."
 
-# SPA fallback: serve index.html for all paths (fixes 404 on direct links)
+# Route "/" to the actual app entry (kept under /website).
+[[redirects]]
+  from = "/"
+  to = "/website/index.html"
+  status = 200
+
+# Expose Home Studio as a top-level section.
+[[redirects]]
+  from = "/home-studio/*"
+  to = "/Home%20Studio/index.html"
+  status = 200
+
+# Fallback: serve the main app for all other paths (SPA-like behavior).
 [[redirects]]
   from = "/*"
-  to = "/index.html"
+  to = "/website/index.html"
   status = 200
