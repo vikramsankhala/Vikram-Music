@@ -16,6 +16,16 @@
   status = 200
 
 [[redirects]]
+  from = "/home-studio/"
+  to = "/home-studio/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/home-studio/website/*"
+  to = "/home-studio/index.html"
+  status = 200
+
+[[redirects]]
   from = "/home-studio/*"
   to = "/home-studio/index.html"
   status = 200
