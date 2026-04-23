@@ -4,8 +4,8 @@ services:
   - type: web
     name: jam-room
     runtime: static
-    buildCommand: "echo 'Building static site...' && ls -la website/ && echo 'Build complete'"
-    staticPublishPath: website
+    buildCommand: "echo 'Building static site...' && ls -la && ls -la website/ && echo 'Build complete'"
+    staticPublishPath: .
     envVars:
       - key: NODE_ENV
         value: production
@@ -13,5 +13,11 @@ services:
         value: "1"
     routes:
       - type: rewrite
+        source: /
+        destination: /website/index.html
+      - type: rewrite
+        source: /home-studio/*
+        destination: /Home%20Studio/index.html
+      - type: rewrite
         source: /*
-        destination: /index.html
+        destination: /website/index.html
