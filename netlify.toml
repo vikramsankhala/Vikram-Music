@@ -11,8 +11,13 @@
 
 # Expose Home Studio as a top-level section.
 [[redirects]]
+  from = "/home-studio"
+  to = "/home-studio/index.html"
+  status = 200
+
+[[redirects]]
   from = "/home-studio/*"
-  to = "/Home%20Studio/index.html"
+  to = "/home-studio/index.html"
   status = 200
 
 # Fallback: serve the main app for all other paths (SPA-like behavior).

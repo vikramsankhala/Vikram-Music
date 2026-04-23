@@ -16,8 +16,11 @@ services:
         source: /
         destination: /website/index.html
       - type: rewrite
+        source: /home-studio
+        destination: /home-studio/index.html
+      - type: rewrite
         source: /home-studio/*
-        destination: /Home%20Studio/index.html
+        destination: /home-studio/index.html
       - type: rewrite
         source: /*
         destination: /website/index.html

@@ -1,0 +1,2885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STUDIOGHAR — Your Home Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0e0c0a;
+      --bg2: #151210;
+      --bg3: #1c1815;
+      --amber: #e8a045;
+      --amber-dim: #c4813a;
+      --amber-glow: rgba(232,160,69,0.12);
+      --cream: #f5ede0;
+      --cream-dim: #c9bfb2;
+      --red: #d94f3d;
+      --border: rgba(232,160,69,0.18);
+      --border-faint: rgba(255,255,255,0.06);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--cream);
+      font-family: 'Barlow', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ─── GRAIN OVERLAY ─────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0.35;
+    }
+
+    /* ─── NAV ────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 20px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-faint);
+      background: rgba(14,12,10,0.82);
+      backdrop-filter: blur(14px);
+    }
+
+    .nav-logo {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 1.35rem;
+      letter-spacing: 0.22em;
+      color: var(--amber);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--cream-dim);
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--amber); }
+
+    /* ─── HERO ───────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 140px 64px 80px 64px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--amber);
+    }
+
+    .hero-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(3.2rem, 6vw, 5.8rem);
+      line-height: 1.0;
+      letter-spacing: -0.01em;
+      margin-bottom: 32px;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--amber);
+    }
+
+    .hero-body {
+      color: var(--cream-dim);
+      font-size: 1.05rem;
+      line-height: 1.75;
+      max-width: 440px;
+      margin-bottom: 52px;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .btn-primary {
+      padding: 14px 36px;
+      background: var(--amber);
+      color: var(--bg);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-primary:hover { background: #f5b75a; transform: translateY(-2px); }
+
+    .btn-secondary {
+      color: var(--cream-dim);
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .btn-secondary:hover { color: var(--amber); border-color: var(--amber); }
+
+    .hero-right {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Visualiser — animated waveform */
+    .waveform-wrap {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .waveform-bars {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      height: 280px;
+    }
+
+    .bar {
+      width: 6px;
+      border-radius: 3px;
+      background: var(--amber);
+      opacity: 0.25;
+      animation: pulse var(--dur, 1.2s) ease-in-out infinite alternate;
+      animation-delay: var(--delay, 0s);
+      height: var(--h, 40px);
+    }
+
+    @keyframes pulse {
+      from { transform: scaleY(0.3); opacity: 0.15; }
+      to   { transform: scaleY(1);   opacity: 0.55; }
+    }
+
+    .hero-card {
+      position: relative;
+      z-index: 2;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      padding: 48px;
+      max-width: 400px;
+      width: 90%;
+    }
+
+    .hero-card-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 16px;
+    }
+
+    .hero-card-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 3.5rem;
+      color: var(--cream);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .hero-card-sub {
+      font-size: 0.85rem;
+      color: var(--cream-dim);
+      margin-bottom: 28px;
+    }
+
+    .hero-card-divider {
+      height: 1px;
+      background: var(--border);
+      margin-bottom: 24px;
+    }
+
+    .hero-stat-row {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .hero-stat {
+      text-align: center;
+    }
+
+    .hero-stat-n {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--amber);
+    }
+
+    .hero-stat-l {
+      font-size: 0.7rem;
+      color: var(--cream-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* Radial glow */
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 40%;
+      right: 28%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(232,160,69,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* ─── SECTION BASE ───────────────────────────────── */
+    section {
+      padding: 100px 64px;
+    }
+
+    .section-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--amber);
+    }
+
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.2rem, 3.5vw, 3.4rem);
+      line-height: 1.1;
+      margin-bottom: 60px;
+    }
+
+    /* ─── CATEGORIES ─────────────────────────────────── */
+    #gear {
+      background: var(--bg2);
+    }
+
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2px;
+      margin-bottom: 80px;
+    }
+
+    .cat-card {
+      background: var(--bg3);
+      padding: 40px 36px;
+      border: 1px solid var(--border-faint);
+      position: relative;
+      overflow: hidden;
+      cursor: default;
+      transition: border-color 0.3s;
+    }
+
+    .cat-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--amber);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.35s ease;
+    }
+
+    .cat-card:hover { border-color: var(--border); }
+    .cat-card:hover::after { transform: scaleX(1); }
+
+    .cat-icon {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      display: block;
+      filter: grayscale(0.3);
+    }
+
+    .cat-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 10px;
+    }
+
+    .cat-desc {
+      font-size: 0.85rem;
+      color: var(--cream-dim);
+      line-height: 1.65;
+    }
+
+    /* ─── EQUIPMENT TABLE ────────────────────────────── */
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    thead tr {
+      border-bottom: 1px solid var(--amber);
+    }
+
+    thead th {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--amber);
+      padding: 0 20px 18px 0;
+      text-align: left;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid var(--border-faint);
+      transition: background 0.2s;
+    }
+
+    tbody tr:hover {
+      background: var(--amber-glow);
+    }
+
+    tbody td {
+      padding: 20px 20px 20px 0;
+      font-size: 0.9rem;
+      color: var(--cream-dim);
+      vertical-align: middle;
+    }
+
+    .td-name {
+      color: var(--cream);
+      font-weight: 500;
+      max-width: 280px;
+    }
+
+    .td-cat {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--amber-dim);
+      white-space: nowrap;
+    }
+
+    .td-price {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--cream);
+      white-space: nowrap;
+    }
+
+    .td-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.85rem;
+      color: var(--cream-dim);
+      width: 40px;
+    }
+
+    /* ─── TOTAL BANNER ───────────────────────────────── */
+    .total-banner {
+      margin-top: 40px;
+      padding: 40px 48px;
+      background: var(--amber-glow);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .total-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 6px;
+    }
+
+    .total-amount {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.8rem;
+      color: var(--cream);
+    }
+
+    .total-note {
+      font-size: 0.82rem;
+      color: var(--cream-dim);
+      max-width: 340px;
+      line-height: 1.6;
+    }
+
+    /* ─── SIGNAL CHAIN ───────────────────────────────── */
+    #signal {
+      background: var(--bg);
+    }
+
+    .chain-wrap {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      overflow-x: auto;
+      padding-bottom: 16px;
+    }
+
+    .chain-step {
+      flex: 1;
+      min-width: 160px;
+      background: var(--bg3);
+      border: 1px solid var(--border-faint);
+      padding: 36px 28px;
+      position: relative;
+      text-align: center;
+    }
+
+    .chain-step:not(:last-child)::after {
+      content: '→';
+      position: absolute;
+      right: -18px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--amber);
+      font-size: 1.4rem;
+      z-index: 2;
+      background: var(--bg);
+      padding: 0 4px;
+    }
+
+    .chain-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--amber);
+      opacity: 0.2;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .chain-icon { font-size: 1.8rem; margin-bottom: 12px; display: block; }
+
+    .chain-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 8px;
+    }
+
+    .chain-device {
+      font-size: 0.76rem;
+      color: var(--amber-dim);
+      line-height: 1.5;
+    }
+
+    /* ─── TIPS ───────────────────────────────────────── */
+    #tips {
+      background: var(--bg2);
+    }
+
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .tip-card {
+      padding: 40px 36px;
+      background: var(--bg);
+      border: 1px solid var(--border-faint);
+      border-left: 3px solid var(--amber);
+      transition: border-color 0.3s;
+    }
+
+    .tip-card:hover { border-left-color: #f5b75a; }
+
+    .tip-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 3rem;
+      color: var(--amber);
+      opacity: 0.18;
+      line-height: 1;
+      margin-bottom: -10px;
+    }
+
+    .tip-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 12px;
+    }
+
+    .tip-body {
+      font-size: 0.87rem;
+      color: var(--cream-dim);
+      line-height: 1.7;
+    }
+
+    /* ─── FOOTER ─────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border-faint);
+      padding: 60px 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .footer-logo {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 1.2rem;
+      letter-spacing: 0.22em;
+      color: var(--amber);
+    }
+
+    .footer-copy {
+      font-size: 0.78rem;
+      color: var(--cream-dim);
+      opacity: 0.5;
+    }
+
+    .footer-tagline {
+      font-family: 'DM Serif Display', serif;
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--amber-dim);
+    }
+
+    /* ─── ANIMATIONS ─────────────────────────────────── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── GEAR GUIDE ─────────────────────────────────── */
+    #guide {
+      background: var(--bg);
+    }
+
+    .gear-guide-grid {
+      display: grid;
+      gap: 2px;
+    }
+
+    .gear-item {
+      background: var(--bg3);
+      border: 1px solid var(--border-faint);
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      overflow: hidden;
+      transition: border-color 0.3s;
+      cursor: default;
+    }
+
+    .gear-item:hover {
+      border-color: var(--border);
+    }
+
+    .gear-item-num {
+      background: var(--amber-glow);
+      border-right: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--amber);
+      writing-mode: vertical-rl;
+      letter-spacing: 0.08em;
+      padding: 20px 0;
+      min-height: 160px;
+    }
+
+    .gear-item-body {
+      padding: 36px 40px;
+    }
+
+    .gear-item-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
+
+    .gear-item-name {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.35rem;
+      color: var(--cream);
+      line-height: 1.2;
+    }
+
+    .gear-item-badge {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--amber);
+      padding: 4px 12px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .gear-item-price {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.88rem;
+      color: var(--amber-dim);
+      margin-bottom: 16px;
+      letter-spacing: 0.08em;
+    }
+
+    .gear-item-desc {
+      font-size: 0.9rem;
+      color: var(--cream-dim);
+      line-height: 1.75;
+      margin-bottom: 20px;
+      max-width: 820px;
+    }
+
+    .gear-item-specs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .spec-tag {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--amber-dim);
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+    }
+
+    .gear-item-role {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border-faint);
+      font-size: 0.83rem;
+      color: var(--cream-dim);
+      line-height: 1.65;
+    }
+
+    .gear-item-role strong {
+      color: var(--amber);
+      font-weight: 500;
+    }
+
+    /* ─── SETUP PROCEDURE ────────────────────────────── */
+    #setup {
+      background: var(--bg2);
+    }
+
+    .setup-phases {
+      display: grid;
+      gap: 0;
+    }
+
+    .setup-phase {
+      border: 1px solid var(--border-faint);
+      border-bottom: none;
+    }
+
+    .setup-phase:last-child {
+      border-bottom: 1px solid var(--border-faint);
+    }
+
+    .phase-header {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 28px 40px;
+      cursor: pointer;
+      user-select: none;
+      background: var(--bg3);
+      transition: background 0.2s;
+      border-left: 3px solid transparent;
+      transition: border-color 0.3s, background 0.2s;
+    }
+
+    .phase-header:hover,
+    .phase-header.active {
+      background: var(--bg);
+      border-left-color: var(--amber);
+    }
+
+    .phase-num-bubble {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--amber-glow);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--amber);
+      flex-shrink: 0;
+    }
+
+    .phase-header-text { flex: 1; }
+
+    .phase-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 4px;
+    }
+
+    .phase-subtitle {
+      font-size: 0.8rem;
+      color: var(--amber-dim);
+      letter-spacing: 0.06em;
+    }
+
+    .phase-chevron {
+      color: var(--amber);
+      font-size: 1.2rem;
+      transition: transform 0.3s ease;
+    }
+
+    .phase-header.active .phase-chevron {
+      transform: rotate(180deg);
+    }
+
+    .phase-body {
+      display: none;
+      padding: 0 40px 40px 112px;
+      background: var(--bg);
+      border-top: 1px solid var(--border-faint);
+    }
+
+    .phase-body.open {
+      display: block;
+    }
+
+    .setup-steps {
+      display: grid;
+      gap: 0;
+      margin-top: 32px;
+    }
+
+    .setup-step {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 20px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border-faint);
+    }
+
+    .setup-step:last-child {
+      border-bottom: none;
+    }
+
+    .step-dot {
+      width: 28px;
+      height: 28px;
+      border: 1px solid var(--amber);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--amber);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .step-content {}
+
+    .step-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 10px;
+    }
+
+    .step-body {
+      font-size: 0.88rem;
+      color: var(--cream-dim);
+      line-height: 1.75;
+    }
+
+    .step-body em {
+      color: var(--amber);
+      font-style: normal;
+      font-weight: 500;
+    }
+
+    .step-warning {
+      margin-top: 12px;
+      padding: 12px 16px;
+      background: rgba(217,79,61,0.08);
+      border-left: 2px solid #d94f3d;
+      font-size: 0.8rem;
+      color: #e8806f;
+      line-height: 1.6;
+    }
+
+    .step-pro {
+      margin-top: 12px;
+      padding: 12px 16px;
+      background: var(--amber-glow);
+      border-left: 2px solid var(--amber);
+      font-size: 0.8rem;
+      color: var(--cream-dim);
+      line-height: 1.6;
+    }
+
+    .step-pro strong, .step-warning strong {
+      font-weight: 600;
+    }
+
+    .integration-box {
+      margin-top: 40px;
+      padding: 36px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      position: relative;
+    }
+
+    .integration-box::before {
+      content: 'INTEGRATION NOTE';
+      position: absolute;
+      top: -10px;
+      left: 24px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.22em;
+      color: var(--amber);
+      background: var(--bg2);
+      padding: 0 10px;
+    }
+
+    .integration-box p {
+      font-size: 0.88rem;
+      color: var(--cream-dim);
+      line-height: 1.75;
+    }
+
+    .integration-box p + p {
+      margin-top: 12px;
+    }
+
+    /* ─── MUSIC GUIDE ────────────────────────────────── */
+    #musicguide {
+      background: var(--bg);
+    }
+
+    /* Genre Tab Bar */
+    .genre-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2px;
+      margin-bottom: 40px;
+      border-bottom: 1px solid var(--border-faint);
+      padding-bottom: 0;
+    }
+
+    .genre-tab {
+      padding: 12px 22px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--cream-dim);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+      user-select: none;
+      margin-bottom: -1px;
+      background: none;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+    }
+
+    .genre-tab:hover { color: var(--cream); }
+    .genre-tab.active {
+      color: var(--amber);
+      border-bottom-color: var(--amber);
+    }
+
+    /* Genre Panels */
+    .genre-panel { display: none; }
+    .genre-panel.active { display: block; }
+
+    /* Genre Hero Banner */
+    .genre-hero {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 40px;
+      margin-bottom: 60px;
+      align-items: start;
+    }
+
+    .genre-hero-left {}
+
+    .genre-hero-tag {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.68rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 14px;
+    }
+
+    .genre-hero-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 3.5vw, 3.2rem);
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .genre-hero-desc {
+      font-size: 0.95rem;
+      color: var(--cream-dim);
+      line-height: 1.8;
+      margin-bottom: 24px;
+    }
+
+    .genre-suitability {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .suit-tag {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border: 1px solid var(--border);
+      color: var(--cream-dim);
+    }
+
+    .suit-tag.green {
+      border-color: rgba(80,200,120,0.35);
+      color: #6dcf8e;
+      background: rgba(80,200,120,0.06);
+    }
+
+    .suit-tag.amber {
+      border-color: var(--border);
+      color: var(--amber-dim);
+      background: var(--amber-glow);
+    }
+
+    .suit-tag.red {
+      border-color: rgba(217,79,61,0.35);
+      color: #e8806f;
+      background: rgba(217,79,61,0.06);
+    }
+
+    /* Gear Readiness Card */
+    .readiness-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      padding: 32px;
+    }
+
+    .readiness-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 20px;
+    }
+
+    .readiness-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border-faint);
+      font-size: 0.8rem;
+    }
+
+    .readiness-row:last-child { border-bottom: none; }
+
+    .readiness-label { color: var(--cream-dim); }
+
+    .readiness-status {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+    }
+
+    .rs-have { color: #6dcf8e; background: rgba(80,200,120,0.08); border: 1px solid rgba(80,200,120,0.25); }
+    .rs-partial { color: var(--amber-dim); background: var(--amber-glow); border: 1px solid var(--border); }
+    .rs-need { color: #e8806f; background: rgba(217,79,61,0.06); border: 1px solid rgba(217,79,61,0.25); }
+
+    /* Genre Content Grid */
+    .genre-content-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .gcol {}
+
+    .gcol-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border-faint);
+    }
+
+    /* Workflow Steps */
+    .workflow-steps { display: grid; gap: 0; }
+
+    .wf-step {
+      display: grid;
+      grid-template-columns: 32px 1fr;
+      gap: 14px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border-faint);
+    }
+
+    .wf-step:last-child { border-bottom: none; }
+
+    .wf-n {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      border: 1px solid var(--amber);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--amber);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .wf-text {}
+    .wf-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 5px;
+    }
+
+    .wf-body {
+      font-size: 0.83rem;
+      color: var(--cream-dim);
+      line-height: 1.7;
+    }
+
+    .wf-body em { color: var(--amber); font-style: normal; font-weight: 500; }
+
+    /* Gear used list */
+    .gear-used-list { display: grid; gap: 10px; }
+
+    .gu-item {
+      background: var(--bg3);
+      border: 1px solid var(--border-faint);
+      padding: 14px 18px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      align-items: center;
+      transition: border-color 0.2s;
+    }
+
+    .gu-item:hover { border-color: var(--border); }
+
+    .gu-name {
+      font-size: 0.82rem;
+      color: var(--cream);
+      font-weight: 500;
+    }
+
+    .gu-role {
+      font-size: 0.75rem;
+      color: var(--cream-dim);
+      margin-top: 3px;
+    }
+
+    .gu-badge {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      white-space: nowrap;
+    }
+
+    .gu-badge.have { color: #6dcf8e; border: 1px solid rgba(80,200,120,0.3); }
+    .gu-badge.add { color: #e8806f; border: 1px solid rgba(217,79,61,0.3); }
+
+    /* Additional gear needed */
+    .add-gear-grid { display: grid; gap: 12px; }
+
+    .add-gear-item {
+      background: var(--bg2);
+      border: 1px solid rgba(217,79,61,0.18);
+      border-left: 3px solid #d94f3d;
+      padding: 18px 20px;
+    }
+
+    .add-gear-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--cream);
+      margin-bottom: 5px;
+    }
+
+    .add-gear-price {
+      font-size: 0.75rem;
+      color: var(--amber-dim);
+      margin-bottom: 8px;
+      font-family: 'Barlow Condensed', sans-serif;
+      letter-spacing: 0.08em;
+    }
+
+    .add-gear-why {
+      font-size: 0.8rem;
+      color: var(--cream-dim);
+      line-height: 1.65;
+    }
+
+    /* Settings Block */
+    .settings-block {
+      background: var(--bg3);
+      border: 1px solid var(--border-faint);
+      padding: 28px;
+      margin-top: 4px;
+    }
+
+    .settings-block .gcol-title { margin-bottom: 16px; }
+
+    .setting-row {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border-faint);
+      font-size: 0.82rem;
+      align-items: start;
+    }
+
+    .setting-row:last-child { border-bottom: none; }
+
+    .setting-key {
+      color: var(--amber-dim);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding-top: 2px;
+    }
+
+    .setting-val { color: var(--cream-dim); line-height: 1.6; }
+    .setting-val em { color: var(--amber); font-style: normal; }
+
+    /* Genre summary divider */
+    .genre-full-section {
+      margin-top: 40px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border-faint);
+    }
+
+    .full-section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem;
+      color: var(--cream);
+      margin-bottom: 18px;
+    }
+
+    .full-section-body {
+      font-size: 0.88rem;
+      color: var(--cream-dim);
+      line-height: 1.8;
+      max-width: 900px;
+    }
+
+    .full-section-body + .full-section-body { margin-top: 14px; }
+
+    @media (max-width: 900px) {
+      .genre-hero { grid-template-columns: 1fr; }
+      .genre-content-grid { grid-template-columns: 1fr; }
+      .setting-row { grid-template-columns: 1fr; gap: 4px; }
+    }
+
+    /* ─── SCROLLBAR ───────────────────────────────────── */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg2); }
+    ::-webkit-scrollbar-thumb { background: var(--amber-dim); border-radius: 3px; }
+
+    /* ─── RESPONSIVE ─────────────────────────────────── */
+    @media (max-width: 900px) {
+      nav { padding: 18px 24px; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+      .hero-left { padding: 120px 28px 80px; }
+      section { padding: 70px 24px; }
+      footer { padding: 40px 24px; }
+      .total-banner { padding: 28px 24px; }
+      .chain-step:not(:last-child)::after { display: none; }
+    }
+
+    @media (max-width: 600px) {
+      .categories-grid { grid-template-columns: 1fr; }
+      .tips-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <a href="#" class="nav-logo">STUDIOGHAR</a>
+  <ul class="nav-links">
+    <li><a href="#gear">Gear</a></li>
+    <li><a href="#signal">Signal Chain</a></li>
+    <li><a href="#guide">Gear Guide</a></li>
+    <li><a href="#setup">Setup</a></li>
+    <li><a href="#musicguide">Music Guide</a></li>
+    <li><a href="#tips">Tips</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Home Studio Build — 2025</p>
+    <h1 class="hero-title">Your Sound.<br><em>Professionally</em><br>Captured.</h1>
+    <p class="hero-body">A complete, budget-conscious home recording studio — from microphone to monitor. Every rupee accounted for. Every signal path considered.</p>
+    <div class="hero-cta">
+      <a href="#gear" class="btn-primary">View Full Setup</a>
+      <a href="#signal" class="btn-secondary">Signal Chain →</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="waveform-wrap">
+      <div class="waveform-bars" id="waveform"></div>
+    </div>
+    <div class="hero-card fade-in">
+      <p class="hero-card-label">Studio Budget</p>
+      <p class="hero-card-num">₹1.16L</p>
+      <p class="hero-card-sub">Complete home studio build</p>
+      <div class="hero-card-divider"></div>
+      <div class="hero-stat-row">
+        <div class="hero-stat">
+          <p class="hero-stat-n">14</p>
+          <p class="hero-stat-l">Items</p>
+        </div>
+        <div class="hero-stat">
+          <p class="hero-stat-n">6</p>
+          <p class="hero-stat-l">Categories</p>
+        </div>
+        <div class="hero-stat">
+          <p class="hero-stat-n">∞</p>
+          <p class="hero-stat-l">Tracks</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── GEAR CATEGORIES ── -->
+<section id="gear">
+  <p class="section-label fade-in">What's Included</p>
+  <h2 class="section-title fade-in">Studio Categories</h2>
+
+  <div class="categories-grid">
+    <div class="cat-card fade-in">
+      <span class="cat-icon">🎤</span>
+      <p class="cat-title">Microphones</p>
+      <p class="cat-desc">Shure SM58 dynamic for vocals & the AT2020 condenser for studio-grade detail — two mics for every situation.</p>
+    </div>
+    <div class="cat-card fade-in">
+      <span class="cat-icon">🎚️</span>
+      <p class="cat-title">Mixing & Interface</p>
+      <p class="cat-desc">Yamaha MG10XU 10-channel mixer pairs with the Focusrite Scarlett Solo for clean digital conversion into your DAW.</p>
+    </div>
+    <div class="cat-card fade-in">
+      <span class="cat-icon">🔊</span>
+      <p class="cat-title">Monitoring</p>
+      <p class="cat-desc">Yamaha HS5 studio monitors give you flat, accurate reference. ATH-M50x & M20x headphones cover critical listening.</p>
+    </div>
+    <div class="cat-card fade-in">
+      <span class="cat-icon">🎹</span>
+      <p class="cat-title">MIDI Control</p>
+      <p class="cat-desc">Akai MPK Mini MK4 — 25 keys, 8 pads, and full DAW control in a desk-friendly form factor.</p>
+    </div>
+    <div class="cat-card fade-in">
+      <span class="cat-icon">🔗</span>
+      <p class="cat-title">Cables & Rigging</p>
+      <p class="cat-desc">Hawk Proaudio XLR & TRS cables, plus Kadence boom arm and pop filter. Clean routing, no noise floor.</p>
+    </div>
+    <div class="cat-card fade-in">
+      <span class="cat-icon">🧱</span>
+      <p class="cat-title">Acoustic Treatment</p>
+      <p class="cat-desc">YGM foam panels and monitor isolation pads tame room reflections. A treated room beats any plugin.</p>
+    </div>
+  </div>
+
+  <!-- Equipment Table -->
+  <p class="section-label fade-in">Full Inventory</p>
+  <h2 class="section-title fade-in" style="margin-bottom:32px;">Every Piece of Gear</h2>
+
+  <div class="table-wrap fade-in">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Item</th>
+          <th>Category</th>
+          <th>Price (₹)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="td-num">01</td>
+          <td class="td-name">Yamaha MG10XU 10-Channel Mixer</td>
+          <td class="td-cat">Mixing</td>
+          <td class="td-price">₹17,499</td>
+        </tr>
+        <tr>
+          <td class="td-num">02</td>
+          <td class="td-name">Shure SM58-LC Cardioid Vocal Mic</td>
+          <td class="td-cat">Microphone</td>
+          <td class="td-price">₹10,499</td>
+        </tr>
+        <tr>
+          <td class="td-num">03</td>
+          <td class="td-name">Yamaha HS5 Pair Studio Monitors</td>
+          <td class="td-cat">Monitoring</td>
+          <td class="td-price">₹32,990</td>
+        </tr>
+        <tr>
+          <td class="td-num">04</td>
+          <td class="td-name">Audio-Technica AT2020 Condenser Mic</td>
+          <td class="td-cat">Microphone</td>
+          <td class="td-price">₹8,499</td>
+        </tr>
+        <tr>
+          <td class="td-num">05</td>
+          <td class="td-name">Focusrite Scarlett Solo 4th Gen Interface</td>
+          <td class="td-cat">Interface</td>
+          <td class="td-price">₹17,367</td>
+        </tr>
+        <tr>
+          <td class="td-num">06</td>
+          <td class="td-name">Akai MPK Mini MK4 MIDI Keyboard</td>
+          <td class="td-cat">MIDI</td>
+          <td class="td-price">₹8,550</td>
+        </tr>
+        <tr>
+          <td class="td-num">07</td>
+          <td class="td-name">Audio-Technica ATH-M50x Headphones</td>
+          <td class="td-cat">Monitoring</td>
+          <td class="td-price">₹10,799</td>
+        </tr>
+        <tr>
+          <td class="td-num">08</td>
+          <td class="td-name">Audio-Technica ATH-M20x Headphones</td>
+          <td class="td-cat">Monitoring</td>
+          <td class="td-price">₹4,399</td>
+        </tr>
+        <tr>
+          <td class="td-num">09</td>
+          <td class="td-name">Kadence NB35-POP Boom Arm + Pop Filter</td>
+          <td class="td-cat">Rigging</td>
+          <td class="td-price">₹699</td>
+        </tr>
+        <tr>
+          <td class="td-num">10</td>
+          <td class="td-name">Hawk Proaudio XLR Cable</td>
+          <td class="td-cat">Cables</td>
+          <td class="td-price">₹699</td>
+        </tr>
+        <tr>
+          <td class="td-num">11</td>
+          <td class="td-name">Hawk Proaudio TRS Cables (×2)</td>
+          <td class="td-cat">Cables</td>
+          <td class="td-price">₹521–₹899</td>
+        </tr>
+        <tr>
+          <td class="td-num">12</td>
+          <td class="td-name">YGM Acoustic Foam Panels 18-pack</td>
+          <td class="td-cat">Acoustics</td>
+          <td class="td-price">₹1,295</td>
+        </tr>
+        <tr>
+          <td class="td-num">13</td>
+          <td class="td-name">YGM MOPAD Monitor Isolation Pads</td>
+          <td class="td-cat">Acoustics</td>
+          <td class="td-price">₹1,276</td>
+        </tr>
+        <tr>
+          <td class="td-num">14</td>
+          <td class="td-name">Fevicol Ezee Spray Adhesive</td>
+          <td class="td-cat">Acoustics</td>
+          <td class="td-price">₹773</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="total-banner fade-in">
+    <div>
+      <p class="total-label">Estimated Total Investment</p>
+      <p class="total-amount">₹1,15,844 – ₹1,16,222</p>
+    </div>
+    <p class="total-note">Range reflects the TRS cable pricing variation. All prices sourced at time of build planning and subject to market fluctuation.</p>
+  </div>
+</section>
+
+<!-- ── SIGNAL CHAIN ── -->
+<section id="signal">
+  <p class="section-label fade-in">How It All Connects</p>
+  <h2 class="section-title fade-in">Your Signal Chain</h2>
+
+  <div class="chain-wrap fade-in">
+    <div class="chain-step">
+      <p class="chain-num">01</p>
+      <span class="chain-icon">🎤</span>
+      <p class="chain-name">Source</p>
+      <p class="chain-device">SM58 or AT2020<br>via Boom Arm</p>
+    </div>
+    <div class="chain-step">
+      <p class="chain-num">02</p>
+      <span class="chain-icon">🎚️</span>
+      <p class="chain-name">Mixer</p>
+      <p class="chain-device">Yamaha MG10XU<br>XLR Input</p>
+    </div>
+    <div class="chain-step">
+      <p class="chain-num">03</p>
+      <span class="chain-icon">🔌</span>
+      <p class="chain-name">Interface</p>
+      <p class="chain-device">Focusrite Solo<br>USB to Computer</p>
+    </div>
+    <div class="chain-step">
+      <p class="chain-num">04</p>
+      <span class="chain-icon">💻</span>
+      <p class="chain-name">DAW</p>
+      <p class="chain-device">Record, Edit<br>& Mix</p>
+    </div>
+    <div class="chain-step">
+      <p class="chain-num">05</p>
+      <span class="chain-icon">🔊</span>
+      <p class="chain-name">Monitors</p>
+      <p class="chain-device">Yamaha HS5<br>via TRS</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── SETUP TIPS ── -->
+<section id="tips">
+  <p class="section-label fade-in">Before You Hit Record</p>
+  <h2 class="section-title fade-in">Setup Tips</h2>
+
+  <div class="tips-grid">
+    <div class="tip-card fade-in">
+      <p class="tip-num">1</p>
+      <p class="tip-title">Treat the Room First</p>
+      <p class="tip-body">Install YGM foam panels on walls facing your monitors before recording anything. A treated room will do more for your recordings than any plugin chain. Place isolation pads under HS5s to decouple them from the desk.</p>
+    </div>
+    <div class="tip-card fade-in">
+      <p class="tip-num">2</p>
+      <p class="tip-title">Gain Staging Matters</p>
+      <p class="tip-body">Set input gain on the Scarlett Solo so your signal peaks around -18 dBFS during normal performance. This gives you headroom and keeps digital clipping out of the picture. The MG10XU's channel faders should sit near unity.</p>
+    </div>
+    <div class="tip-card fade-in">
+      <p class="tip-num">3</p>
+      <p class="tip-title">Use the Right Mic for the Job</p>
+      <p class="tip-body">The SM58 is your workhorse for loud sources and live takes — its cardioid pattern naturally rejects room noise. The AT2020 condenser shines for acoustic guitars, voiceovers, and any source needing more air and detail.</p>
+    </div>
+    <div class="tip-card fade-in">
+      <p class="tip-num">4</p>
+      <p class="tip-title">Monitor at Low Volumes</p>
+      <p class="tip-body">Reference your mixes at the quietest level where you can still clearly hear every element. The HS5s are revealing monitors — ear fatigue is your enemy. Use the M50x for long mixing sessions to protect your hearing.</p>
+    </div>
+    <div class="tip-card fade-in">
+      <p class="tip-num">5</p>
+      <p class="tip-num" style="font-size:3rem;opacity:0.18">5</p>
+      <p class="tip-title">Pop Filter Placement</p>
+      <p class="tip-body">Position the Kadence pop filter about 5–7 cm in front of your microphone. Sing or speak across it slightly — not directly into it. This kills plosives without dulling your vocal tone.</p>
+    </div>
+    <div class="tip-card fade-in">
+      <p class="tip-num">6</p>
+      <p class="tip-title">MIDI Keyboard Workflow</p>
+      <p class="tip-body">Connect the MPK Mini via USB directly to your computer — no interface needed. Map the 8 pads to drum sounds or plugin triggers. Use the 25 keys for melodic parts and chord sketching. Assign knobs to plugin parameters in your DAW.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── GEAR GUIDE ── -->
+<section id="guide">
+  <p class="section-label fade-in">Know Your Tools</p>
+  <h2 class="section-title fade-in">Gear Explained</h2>
+
+  <div class="gear-guide-grid">
+
+    <!-- 1. Focusrite Scarlett Solo -->
+    <div class="gear-item fade-in">
+      <div class="gear-item-num">01</div>
+      <div class="gear-item-body">
+        <div class="gear-item-header">
+          <p class="gear-item-name">Focusrite Scarlett Solo 4th Gen</p>
+          <span class="gear-item-badge">Audio Interface</span>
+        </div>
+        <p class="gear-item-price">₹17,367 &nbsp;·&nbsp; The Brain of Your Studio</p>
+        <p class="gear-item-desc">The Scarlett Solo is the digital gateway between your analogue world and your computer. It converts microphone and instrument signals into digital audio your DAW can record and process. The 4th Generation model brings Focusrite's best-ever preamp design — the Air mode adds a subtle high-frequency lift inspired by their classic ISA transformer preamps, giving vocals more presence and sheen without EQ. It connects via USB-C and is class-compliant, meaning no driver installation is needed on most systems.</p>
+        <div class="gear-item-specs">
+          <span class="spec-tag">1× XLR/TRS Combo Input</span>
+          <span class="spec-tag">1× Instrument Input</span>
+          <span class="spec-tag">48V Phantom Power</span>
+          <span class="spec-tag">Air Mode</span>
+          <span class="spec-tag">USB-C</span>
+          <span class="spec-tag">24-bit / 192kHz</span>
+        </div>
+        <p class="gear-item-role"><strong>Role in the studio:</strong> Every microphone you record (SM58, AT2020) passes through the Scarlett Solo on its way into your DAW. The Yamaha MG10XU's main mix output also feeds into the Solo when you want to record a blended mix or use the mixer as a preamp stage. The Solo's monitor outputs feed the HS5 monitors via TRS cables.</p>
+      </div>
+    </div>
+
+    <!-- 2. Yamaha MG10XU -->
+    <div class="gear-item fade-in">
+      <div class="gear-item-num">02</div>
+      <div class="gear-item-body">
+        <div class="gear-item-header">
+          <p class="gear-item-name">Yamaha MG10XU 10-Channel Mixer</p>
+          <span class="gear-item-badge">Mixer</span>
+        </div>
+        <p class="gear-item-price">₹17,499 &nbsp;·&nbsp; Routing Hub & Live Control</p>
+        <p class="gear-item-desc">The MG10XU is an analogue mixing console with 4 mono XLR/TRS combo inputs and 3 stereo line-level channels. Each mono channel has its own 3-band EQ (high, mid, low), a high-pass filter to cut rumble below 80Hz, a gain knob for setting input level, and a send to the built-in studio-grade effects processor. The onboard SPX effects unit provides reverb, chorus, and delay. Crucially, it also has a built-in USB audio interface — but for this studio, the Focusrite Solo handles the primary computer connection at higher quality.</p>
+        <div class="gear-item-specs">
+          <span class="spec-tag">4× Mono XLR/TRS</span>
+          <span class="spec-tag">3× Stereo Line</span>
+          <span class="spec-tag">3-Band EQ per Channel</span>
+          <span class="spec-tag">Built-in SPX Effects</span>
+          <span class="spec-tag">2× Aux Sends</span>
+          <span class="spec-tag">USB Audio</span>
+        </div>
+        <p class="gear-item-role"><strong>Role in the studio:</strong> Use the MG10XU to manage multiple sources simultaneously — plug in both microphones, a keyboard, and a backing track playback device. Its main stereo output feeds the Focusrite Solo. When recording vocals with a backing track, the mixer lets you blend the two for a headphone cue mix without the performer hearing only a dry signal.</p>
+      </div>
+    </div>
+
+    <!-- 3. Shure SM58 -->
+    <div class="gear-item fade-in">
+      <div class="gear-item-num">03</div>
+      <div class="gear-item-body">
+        <div class="gear-item-header">
+          <p class="gear-item-name">Shure SM58-LC Cardioid Vocal Mic</p>
+          <span class="gear-item-badge">Dynamic Microphone</span>
+        </div>
+        <p class="gear-item-price">₹10,499 &nbsp;·&nbsp; The World's Most Trusted Vocal Mic</p>
+        <p class="gear-item-desc">The SM58 is a dynamic microphone — it uses a moving coil inside a magnetic field to convert sound waves to electrical signal, requiring no external power. Its cardioid polar pattern picks up sound primarily from the front and naturally rejects sound from the rear and sides, making it ideal for home studios where room reflections and background noise are concerns. It has a built-in spherical wire mesh grille with an integrated pop filter, and a contoured frequency response with a presence peak around 5kHz that adds clarity to vocals.</p>
+        <div class="gear-item-specs">
+          <span class="spec-tag">Dynamic</span>
+          <span class="spec-tag">Cardioid Pattern</span>
+          <span class="spec-tag">No Phantom Power Required</span>
+          <span class="spec-tag">50Hz–15kHz</span>
+          <span class="spec-tag">XLR Output</span>
+        </div>
+        <p class="gear-item-role"><strong>Role in the studio:</strong> Primary vocal microphone for singing, rap, podcasting, and any loud or dynamic source. Its ruggedness means you can use it close to loud sources (guitar amps, loud singers) without damage. It connects via XLR cable to any channel on the MG10XU. No phantom power needed — just plug in and sing.</p>
+      </div>
+    </div>
+
+    <!-- 4. AT2020 -->
+    <div class="gear-item fade-in">
+      <div class="gear-item-num">04</div>
+      <div class="gear-item-body">
+        <div class="gear-item-header">
+          <p class="gear-item-name">Audio-Technica AT2020 Condenser Mic</p>
+          <span class="gear-item-badge">Condenser Microphone</span>
+        </div>
+        <p class="gear-item-price">₹8,499 &nbsp;·&nbsp; Detail, Air & Studio Clarity</p>
+        <p class="gear-item-desc">The AT2020 is a large-diaphragm condenser microphone. Unlike dynamic mics, condensers use a thin electrically charged diaphragm suspended near a backplate — this design is far more sensitive and captures a much wider frequency range, including the delicate high-frequency air and transient detail that dynamic mics miss. Because of this, it requires 48V phantom power from your interface or mixer. Its extended frequency response (20Hz–20kHz) and low self-noise make it ideal for capturing acoustic instruments, room ambience, voiceovers, and soft-spoken dialogue.</p>
+        <div class="gear-item-specs">
+          <span class="spec-tag">Large Diaphragm Condenser</span>
+          <span class="spec-tag">Cardioid Pattern</span>
+          <span class="spec-tag">Requires 48V Phantom Power</span>
+          <span class="spec-tag">20Hz–20kHz</span>
+          <span class="spec-tag">Low Self-Noise: 20dB SPL</span>
+        </div>
+        <p class="gear-item-role"><strong>Role in the studio:</strong> Your detail and nuance microphone. Mount it on the Kadence boom arm, position it for acoustic guitar, vocals in a treated corner, or any source where you want maximum fidelity. Always enable phantom power (+48V) on the MG10XU channel before plugging in, and wait 30 seconds before switching on — condensers are more sensitive to power surges.</p>
+      </div>
+    </div>
+
+    <!-- 5. Yamaha HS5 -->
+    <div class="gear-item fade-in">
+      <div class="gear-item-num">05</div>
+      <div class="gear-item-body">
+        <div class="gear-item-header">
+          <p class="gear-item-name">Yamaha HS5 Studio Monitors (Pair)</p>
+          <span class="gear-item-badge">Studio Monitors</span>
+        </div>
+        <p class="gear-item-price">₹32,990 &nbsp;·&nbsp; Reference-Grade Accuracy</p>
+        <p class="gear-item-desc">The HS5 is an active (powered) near-field studio monitor. Unlike consumer speakers that colour sound to make music sound pleasing, studio monitors are designed to be flat and accurate — they reveal problems in your mix rather than hiding them. Each HS5 has a 5-inch woofer and a 1-inch tweeter, both with their own built-in amplifiers. The HS series is famous for its "white woofer" design inherited from Yamaha's legendary NS-10 studio monitors used in recording studios worldwide for decades. The HS5 includes room control and high-trim response switches on the back to adjust for placement near walls.</p>
+        <div class="gear-item-specs">
+          <span class="spec-tag">5" Woofer + 1" Tweeter</span>
+          <span class="spec-tag">Active / Bi-Amplified</span>
+          <span class="spec-tag">TRS / XLR Input</span>
+          <span class="spec-tag">54Hz–30kHz</span>
+          <span class="spec-tag">45W + 25W Amplifiers</span>
+          <span class="spec-tag">Room Control EQ</span>
+        </div>
+        <p class="gear-item-role"><strong>Role in the studio:</strong> Place them at ear height on the MOPAD isolation pads, positioned in an equilateral triangle with your head (each monitor and your listening position forming the three corners, each side about 1–1.2m). They receive signal from the Scarlett Solo's monitor outputs via balanced TRS cables. Use the back-panel room EQ switches if placed near walls: −2dB or −4dB on the Low cut, and adjust High Trim for brightness.</p>
+      </div>
+    </div>
+
+    <!-- 6. ATH-M50x -->
+    <div class="gear-item fade-in">
+      <div class="gear-item-num">06</div>
+      <div class="gear-item-body">
+        <div class="gear-item-header">
+          <p class="gear-item-name">Audio-Technica ATH-M50x Headphones</p>
+          <span class="gear-item-badge">Studio Headphones</span>
+        </div>
+        <p class="gear-item-price">₹10,799 &nbsp;·&nbsp; Critical Listening & Mix Reference</p>
+        <p class="gear-item-desc">The ATH-M50x are closed-back, circumaural (around-ear) studio headphones with 45mm large-aperture drivers. Closed-back design means the ear cups are sealed, preventing sound from leaking out — critical when recording with a microphone, since open headphones would bleed sound into your recording. The M50x is one of the most widely used reference headphones in the world, renowned for its accurate, detailed sound across the full frequency range. They come with three detachable cables — coiled, straight long, and straight short — and fold flat for storage.</p>
+        <div class="gear-item-specs">
+          <span class="spec-tag">Closed-Back</span>
+          <span class="spec-tag">45mm Drivers</span>
+          <span class="spec-tag">15Hz–28kHz</span>
+          <span class="spec-tag">38Ω Impedance</span>
+          <span class="spec-tag">Detachable Cable</span>
+          <span class="spec-tag">Foldable</span>
+        </div>
+        <p class="gear-item-role"><strong>Role in the studio:</strong> Primary headphones for critical listening, mix referencing, and long mixing sessions. Connect to the Scarlett Solo's front headphone output (which has its own dedicated amplifier). When a vocalist is recording, plug the M50x into the mixer's phones output so they hear a cue blend of their voice and the backing track without monitor bleed.</p>
+      </div>
+    </div>
+
+    <!-- 7. ATH-M20x -->
+    <div class="gear-item fade-in">
+      <div class="gear-item-num">07</div>
+      <div class="gear-item-body">
+        <div class="gear-item-header">
+          <p class="gear-item-name">Audio-Technica ATH-M20x Headphones</p>
+          <span class="gear-item-badge">Studio Headphones</span>
+        </div>
+        <p class="gear-item-price">₹4,399 &nbsp;·&nbsp; Performer Cue Headphones</p>
+        <p class="gear-item-desc">The ATH-M20x are the entry-level offering in Audio-Technica's professional monitor series, sharing the same closed-back circumaural design as the M50x but with 40mm drivers. They are excellent value for money and provide accurate monitoring for tracking sessions. Their closed-back design prevents headphone bleed into the microphone. These are your "second pair" — kept on the desk as a quick alternative reference or handed to a collaborating performer during tracking.</p>
+        <div class="gear-item-specs">
+          <span class="spec-tag">Closed-Back</span>
+          <span class="spec-tag">40mm Drivers</span>
+          <span class="spec-tag">20Hz–20kHz</span>
+          <span class="spec-tag">47Ω Impedance</span>
+          <span class="spec-tag">Fixed Cable</span>
+        </div>
+        <p class="gear-item-role"><strong>Role in the studio:</strong> Performer cue headphones during recording sessions. While the M50x stays on your head at the engineering position, the M20x goes to the vocalist or instrumentalist. Plug it into the MG10XU's second headphone output (Phones B) for an independent cue mix. Also useful as a quick reference check — differences between the M50x and M20x reveal low-mid frequency translation issues in mixes.</p>
+      </div>
+    </div>
+
+    <!-- 8. Akai MPK Mini -->
+    <div class="gear-item fade-in">
+      <div class="gear-item-num">08</div>
+      <div class="gear-item-body">
+        <div class="gear-item-header">
+          <p class="gear-item-name">Akai MPK Mini MK4</p>
+          <span class="gear-item-badge">MIDI Controller</span>
+        </div>
+        <p class="gear-item-price">₹8,550 &nbsp;·&nbsp; Compose, Trigger & Control</p>
+        <p class="gear-item-desc">The MPK Mini MK4 is a class-compliant USB MIDI controller — it generates MIDI data (Musical Instrument Digital Interface), not audio. MIDI is a communication protocol that tells software instruments what notes to play, how hard, and for how long. The MK4 features 25 mini velocity-sensitive keys, 8 RGB MPC-style velocity-sensitive pads, 8 assignable knobs, and a built-in arpeggiator and chord mode. A new addition on the MK4 is the 5-way joystick for pitch bend and modulation, replacing the previous thumbstick design.</p>
+        <div class="gear-item-specs">
+          <span class="spec-tag">25 Mini Keys</span>
+          <span class="spec-tag">8 RGB Pads</span>
+          <span class="spec-tag">8 Assignable Knobs</span>
+          <span class="spec-tag">Arpeggiator</span>
+          <span class="spec-tag">Chord Mode</span>
+          <span class="spec-tag">USB-A (no driver needed)</span>
+        </div>
+        <p class="gear-item-role"><strong>Role in the studio:</strong> Connect directly to your computer via USB. In your DAW, create a MIDI track and set the MPK Mini as the input device. Load a virtual instrument (soft synth, piano, drums) on the track and play — the keys control pitched instruments while the 8 pads are ideal for triggering drum hits. The 8 knobs can be mapped to plugin parameters like filter cutoff, reverb send, or volume faders for hands-on control.</p>
+      </div>
+    </div>
+
+    <!-- 9. Kadence Boom Arm -->
+    <div class="gear-item fade-in">
+      <div class="gear-item-num">09</div>
+      <div class="gear-item-body">
+        <div class="gear-item-header">
+          <p class="gear-item-name">Kadence NB35-POP Boom Arm + Pop Filter</p>
+          <span class="gear-item-badge">Rigging</span>
+        </div>
+        <p class="gear-item-price">₹699 &nbsp;·&nbsp; Positioning & Plosive Control</p>
+        <p class="gear-item-desc">The NB35 is a scissor-arm studio boom arm that clamps to any desk edge and positions your microphone exactly where you need it — no stand needed on the floor. It features internal spring tension for smooth, stable positioning and cable management channels to keep XLR cables tidy. The included pop filter is a circular frame with a fine mesh screen that mounts on a flexible gooseneck. Pop filters diffuse the sudden bursts of air that cause low-frequency plosive thumps (the "P" and "B" sounds that overload microphone capsules) before they reach the mic.</p>
+        <div class="gear-item-specs">
+          <span class="spec-tag">Scissor Arm Design</span>
+          <span class="spec-tag">Desk Clamp Mount</span>
+          <span class="spec-tag">5/8" Mic Thread</span>
+          <span class="spec-tag">360° Swivel Head</span>
+          <span class="spec-tag">Pop Filter Included</span>
+        </div>
+        <p class="gear-item-role"><strong>Role in the studio:</strong> Clamp to the left or right desk edge. Thread the XLR cable through the arm's internal channel for a clean setup. Mount either the SM58 or AT2020, then position the pop filter 5–7cm in front of the mic capsule. The boom arm lets you record sitting naturally rather than hunching toward a floor stand, reducing physical fatigue during long sessions.</p>
+      </div>
+    </div>
+
+    <!-- 10. Cables -->
+    <div class="gear-item fade-in">
+      <div class="gear-item-num">10</div>
+      <div class="gear-item-body">
+        <div class="gear-item-header">
+          <p class="gear-item-name">Hawk Proaudio XLR & TRS Cables</p>
+          <span class="gear-item-badge">Signal Cables</span>
+        </div>
+        <p class="gear-item-price">₹699 XLR &nbsp;·&nbsp; ₹521–₹899 TRS (×2)</p>
+        <p class="gear-item-desc">XLR cables carry balanced audio using three conductors — positive signal, negative signal, and ground. This balanced configuration means any noise picked up along the cable length is automatically cancelled out at the destination (common-mode rejection), making XLR ideal for long microphone runs and professional interconnects. TRS (Tip-Ring-Sleeve) cables in balanced configuration serve the same purpose for line-level signals — they connect the Focusrite Solo's monitor outputs to each Yamaha HS5. Balanced connections should always be preferred over unbalanced in studio wiring.</p>
+        <div class="gear-item-specs">
+          <span class="spec-tag">XLR: 3-Pin Balanced</span>
+          <span class="spec-tag">TRS: 6.35mm Balanced</span>
+          <span class="spec-tag">Noise-Rejecting</span>
+          <span class="spec-tag">Mic & Line Level</span>
+        </div>
+        <p class="gear-item-role"><strong>Role in the studio:</strong> XLR cable runs from microphone to mixer. Two TRS cables run from the Scarlett Solo's left and right monitor outputs to the left and right HS5 monitors respectively. Always use balanced cables wherever the equipment supports it — you will immediately notice less hum and interference compared to unbalanced connections.</p>
+      </div>
+    </div>
+
+    <!-- 11. Acoustic Treatment -->
+    <div class="gear-item fade-in">
+      <div class="gear-item-num">11</div>
+      <div class="gear-item-body">
+        <div class="gear-item-header">
+          <p class="gear-item-name">YGM Acoustic Foam + MOPAD Isolation Pads</p>
+          <span class="gear-item-badge">Acoustic Treatment</span>
+        </div>
+        <p class="gear-item-price">₹1,295 Foam + ₹1,276 MOPADs + ₹773 Adhesive</p>
+        <p class="gear-item-desc">Acoustic foam panels absorb mid and high-frequency sound waves, reducing the time it takes for sound to decay in a room (reverberation time). Without treatment, every recording you make captures not just your voice or instrument but also the reflections bouncing off walls, floor, and ceiling — creating a boxy, echoey sound that no plugin can fully remove. The YGM panels work by converting sound energy into heat through friction as the waves travel through the open-cell foam structure. The MOPAD isolation pads (Monitor Isolation Pads) are high-density polyurethane wedges that decouple the HS5 monitors from the desk surface, preventing vibration from transferring and creating bass resonance.</p>
+        <div class="gear-item-specs">
+          <span class="spec-tag">18 Foam Panels</span>
+          <span class="spec-tag">Mid/High Absorption</span>
+          <span class="spec-tag">MOPAD Decoupling Pads</span>
+          <span class="spec-tag">Spray Adhesive Mount</span>
+        </div>
+        <p class="gear-item-role"><strong>Role in the studio:</strong> Install foam panels on the wall directly behind your monitors (front wall), on the two side walls at the "first reflection points" (where sound from the monitors bounces to your ears), and on the ceiling above your mix position. Place MOPADs under each HS5. This is the single highest-impact upgrade you can make to recording quality — do this before your first take.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── SETUP PROCEDURE ── -->
+<section id="setup">
+  <p class="section-label fade-in">Day One, Done Right</p>
+  <h2 class="section-title fade-in">Complete Setup Procedure</h2>
+
+  <div class="setup-phases fade-in">
+
+    <!-- PHASE 1 -->
+    <div class="setup-phase">
+      <div class="phase-header active" onclick="togglePhase(this)">
+        <div class="phase-num-bubble">1</div>
+        <div class="phase-header-text">
+          <p class="phase-title">Room Preparation & Acoustic Treatment</p>
+          <p class="phase-subtitle">Before any gear is powered on — lay the acoustic foundation</p>
+        </div>
+        <span class="phase-chevron">▼</span>
+      </div>
+      <div class="phase-body open">
+        <div class="setup-steps">
+          <div class="setup-step">
+            <div class="step-dot">1</div>
+            <div class="step-content">
+              <p class="step-title">Choose & Clear Your Recording Corner</p>
+              <p class="step-body">Select a room corner for your primary recording position — corners are acoustically "dead" and naturally reduce reflections. Avoid rooms with hard parallel walls and no furnishings. A bedroom with a wardrobe, bookshelf, and mattress already has natural diffusion. Clear at least 1.5m in front of where your desk will sit.</p>
+            </div>
+          </div>
+          <div class="setup-step">
+            <div class="step-dot">2</div>
+            <div class="step-content">
+              <p class="step-title">Identify First Reflection Points</p>
+              <p class="step-body">Sit in your intended listening/mix position. Have someone hold a small mirror flat against the left side wall and slide it forward from behind you until you can see the reflection of your left monitor in it — that is your left first reflection point. Repeat for the right wall and ceiling above you. Mark these three spots with painter's tape.</p>
+              <div class="step-pro"><strong>Pro tip:</strong> These three points are the most critical positions for acoustic foam. Reflections arriving here interfere with the direct sound from your monitors and cause frequency smearing that makes mixes translate poorly to other systems.</div>
+            </div>
+          </div>
+          <div class="setup-step">
+            <div class="step-dot">3</div>
+            <div class="step-content">
+              <p class="step-title">Apply Foam Panels with Fevicol Ezee Spray</p>
+              <p class="step-body">Shake the Fevicol Ezee spray can well. Working in a ventilated area, lightly spray the back of each YGM foam panel and the wall area where it will go. Wait 45–60 seconds for the adhesive to become tacky, then press firmly for 10–15 seconds. Start with the three first reflection points (2 side walls, 1 ceiling), then place remaining panels symmetrically on the front wall behind your future monitor position. Space panels evenly rather than clustering — distributed coverage is more effective than a solid block.</p>
+              <div class="step-warning"><strong>Important:</strong> Do not spray adhesive directly onto painted drywall without testing a small hidden patch first. The spray is repositionable for about 30 seconds but bonds permanently after that. Allow 2 hours to fully cure before placing anything against the panels.</div>
+            </div>
+          </div>
+          <div class="setup-step">
+            <div class="step-dot">4</div>
+            <div class="step-content">
+              <p class="step-title">Position the Desk</p>
+              <p class="step-body">Place your desk so your listening position sits roughly <em>38% of the room's length from the front wall</em> — this is the standard acoustic sweet spot that avoids the worst bass buildup modes in rectangular rooms. Your back should face the corner, not a flat wall. Leave at least 50cm between your desk and the front wall where the monitors will sit.</p>
+            </div>
+          </div>
+        </div>
+        <div class="integration-box">
+          <p>The acoustic treatment phase directly impacts every other piece of gear. Untreated rooms add 6–12dB of frequency irregularity at your listening position, meaning what you hear in the monitors is not what's actually in the recording. No amount of EQ, compression, or monitoring quality overcomes a bad room — acoustic treatment is always first.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 2 -->
+    <div class="setup-phase">
+      <div class="phase-header" onclick="togglePhase(this)">
+        <div class="phase-num-bubble">2</div>
+        <div class="phase-header-text">
+          <p class="phase-title">Monitor & Headphone Setup</p>
+          <p class="phase-subtitle">Position, connect and calibrate your monitoring chain</p>
+        </div>
+        <span class="phase-chevron">▼</span>
+      </div>
+      <div class="phase-body">
+        <div class="setup-steps">
+          <div class="setup-step">
+            <div class="step-dot">1</div>
+            <div class="step-content">
+              <p class="step-title">Place MOPAD Isolation Pads</p>
+              <p class="step-body">Set one MOPAD on each side of your desk where the HS5 monitors will sit. The foam wedge side faces downward. The angled top surface slightly tilts the monitors upward — position them so the tweeter (the small top driver) will be at ear height when you're seated. This ensures the high frequencies arrive at your ears directly without desk reflection.</p>
+            </div>
+          </div>
+          <div class="setup-step">
+            <div class="step-dot">2</div>
+            <div class="step-content">
+              <p class="step-title">Position HS5 Monitors in an Equilateral Triangle</p>
+              <p class="step-body">Place each HS5 on its MOPAD. The left monitor goes to your left, right to your right. The distance between the two monitors should equal the distance from each monitor to your head — forming a perfect equilateral triangle. For a typical desk this is <em>80–120cm</em> per side. Angle each monitor inward so it points directly at your listening position (toe them in). The tweeters should be exactly at ear level.</p>
+              <div class="step-pro"><strong>Pro tip:</strong> Measure the triangle with a tape measure rather than eyeballing it. Even 5cm asymmetry can throw off stereo imaging and make mixes sound wider on one side.</div>
+            </div>
+          </div>
+          <div class="setup-step">
+            <div class="step-dot">3</div>
+            <div class="step-content">
+              <p class="step-title">Set Room Control Switches on HS5 Rear Panel</p>
+              <p class="step-body">Each HS5 has two switches on the back. <em>Room Control</em> cuts low frequencies to compensate for bass buildup near walls: set to 0dB if your desk is more than 1m from any wall, −2dB if within 1m, −4dB if the monitor is close to a corner. <em>High Trim</em> adjusts treble response: 0dB for standard rooms, +0.5dB or +1dB if the room sounds dull and absorptive, −0.5dB or −1dB if it sounds harsh and bright. Set both monitors identically.</p>
+            </div>
+          </div>
+          <div class="setup-step">
+            <div class="step-dot">4</div>
+            <div class="step-content">
+              <p class="step-title">Connect Monitors to Focusrite Scarlett Solo</p>
+              <p class="step-body">Use a TRS cable for each monitor. Connect one end of the first TRS cable to the <em>Monitor L</em> output on the Scarlett Solo's rear panel, and the other end to the left HS5's TRS input. Repeat with the second TRS cable for the <em>Monitor R</em> output to the right HS5. Keep the monitor volume knob on the Scarlett Solo at minimum for now — do not power on the monitors yet.</p>
+              <div class="step-warning"><strong>Important:</strong> Always connect all cables before powering on monitors. Plugging cables into a live system can cause damaging signal pops (transients) through the drivers.</div>
+            </div>
+          </div>
+          <div class="setup-step">
+            <div class="step-dot">5</div>
+            <div class="step-content">
+              <p class="step-title">Connect Headphones</p>
+              <p class="step-body">Plug the ATH-M50x into the Scarlett Solo's front-panel headphone jack (6.35mm). Plug the ATH-M20x into the Yamaha MG10XU's headphone output. This configuration means you can monitor through the interface while a performer monitors through the mixer — giving each person an independent mix without sharing a single headphone output.</p>
+            </div>
+          </div>
+        </div>
+        <div class="integration-box">
+          <p>The monitoring chain flows: <em>DAW audio output → Scarlett Solo → HS5 monitors</em> (for speaker monitoring) and <em>Scarlett Solo → ATH-M50x</em> (for headphone monitoring). The Scarlett Solo's monitor volume knob controls both simultaneously. The MG10XU headphone output is a separate, parallel output for performer cue mixes — it doesn't go through the Focusrite.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 3 -->
+    <div class="setup-phase">
+      <div class="phase-header" onclick="togglePhase(this)">
+        <div class="phase-num-bubble">3</div>
+        <div class="phase-header-text">
+          <p class="phase-title">Mixer Setup & Routing</p>
+          <p class="phase-subtitle">Configure the Yamaha MG10XU for your studio workflow</p>
+        </div>
+        <span class="phase-chevron">▼</span>
+      </div>
+      <div class="phase-body">
+        <div class="setup-steps">
+          <div class="setup-step">
+            <div class="step-dot">1</div>
+            <div class="step-content">
+              <p class="step-title">Set Initial Mixer State to Zero / Unity</p>
+              <p class="step-body">Before powering on, set every channel fader to the unity (0dB) position — marked with a line on the fader scale. Set the master fader to unity as well. Turn all gain (trim) knobs fully counter-clockwise (minimum). Set all EQ knobs to their centre (12 o'clock) position, which is flat/neutral. Turn the aux send knobs to minimum. This "zeroed" starting state prevents unexpected loud signals when you power up.</p>
+            </div>
+          </div>
+          <div class="setup-step">
+            <div class="step-dot">2</div>
+            <div class="step-content">
+              <p class="step-title">Power on the MG10XU</p>
+              <p class="step-body">Plug the power adapter into the rear IEC socket and switch the power on at the rear panel switch. The PFL/SOLO and SIG/PEAK LEDs on each channel will briefly flash — this is normal self-test behaviour. The mixer is now on. Do not connect microphones yet if phantom power is on for any channel.</p>
+            </div>
+          </div>
+          <div class="setup-step">
+            <div class="step-dot">3</div>
+            <div class="step-content">
+              <p class="step-title">Enable Phantom Power for AT2020</p>
+              <p class="step-body">Decide which channel the AT2020 will occupy — Channel 1 or 2 is recommended. Press the <em>+48V</em> (phantom power) button on that channel — a small LED will illuminate. Now connect the AT2020's XLR cable to that channel. Wait 30 seconds before raising the channel gain. This delay allows the condenser's capsule to fully charge before signal flows.</p>
+              <div class="step-warning"><strong>Important:</strong> Never plug or unplug the AT2020 while phantom power is on. The SM58 does not require phantom power and will not be harmed by it, but condenser capsules can be damaged by hot-plugging (inserting while phantom is active). Always: switch phantom on → wait 30 seconds → plug in mic → raise gain. To unplug: reduce gain → switch phantom off → wait 30 seconds → unplug.</div>
+            </div>
+          </div>
+          <div class="setup-step">
+            <div class="step-dot">4</div>
+            <div class="step-content">
+              <p class="step-title">Connect SM58 to Second Mic Channel</p>
+              <p class="step-body">Plug the XLR cable into the SM58's XLR output (bottom of the mic body). Connect the other end to Channel 2 on the MG10XU. The SM58 requires no phantom power — it will work on any channel. Route the XLR cable through the Kadence boom arm's internal cable management channel if both mics share the arm.</p>
+            </div>
+          </div>
+          <div class="setup-step">
+            <div class="step-dot">5</div>
+            <div class="step-content">
+              <p class="step-title">Connect Mixer Main Output to Scarlett Solo</p>
+              <p class="step-body">Run a TRS cable from the MG10XU's <em>Main Mix L/R output</em> into the Scarlett Solo's line input. This creates the pathway: microphone → mixer preamp/EQ → Focusrite conversion → your DAW. Alternatively, for simpler single-mic sessions, plug a microphone directly into the Scarlett Solo's combo input and bypass the mixer entirely — both workflows are valid.</p>
+            </div>
+          </div>
+          <div class="setup-step">
+            <div class="step-dot">6</div>
+            <div class="step-content">
+              <p class="step-title">Set Gain Structure on Each Channel</p>
+              <p class="step-body">With a mic connected and the performer speaking or singing at performance volume, slowly raise the channel's <em>Gain</em> knob. Watch the <em>SIG/PEAK LED</em>: you want the green signal LED flashing consistently (signal present) but the red peak LED never lighting. A red peak LED means the preamp is clipping — reduce gain. Aim for the LED to be solidly green with only occasional amber on the loudest hits.</p>
+              <div class="step-pro"><strong>Pro tip:</strong> The MG10XU has a PFL (pre-fader listen) button per channel. Press it to solo that channel through the headphone output at its gain-stage level, letting you set gain precisely without affecting the main mix output.</div>
+            </div>
+          </div>
+        </div>
+        <div class="integration-box">
+          <p>The mixer serves as both a multi-source combiner and a headphone cue manager. Its main output feeds the interface. Its headphone output feeds the performer. These are two completely independent outputs, so you can send the performer a different mix than what's going to the DAW — for example, adding reverb to the vocalist's headphone mix (so they perform better) while recording a completely dry signal into the DAW for maximum flexibility in post-production.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 4 -->
+    <div class="setup-phase">
+      <div class="phase-header" onclick="togglePhase(this)">
+        <div class="phase-num-bubble">4</div>
+        <div class="phase-header-text">
+          <p class="phase-title">Interface & Computer Setup</p>
+          <p class="phase-subtitle">Install drivers, configure the DAW, set sample rate and buffer</p>
+        </div>
+        <span class="phase-chevron">▼</span>
+      </div>
+      <div class="phase-body">
+        <div class="setup-steps">
+          <div class="setup-step">
+            <div class="step-dot">1</div>
+            <div class="step-content">
+              <p class="step-title">Connect Scarlett Solo to Computer</p>
+              <p class="step-body">Use the included USB-C cable to connect the Scarlett Solo to your computer. On modern macOS (10.14+) and Windows 10/11, the Scarlett Solo is class-compliant and will be automatically detected without drivers. The Solo's LED halo will glow green when connected. For the best experience, download <em>Focusrite Control</em> from the Focusrite website — this free app unlocks the Air mode, direct monitoring mix settings, and the main mix output level.</p>
+            </div>
+          </div>
+          <div class="setup-step">
+            <div class="step-dot">2</div>
+            <div class="step-content">
+              <p class="step-title">Set System Audio Output to Scarlett Solo</p>
+              <p class="step-body">On macOS: System Settings → Sound → Output → select <em>Scarlett Solo USB</em>. On Windows: right-click the speaker icon → Sound Settings → Output device → <em>Scarlett Solo USB</em>. This routes all system audio through the interface. Now all computer audio — YouTube, Spotify, notifications — will play through your HS5 monitors. Set the system volume to 75–80% and use the Scarlett Solo's physical monitor knob for day-to-day volume control.</p>
+            </div>
+          </div>
+          <div class="setup-step">
+            <div class="step-dot">3</div>
+            <div class="step-content">
+              <p class="step-title">Install a DAW (Digital Audio Workstation)</p>
+              <p class="step-body">A DAW is the software studio where you record, edit, arrange, and mix audio. Recommended free options: <em>GarageBand</em> (macOS only — excellent for beginners, included free), <em>Cakewalk by BandLab</em> (Windows only, fully professional, free), or <em>Reaper</em> (Windows/Mac, ₹4,600 licence after free trial, industry-standard). For serious music production, <em>Ableton Live Intro</em> (often bundled with the Scarlett Solo as a free download via Focusrite's software bundle) is excellent. Install your chosen DAW before proceeding.</p>
+            </div>
+          </div>
+          <div class="setup-step">
+            <div class="step-dot">4</div>
+            <div class="step-content">
+              <p class="step-title">Configure Audio Settings Inside the DAW</p>
+              <p class="step-body">In your DAW's preferences or audio settings, set: <em>Audio Device</em> → Scarlett Solo USB. <em>Sample Rate</em> → 44100 Hz (for music) or 48000 Hz (for video/podcast). <em>Buffer Size</em> → start at 128 samples for recording (low latency), increase to 256 or 512 samples during mixing (lower CPU load). On macOS, select Core Audio as the driver. On Windows, select <em>ASIO</em> and install Focusrite's ASIO driver for the lowest possible latency.</p>
+              <div class="step-pro"><strong>Pro tip:</strong> Latency is the delay between you singing into the mic and hearing yourself in the headphones. Buffer size controls latency: 128 samples at 44.1kHz = ~6ms delay, which feels imperceptible. 512 samples = ~23ms, which feels like a slight echo and makes performing uncomfortable. Always record at 128 samples buffer.</div>
+            </div>
+          </div>
+          <div class="setup-step">
+            <div class="step-dot">5</div>
+            <div class="step-content">
+              <p class="step-title">Test the Signal Chain End-to-End</p>
+              <p class="step-body">Create a new audio track in your DAW. Set its input to <em>Input 1 (Mono)</em> — the Scarlett Solo's main XLR input. Arm the track for recording (click the red record arm button on the track). Speak into the microphone. You should see the input level meter in the DAW moving. If it's not moving, check: Is the mic plugged in? Is the gain knob raised? Is the correct input selected in the DAW? Is the interface selected as the audio device? Solve each potential failure point one at a time.</p>
+            </div>
+          </div>
+          <div class="setup-step">
+            <div class="step-dot">6</div>
+            <div class="step-content">
+              <p class="step-title">Enable Direct Monitoring (Zero-Latency Playback)</p>
+              <p class="step-body">The Scarlett Solo has a <em>Direct Monitor</em> button (headphone icon with a split circle). When enabled, it routes the incoming microphone signal directly to the headphone output at hardware level — bypassing the computer entirely. This gives true zero-latency monitoring. Enable it when recording. Disable it when you want to hear your recorded tracks playing back through the DAW (e.g., during mixing).</p>
+            </div>
+          </div>
+        </div>
+        <div class="integration-box">
+          <p>The Scarlett Solo is the digital hub — everything converts here. Analogue audio in, digital audio to the DAW. Digital playback from the DAW, analogue audio out to monitors and headphones. The sample rate must match across the interface settings, the DAW settings, and any video you're scoring — mismatches cause pitch shifting and timing errors.</p>
+          <p>Focusrite's free software bundle (accessible via your Focusrite account after registering the Solo) includes Ableton Live Lite, Pro Tools Artist (3-month trial), and a selection of plugin instruments and effects — activate all of these. They significantly expand your studio's capabilities at no extra cost.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 5 -->
+    <div class="setup-phase">
+      <div class="phase-header" onclick="togglePhase(this)">
+        <div class="phase-num-bubble">5</div>
+        <div class="phase-header-text">
+          <p class="phase-title">Microphone Positioning & Boom Arm</p>
+          <p class="phase-subtitle">Mount, angle and position for optimal capture</p>
+        </div>
+        <span class="phase-chevron">▼</span>
+      </div>
+      <div class="phase-body">
+        <div class="setup-steps">
+          <div class="setup-step">
+            <div class="step-dot">1</div>
+            <div class="step-content">
+              <p class="step-title">Mount the Kadence Boom Arm</p>
+              <p class="step-body">Open the clamp at the base of the NB35-POP and slide it over the left or right edge of your desk. Tighten the thumbscrew until firmly clamped — it should not rotate or shift when you extend the arm. Thread the XLR cable through the arm before attaching the microphone, using the internal channel or the external cable clips.</p>
+            </div>
+          </div>
+          <div class="setup-step">
+            <div class="step-dot">2</div>
+            <div class="step-content">
+              <p class="step-title">Attach the Microphone</p>
+              <p class="step-body">The boom arm's mic end has a standard 5/8" thread. The SM58 clips into its clip adapter (included with the mic) which then screws onto the thread. The AT2020 screws directly onto a 5/8" adapter or uses its included thread adapter. Tighten until snug but don't overtighten — you need to be able to adjust the angle. Connect the XLR cable to the mic's output.</p>
+            </div>
+          </div>
+          <div class="setup-step">
+            <div class="step-dot">3</div>
+            <div class="step-content">
+              <p class="step-title">Position the Pop Filter</p>
+              <p class="step-body">Attach the Kadence pop filter's gooseneck clamp to the boom arm, near the mic end. Bend the gooseneck so the filter's mesh screen sits <em>5–7cm directly in front of the mic capsule</em>. The screen should be perpendicular to the direction the mic points. Do not press the filter against the mic — the gap is essential for it to function correctly.</p>
+            </div>
+          </div>
+          <div class="setup-step">
+            <div class="step-dot">4</div>
+            <div class="step-content">
+              <p class="step-title">For Vocals: Set Mic Position</p>
+              <p class="step-body">Position the mic at mouth height, angled very slightly downward (15°) so you sing slightly across it rather than directly into it. This further reduces plosives and sibilance. Aim for <em>15–25cm working distance</em> for a detailed, intimate vocal sound. Closer produces more proximity effect (bass boost) — use this creatively for warmth. Farther captures more room but sacrifices presence.</p>
+              <div class="step-pro"><strong>Pro tip:</strong> Sing slightly off-axis (5–10° to one side of centre) to reduce proximity effect and sibilance while retaining presence. Small changes in mic angle make enormous differences in sound — experiment while watching your recording level in the DAW.</div>
+            </div>
+          </div>
+          <div class="setup-step">
+            <div class="step-dot">5</div>
+            <div class="step-content">
+              <p class="step-title">For Acoustic Guitar: Set Mic Position</p>
+              <p class="step-body">Remove the pop filter — it's not needed for instruments. Point the AT2020 at the guitar's <em>12th fret</em> (where the neck meets the body), approximately 20–30cm away, angled slightly toward the soundhole. This position captures a balanced blend of string attack (from the fret area) and body resonance (from the soundhole) without the excessive bass boom of pointing directly into the soundhole.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 6 -->
+    <div class="setup-phase">
+      <div class="phase-header" onclick="togglePhase(this)">
+        <div class="phase-num-bubble">6</div>
+        <div class="phase-header-text">
+          <p class="phase-title">MIDI Keyboard & Production Setup</p>
+          <p class="phase-subtitle">Connect, configure and map the Akai MPK Mini MK4</p>
+        </div>
+        <span class="phase-chevron">▼</span>
+      </div>
+      <div class="phase-body">
+        <div class="setup-steps">
+          <div class="setup-step">
+            <div class="step-dot">1</div>
+            <div class="step-content">
+              <p class="step-title">Connect the MPK Mini via USB</p>
+              <p class="step-body">Connect the Akai MPK Mini MK4 to a USB-A port on your computer using the included cable. It requires no driver — it is class-compliant and will appear in your DAW's MIDI device list immediately. The keyboard does not need to go through the audio interface — it communicates MIDI data over USB, not audio.</p>
+            </div>
+          </div>
+          <div class="setup-step">
+            <div class="step-dot">2</div>
+            <div class="step-content">
+              <p class="step-title">Configure in the DAW</p>
+              <p class="step-body">In your DAW's preferences, go to MIDI settings and enable the <em>MPK Mini MK4</em> as a MIDI input device. Create a new instrument track (not audio track). Set the track's MIDI input to <em>MPK Mini MK4 — All Channels</em>. Load a virtual instrument plugin (a built-in piano, synth, or drum kit) on the track. Arm the track for recording. Play the keys — you should now hear sound through your monitors.</p>
+            </div>
+          </div>
+          <div class="setup-step">
+            <div class="step-dot">3</div>
+            <div class="step-content">
+              <p class="step-title">Configure the 8 Pads for Drums</p>
+              <p class="step-body">The 8 pads send MIDI note messages. By default they're set to trigger notes C1–G1, which in most drum plugins correspond to kick, snare, hi-hats, and cymbals. Load a drum instrument (GarageBand's Drummer, Addictive Drums, or any drum plugin). The pads will immediately trigger drum hits. You can customise which drum sound each pad triggers by changing the pad's MIDI note assignment in the MPK Mini's editor software (downloadable free from Akai's website).</p>
+            </div>
+          </div>
+          <div class="setup-step">
+            <div class="step-dot">4</div>
+            <div class="step-content">
+              <p class="step-title">Map the 8 Knobs to Plugin Parameters</p>
+              <p class="step-body">The 8 assignable knobs send MIDI CC (Continuous Controller) messages. In most DAWs you can right-click any plugin knob (reverb size, filter cutoff, etc.) and select <em>"MIDI Learn"</em> or <em>"Assign Controller"</em>, then turn the physical MPK knob you want to control it. This gives you hands-on physical control over plugin parameters without touching the mouse — significantly improving the feel of your workflow.</p>
+              <div class="step-pro"><strong>Pro tip:</strong> Map Knob 1 to your primary reverb's mix/send level, Knob 2 to the delay mix, and Knobs 3–4 to your virtual synth's filter cutoff and resonance. These are the parameters you'll reach for most often during performance and live arrangement.</div>
+            </div>
+          </div>
+          <div class="setup-step">
+            <div class="step-dot">5</div>
+            <div class="step-content">
+              <p class="step-title">Use Chord Mode and Arpeggiator</p>
+              <p class="step-body">The MPK Mini MK4 has a built-in Chord mode (press the Chord button) — pressing a single key triggers a full chord. The factory chord presets include major and minor triads, 7th chords, and sus2 chords. This is invaluable if your keyboard playing is limited. The Arpeggiator (press Arp button) takes the notes you hold and plays them in a rhythmic pattern — set the rate (1/4, 1/8, 1/16 notes) using the BPM/Time Division controls. The arp syncs to your DAW's tempo if MIDI clock is enabled.</p>
+            </div>
+          </div>
+        </div>
+        <div class="integration-box">
+          <p>The MIDI keyboard operates completely independently from the audio recording chain. Audio from your DAW's virtual instruments exits through the Scarlett Solo (since the DAW's output is set to the Scarlett) and plays through the HS5 monitors — so MIDI performance and audio monitoring are seamlessly integrated even though the keyboard connects directly to the computer.</p>
+          <p>You can simultaneously record MIDI from the MPK Mini on one track while recording audio from the microphone on another track — composing and recording at the same time in one take.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 7 -->
+    <div class="setup-phase">
+      <div class="phase-header" onclick="togglePhase(this)">
+        <div class="phase-num-bubble">7</div>
+        <div class="phase-header-text">
+          <p class="phase-title">Final Power Sequence & First Session</p>
+          <p class="phase-subtitle">The correct startup and shutdown order for every session</p>
+        </div>
+        <span class="phase-chevron">▼</span>
+      </div>
+      <div class="phase-body">
+        <div class="setup-steps">
+          <div class="setup-step">
+            <div class="step-dot">1</div>
+            <div class="step-content">
+              <p class="step-title">Correct Power-On Sequence</p>
+              <p class="step-body">Always power on in this order: <em>(1) Computer → (2) Scarlett Solo (via USB connection) → (3) Yamaha MG10XU → (4) Yamaha HS5 monitors</em>. Monitors should always come on last because any power-on surge or pop from the devices upstream will go through the signal chain — monitors on last means they never receive that transient. Set the Scarlett Solo monitor knob to minimum before powering monitors on, then slowly raise it to your working level.</p>
+              <div class="step-warning"><strong>Critical:</strong> Never power on the HS5 monitors before all upstream devices (interface, mixer) are fully on and stable. Power transients through speaker drivers can damage the tweeter — always monitors last on, monitors first off.</div>
+            </div>
+          </div>
+          <div class="setup-step">
+            <div class="step-dot">2</div>
+            <div class="step-content">
+              <p class="step-title">Correct Power-Off Sequence</p>
+              <p class="step-body">Reverse the power-on order: <em>(1) HS5 monitors → (2) MG10XU → (3) Scarlett Solo / computer</em>. Before switching off monitors, reduce the monitor volume knob on the Scarlett Solo to minimum. This prevents any shutdown pop from reaching the speakers.</p>
+            </div>
+          </div>
+          <div class="setup-step">
+            <div class="step-dot">3</div>
+            <div class="step-content">
+              <p class="step-title">Set Your Listening Level Reference</p>
+              <p class="step-body">Calibrate your monitoring level: play a familiar commercial track you know well (a professionally mixed song in a similar genre to what you're making). Set the Scarlett Solo monitor volume to a level where it feels comfortable but you could hold a conversation without shouting — approximately 75–80dB SPL. Note the physical position of the monitor knob. Always mix at this level. Consistency in monitoring level trains your ears and makes mixes translate more reliably.</p>
+            </div>
+          </div>
+          <div class="setup-step">
+            <div class="step-dot">4</div>
+            <div class="step-content">
+              <p class="step-title">Make Your First Recording</p>
+              <p class="step-body">Create a new project in your DAW. Add an audio track (input: Scarlett Solo Input 1, mono). Arm it for recording. Speak or sing into the microphone while watching the input meter — aim for peaks around <em>−18 to −12 dBFS</em> (the meter should reach into the upper third but never hit 0dBFS / clip). Hit record, perform your take, stop recording. Listen back through the monitors or headphones. You've just made your first studio recording.</p>
+              <div class="step-pro"><strong>Pro tip:</strong> Record your first take, then immediately zoom into the waveform. If it looks like a solid block with flat tops — it's clipping (too loud). If it looks like a thin line — it's too quiet. Aim for a waveform that uses about 50–70% of the available height, with dynamic peaks that clearly exceed the average level. This is healthy gain staging.</div>
+            </div>
+          </div>
+        </div>
+        <div class="integration-box">
+          <p>Your studio is now fully operational. The complete signal path is: <em>Voice/Instrument → Microphone → XLR cable → MG10XU mixer (gain, EQ, effects) → TRS cable → Focusrite Scarlett Solo (conversion) → USB → DAW (recording/editing) → USB → Scarlett Solo (playback) → TRS cables → HS5 monitors</em>. Every piece of gear has a defined role, and every connection is balanced and noise-rejecting. Welcome to StudioGhar.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── MUSIC GUIDE ── -->
+<section id="musicguide">
+  <p class="section-label fade-in">What Can You Make?</p>
+  <h2 class="section-title fade-in">Complete Music Production Guide</h2>
+
+  <!-- Tab Bar -->
+  <div class="genre-tabs fade-in" id="genreTabs">
+    <button class="genre-tab active" onclick="switchGenre('vocals')">🎤 Vocals & Singing</button>
+    <button class="genre-tab" onclick="switchGenre('hiphop')">🎧 Hip-Hop & Rap</button>
+    <button class="genre-tab" onclick="switchGenre('pop')">🎵 Pop & Indie Pop</button>
+    <button class="genre-tab" onclick="switchGenre('edm')">🔊 EDM & Electronic</button>
+    <button class="genre-tab" onclick="switchGenre('acoustic')">🎸 Acoustic & Folk</button>
+    <button class="genre-tab" onclick="switchGenre('lofi')">☁️ Lo-Fi & Chillhop</button>
+    <button class="genre-tab" onclick="switchGenre('podcast')">🎙️ Podcast & Voiceover</button>
+    <button class="genre-tab" onclick="switchGenre('bollywood')">🎶 Bollywood & Filmi</button>
+  </div>
+
+  <!-- ═══════════════ VOCALS ═══════════════ -->
+  <div class="genre-panel active" id="genre-vocals">
+    <div class="genre-hero">
+      <div class="genre-hero-left">
+        <p class="genre-hero-tag">Genre Guide 01 / 08</p>
+        <h3 class="genre-hero-title">Vocal Recording & Singing</h3>
+        <p class="genre-hero-desc">A clean vocal chain is the foundation of almost every genre. Whether you're a singer-songwriter, session vocalist, or content creator, this setup gives you professional-grade vocal capture. The two-microphone approach (SM58 dynamic + AT2020 condenser) means you can choose the character of the recording — warm and intimate or bright and detailed — depending on the song and the vocalist.</p>
+        <div class="genre-suitability">
+          <span class="suit-tag green">✓ Fully Capable</span>
+          <span class="suit-tag green">✓ Professional Quality</span>
+          <span class="suit-tag amber">◑ Room Treatment Critical</span>
+        </div>
+      </div>
+      <div class="readiness-card">
+        <p class="readiness-title">Studio Readiness Check</p>
+        <div class="readiness-row"><span class="readiness-label">Vocal Microphone</span><span class="readiness-status rs-have">Have It</span></div>
+        <div class="readiness-row"><span class="readiness-label">Condenser Option</span><span class="readiness-status rs-have">Have It</span></div>
+        <div class="readiness-row"><span class="readiness-label">Pop Filter + Boom Arm</span><span class="readiness-status rs-have">Have It</span></div>
+        <div class="readiness-row"><span class="readiness-label">Phantom Power (48V)</span><span class="readiness-status rs-have">Have It</span></div>
+        <div class="readiness-row"><span class="readiness-label">Acoustic Treatment</span><span class="readiness-status rs-have">Have It</span></div>
+        <div class="readiness-row"><span class="readiness-label">Tuning Plugin</span><span class="readiness-status rs-need">Add: Free</span></div>
+        <div class="readiness-row"><span class="readiness-label">Reverb / Delay FX</span><span class="readiness-status rs-partial">Mixer Has Basic</span></div>
+      </div>
+    </div>
+
+    <div class="genre-content-grid">
+      <div class="gcol">
+        <p class="gcol-title">Production Workflow</p>
+        <div class="workflow-steps">
+          <div class="wf-step"><div class="wf-n">1</div><div class="wf-text"><p class="wf-title">Choose Your Mic</p><p class="wf-body">For natural, airy, detailed vocals — use the <em>AT2020</em> condenser with 48V phantom power. For punchy, direct, room-rejecting takes (or recording late at night) — use the <em>SM58</em>. The SM58's proximity effect also adds warmth at close range (under 10cm).</p></div></div>
+          <div class="wf-step"><div class="wf-n">2</div><div class="wf-text"><p class="wf-title">Set Up the Recording Space</p><p class="wf-body">Position the mic in the acoustic treatment corner. Hang a thick duvet or moving blanket behind the vocalist if you don't have full foam coverage. Record vocals at night when ambient noise is lowest — air conditioning, traffic, and appliances all add noise floor.</p></div></div>
+          <div class="wf-step"><div class="wf-n">3</div><div class="wf-text"><p class="wf-title">Set Gain & Record Dry</p><p class="wf-body">Record the vocal track completely dry — no reverb or effects in the DAW recording chain. Gain stage so the loudest moments peak at <em>−10 to −6 dBFS</em>. Always record multiple takes (comping) and choose the best lines from each.</p></div></div>
+          <div class="wf-step"><div class="wf-n">4</div><div class="wf-text"><p class="wf-title">Edit & Comp the Vocal</p><p class="wf-body">In the DAW, cut together the best phrases from multiple takes. Zoom into breaths and trim excessive breath sounds. Use <em>pitch correction</em> (free: MAutoPitch, GarageBand Flex Pitch) to correct notes while keeping a natural feel. Keep the correction subtle — 50–60% strength.</p></div></div>
+          <div class="wf-step"><div class="wf-n">5</div><div class="wf-text"><p class="wf-title">Process the Vocal Chain</p><p class="wf-body">Standard vocal plugin chain: <em>EQ</em> (cut below 80Hz, reduce boxiness at 300–400Hz, add air at 10kHz) → <em>Compression</em> (4:1 ratio, medium attack ~10ms, fast release) → <em>De-esser</em> (tame harsh S sounds at 6–8kHz) → <em>Reverb</em> (short plate or room, 1–1.5s decay) → <em>Delay</em> (1/8th note rhythmic delay, low in the mix).</p></div></div>
+          <div class="wf-step"><div class="wf-n">6</div><div class="wf-text"><p class="wf-title">Double-Track & Harmonise</p><p class="wf-body">Record the same vocal line again on a second track — pan one 20% left, one 20% right. Even slight timing and pitch variation creates natural width. Sing 3rd and 5th harmony intervals on additional tracks and stack them subtly underneath the lead.</p></div></div>
+        </div>
+      </div>
+      <div class="gcol">
+        <p class="gcol-title">Gear Used From Your Studio</p>
+        <div class="gear-used-list">
+          <div class="gu-item"><div><p class="gu-name">Audio-Technica AT2020</p><p class="gu-role">Primary recording microphone</p></div><span class="gu-badge have">✓ Have</span></div>
+          <div class="gu-item"><div><p class="gu-name">Shure SM58</p><p class="gu-role">Backup / late-night vocal option</p></div><span class="gu-badge have">✓ Have</span></div>
+          <div class="gu-item"><div><p class="gu-name">Kadence Boom Arm + Pop Filter</p><p class="gu-role">Positioning & plosive control</p></div><span class="gu-badge have">✓ Have</span></div>
+          <div class="gu-item"><div><p class="gu-name">Yamaha MG10XU</p><p class="gu-role">Phantom power, gain, EQ, cue mix</p></div><span class="gu-badge have">✓ Have</span></div>
+          <div class="gu-item"><div><p class="gu-name">Focusrite Scarlett Solo</p><p class="gu-role">A/D conversion, Air mode for presence</p></div><span class="gu-badge have">✓ Have</span></div>
+          <div class="gu-item"><div><p class="gu-name">ATH-M50x Headphones</p><p class="gu-role">Performer monitoring, zero bleed</p></div><span class="gu-badge have">✓ Have</span></div>
+          <div class="gu-item"><div><p class="gu-name">YGM Acoustic Foam</p><p class="gu-role">Kills room reflections in takes</p></div><span class="gu-badge have">✓ Have</span></div>
+        </div>
+        <br>
+        <p class="gcol-title">Recommended Additions</p>
+        <div class="add-gear-grid">
+          <div class="add-gear-item"><p class="add-gear-name">Reflection Filter / Portable Vocal Booth</p><p class="add-gear-price">₹2,500 – ₹6,000 (e.g. SE Electronics RF-X)</p><p class="add-gear-why">Mounts behind the mic on the boom arm and creates a small acoustic shield — dramatically reduces room reflections even in untreated spaces. A game-changer for vocals in live rooms.</p></div>
+          <div class="add-gear-item"><p class="add-gear-name">Free Pitch Correction Plugin</p><p class="add-gear-price">Free — MAutoPitch (MeldaProduction)</p><p class="add-gear-why">Download MAutoPitch. It's free, works in any DAW, and gives you polished pitch correction without paying for Melodyne or Auto-Tune. Set scale to your song's key, strength to 50–70%.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="settings-block">
+      <p class="gcol-title">Recommended DAW & Gear Settings</p>
+      <div class="setting-row"><span class="setting-key">Sample Rate</span><span class="setting-val"><em>44,100 Hz</em> — sufficient for vocals, smallest file size</span></div>
+      <div class="setting-row"><span class="setting-key">Bit Depth</span><span class="setting-val"><em>24-bit</em> — always record at 24-bit, not 16-bit</span></div>
+      <div class="setting-row"><span class="setting-key">Buffer Size</span><span class="setting-val"><em>128 samples</em> — low latency for comfortable real-time monitoring</span></div>
+      <div class="setting-row"><span class="setting-key">MG10XU Gain</span><span class="setting-val">SIG LED flashing green, PEAK LED <em>never</em> lighting red</span></div>
+      <div class="setting-row"><span class="setting-key">Scarlett Air Mode</span><span class="setting-val"><em>On</em> — adds presence and clarity to the AT2020, makes vocals cut through</span></div>
+      <div class="setting-row"><span class="setting-key">MG10XU EQ</span><span class="setting-val">High-pass filter <em>ON</em> (80Hz cut). Mid EQ at 12 o'clock. Slight High boost (+2dB) for air</span></div>
+      <div class="setting-row"><span class="setting-key">Working Distance</span><span class="setting-val"><em>15–25cm</em> from mic capsule for most voices</span></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ HIP-HOP ═══════════════ -->
+  <div class="genre-panel" id="genre-hiphop">
+    <div class="genre-hero">
+      <div class="genre-hero-left">
+        <p class="genre-hero-tag">Genre Guide 02 / 08</p>
+        <h3 class="genre-hero-title">Hip-Hop & Rap Production</h3>
+        <p class="genre-hero-desc">Hip-hop is one of the most home-studio-friendly genres — its DNA is built around sampling, beatmaking, and recording. The SM58 is a classic rap vocal mic, the MPK Mini handles beat programming, and the Scarlett Solo converts everything cleanly. From trap to boom-bap to drill, this studio handles it all. The biggest gap is a beat library and a drum sample pack, both of which can be had for free.</p>
+        <div class="genre-suitability">
+          <span class="suit-tag green">✓ Fully Capable</span>
+          <span class="suit-tag green">✓ Beat Production Ready</span>
+          <span class="suit-tag green">✓ Vocal Recording Ready</span>
+        </div>
+      </div>
+      <div class="readiness-card">
+        <p class="readiness-title">Studio Readiness Check</p>
+        <div class="readiness-row"><span class="readiness-label">Rap Vocal Mic (SM58)</span><span class="readiness-status rs-have">Have It</span></div>
+        <div class="readiness-row"><span class="readiness-label">Beat Pad / MIDI Controller</span><span class="readiness-status rs-have">Have It</span></div>
+        <div class="readiness-row"><span class="readiness-label">Audio Interface</span><span class="readiness-status rs-have">Have It</span></div>
+        <div class="readiness-row"><span class="readiness-label">Monitoring Headphones</span><span class="readiness-status rs-have">Have It</span></div>
+        <div class="readiness-row"><span class="readiness-label">Drum Sample Pack</span><span class="readiness-status rs-need">Add: Free</span></div>
+        <div class="readiness-row"><span class="readiness-label">Sample Clearance / Crate</span><span class="readiness-status rs-need">Add: Free</span></div>
+        <div class="readiness-row"><span class="readiness-label">808 Bass VST</span><span class="readiness-status rs-need">Add: Free</span></div>
+      </div>
+    </div>
+
+    <div class="genre-content-grid">
+      <div class="gcol">
+        <p class="gcol-title">Beat Production Workflow</p>
+        <div class="workflow-steps">
+          <div class="wf-step"><div class="wf-n">1</div><div class="wf-text"><p class="wf-title">Load a Drum Instrument</p><p class="wf-body">In your DAW, create an instrument track and load a drum plugin. Free options: <em>BeatSkillz RetroKomp</em>, <em>Sitala</em>, or use GarageBand/Cakewalk's built-in drum kits. Map your MPK Mini MK4's 8 pads to kick, snare, open hi-hat, closed hi-hat, clap, snap, shaker, and rimshot.</p></div></div>
+          <div class="wf-step"><div class="wf-n">2</div><div class="wf-text"><p class="wf-title">Programme the Drum Pattern</p><p class="wf-body">Start with 4/4 at <em>140–150 BPM</em> for trap, <em>85–95 BPM</em> for boom-bap. For trap: kick on beat 1, snare on beat 3, hi-hats in triplet rolls. For boom-bap: kick on 1 and 3, snare on 2 and 4. Use the DAW's step sequencer or record live hits from the MPK pads.</p></div></div>
+          <div class="wf-step"><div class="wf-n">3</div><div class="wf-text"><p class="wf-title">Build the 808 Bass</p><p class="wf-body">Download <em>OBXD</em> or <em>Vital</em> (free) as a bass synthesiser. Create a bass instrument track. Use the MPK Mini keys to play bass notes that follow your kick pattern — the 808 bass note sustains under the kick for that characteristic sliding bass sound. Pitch-bend with the joystick for slides between notes.</p></div></div>
+          <div class="wf-step"><div class="wf-n">4</div><div class="wf-text"><p class="wf-title">Add Melody (Sample or Play)</p><p class="wf-body">Option A: Sample a vinyl record or old track (for personal/non-commercial use), chop it in your DAW, and pitch it to key. Option B: Load a piano or Rhodes plugin on the MPK Mini and play your own melodic loop. Typically 2–4 bars that loop throughout the beat.</p></div></div>
+          <div class="wf-step"><div class="wf-n">5</div><div class="wf-text"><p class="wf-title">Record the Rap Vocal</p><p class="wf-body">Use the <em>SM58</em> for rap — its proximity effect thickens the voice and its cardioid rejection keeps the beat from bleeding in even at high headphone volumes. Record multiple doubles and ad-libs. Keep the lead centred, pan doubles ±30%, and bury ad-libs −6 to −10 dB below the lead.</p></div></div>
+          <div class="wf-step"><div class="wf-n">6</div><div class="wf-text"><p class="wf-title">Mix & Master</p><p class="wf-body">Side-chain the 808 bass to duck slightly under the kick. Apply heavy compression to the vocal (8:1 ratio, fast attack). Use a limiter on the master bus targeting <em>−1 dBFS</em> ceiling, <em>−8 to −6 LUFS</em> integrated loudness for streaming.</p></div></div>
+        </div>
+      </div>
+      <div class="gcol">
+        <p class="gcol-title">Gear Used From Your Studio</p>
+        <div class="gear-used-list">
+          <div class="gu-item"><div><p class="gu-name">Shure SM58</p><p class="gu-role">Rap vocal — punchy, close-sounding</p></div><span class="gu-badge have">✓ Have</span></div>
+          <div class="gu-item"><div><p class="gu-name">Akai MPK Mini MK4</p><p class="gu-role">8 pads for drums, keys for melody & 808</p></div><span class="gu-badge have">✓ Have</span></div>
+          <div class="gu-item"><div><p class="gu-name">Focusrite Scarlett Solo</p><p class="gu-role">Vocal recording, clean conversion</p></div><span class="gu-badge have">✓ Have</span></div>
+          <div class="gu-item"><div><p class="gu-name">ATH-M50x Headphones</p><p class="gu-role">Beat monitoring, vocal cue</p></div><span class="gu-badge have">✓ Have</span></div>
+          <div class="gu-item"><div><p class="gu-name">Yamaha HS5</p><p class="gu-role">Bass frequency checking while mixing</p></div><span class="gu-badge have">✓ Have</span></div>
+        </div>
+        <br>
+        <p class="gcol-title">Recommended Additions</p>
+        <div class="add-gear-grid">
+          <div class="add-gear-item"><p class="add-gear-name">Vital Synth (Free) + Splice Starter Pack</p><p class="add-gear-price">Vital: Free | Splice: ~₹850/month for samples</p><p class="add-gear-why">Vital is the most powerful free synthesiser available — used by top producers for 808 basses, supersaw leads, and melodic pads. Splice gives you legal, royalty-free samples and loops to build beats from.</p></div>
+          <div class="add-gear-item"><p class="add-gear-name">USB Hub (Powered)</p><p class="add-gear-price">₹800 – ₹1,500</p><p class="add-gear-why">You'll need simultaneous USB connections for the Scarlett Solo and the MPK Mini MK4. A powered USB hub ensures both devices get adequate power and stable connections, especially on laptops with limited ports.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="settings-block">
+      <p class="gcol-title">Recommended Settings for Hip-Hop</p>
+      <div class="setting-row"><span class="setting-key">BPM (Trap)</span><span class="setting-val"><em>130–160 BPM</em> — triplet hi-hats, half-time feel on snare</span></div>
+      <div class="setting-row"><span class="setting-key">BPM (Boom-Bap)</span><span class="setting-val"><em>85–100 BPM</em> — swung hi-hats, punchy snare on 2 and 4</span></div>
+      <div class="setting-row"><span class="setting-key">SM58 Position</span><span class="setting-val"><em>5–10cm</em> from capsule, slightly off-axis — proximity effect adds weight</span></div>
+      <div class="setting-row"><span class="setting-key">Vocal Compression</span><span class="setting-val"><em>6:1–10:1</em> ratio, fast attack (5–10ms), fast release — hip-hop vox are heavily compressed</span></div>
+      <div class="setting-row"><span class="setting-key">808 Tuning</span><span class="setting-val">Always tune your 808 to the root key of the beat using a chromatic tuner plugin</span></div>
+      <div class="setting-row"><span class="setting-key">Master Loudness</span><span class="setting-val"><em>−8 to −6 LUFS</em> for streaming (Spotify, Apple Music normalise at −14 LUFS, YouTube at −13)</span></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ POP ═══════════════ -->
+  <div class="genre-panel" id="genre-pop">
+    <div class="genre-hero">
+      <div class="genre-hero-left">
+        <p class="genre-hero-tag">Genre Guide 03 / 08</p>
+        <h3 class="genre-hero-title">Pop & Indie Pop Production</h3>
+        <p class="genre-hero-desc">Pop is the most arrangement-intensive genre — it demands polished vocals, punchy programmed drums, layered synths, and bright, wide mixes. This studio handles the recording and MIDI composition side exceptionally well. The AT2020 captures pop vocals with the necessary clarity and airiness. The MPK Mini handles piano, synth pads, and arpeggiated leads. The main investment needed is a solid soft-synth library and perhaps a drum machine plugin.</p>
+        <div class="genre-suitability">
+          <span class="suit-tag green">✓ Vocals: Professional</span>
+          <span class="suit-tag green">✓ MIDI Production Ready</span>
+          <span class="suit-tag amber">◑ Synth Library Needed</span>
+        </div>
+      </div>
+      <div class="readiness-card">
+        <p class="readiness-title">Studio Readiness Check</p>
+        <div class="readiness-row"><span class="readiness-label">Condenser Vocal Mic</span><span class="readiness-status rs-have">Have It</span></div>
+        <div class="readiness-row"><span class="readiness-label">MIDI Keyboard</span><span class="readiness-status rs-have">Have It</span></div>
+        <div class="readiness-row"><span class="readiness-label">Audio Interface</span><span class="readiness-status rs-have">Have It</span></div>
+        <div class="readiness-row"><span class="readiness-label">Studio Monitors</span><span class="readiness-status rs-have">Have It</span></div>
+        <div class="readiness-row"><span class="readiness-label">Synth / Keys VST</span><span class="readiness-status rs-need">Add: Free–₹5,000</span></div>
+        <div class="readiness-row"><span class="readiness-label">Drum Machine Plugin</span><span class="readiness-status rs-need">Add: Free</span></div>
+        <div class="readiness-row"><span class="readiness-label">Electric Guitar / DI</span><span class="readiness-status rs-need">Optional Add</span></div>
+      </div>
+    </div>
+
+    <div class="genre-content-grid">
+      <div class="gcol">
+        <p class="gcol-title">Pop Production Workflow</p>
+        <div class="workflow-steps">
+          <div class="wf-step"><div class="wf-n">1</div><div class="wf-text"><p class="wf-title">Start with Chord Progression</p><p class="wf-body">Use the MPK Mini's <em>Chord Mode</em> to instantly play full chords with one finger — try I–V–vi–IV (C–G–Am–F in C major) which underlies hundreds of pop hits. Load a piano or Rhodes plugin. Record the progression at the intended BPM using a metronome in the DAW.</p></div></div>
+          <div class="wf-step"><div class="wf-n">2</div><div class="wf-text"><p class="wf-title">Programme the Drum Track</p><p class="wf-body">Pop drums are typically sample-based — use <em>Addictive Drums Free</em> or the DAW's built-in drums. Standard pop pattern: kick on 1 and 3, snare on 2 and 4, 8th-note closed hi-hats, open hi-hat on the 'and' of beat 4. Add a crash on bar 1 of each section. Pre-drop section: remove kick, leave snare and hi-hat only.</p></div></div>
+          <div class="wf-step"><div class="wf-n">3</div><div class="wf-text"><p class="wf-title">Layer Synth Pads & Leads</p><p class="wf-body">Using <em>Vital</em> or the DAW's built-in synths, add a pad sound playing the same chords for warmth and width. Add a lead synth or arpeggio for the hook. Pop arrangements layer 4–8 instrument tracks — piano, pad, bass, lead, counter-melody. The MPK Mini handles all of these via different instrument tracks.</p></div></div>
+          <div class="wf-step"><div class="wf-n">4</div><div class="wf-text"><p class="wf-title">Record Vocals with AT2020</p><p class="wf-body">Pop vocals need the <em>AT2020</em> — the SM58 doesn't have the high-frequency extension and detail that modern pop requires. Enable Air mode on the Scarlett Solo. Record the lead, doubles, and harmonies. Pop vocal production stacks many layers: lead → doubles (×2) → thirds harmony → fifths harmony → octave above or below.</p></div></div>
+          <div class="wf-step"><div class="wf-n">5</div><div class="wf-text"><p class="wf-title">Mix for Width & Impact</p><p class="wf-body">Pop mixes are wide and bright. Pan elements: kick and bass centred, snare centred, hi-hats slightly off centre, synth pads hard left/right, guitar doubles L/R. Use a <em>stereo widener</em> on pad tracks. Keep the kick and bass mono. EQ for brightness — pop sounds brighter than you think when monitoring.</p></div></div>
+          <div class="wf-step"><div class="wf-n">6</div><div class="wf-text"><p class="wf-title">Arrange Verse, Chorus, Bridge</p><p class="wf-body">Pop arrangement: <em>Intro (4 bars) → Verse (16 bars) → Pre-Chorus (8 bars) → Chorus (16 bars) → Verse (16 bars) → Chorus → Bridge (8 bars) → Final Chorus → Outro</em>. Add and remove elements to create energy dynamics — drop elements before the chorus and bring them all back on beat 1.</p></div></div>
+        </div>
+      </div>
+      <div class="gcol">
+        <p class="gcol-title">Gear Used From Your Studio</p>
+        <div class="gear-used-list">
+          <div class="gu-item"><div><p class="gu-name">AT2020 + Boom Arm + Pop Filter</p><p class="gu-role">Bright, airy pop vocal capture</p></div><span class="gu-badge have">✓ Have</span></div>
+          <div class="gu-item"><div><p class="gu-name">Akai MPK Mini MK4</p><p class="gu-role">Chords, melody, arp, pads, bass</p></div><span class="gu-badge have">✓ Have</span></div>
+          <div class="gu-item"><div><p class="gu-name">Scarlett Solo (Air Mode)</span><p class="gu-role">Presence boost, clean conversion</p></div><span class="gu-badge have">✓ Have</span></div>
+          <div class="gu-item"><div><p class="gu-name">Yamaha HS5 Monitors</p><p class="gu-role">Mix referencing — flat, revealing</p></div><span class="gu-badge have">✓ Have</span></div>
+          <div class="gu-item"><div><p class="gu-name">ATH-M50x Headphones</p><p class="gu-role">Checking high-frequency detail in mixes</p></div><span class="gu-badge have">✓ Have</span></div>
+        </div>
+        <br>
+        <p class="gcol-title">Recommended Additions</p>
+        <div class="add-gear-grid">
+          <div class="add-gear-item"><p class="add-gear-name">Komplete Start (NI) — Free Synth Bundle</p><p class="add-gear-price">Free download from Native Instruments</p><p class="add-gear-why">Native Instruments' free Komplete Start bundle includes Kontakt Player, a piano library, drum samples, and synth presets. Enormous sound palette for pop production at zero cost. Register on the NI website to unlock.</p></div>
+          <div class="add-gear-item"><p class="add-gear-name">Guitar (Electric or Acoustic) + DI Cable</p><p class="add-gear-price">Guitar: ₹5,000–₹15,000 | DI Cable: ₹500</p><p class="add-gear-why">Even a basic guitar adds organic texture that no synth fully replaces. A DI (direct input) cable lets you plug the guitar directly into the Scarlett Solo's instrument input — no amp needed. Use an amp simulator plugin (free: BIAS Amp Demo, LePou plugins).</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="settings-block">
+      <p class="gcol-title">Recommended Settings for Pop</p>
+      <div class="setting-row"><span class="setting-key">BPM Range</span><span class="setting-val"><em>100–130 BPM</em> — most commercial pop sits between 110–125</span></div>
+      <div class="setting-row"><span class="setting-key">Key Signature</span><span class="setting-val">Major keys for upbeat pop, minor keys (natural or harmonic) for emotional or dark pop</span></div>
+      <div class="setting-row"><span class="setting-key">Vocal Chain</span><span class="setting-val">AT2020 → Scarlett Air Mode ON → EQ (cut 300Hz, boost 10kHz) → Compression (4:1) → Autotune → Reverb</span></div>
+      <div class="setting-row"><span class="setting-key">Drum Pattern</span><span class="setting-val">Kick 1+3, Snare 2+4, 8th hi-hats, open HH on 'and' of 4, crash bar 1</span></div>
+      <div class="setting-row"><span class="setting-key">Reference Tracks</span><span class="setting-val">A/B your mix against a commercial reference at the same loudness level throughout</span></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ EDM ═══════════════ -->
+  <div class="genre-panel" id="genre-edm">
+    <div class="genre-hero">
+      <div class="genre-hero-left">
+        <p class="genre-hero-tag">Genre Guide 04 / 08</p>
+        <h3 class="genre-hero-title">EDM & Electronic Music Production</h3>
+        <p class="genre-hero-desc">Electronic music is almost entirely in-the-box — the studio gear acts as your monitoring and MIDI input system while software does the heavy lifting. The MPK Mini is your main instrument. The HS5 monitors are critical here — EDM has extreme low-end content and you need accurate bass reproduction to mix confidently. This setup is completely capable for house, techno, ambient, drum & bass, and trance.</p>
+        <div class="genre-suitability">
+          <span class="suit-tag green">✓ Full EDM Production</span>
+          <span class="suit-tag green">✓ HS5 Ideal for Bass</span>
+          <span class="suit-tag amber">◑ Synth Plugins Needed</span>
+        </div>
+      </div>
+      <div class="readiness-card">
+        <p class="readiness-title">Studio Readiness Check</p>
+        <div class="readiness-row"><span class="readiness-label">MIDI Controller</span><span class="readiness-status rs-have">Have It</span></div>
+        <div class="readiness-row"><span class="readiness-label">Audio Interface</span><span class="readiness-status rs-have">Have It</span></div>
+        <div class="readiness-row"><span class="readiness-label">Studio Monitors</span><span class="readiness-status rs-have">Have It</span></div>
+        <div class="readiness-row"><span class="readiness-label">Synthesiser VST</span><span class="readiness-status rs-need">Add: Free (Vital)</span></div>
+        <div class="readiness-row"><span class="readiness-label">Sample Pack (EDM)</span><span class="readiness-status rs-need">Add: Free–₹2,000</span></div>
+        <div class="readiness-row"><span class="readiness-label">Sidechain Compression</span><span class="readiness-status rs-need">Add: Free in DAW</span></div>
+        <div class="readiness-row"><span class="readiness-label">Subwoofer (Optional)</span><span class="readiness-status rs-partial">HS5 goes to 54Hz</span></div>
+      </div>
+    </div>
+
+    <div class="genre-content-grid">
+      <div class="gcol">
+        <p class="gcol-title">EDM Production Workflow</p>
+        <div class="workflow-steps">
+          <div class="wf-step"><div class="wf-n">1</div><div class="wf-text"><p class="wf-title">Build the Kick-Bass Foundation</p><p class="wf-body">EDM starts from the bottom up. Load a <em>909 or 808 kick drum</em> from a sample pack. Then create the bassline on a synth (Vital: use a sine wave oscillator, pitch it to root note). The kick and bass must share frequency space carefully — low-cut the bass above 60Hz where the kick lives, or sidechain the bass to duck on every kick hit.</p></div></div>
+          <div class="wf-step"><div class="wf-n">2</div><div class="wf-text"><p class="wf-title">Programme the Drum Pattern</p><p class="wf-body">House/Techno: 4-on-the-floor kick (all 4 beats), open hi-hat on offbeats, snare/clap on 2 and 4. Drum & Bass: kick on 1 and 3, breakbeat snare on beat 2 (ahead of the beat), ultra-fast hi-hat rolls. Use <em>LFO Tool</em> (free) or native sidechaining for pumping compression on synth pads.</p></div></div>
+          <div class="wf-step"><div class="wf-n">3</div><div class="wf-text"><p class="wf-title">Design Synth Sounds</p><p class="wf-body">Open <em>Vital</em>. Learn three fundamental synth types: <em>Supersaw lead</em> (multiple detuned sawtooth oscillators + filter sweep for the drop), <em>Pluck/Arp</em> (fast envelope decay, high filter cutoff), <em>Pad</em> (long attack, long release, chorus effect). Use the MPK Mini's 8 knobs to control filter cutoff and resonance in real time while recording.</p></div></div>
+          <div class="wf-step"><div class="wf-n">4</div><div class="wf-text"><p class="wf-title">Build the Arrangement — The Drop</p><p class="wf-body">EDM structure revolves around the drop. <em>Intro (16 bars) → Build-up (8 bars, increasing energy, rising white noise sweep) → DROP (full arrangement hits) → Break (remove elements) → Build-up again → Drop → Outro</em>. The contrast between the stripped-down break and the full drop is where all EDM energy comes from.</p></div></div>
+          <div class="wf-step"><div class="wf-n">5</div><div class="wf-text"><p class="wf-title">Use Effects as Instruments</p><p class="wf-body">Reverb, delay, filters, and automation are compositional tools in EDM — not just finishing touches. Filter-sweep a synth down to nothing in the bar before the drop. Automate reverb size growing throughout the build. Use a <em>high-pass filter sweep</em> (automate a filter rising from 20Hz to 20kHz over 8 bars) — a classic build effect.</p></div></div>
+          <div class="wf-step"><div class="wf-n">6</div><div class="wf-text"><p class="wf-title">Master for Loudness & Club Systems</p><p class="wf-body">EDM is mastered loudly: target <em>−6 to −4 LUFS</em> for club tracks. Use a multi-band compressor on the master to keep the low end tight (compress 20–200Hz harder than mids). Use a brickwall limiter (0 dBTP ceiling). Check your mix in mono — if it collapses, fix mono compatibility in the bass.</p></div></div>
+        </div>
+      </div>
+      <div class="gcol">
+        <p class="gcol-title">Gear Used From Your Studio</p>
+        <div class="gear-used-list">
+          <div class="gu-item"><div><p class="gu-name">Akai MPK Mini MK4</p><p class="gu-role">All MIDI: melody, bass, chords, pads</p></div><span class="gu-badge have">✓ Have</span></div>
+          <div class="gu-item"><div><p class="gu-name">Yamaha HS5 Monitors</p><p class="gu-role">Bass-accurate reference monitoring</p></div><span class="gu-badge have">✓ Have</span></div>
+          <div class="gu-item"><div><p class="gu-name">Focusrite Scarlett Solo</p><p class="gu-role">Ultra-low-latency DAW playback</p></div><span class="gu-badge have">✓ Have</span></div>
+          <div class="gu-item"><div><p class="gu-name">ATH-M50x Headphones</p><p class="gu-role">Detailed hi-hat and transient checks</p></div><span class="gu-badge have">✓ Have</span></div>
+          <div class="gu-item"><div><p class="gu-name">AT2020 (optional)</p><p class="gu-role">Record vocal chops, FX samples, atmospheres</p></div><span class="gu-badge have">✓ Have</span></div>
+        </div>
+        <br>
+        <p class="gcol-title">Recommended Additions</p>
+        <div class="add-gear-grid">
+          <div class="add-gear-item"><p class="add-gear-name">Yamaha HS8S Subwoofer</p><p class="add-gear-price">₹28,000 – ₹35,000</p><p class="add-gear-why">The HS5 reaches 54Hz, which misses the sub-bass content (20–40Hz) critical to EDM. An HS8S subwoofer pairs perfectly with the HS5s and extends your monitoring to 22Hz — you'll hear problems in your low-end that are currently invisible.</p></div>
+          <div class="add-gear-item"><p class="add-gear-name">Vital Synth + Free EDM Sample Pack</p><p class="add-gear-price">Vital: Free | Samples: Cymatics.fm offers free packs</p><p class="add-gear-why">Vital is the standard free synth for EDM — its wavetable engine, modulation matrix, and built-in effects rival Serum. Cymatics offers free professional EDM sample packs monthly.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="settings-block">
+      <p class="gcol-title">Recommended Settings for EDM</p>
+      <div class="setting-row"><span class="setting-key">BPM by Sub-Genre</span><span class="setting-val">House: <em>120–130</em> | Techno: <em>130–145</em> | D&B: <em>170–180</em> | Ambient: <em>90–110</em></span></div>
+      <div class="setting-row"><span class="setting-key">Buffer Size</span><span class="setting-val"><em>256–512 samples</em> during production (heavy synth load), drop to 128 for recording external audio</span></div>
+      <div class="setting-row"><span class="setting-key">HS5 Room Control</span><span class="setting-val">Set to <em>0dB</em> if away from walls — never cut bass on EDM monitoring</span></div>
+      <div class="setting-row"><span class="setting-key">Sidechain Compression</span><span class="setting-val">Kick triggers pad compressor: fast attack (0.1ms), fast release (100ms), 6:1 ratio — the classic pumping effect</span></div>
+      <div class="setting-row"><span class="setting-key">Master Target</span><span class="setting-val"><em>−6 to −4 LUFS</em> integrated for club tracks. −14 LUFS for streaming-only releases</span></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ ACOUSTIC ═══════════════ -->
+  <div class="genre-panel" id="genre-acoustic">
+    <div class="genre-hero">
+      <div class="genre-hero-left">
+        <p class="genre-hero-tag">Genre Guide 05 / 08</p>
+        <h3 class="genre-hero-title">Acoustic, Folk & Singer-Songwriter</h3>
+        <p class="genre-hero-desc">Acoustic music demands the most from your room and your microphone — there's nowhere to hide when it's just a guitar and a voice. The AT2020 condenser is exceptional for acoustic instruments, and with the acoustic foam installed, you can achieve remarkably clean, natural recordings. The honest, open sound of acoustic music benefits most from a well-treated room. This is the genre where room treatment pays its biggest dividend.</p>
+        <div class="genre-suitability">
+          <span class="suit-tag green">✓ Excellent Acoustic Capture</span>
+          <span class="suit-tag amber">◑ Guitar Required (Not Included)</span>
+          <span class="suit-tag green">✓ Minimal Additional Cost</span>
+        </div>
+      </div>
+      <div class="readiness-card">
+        <p class="readiness-title">Studio Readiness Check</p>
+        <div class="readiness-row"><span class="readiness-label">Condenser Microphone</span><span class="readiness-status rs-have">Have It</span></div>
+        <div class="readiness-row"><span class="readiness-label">Acoustic Treatment</span><span class="readiness-status rs-have">Have It</span></div>
+        <div class="readiness-row"><span class="readiness-label">Accurate Monitoring</span><span class="readiness-status rs-have">Have It</span></div>
+        <div class="readiness-row"><span class="readiness-label">Acoustic Guitar</span><span class="readiness-status rs-need">Not Included</span></div>
+        <div class="readiness-row"><span class="readiness-label">Second Mic (for stereo)</span><span class="readiness-status rs-need">Optional: +SM58</span></div>
+        <div class="readiness-row"><span class="readiness-label">Guitar Tuner Plugin</span><span class="readiness-status rs-need">Add: Free</span></div>
+        <div class="readiness-row"><span class="readiness-label">Click Track / Metronome</span><span class="readiness-status rs-have">Built into DAW</span></div>
+      </div>
+    </div>
+
+    <div class="genre-content-grid">
+      <div class="gcol">
+        <p class="gcol-title">Acoustic Recording Workflow</p>
+        <div class="workflow-steps">
+          <div class="wf-step"><div class="wf-n">1</div><div class="wf-text"><p class="wf-title">Tune & Prepare the Guitar</p><p class="wf-body">Use a free chromatic tuner plugin (e.g. <em>gStrings</em> on Android or a DAW tuner) to tune precisely. Change strings 24 hours before recording — new strings are bright and take time to settle. Wipe down with a cloth after playing to extend their lifespan. Loose nut or bridge? Tap the guitar body while recording paused — any sympathetic resonance will appear on the recording.</p></div></div>
+          <div class="wf-step"><div class="wf-n">2</div><div class="wf-text"><p class="wf-title">Mic Placement for Acoustic Guitar</p><p class="wf-body">Use the <em>AT2020</em> at the <em>12th fret</em>, 20–30cm away, angled toward the soundhole at about 30°. This is the universally flattering position. For more body/warmth: move mic closer to the soundhole (15–20cm, angle away to reduce boominess). For more attack/brightness: move toward the fret area, aim at the 9th–10th fret.</p></div></div>
+          <div class="wf-step"><div class="wf-n">3</div><div class="wf-text"><p class="wf-title">Add Vocal on a Separate Pass</p><p class="wf-body">For best isolation, record guitar and vocals separately — record guitar first to a click track, then overdub vocals. If you want the live energy of recording both at once, record them simultaneously but mic the guitar at the 12th fret and the vocal from above (angled down) to maximise separation between the two mics.</p></div></div>
+          <div class="wf-step"><div class="wf-n">4</div><div class="wf-text"><p class="wf-title">Light Processing — Less is More</p><p class="wf-body">Acoustic recordings should sound natural. EQ: cut the low-mid mud at <em>200–400Hz</em> (often called "cardboard box" sound), high-pass below 80Hz, and gently add air at 10–12kHz. Compression: very light, 2:1 ratio, slow attack (50ms) so the pick transients remain audible. Add a <em>small room reverb</em> (pre-delay 20ms, decay 1.2s) for realism.</p></div></div>
+          <div class="wf-step"><div class="wf-n">5</div><div class="wf-text"><p class="wf-title">Layering for Fullness</p><p class="wf-body">Record the same guitar part twice — pan one take slightly left, the other slightly right (±25%). Even with slight timing variations, this creates a rich, wide stereo image. Add a third "capo" take in a higher position for brightness. These layered acoustic guitars are the foundation of most indie-folk recordings.</p></div></div>
+          <div class="wf-step"><div class="wf-n">6</div><div class="wf-text"><p class="wf-title">Add Piano and Strings via MIDI</p><p class="wf-body">Use the MPK Mini to add piano, organ, or orchestral strings via VST. A simple piano pad playing the same chords as the guitar adds warmth without competing. Keep the MIDI arrangement sparse — acoustic music breathes through space and silence. Fewer notes, longer sustains.</p></div></div>
+        </div>
+      </div>
+      <div class="gcol">
+        <p class="gcol-title">Gear Used From Your Studio</p>
+        <div class="gear-used-list">
+          <div class="gu-item"><div><p class="gu-name">AT2020 Condenser</p><p class="gu-role">Primary guitar + vocal microphone</p></div><span class="gu-badge have">✓ Have</span></div>
+          <div class="gu-item"><div><p class="gu-name">SM58 (Second Mic Option)</p><p class="gu-role">Simultaneous vocal when recording live</p></div><span class="gu-badge have">✓ Have</span></div>
+          <div class="gu-item"><div><p class="gu-name">Yamaha MG10XU</p><p class="gu-role">Two mic channels for simultaneous recording</p></div><span class="gu-badge have">✓ Have</span></div>
+          <div class="gu-item"><div><p class="gu-name">YGM Acoustic Foam</p><p class="gu-role">Room treatment for natural acoustic sound</p></div><span class="gu-badge have">✓ Have</span></div>
+          <div class="gu-item"><div><p class="gu-name">Akai MPK Mini</p><p class="gu-role">Piano, strings, orchestral layers via MIDI</p></div><span class="gu-badge have">✓ Have</span></div>
+          <div class="gu-item"><div><p class="gu-name">Yamaha HS5</p><p class="gu-role">Natural, accurate acoustic monitoring</p></div><span class="gu-badge have">✓ Have</span></div>
+        </div>
+        <br>
+        <p class="gcol-title">Recommended Additions</p>
+        <div class="add-gear-grid">
+          <div class="add-gear-item"><p class="add-gear-name">Acoustic Guitar</p><p class="add-gear-price">₹6,000 – ₹18,000 (Yamaha F310 or F335)</p><p class="add-gear-why">The obvious missing piece. A Yamaha F310 (~₹7,000) is a studio-reliable workhorse with consistent intonation. For recording, mid-range acoustic guitars often record better than budget ones because their tuning stability and sustain are superior.</p></div>
+          <div class="add-gear-item"><p class="add-gear-name">Spitfire LABS (Free String & Piano VSTs)</p><p class="add-gear-price">Free — spitfireaudio.com/labs</p><p class="add-gear-why">LABS by Spitfire Audio offers a growing library of high-quality recorded instruments — strings, piano, choir, and more — completely free. These are real recorded instruments, not synthesised, and they sound extraordinary for acoustic folk arrangements.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="settings-block">
+      <p class="gcol-title">Recommended Settings for Acoustic & Folk</p>
+      <div class="setting-row"><span class="setting-key">Mic Placement</span><span class="setting-val"><em>12th fret, 20–30cm, angled 30° toward soundhole</em> — the universal starting point</span></div>
+      <div class="setting-row"><span class="setting-key">AT2020 Gain</span><span class="setting-val">Set so strumming peaks at <em>−18 to −12 dBFS</em> — acoustic guitar has high transient peaks</span></div>
+      <div class="setting-row"><span class="setting-key">EQ Cut</span><span class="setting-val">High-pass at <em>80Hz</em>, dip <em>200–350Hz</em> (−2 to −4 dB) to remove boxy mud</span></div>
+      <div class="setting-row"><span class="setting-key">Reverb</span><span class="setting-val">Small room reverb: pre-delay <em>20ms</em>, decay <em>1.0–1.5s</em>, wet mix <em>15–25%</em></span></div>
+      <div class="setting-row"><span class="setting-key">Compression</span><span class="setting-val"><em>2:1 ratio, 40–60ms attack</em> — keep transients, gentle gain riding only</span></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ LO-FI ═══════════════ -->
+  <div class="genre-panel" id="genre-lofi">
+    <div class="genre-hero">
+      <div class="genre-hero-left">
+        <p class="genre-hero-tag">Genre Guide 06 / 08</p>
+        <h3 class="genre-hero-title">Lo-Fi & Chillhop Production</h3>
+        <p class="genre-hero-desc">Lo-fi is perhaps the most accessible genre to produce at home — its aesthetic actually celebrates imperfection, warmth, and vintage texture. The entire genre is built on slow tempos, jazzy chord progressions, dusty drum samples, and mellow bass. Your MPK Mini, Scarlett Solo, and HS5 monitors handle this perfectly. The genre's defining sound comes from deliberate degradation of the audio — vinyl noise, tape saturation, and low-pass filtering — all achievable with free plugins.</p>
+        <div class="genre-suitability">
+          <span class="suit-tag green">✓ Ideal Home Studio Genre</span>
+          <span class="suit-tag green">✓ All Essential Gear Present</span>
+          <span class="suit-tag green">✓ Minimal Plugin Cost</span>
+        </div>
+      </div>
+      <div class="readiness-card">
+        <p class="readiness-title">Studio Readiness Check</p>
+        <div class="readiness-row"><span class="readiness-label">MIDI Keyboard</span><span class="readiness-status rs-have">Have It</span></div>
+        <div class="readiness-row"><span class="readiness-label">Audio Interface</span><span class="readiness-status rs-have">Have It</span></div>
+        <div class="readiness-row"><span class="readiness-label">Headphones for mixing</span><span class="readiness-status rs-have">Have It</span></div>
+        <div class="readiness-row"><span class="readiness-label">Jazz Piano / Rhodes VST</span><span class="readiness-status rs-need">Add: Free (LABS)</span></div>
+        <div class="readiness-row"><span class="readiness-label">Vinyl Noise Plugin</span><span class="readiness-status rs-need">Add: Free</span></div>
+        <div class="readiness-row"><span class="readiness-label">Lo-Fi Drum Samples</span><span class="readiness-status rs-need">Add: Free</span></div>
+        <div class="readiness-row"><span class="readiness-label">Tape Saturation Plugin</span><span class="readiness-status rs-need">Add: Free</span></div>
+      </div>
+    </div>
+
+    <div class="genre-content-grid">
+      <div class="gcol">
+        <p class="gcol-title">Lo-Fi Production Workflow</p>
+        <div class="workflow-steps">
+          <div class="wf-step"><div class="wf-n">1</div><div class="wf-text"><p class="wf-title">Jazz Chord Progression</p><p class="wf-body">Lo-fi uses jazz-influenced chord extensions — 7th, 9th, and 11th chords. Try: <em>Dm7 → G7 → Cmaj7 → Am7</em> (ii–V–I–vi in C major). With the MPK Mini Chord Mode off, play these voicings manually: for Dm7, play D-F-A-C. Play slowly, with slight timing imperfections — lo-fi is human, not quantised.</p></div></div>
+          <div class="wf-step"><div class="wf-n">2</div><div class="wf-text"><p class="wf-title">Choose the Right Piano/Keys Sound</p><p class="wf-body">Load <em>Spitfire LABS "Soft Piano"</em> or the free <em>Keyzone Classic</em> Rhodes plugin. Lo-fi piano sounds warm, slightly muffled, and intimate — like a Wurlitzer or Rhodes electric piano recorded to cassette. Avoid bright, modern concert grand piano sounds — they're too clinical for the genre.</p></div></div>
+          <div class="wf-step"><div class="wf-n">3</div><div class="wf-text"><p class="wf-title">Programme Jazzy Drum Samples</p><p class="wf-body">Lo-fi drums are <em>sampled, compressed, and dusty</em>. Download a free lo-fi drum pack (Cymatics, Looperman). Use the MPK Mini pads to trigger a hi-hat, kick, snare, and rim shot. Swing quantise the pattern to <em>55–65% swing</em> in your DAW — this introduces the characteristic shuffle feel. BPM: <em>75–95</em>.</p></div></div>
+          <div class="wf-step"><div class="wf-n">4</div><div class="wf-text"><p class="wf-title">Add Bass & Ambient Layers</p><p class="wf-body">Play a simple <em>walking bass line</em> on the MPK Mini keys (one note per beat, following the chord roots) using a double-bass or upright bass VST (free: <em>DSK The Grand</em> in bass mode). Add an ambient pad underneath — low volume, long reverb, barely audible. This adds subconscious warmth.</p></div></div>
+          <div class="wf-step"><div class="wf-n">5</div><div class="wf-text"><p class="wf-title">Apply Lo-Fi Processing</p><p class="wf-body">The lo-fi sound is created by deliberate degradation. Stack these effects: → <em>Tape Saturation</em> (free: Chow Tape Model) — adds harmonic warmth and subtle compression. → <em>Vinyl Noise</em> (free: RC-20 Retro Color Intro or iZotope Vinyl free) — adds crackle, hiss. → <em>Low-pass filter</em> (cut above 12–15kHz) — reduces brightness. → <em>Bit reduction</em> (slight) — adds digital warmth.</p></div></div>
+          <div class="wf-step"><div class="wf-n">6</div><div class="wf-text"><p class="wf-title">Record Ambient Sound with AT2020</p><p class="wf-body">Record 30–60 seconds of ambient room sounds through the AT2020 — rain (run a tap), coffee shop ambience, fan hum, street noise. Layer this recording underneath the music at <em>−30 to −25 dB</em>. This subliminal texture makes lo-fi feel genuinely lived-in and intimate.</p></div></div>
+        </div>
+      </div>
+      <div class="gcol">
+        <p class="gcol-title">Gear Used From Your Studio</p>
+        <div class="gear-used-list">
+          <div class="gu-item"><div><p class="gu-name">Akai MPK Mini MK4</p><p class="gu-role">All chords, melody, bass via MIDI</p></div><span class="gu-badge have">✓ Have</span></div>
+          <div class="gu-item"><div><p class="gu-name">AT2020</p><p class="gu-role">Recording ambient sounds and atmosphere</p></div><span class="gu-badge have">✓ Have</span></div>
+          <div class="gu-item"><div><p class="gu-name">ATH-M50x Headphones</p><p class="gu-role">Lo-fi mixes well on headphones — genre is headphone-first</p></div><span class="gu-badge have">✓ Have</span></div>
+          <div class="gu-item"><div><p class="gu-name">Focusrite Scarlett Solo</p><p class="gu-role">Clean conversion for VST playback</p></div><span class="gu-badge have">✓ Have</span></div>
+        </div>
+        <br>
+        <p class="gcol-title">Recommended Additions</p>
+        <div class="add-gear-grid">
+          <div class="add-gear-item"><p class="add-gear-name">Chow Tape Model + iZotope Vinyl (Both Free)</p><p class="add-gear-price">Free — chowdsp.com and izotope.com</p><p class="add-gear-why">Chow Tape Model is a physically-modelled tape machine plugin that adds the warmth, wow, and flutter of real tape machines. iZotope Vinyl adds vinyl crackle and dust. Together they define the lo-fi aesthetic. Both are free downloads.</p></div>
+          <div class="add-gear-item"><p class="add-gear-name">A Simple MIDI Cable or Pad Upgrade</p><p class="add-gear-price">—</p><p class="add-gear-why">For lo-fi, the MPK Mini's 8 pads are enough. The main additional investment is time spent building a sample library of jazzy drum hits and ambient recordings. Lo-fi is about patience and ear training more than gear.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="settings-block">
+      <p class="gcol-title">Recommended Settings for Lo-Fi</p>
+      <div class="setting-row"><span class="setting-key">BPM</span><span class="setting-val"><em>75–95 BPM</em> — the slower the better for a relaxed feel</span></div>
+      <div class="setting-row"><span class="setting-key">Swing Quantise</span><span class="setting-val"><em>55–65% swing</em> — the shuffle feel is the heartbeat of chillhop</span></div>
+      <div class="setting-row"><span class="setting-key">Low-Pass Filter</span><span class="setting-val">Cut above <em>12–14kHz</em> on master bus — removes modern brightness</span></div>
+      <div class="setting-row"><span class="setting-key">Reverb</span><span class="setting-val">Large room or hall reverb on piano, <em>35–50% wet</em> — lo-fi is spacious</span></div>
+      <div class="setting-row"><span class="setting-key">Ambient Layer</span><span class="setting-val">Recorded room sounds at <em>−28 to −25 dBFS</em> — felt but not heard</span></div>
+      <div class="setting-row"><span class="setting-key">Master Loudness</span><span class="setting-val"><em>−14 to −16 LUFS</em> — lo-fi is a quiet, dynamic genre, never loud-mastered</span></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ PODCAST ═══════════════ -->
+  <div class="genre-panel" id="genre-podcast">
+    <div class="genre-hero">
+      <div class="genre-hero-left">
+        <p class="genre-hero-tag">Genre Guide 07 / 08</p>
+        <h3 class="genre-hero-title">Podcast, Voiceover & Audio Content</h3>
+        <p class="genre-hero-desc">This studio is exceptional for spoken word — the SM58 or AT2020 paired with the Focusrite Solo and acoustic foam panels delivers podcast audio that rivals professional broadcast setups costing ten times more. The MG10XU gives you multi-guest capability with headphone monitoring for everyone. Voiceover for YouTube, audiobooks, commercials, and corporate narration is where this studio earns its money back fastest.</p>
+        <div class="genre-suitability">
+          <span class="suit-tag green">✓ Broadcast Quality</span>
+          <span class="suit-tag green">✓ Multi-Guest Capable</span>
+          <span class="suit-tag green">✓ No Additional Cost</span>
+        </div>
+      </div>
+      <div class="readiness-card">
+        <p class="readiness-title">Studio Readiness Check</p>
+        <div class="readiness-row"><span class="readiness-label">Microphone (×1 minimum)</span><span class="readiness-status rs-have">Have It</span></div>
+        <div class="readiness-row"><span class="readiness-label">Acoustic Treatment</span><span class="readiness-status rs-have">Have It</span></div>
+        <div class="readiness-row"><span class="readiness-label">Headphones (×2)</span><span class="readiness-status rs-have">Have It</span></div>
+        <div class="readiness-row"><span class="readiness-label">Multi-Channel Mixer</span><span class="readiness-status rs-have">Have It</span></div>
+        <div class="readiness-row"><span class="readiness-label">Noise Reduction Plugin</span><span class="readiness-status rs-need">Add: Free (RNNoise)</span></div>
+        <div class="readiness-row"><span class="readiness-label">2nd Microphone (Guest)</span><span class="readiness-status rs-partial">Use SM58 as 2nd</span></div>
+        <div class="readiness-row"><span class="readiness-label">Podcast Hosting</span><span class="readiness-status rs-need">External service</span></div>
+      </div>
+    </div>
+
+    <div class="genre-content-grid">
+      <div class="gcol">
+        <p class="gcol-title">Podcast Production Workflow</p>
+        <div class="workflow-steps">
+          <div class="wf-step"><div class="wf-n">1</div><div class="wf-text"><p class="wf-title">Mic Selection for Voice</p><p class="wf-body">For voiceover and podcast: the <em>SM58</em> is the professional's choice — its proximity effect adds warmth to the voice, its rejection keeps the room out, and its presence peak adds intelligibility. The <em>AT2020</em> suits voices that are naturally deep and warm — it captures more room detail so the acoustic treatment must be thorough. Test both and keep whichever sounds more like "you."</p></div></div>
+          <div class="wf-step"><div class="wf-n">2</div><div class="wf-text"><p class="wf-title">Two-Person Setup via MG10XU</p><p class="wf-body">Plug the SM58 into Channel 1 for Host and the AT2020 into Channel 2 for Guest. Set each channel's gain independently. Both mics feed the main mix, which records to the DAW as a stereo mix (or two separate mono tracks if your DAW allows). Plug ATH-M50x into the Scarlett Solo for host monitoring, ATH-M20x into the MG10XU phones output for guest.</p></div></div>
+          <div class="wf-step"><div class="wf-n">3</div><div class="wf-text"><p class="wf-title">Record & Edit in the DAW</p><p class="wf-body">Record in WAV 44.1kHz, 24-bit — never compress to MP3 while recording. Edit the raw recording: cut long silences, remove "ums" and "ahs" strategically, delete background noise events. Use the DAW's waveform view to quickly locate and remove unwanted sounds without listening through everything.</p></div></div>
+          <div class="wf-step"><div class="wf-n">4</div><div class="wf-text"><p class="wf-title">Process the Voice Chain</p><p class="wf-body">Podcast voice chain: → <em>Noise Gate</em> (silence periods below −40dB) → <em>High-pass filter at 80Hz</em> → <em>EQ: cut 200–400Hz</em> (mud), <em>boost 2–4kHz</em> (intelligibility), <em>slight cut 5–8kHz</em> (sibilance) → <em>Compression: 4:1, fast attack, auto release</em> → <em>Limiter: −1 dBTP ceiling</em>. Free chain: all built into Audacity, GarageBand, or Reaper.</p></div></div>
+          <div class="wf-step"><div class="wf-n">5</div><div class="wf-text"><p class="wf-title">Add Intro Music & Sound Design</p><p class="wf-body">Use the MPK Mini to compose a short intro/outro jingle using a piano or synth VST — 15–30 seconds. Or use royalty-free music from Pixabay, Free Music Archive, or ccMixter. Fade the music under the voice rather than cutting it abruptly. Use the DAW's automation to draw volume curves.</p></div></div>
+          <div class="wf-step"><div class="wf-n">6</div><div class="wf-text"><p class="wf-title">Export & Publish</p><p class="wf-body">Export the finished episode as <em>MP3 at 128kbps mono</em> (for voice-only) or <em>192kbps stereo</em> (if music is prominent). Target <em>−16 LUFS integrated</em> for podcast platforms (Spotify, Apple Podcasts normalise at −16 LUFS). Use a free loudness meter (Youlean Loudness Meter) to verify before export.</p></div></div>
+        </div>
+      </div>
+      <div class="gcol">
+        <p class="gcol-title">Gear Used From Your Studio</p>
+        <div class="gear-used-list">
+          <div class="gu-item"><div><p class="gu-name">Shure SM58 (Host Mic)</p><p class="gu-role">Warm, punchy, room-rejecting voice</p></div><span class="gu-badge have">✓ Have</span></div>
+          <div class="gu-item"><div><p class="gu-name">AT2020 (Guest Mic)</p><p class="gu-role">Second microphone for dual-host</p></div><span class="gu-badge have">✓ Have</span></div>
+          <div class="gu-item"><div><p class="gu-name">Yamaha MG10XU</p><p class="gu-role">Two mic channels + separate headphone mixes</p></div><span class="gu-badge have">✓ Have</span></div>
+          <div class="gu-item"><div><p class="gu-name">Kadence Boom Arm + Pop Filter</p><p class="gu-role">Hands-free mic positioning for long sessions</p></div><span class="gu-badge have">✓ Have</span></div>
+          <div class="gu-item"><div><p class="gu-name">ATH-M50x + ATH-M20x</p><p class="gu-role">Independent headphones for host and guest</p></div><span class="gu-badge have">✓ Have</span></div>
+          <div class="gu-item"><div><p class="gu-name">YGM Foam Panels</p><p class="gu-role">Essential — kills the room sound in dialogue</p></div><span class="gu-badge have">✓ Have</span></div>
+        </div>
+        <br>
+        <p class="gcol-title">Recommended Additions</p>
+        <div class="add-gear-grid">
+          <div class="add-gear-item"><p class="add-gear-name">Second Boom Arm (for Guest Mic)</p><p class="add-gear-price">₹699 — same Kadence NB35-POP</p><p class="add-gear-why">A second boom arm lets both host and guest have their microphones positioned correctly on opposite sides of the desk. One boom arm is included; buying a second one for ₹699 completes the two-person studio for no meaningful extra cost.</p></div>
+          <div class="add-gear-item"><p class="add-gear-name">Auphonic (Free AI Audio Processor)</p><p class="add-gear-price">Free — auphonic.com (2 hours/month free)</p><p class="add-gear-why">Auphonic is an AI audio post-production service that automatically levels loudness, reduces noise, removes hum, and optimises audio for podcast platforms. Upload your edited audio and it does professional mastering automatically — invaluable for podcasters without audio engineering experience.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="settings-block">
+      <p class="gcol-title">Recommended Settings for Podcast & Voiceover</p>
+      <div class="setting-row"><span class="setting-key">Recording Format</span><span class="setting-val"><em>WAV, 44.1kHz, 24-bit</em> — never record in MP3 or compressed format</span></div>
+      <div class="setting-row"><span class="setting-key">Working Distance</span><span class="setting-val"><em>10–15cm</em> from mic for broadcast intimacy — closer than music recording</span></div>
+      <div class="setting-row"><span class="setting-key">Target Input Level</span><span class="setting-val">Average speaking at <em>−18 to −12 dBFS</em>, peaks never above −6 dBFS</span></div>
+      <div class="setting-row"><span class="setting-key">Noise Gate Threshold</span><span class="setting-val">Set 6–10 dB below your noise floor — opens on voice, closes on silence</span></div>
+      <div class="setting-row"><span class="setting-key">Export Loudness</span><span class="setting-val"><em>−16 LUFS integrated</em> for Spotify/Apple Podcasts. <em>−19 LUFS</em> for YouTube.</span></div>
+      <div class="setting-row"><span class="setting-key">Export Format</span><span class="setting-val"><em>MP3 128kbps mono</em> for voice-only. <em>MP3 192kbps stereo</em> if music is included.</span></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ BOLLYWOOD ═══════════════ -->
+  <div class="genre-panel" id="genre-bollywood">
+    <div class="genre-hero">
+      <div class="genre-hero-left">
+        <p class="genre-hero-tag">Genre Guide 08 / 08</p>
+        <h3 class="genre-hero-title">Bollywood, Filmi & Indian Fusion</h3>
+        <p class="genre-hero-desc">Contemporary Bollywood production is a hybrid of orchestral arrangement, electronic production, and live vocal performance. The AT2020 is ideal for capturing the nuance of Indian classical and semi-classical vocal styles — its extended frequency response handles the upper harmonics of melismatic singing exceptionally well. The MPK Mini provides access to orchestral strings, tabla, and sitar VSTs. Indian film music demands arrangement depth, but the bones of the studio are perfectly suited.</p>
+        <div class="genre-suitability">
+          <span class="suit-tag green">✓ Vocal Recording: Excellent</span>
+          <span class="suit-tag green">✓ MIDI Orchestration Ready</span>
+          <span class="suit-tag amber">◑ Indian Instrument VSTs Needed</span>
+        </div>
+      </div>
+      <div class="readiness-card">
+        <p class="readiness-title">Studio Readiness Check</p>
+        <div class="readiness-row"><span class="readiness-label">Vocal Microphone</span><span class="readiness-status rs-have">Have It</span></div>
+        <div class="readiness-row"><span class="readiness-label">MIDI Controller</span><span class="readiness-status rs-have">Have It</span></div>
+        <div class="readiness-row"><span class="readiness-label">Acoustic Treatment</span><span class="readiness-status rs-have">Have It</span></div>
+        <div class="readiness-row"><span class="readiness-label">Indian Instrument VSTs</span><span class="readiness-status rs-need">Add: Free–₹5,000</span></div>
+        <div class="readiness-row"><span class="readiness-label">Orchestral Strings VST</span><span class="readiness-status rs-need">Add: Free (LABS)</span></div>
+        <div class="readiness-row"><span class="readiness-label">Tanpura / Shruti Box</span><span class="readiness-status rs-need">Add: Free app</span></div>
+        <div class="readiness-row"><span class="readiness-label">Harmonium (Physical)</span><span class="readiness-status rs-need">Optional Add</span></div>
+      </div>
+    </div>
+
+    <div class="genre-content-grid">
+      <div class="gcol">
+        <p class="gcol-title">Bollywood Production Workflow</p>
+        <div class="workflow-steps">
+          <div class="wf-step"><div class="wf-n">1</div><div class="wf-text"><p class="wf-title">Build the Rhythm Foundation</p><p class="wf-body">Contemporary Bollywood typically combines a live tabla feel with programmed drums. Download a free <em>tabla sample pack</em> (freesound.org has extensive collections) and map hits to the MPK Mini pads. Pair with a programmed kick and snare for the "filmi" fusion sound. Common Bollywood time signatures: <em>4/4 (Dadra or Teen Taal at medium tempo), 6/8 for slower romantic songs</em>.</p></div></div>
+          <div class="wf-step"><div class="wf-n">2</div><div class="wf-text"><p class="wf-title">Set Up the Tanpura Drone</p><p class="wf-body">Every Indian music recording needs a tonal reference. Use the free <em>iTanpuri app</em> (mobile) or <em>Tanpura Droid</em> to play a continuous drone in the song's key. Route this through a spare channel on the MG10XU into the headphone cue mix for the vocalist — they hear the drone while recording but it stays out of the main DAW recording.</p></div></div>
+          <div class="wf-step"><div class="wf-n">3</div><div class="wf-text"><p class="wf-title">Orchestral & Melodic Layers via MIDI</p><p class="wf-body">Load <em>Spitfire LABS</em> (free) for strings, brass, and choir. Load <em>DSK Indian DreamZ</em> (free) for sitar, sarangi, bansuri, and shehnai. Use the MPK Mini to compose the melodic prelude (mukhda), verse (antara), and orchestral interludes. Keep string voicings in three parts — first violins (melody), second violins (counter-melody), cello/viola (harmony).</p></div></div>
+          <div class="wf-step"><div class="wf-n">4</div><div class="wf-text"><p class="wf-title">Record the Lead Vocal</p><p class="wf-body">Use the <em>AT2020</em> — enable Air mode on the Scarlett Solo for the upper harmonic extension that Indian classical vocals require. Record with the Tanpura drone in the cue mix. Indian vocals involve microtonal ornaments (meend, gamak, murki) — use minimal pitch correction if any, or set it to a <em>chromatic scale</em> rather than a western diatonic scale, which will clash with microtonal ornamentation.</p></div></div>
+          <div class="wf-step"><div class="wf-n">5</div><div class="wf-text"><p class="wf-title">Add Chorus Vocals & Backing</p><p class="wf-body">Layer 3–4 doubles of the main hook. Pan them in a tight cluster (L15%, R15%, centre). Add a sampled male or female chorus from <em>Spitfire LABS "Voice of Britain"</em> for a large choir feel. Bollywood arrangements typically have prominent background vocal stabs (choral hits on beats) which you can replicate with short-decay choir patches.</p></div></div>
+          <div class="wf-step"><div class="wf-n">6</div><div class="wf-text"><p class="wf-title">Electronic & EDM Elements (Modern Bollywood)</p><p class="wf-body">Contemporary Bollywood (post-2010) mixes Indian elements with EDM drops. After the classical mukhda, a drop can hit with an EDM-style synth bass and four-on-the-floor kick. Produce this using the same EDM workflow — the contrast between classical verse and electronic chorus is the defining feature of modern filmi production.</p></div></div>
+        </div>
+      </div>
+      <div class="gcol">
+        <p class="gcol-title">Gear Used From Your Studio</p>
+        <div class="gear-used-list">
+          <div class="gu-item"><div><p class="gu-name">AT2020 (Air Mode)</p><p class="gu-role">Lead vocal — handles microtonal ornamentation</p></div><span class="gu-badge have">✓ Have</span></div>
+          <div class="gu-item"><div><p class="gu-name">Yamaha MG10XU</p><p class="gu-role">Tanpura drone in cue mix, multi-source routing</p></div><span class="gu-badge have">✓ Have</span></div>
+          <div class="gu-item"><div><p class="gu-name">Akai MPK Mini MK4</p><p class="gu-role">All orchestral, tabla, sitar, synth via MIDI</p></div><span class="gu-badge have">✓ Have</span></div>
+          <div class="gu-item"><div><p class="gu-name">Focusrite Scarlett Solo</p><p class="gu-role">Clean vocal conversion, Air mode clarity</p></div><span class="gu-badge have">✓ Have</span></div>
+          <div class="gu-item"><div><p class="gu-name">Yamaha HS5</p><p class="gu-role">Checking orchestral balance and mix width</p></div><span class="gu-badge have">✓ Have</span></div>
+        </div>
+        <br>
+        <p class="gcol-title">Recommended Additions</p>
+        <div class="add-gear-grid">
+          <div class="add-gear-item"><p class="add-gear-name">DSK Indian DreamZ VST (Free)</p><p class="add-gear-price">Free — dskmusic.com</p><p class="add-gear-why">DSK Indian DreamZ is a free VST instrument library with authentic-sounding sitar, bansuri, sarangi, tabla, shehnai, and other Indian instruments. Not perfect, but entirely usable for arrangement and demo production, and completely free.</p></div>
+          <div class="add-gear-item"><p class="add-gear-name">Shruti Box / Harmonium (Physical)</p><p class="add-gear-price">Shruti Box: ₹2,500–₹5,000 | Harmonium: ₹5,000–₹15,000</p><p class="add-gear-why">A physical harmonium or shruti box recorded through the AT2020 adds unmistakable organic warmth that no plugin fully replicates. The harmonium also gives the vocalist a physical tuning reference. Record it as a room instrument with the AT2020 at 30cm, angled at the reeds.</p></div>
+          <div class="add-gear-item"><p class="add-gear-name">East West Ra Indian Library</p><p class="add-gear-price">Subscription: ~₹1,500/month (EW Composer Cloud)</p><p class="add-gear-why">East West's "Ra" library contains the most realistic recorded Indian orchestral instruments available as VST — studio-recorded sitar, tabla, bansuri, veena, and more. For serious production, this is the professional standard.</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="settings-block">
+      <p class="gcol-title">Recommended Settings for Bollywood & Filmi</p>
+      <div class="setting-row"><span class="setting-key">Pitch Correction Scale</span><span class="setting-val">Set to <em>Chromatic</em> — not diatonic. Indian vocals use microtones that western scales will correct incorrectly</span></div>
+      <div class="setting-row"><span class="setting-key">AT2020 Distance</span><span class="setting-val"><em>20–30cm</em> — allows the voice to open up and produces less proximity effect than close-miking</span></div>
+      <div class="setting-row"><span class="setting-key">Reverb Style</span><span class="setting-val">Large hall reverb (<em>2.5–3.5s decay</em>) on lead vocal — Bollywood vocals swim in reverb</span></div>
+      <div class="setting-row"><span class="setting-key">Orchestral Layering</span><span class="setting-val">Strings → Brass (stabs) → Woodwind (flute counter-melody) → Tabla → Synth bass — build from bottom up</span></div>
+      <div class="setting-row"><span class="setting-key">Tanpura in Cue Mix</span><span class="setting-val">Set at comfortable hearing level — <em>in the headphones only</em>, not recorded to the DAW track</span></div>
+      <div class="setting-row"><span class="setting-key">Master Loudness</span><span class="setting-val"><em>−8 to −6 LUFS</em> for streaming — Bollywood production is mastered very loud</span></div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-logo">STUDIOGHAR</div>
+  <p class="footer-tagline">"Every great record starts at home."</p>
+  <p class="footer-copy">© 2025 StudioGhar. All prices in Indian Rupees.</p>
+</footer>
+
+<script>
+  // ── Genre tab switching
+  function switchGenre(id) {
+    document.querySelectorAll('.genre-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.genre-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('genre-' + id).classList.add('active');
+    event.currentTarget.classList.add('active');
+    window.scrollTo({ top: document.getElementById('genreTabs').getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth' });
+  }
+
+  // ── Phase accordion toggle
+  function togglePhase(header) {
+    const body = header.nextElementSibling;
+    const isOpen = body.classList.contains('open');
+    // Close all
+    document.querySelectorAll('.phase-body').forEach(b => b.classList.remove('open'));
+    document.querySelectorAll('.phase-header').forEach(h => h.classList.remove('active'));
+    // Open clicked if it was closed
+    if (!isOpen) {
+      body.classList.add('open');
+      header.classList.add('active');
+      setTimeout(() => header.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 50);
+    }
+  }
+
+  // ── Waveform bars
+  const wf = document.getElementById('waveform');
+  if (wf) {
+    const heights = [20,35,55,80,110,140,160,180,190,200,195,185,170,155,140,120,100,80,60,45,30,50,75,100,130,155,175,190,200,195,180,165,148,130,108,88,65,45,30,20];
+    heights.forEach((h, i) => {
+      const bar = document.createElement('div');
+      bar.className = 'bar';
+      bar.style.setProperty('--h', h + 'px');
+      bar.style.setProperty('--dur', (0.9 + Math.random() * 0.8).toFixed(2) + 's');
+      bar.style.setProperty('--delay', (Math.random() * 0.8).toFixed(2) + 's');
+      wf.appendChild(bar);
+    });
+  }
+
+  // ── Scroll-triggered fade-ins
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 60);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Hero card visible immediately
+  setTimeout(() => {
+    document.querySelectorAll('.hero .fade-in').forEach(el => el.classList.add('visible'));
+  }, 300);
+</script>
+</body>
+</html>
